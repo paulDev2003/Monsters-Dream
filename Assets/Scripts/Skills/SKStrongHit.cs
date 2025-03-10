@@ -11,6 +11,8 @@ public class SKStrongHit : SkillSO
 
     public void StrongHit(Monster target, Monster monsterOwner)
     {
-        target.healthFigth -= monsterOwner.monsterSO.physicalDamage * attackMultiplier;
+        float damage = monsterOwner.monsterSO.physicalDamage * attackMultiplier;
+        target.healthFigth -= damage;
+        monsterOwner.AttackScreenInfo(damage, target);
     }
 }

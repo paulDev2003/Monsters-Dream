@@ -20,3 +20,4 @@ MonoBehaviour:
   evasion: 6
   magicalDamage: 1
   magicalDefense: 1
+  skill: {fileID: 11400000, guid: 836d208a72fa5104ba88f186fb31942e, type: 2}

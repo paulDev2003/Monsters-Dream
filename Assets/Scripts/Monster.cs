@@ -19,6 +19,7 @@ public class Monster : MonoBehaviour
     public float rotationSpeed = 5;
     private float enemieDistance;
     private float attackTime;
+    private int attacksToSkill;
     [Space(10)]
     public float healthFigth = 1;
     public Monster target;
@@ -32,6 +33,7 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
+        attacksToSkill = Random.Range(4, 7);
         physicalDamage = monsterSO.physicalDamage;
         speedAttack = monsterSO.speedAttack;
         defense = monsterSO.defense;
@@ -51,7 +53,6 @@ public class Monster : MonoBehaviour
             oppositeList = gameManager.enemieList;
             ownList = gameManager.friendsList;
         }
-        Debug.Log(oppositeList);
         target = ChooseTarget(oppositeList);
     }
 
@@ -76,6 +77,7 @@ public class Monster : MonoBehaviour
             {
                 Attack();
             }
+
             if (healthFigth <= 0)
             {
                 Debug.Log("Hola");
@@ -115,9 +117,20 @@ public class Monster : MonoBehaviour
         }
         else if(attackTime <= 0)
         {
-            float damage = CalculateDamage();
-            target.healthFigth -= damage;
-            AttackScreenInfo(damage, target);
+            if (attacksToSkill > 0)
+            {
+                float damage = CalculateDamage();
+                target.healthFigth -= damage;
+                AttackScreenInfo(damage, target);
+            }
+            else
+            {
+                Debug.Log($"Lanza su ataque {monsterSO.name}");
+                monsterSO.skill.ShootSkill(this);
+                attacksToSkill = Random.Range(4, 7);
+                attackTime = 1 / speedAttack;
+            }
+            attacksToSkill -= 1;
             if (target.healthFigth <= 0)
             {
                 target.healthFigth = 0;
@@ -129,14 +142,14 @@ public class Monster : MonoBehaviour
 
     private float CalculateDamage()
     {
-        attackTime = 1 / monsterSO.speedAttack;
+        attackTime = 1 / speedAttack;
         float randomChance = Random.Range(0f, 100f);
-        if (randomChance < monsterSO.evasion)
+        if (randomChance < evasion)
         {
             Debug.Log("¡El objetivo esquivó el ataque!");
             return 0; // No hay daño si esquiva
         }
-        float damageDone = monsterSO.physicalDamage - target.monsterSO.defense;
+        float damageDone = physicalDamage - target.defense;
         if (damageDone < 1)
         {
             return 1;
