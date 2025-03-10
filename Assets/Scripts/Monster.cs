@@ -5,8 +5,8 @@ using TMPro;
 
 public class Monster : MonoBehaviour
 {
+    public MonsterSO monsterSO;
     public bool enemie;
-    public float health;
     public float physicalDamage;
     public float speedAttack;
     public float defense;
@@ -19,24 +19,28 @@ public class Monster : MonoBehaviour
     public float rotationSpeed = 5;
     private float enemieDistance;
     private float attackTime;
-    public GameObject textInfoPrefab;
-    public GameObject canvas;
     [Space(10)]
     public float healthFigth = 1;
     public Monster target;
     public bool dead;
 
     private GameManager gameManager;
-    private List<GameObject> oppositeList;
-    private List<GameObject> ownList;
+ [HideInInspector]public List<GameObject> oppositeList;
+ [HideInInspector]public List<GameObject> ownList;
     private bool stopFigth = false;
 
 
     private void Start()
     {
+        physicalDamage = monsterSO.physicalDamage;
+        speedAttack = monsterSO.speedAttack;
+        defense = monsterSO.defense;
+        evasion = monsterSO.evasion;
+        magicalDamage = monsterSO.magicalDamage;
+        magicalDefense = monsterSO.magicalDefense;
         gameManager = FindObjectOfType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
-        healthFigth = health;
+        healthFigth = monsterSO.health;
         if (enemie)
         {
             oppositeList = gameManager.friendsList;
@@ -125,14 +129,14 @@ public class Monster : MonoBehaviour
 
     private float CalculateDamage()
     {
-        attackTime = 1 / speedAttack;
+        attackTime = 1 / monsterSO.speedAttack;
         float randomChance = Random.Range(0f, 100f);
-        if (randomChance < evasion)
+        if (randomChance < monsterSO.evasion)
         {
             Debug.Log("¡El objetivo esquivó el ataque!");
             return 0; // No hay daño si esquiva
         }
-        float damageDone = physicalDamage - target.defense;
+        float damageDone = monsterSO.physicalDamage - target.monsterSO.defense;
         if (damageDone < 1)
         {
             return 1;
@@ -151,7 +155,7 @@ public class Monster : MonoBehaviour
 
     public void AttackScreenInfo(float damage, Monster monsterDamaged)
     {
-        GameObject textInstanced = Instantiate(textInfoPrefab, monsterDamaged.transform.position + Vector3.up * 2, Quaternion.identity, monsterDamaged.canvas.transform);
+        GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, monsterDamaged.transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
         TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
         if (damage == 0)
         {

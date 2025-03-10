@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject finalScreen;
     public bool finish = false;
     public GameObject textInfoPrefab;
+    public GameObject canvasWorld;
 
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {

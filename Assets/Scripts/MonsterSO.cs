@@ -11,4 +11,5 @@ public class MonsterSO : ScriptableObject
     public float evasion;
     public float magicalDamage;
     public float magicalDefense;
+    public SkillSO skill;
 }
