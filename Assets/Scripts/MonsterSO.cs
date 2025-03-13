@@ -4,12 +4,14 @@ using UnityEngine;
 public class MonsterSO : ScriptableObject
 {
     public string monsterName;
-    public float health;
-    public float physicalDamage;
+    public int health;
+    public int physicalDamage;
     public float speedAttack;
-    public float defense;
-    public float evasion;
-    public float magicalDamage;
-    public float magicalDefense;
+    public int defense;
+    public int evasion;
+    public int magicalDamage;
+    public int magicalDefense;
     public SkillSO skill;
+    public LevelUpSO levelUp;
+
 }

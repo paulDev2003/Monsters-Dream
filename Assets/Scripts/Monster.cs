@@ -7,6 +7,8 @@ public class Monster : MonoBehaviour
 {
     public MonsterSO monsterSO;
     public bool enemie;
+    public int level = 1;
+    public float health;
     public float physicalDamage;
     public float speedAttack;
     public float defense;
@@ -24,22 +26,21 @@ public class Monster : MonoBehaviour
     public float healthFigth = 1;
     public Monster target;
     public bool dead;
+    public int exp;
+    public int maxExp;
 
     private GameManager gameManager;
- [HideInInspector]public List<GameObject> oppositeList;
- [HideInInspector]public List<GameObject> ownList;
+    [HideInInspector] public List<GameObject> oppositeList;
+    [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
-
+    private MonsterClass monsterClass;
 
     private void Start()
     {
+        monsterClass = new MonsterClass(monsterSO, level);
+        UpdateStats();
         attacksToSkill = Random.Range(4, 7);
-        physicalDamage = monsterSO.physicalDamage;
-        speedAttack = monsterSO.speedAttack;
-        defense = monsterSO.defense;
-        evasion = monsterSO.evasion;
-        magicalDamage = monsterSO.magicalDamage;
-        magicalDefense = monsterSO.magicalDefense;
+        
         gameManager = FindObjectOfType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
         healthFigth = monsterSO.health;
@@ -85,26 +86,26 @@ public class Monster : MonoBehaviour
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
             }
-        }       
+        }
     }
 
     private Monster ChooseTarget(List<GameObject> listOpposite)
     {
         GameObject _target = null;
-        float distance = float.MaxValue; 
+        float distance = float.MaxValue;
         foreach (var enemie in listOpposite)
         {
             if (distance > Vector3.Distance(transform.position, enemie.transform.position))
             {
                 distance = Vector3.Distance(transform.position, enemie.transform.position);
                 _target = enemie;
-            }   
+            }
         }
         Monster scriptTarget = null;
         if (_target != null)
         {
             scriptTarget = _target.GetComponent<Monster>();
-        }  
+        }
         return scriptTarget;
     }
 
@@ -115,7 +116,7 @@ public class Monster : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speedMovement * Time.deltaTime);
         }
-        else if(attackTime <= 0)
+        else if (attackTime <= 0)
         {
             if (attacksToSkill > 0)
             {
@@ -179,6 +180,18 @@ public class Monster : MonoBehaviour
             textComponent.text = $"-{damage}";
         }
         Destroy(textInstanced, 1.2f);
+    }
+
+    private void UpdateStats()
+    {
+        health = monsterClass.Health;
+        healthFigth = health;
+        physicalDamage = monsterClass.PhysicalDamage;
+        speedAttack = monsterClass.SpeedAttack;
+        defense = monsterClass.Defense;
+        evasion = monsterClass.Evasion;
+        magicalDamage = monsterClass.MagicalDamage;
+        magicalDefense = monsterClass.MagicalDefense;
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena
