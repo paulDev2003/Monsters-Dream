@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36afb672b7f69a4a983576c2d2bcd1c, type: 3}
-  m_Name: LevelUpTank
+  m_Script: {fileID: 11500000, guid: 96f8d6a35d825a14290ab55c61df5933, type: 3}
+  m_Name: AbsorbTargets
   m_EditorClassIdentifier: 
-  health: 3
-  physicalDamage: 1
-  speedAttack: 0
-  defense: 3
-  evasion: 0
-  magicalDamage: 0
-  magicalDefense: 1
+  skillName: Absorb Targets

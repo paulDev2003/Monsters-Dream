@@ -703,6 +703,10 @@ PrefabInstance:
       propertyPath: enemie
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: rotationSpeed
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.44
@@ -1130,6 +1134,10 @@ PrefabInstance:
       propertyPath: enemie
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: rotationSpeed
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.18
@@ -1268,9 +1276,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: level
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: health
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: defense
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: evasion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: healthFigth
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: speedAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: magicalDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: rotationSpeed
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: magicalDefense
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: physicalDamage
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5929527
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1278,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.2344115
+      value: -2.28
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1325,6 +1373,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: level
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: health
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: defense
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: evasion
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: healthFigth
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: speedAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: magicalDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: rotationSpeed
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: magicalDefense
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: physicalDamage
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8726254377197835590, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.45

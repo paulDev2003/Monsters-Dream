@@ -37,7 +37,6 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        monsterClass = new MonsterClass(monsterSO, level);
         UpdateStats();
         attacksToSkill = Random.Range(4, 7);
         
@@ -181,8 +180,9 @@ public class Monster : MonoBehaviour
         Destroy(textInstanced, 1.2f);
     }
 
-    private void UpdateStats()
+    public void UpdateStats()
     {
+        monsterClass = new MonsterClass(monsterSO, level);
         health = monsterClass.Health;
         healthFigth = monsterClass.Health;
         physicalDamage = monsterClass.PhysicalDamage;
@@ -191,7 +191,6 @@ public class Monster : MonoBehaviour
         evasion = monsterClass.Evasion;
         magicalDamage = monsterClass.MagicalDamage;
         magicalDefense = monsterClass.MagicalDefense;
-        Debug.Log(healthFigth);
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena
