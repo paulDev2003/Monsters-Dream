@@ -13,6 +13,11 @@ public class MonsterGenerator : EditorWindow
     private string pathAndName = "Assets/Prefabs/Monsters/New Monster";
     private string newPathAndName;
 
+    private PreviewRenderUtility previewUtility;
+    private GameObject targetObject;
+
+    private Quaternion modelRotation = Quaternion.identity;
+    private Vector2 drag;
     [MenuItem("LucasTools/Monster Generator")]
     static void Init()
     {
@@ -25,6 +30,53 @@ public class MonsterGenerator : EditorWindow
     }
 
 
+
+    private void OnEnable()
+    {
+        previewUtility = new PreviewRenderUtility();
+    }
+
+    private void OnDisable()
+    {
+        if (previewUtility != null)
+            previewUtility.Cleanup();
+
+        if (targetObject != null)
+            Object.DestroyImmediate(targetObject);
+    }
+
+    private void SetupPreviewScene()
+    {
+        if (targetObject != null && !EditorUtility.IsPersistent(targetObject))
+        {
+            Object.DestroyImmediate(targetObject);
+        }
+        targetObject = Instantiate(prefabModelo);
+        targetObject.transform.position = Vector3.zero;
+        targetObject.hideFlags = HideFlags.HideAndDontSave;
+        previewUtility.AddSingleGO(targetObject);
+        previewUtility.camera.transform.position = new Vector3(0f, 0f, -20f);
+        previewUtility.camera.nearClipPlane = 2f;
+        previewUtility.camera.farClipPlane = 30f;
+    }
+    private void Update()
+    {
+        Quaternion rotation = Quaternion.Euler(drag.y, drag.x, 0);
+        if (targetObject != null)
+        {
+            targetObject.transform.rotation = rotation;
+        }
+        Repaint();
+    }
+    private void HandleMouseInput()
+    {
+        if (Event.current.type == EventType.MouseDrag && Event.current.button == 0)
+        {
+            drag.x -= Event.current.delta.x;
+            drag.y += Event.current.delta.y;
+            Event.current.Use();
+        }
+    }
     private void OnGUI()
     {
         guiStyle = new GUIStyle(GUI.skin.button) { alignment = TextAnchor.MiddleCenter, fontSize = 15, fixedHeight = 40 };
@@ -33,6 +85,7 @@ public class MonsterGenerator : EditorWindow
         monsterName = EditorGUILayout.TextField("Name", monsterName);
         prefabModelo = (GameObject)EditorGUILayout.ObjectField("Modelo3D", prefabModelo, typeof(GameObject), true);
         stats = (MonsterSO)EditorGUILayout.ObjectField("Stats", stats, typeof(MonsterSO), true);
+        HandleMouseInput();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
@@ -49,6 +102,22 @@ public class MonsterGenerator : EditorWindow
             ClearMonster();
         }
         EditorGUILayout.EndHorizontal();
+        float width = base.position.width; // Ancho completo de la ventana
+        float height = base.position.height * 0.4f; // El 20% de la altura total de la ventana
+        float y = base.position.height - height; // Posicionar en la parte inferior de la ventana
+
+
+        // Crear el rectángulo con las nuevas dimensiones
+        Rect rect = new Rect(0, y, width, height);
+        previewUtility.BeginPreview(rect, previewBackground: GUIStyle.none);
+        previewUtility.Render();
+        var texture = previewUtility.EndPreview();
+
+        GUI.DrawTexture(rect, texture);
+        if (GUILayout.Button("Preview"))
+        {
+            SetupPreviewScene();
+        }
     }
 
     private void DrawHorizontalLine()

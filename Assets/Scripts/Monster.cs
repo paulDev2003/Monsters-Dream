@@ -43,7 +43,6 @@ public class Monster : MonoBehaviour
         
         gameManager = FindObjectOfType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
-        healthFigth = monsterSO.health;
         if (enemie)
         {
             oppositeList = gameManager.friendsList;
@@ -185,13 +184,14 @@ public class Monster : MonoBehaviour
     private void UpdateStats()
     {
         health = monsterClass.Health;
-        healthFigth = health;
+        healthFigth = monsterClass.Health;
         physicalDamage = monsterClass.PhysicalDamage;
         speedAttack = monsterClass.SpeedAttack;
         defense = monsterClass.Defense;
         evasion = monsterClass.Evasion;
         magicalDamage = monsterClass.MagicalDamage;
         magicalDefense = monsterClass.MagicalDefense;
+        Debug.Log(healthFigth);
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena

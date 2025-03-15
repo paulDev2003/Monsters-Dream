@@ -41,6 +41,4 @@ public class GameManager : MonoBehaviour
         finalScreen.SetActive(true);
         finish = true;
     }
-
-    
 }
