@@ -40,7 +40,7 @@ public class Monster : MonoBehaviour
         UpdateStats();
         attacksToSkill = Random.Range(4, 7);
         
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindAnyObjectByType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
         if (enemie)
         {

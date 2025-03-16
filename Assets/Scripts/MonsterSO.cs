@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Monster", menuName = "CreateMonster", order = 0)]
 public class MonsterSO : ScriptableObject
@@ -13,5 +14,5 @@ public class MonsterSO : ScriptableObject
     public int magicalDefense;
     public SkillSO skill;
     public LevelUpSO levelUp;
-
+    public List<ItemSO> dropList;
 }

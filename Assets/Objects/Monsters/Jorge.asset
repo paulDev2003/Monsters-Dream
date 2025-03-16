@@ -22,3 +22,8 @@ MonoBehaviour:
   magicalDefense: 1
   skill: {fileID: 11400000, guid: 836d208a72fa5104ba88f186fb31942e, type: 2}
   levelUp: {fileID: 11400000, guid: 494d6dfeaf0c3da4d8b682d265826b24, type: 2}
+  dropList:
+  - {fileID: 11400000, guid: d0f5f2d127be3144aa243ed0d91493ad, type: 2}
+  - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
+  - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
+  - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
