@@ -15,6 +15,13 @@ public class Monster : MonoBehaviour
     public float evasion;
     public float magicalDamage;
     public float magicalDefense;
+    public enum typeDamage
+    { 
+        Physical,
+        Magical
+    };
+    public typeDamage damageType;
+
     [Space(10)]
     public float distanceAttack;
     public float speedMovement;
@@ -28,6 +35,7 @@ public class Monster : MonoBehaviour
     public bool dead;
     public int exp;
     public int maxExp;
+    
 
     private GameManager gameManager;
     [HideInInspector] public List<GameObject> oppositeList;
@@ -148,7 +156,16 @@ public class Monster : MonoBehaviour
             Debug.Log("¡El objetivo esquivó el ataque!");
             return 0; // No hay daño si esquiva
         }
-        float damageDone = physicalDamage - target.defense;
+        float damageDone;
+        if (damageType == typeDamage.Physical)
+        {
+            damageDone = physicalDamage - target.defense;
+        }
+        else
+        {
+            damageDone = magicalDamage - target.magicalDefense;
+        }
+        
         if (damageDone < 1)
         {
             return 1;

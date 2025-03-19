@@ -18,10 +18,10 @@ MonoBehaviour:
   speedAttack: 1.5
   defense: 4
   evasion: 10
-  magicalDamage: 1
+  magicalDamage: 9
   magicalDefense: 1
   skill: {fileID: 11400000, guid: 78ca0727f60c0304abe26a3bb2949555, type: 2}
-  levelUp: {fileID: 11400000, guid: 3d3c0fa0c84ca384391e2704f5044840, type: 2}
+  levelUp: {fileID: 11400000, guid: 04f542998196e434fa186561411594b1, type: 2}
   dropList:
   - {fileID: 11400000, guid: 29f66bbc1c96c274486a05ccd7e3f3ca, type: 2}
   - {fileID: 11400000, guid: 29f66bbc1c96c274486a05ccd7e3f3ca, type: 2}

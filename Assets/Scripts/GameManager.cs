@@ -18,11 +18,14 @@ public class GameManager : MonoBehaviour
     public GameObject canvasWorld;
     public List<Image> imagesLoot;
     public Image panelLoot;
+    private Inventory inventory;
+    private List<ItemSO> listLoot;
 
     private void Start()
     {
         enemiesSaved = new List<GameObject>(enemieList);
         friendsSaved = new List<GameObject>(friendsList);
+        inventory = FindAnyObjectByType<Inventory>();
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {
@@ -68,11 +71,13 @@ public class GameManager : MonoBehaviour
                         imagesLoot[i].sprite = drop.sprite;
                         imagesLoot[i].enabled = true;
                         i++;
+                        listLoot.Add(drop);
                         Debug.Log("Drop");
                     }
                 }
                 Debug.Log("Change enemy");
             }
+            inventory.Additems(listLoot);
         }
         else
         {

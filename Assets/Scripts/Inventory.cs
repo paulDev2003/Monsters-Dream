@@ -8,13 +8,23 @@ public class Inventory : MonoBehaviour
 
     public Dictionary<string, int> countMolecules;
     public Dictionary<string, int> countCapturables;
+    private GameDataController gameDataController;
 
     private void Start()
     {
-        capturableInventory = new Dictionary<string, ItemCapturable>();
-        moleculeInventory = new Dictionary<string, ItemMolecule>();
-        countMolecules = new Dictionary<string, int>();
-        countCapturables = new Dictionary<string, int>();
+        gameDataController = FindAnyObjectByType<GameDataController>();
+        if (gameDataController != null)
+        {
+            gameDataController.LoadData();
+        }
+        else
+        {
+            Debug.Log("Can´t find DataController");
+            capturableInventory = new Dictionary<string, ItemCapturable>();
+            moleculeInventory = new Dictionary<string, ItemMolecule>();
+            countMolecules = new Dictionary<string, int>();
+            countCapturables = new Dictionary<string, int>();
+        }
     }
     public void Additems(List<ItemSO> listLoot)
     {
@@ -24,7 +34,7 @@ public class Inventory : MonoBehaviour
             {
                 case ItemSO.typeItem.Capturable:
                     if (capturableInventory.ContainsKey(item.name))
-                    {                        
+                    {
                         countCapturables[item.name] += 1;
                     }
                     else

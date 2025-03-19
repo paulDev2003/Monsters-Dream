@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a31c3c1d671274ab66b4798d85f6a5, type: 3}
+  m_Name: Honguito
+  m_EditorClassIdentifier: 
+  monsterName: Honguito
+  health: 19
+  physicalDamage: 7
+  speedAttack: 1
+  defense: 6
+  evasion: 15
+  magicalDamage: 1
+  magicalDefense: 5
+  skill: {fileID: 11400000, guid: 515ef2e4abf63614fbc75334946d525f, type: 2}
+  levelUp: {fileID: 11400000, guid: dd7709de69baa5f409e4fe9a046519f1, type: 2}
+  dropList:
+  - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
+  - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
+  - {fileID: 11400000, guid: d0f5f2d127be3144aa243ed0d91493ad, type: 2}
+  - {fileID: 11400000, guid: 8c3adfb3e2ba80946ad40cefe7ddd5f8, type: 2}
+  - {fileID: 11400000, guid: 8c3adfb3e2ba80946ad40cefe7ddd5f8, type: 2}
