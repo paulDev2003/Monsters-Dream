@@ -12,18 +12,19 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        capturableInventory = new Dictionary<string, ItemCapturable>();
+        moleculeInventory = new Dictionary<string, ItemMolecule>();
+        countMolecules = new Dictionary<string, int>();
+        countCapturables = new Dictionary<string, int>();
         gameDataController = FindAnyObjectByType<GameDataController>();
         if (gameDataController != null)
         {
-            gameDataController.LoadData();
+            gameDataController.LoadData(this);
         }
         else
         {
             Debug.Log("Can´t find DataController");
-            capturableInventory = new Dictionary<string, ItemCapturable>();
-            moleculeInventory = new Dictionary<string, ItemMolecule>();
-            countMolecules = new Dictionary<string, int>();
-            countCapturables = new Dictionary<string, int>();
+            
         }
     }
     public void Additems(List<ItemSO> listLoot)

@@ -16,16 +16,28 @@ public class GameDataController : MonoBehaviour
     private void Start()
     {
         inventory = FindAnyObjectByType<Inventory>(); // Se asegura de encontrarlo en Start()
+        if (inventory == null)
+        {
+            Debug.Log("Can´t find inventory");
+        }
     }
 
-    public void LoadData()
+    public void LoadData(Inventory inventory)
     {
         if (File.Exists(saveFiles))
         {
             string content = File.ReadAllText(saveFiles);
             saveData = JsonUtility.FromJson<SaveData>(content);
-            inventory.capturableInventory = new Dictionary<string, ItemCapturable>();
-            inventory.countCapturables = new Dictionary<string, int>();
+            if (inventory == null)
+            {
+                Debug.Log("inventory es null");
+            }
+            if (saveData == null)
+            {
+                Debug.Log("Can´t find saveData");
+            }
+            //inventory.capturableInventory = new Dictionary<string, ItemCapturable>();
+            //inventory.countCapturables = new Dictionary<string, int>();
 
             for (int i = 0; i < saveData.capturableKeys.Count; i++)
             {
@@ -33,8 +45,8 @@ public class GameDataController : MonoBehaviour
                 inventory.countCapturables.Add(saveData.capturableKeys[i], saveData.capturableAmount[i]);
             }
 
-            inventory.moleculeInventory = new Dictionary<string, ItemMolecule>();
-            inventory.countMolecules = new Dictionary<string, int>();
+            //inventory.moleculeInventory = new Dictionary<string, ItemMolecule>();
+            //inventory.countMolecules = new Dictionary<string, int>();
 
             for (int i = 0; i < saveData.molecularKeys.Count; i++)
             {
@@ -56,7 +68,7 @@ public class GameDataController : MonoBehaviour
 
     public void SaveData()
     {
-        SaveDataJSON newData = new SaveDataJSON()
+        SaveData newData = new SaveData()
         {
             capturableKeys = new List<string>(inventory.capturableInventory.Keys),
             capturableValues = new List<ItemCapturable>(inventory.capturableInventory.Values),

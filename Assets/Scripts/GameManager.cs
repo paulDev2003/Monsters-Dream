@@ -20,12 +20,15 @@ public class GameManager : MonoBehaviour
     public Image panelLoot;
     private Inventory inventory;
     private List<ItemSO> listLoot;
+    private GameDataController gameDataController;
 
     private void Start()
     {
         enemiesSaved = new List<GameObject>(enemieList);
         friendsSaved = new List<GameObject>(friendsList);
+        listLoot = new List<ItemSO>();
         inventory = FindAnyObjectByType<Inventory>();
+        gameDataController = FindAnyObjectByType<GameDataController>();
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Change enemy");
             }
             inventory.Additems(listLoot);
+            gameDataController.SaveData();
         }
         else
         {
