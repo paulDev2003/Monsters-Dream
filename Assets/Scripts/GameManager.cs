@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
     private Inventory inventory;
     private List<ItemSO> listLoot;
     private GameDataController gameDataController;
+    public List<GameObject> lifeBarsFriends = new List<GameObject>();
+    public List<UILifeBar> superiorBarFriends = new List<UILifeBar>();
+    public List<TextMeshProUGUI> levelFriends = new List<TextMeshProUGUI>();
+    public List<GameObject> lifeBarsEnemies = new List<GameObject>();
+    public List<UILifeBar> superiorBarEnemies = new List<UILifeBar>();
+    public List<TextMeshProUGUI> levelEnemies = new List<TextMeshProUGUI>();
 
     private void Start()
     {
@@ -29,6 +35,26 @@ public class GameManager : MonoBehaviour
         listLoot = new List<ItemSO>();
         inventory = FindAnyObjectByType<Inventory>();
         gameDataController = FindAnyObjectByType<GameDataController>();
+        int i = 0;
+        foreach (var friend in friendsList)
+        {
+            lifeBarsFriends[i].SetActive(true);
+            Monster script = friend.GetComponent<Monster>();
+            lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
+            script.lifeBar = superiorBarFriends[i];
+            levelFriends[i].text = $"Lv.{script.level}";
+            i++;
+        }
+        int e = 0;
+        foreach (var enemie in enemieList)
+        {
+            lifeBarsEnemies[e].SetActive(true);
+            Monster script = enemie.GetComponent<Monster>();
+            lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
+            script.lifeBar = superiorBarEnemies[e];
+            levelEnemies[e].text = $"Lv.{script.level}";
+            e++;
+        }
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {
@@ -57,6 +83,14 @@ public class GameManager : MonoBehaviour
             }
         }
         finish = true;
+        foreach (var lifeBar in lifeBarsFriends)
+        {
+            lifeBar.SetActive(false);
+        }
+        foreach (var lifeBar in lifeBarsEnemies)
+        {
+            lifeBar.SetActive(false);
+        }
         if (list == enemieList)
         {
             victoryScreen.SetActive(true);

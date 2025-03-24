@@ -15,6 +15,7 @@ public class Monster : MonoBehaviour
     public float evasion;
     public float magicalDamage;
     public float magicalDefense;
+    public UILifeBar lifeBar;
     public enum typeDamage
     { 
         Physical,
@@ -30,7 +31,7 @@ public class Monster : MonoBehaviour
     private float attackTime;
     private int attacksToSkill;
     [Space(10)]
-    public float healthFigth = 1;
+    public float healthFigth;
     public Monster target;
     public bool dead;
     public int exp;
@@ -129,6 +130,7 @@ public class Monster : MonoBehaviour
                 float damage = CalculateDamage();
                 target.healthFigth -= damage;
                 AttackScreenInfo(damage, target);
+                target.lifeBar.UpdateFill(target);
             }
             else
             {
