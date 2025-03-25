@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> lifeBarsEnemies = new List<GameObject>();
     public List<UILifeBar> superiorBarEnemies = new List<UILifeBar>();
     public List<TextMeshProUGUI> levelEnemies = new List<TextMeshProUGUI>();
+    public List<Image> monsterPanel = new List<Image>();
+    public List<MonsterDrop> monsterDrop = new List<MonsterDrop>();
 
     private void Start()
     {
@@ -54,6 +56,15 @@ public class GameManager : MonoBehaviour
             script.lifeBar = superiorBarEnemies[e];
             levelEnemies[e].text = $"Lv.{script.level}";
             e++;
+        }
+        i = 0;
+        foreach (var monster in inventory.monstersInventory)
+        {
+            monsterPanel[i].enabled = true;
+            Monster monsterComponent = monster.GetComponent<Monster>();
+            monsterPanel[i].sprite = monsterComponent.monsterSO.sprite;
+            monsterDrop[i].monsterSaved = monster;
+            i++;
         }
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)

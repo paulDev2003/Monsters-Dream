@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour
     public Dictionary<string, int> countCapturables;
     private GameDataController gameDataController;
 
+    public List<GameObject> monstersInventory = new List<GameObject>();
+
     private void Start()
     {
         capturableInventory = new Dictionary<string, ItemCapturable>();

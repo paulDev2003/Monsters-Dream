@@ -352,7 +352,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!1001 &7385253488218274780
 PrefabInstance:
@@ -364,12 +364,52 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: level
-      value: 2
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: health
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: defense
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: evasion
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: monsterSO
       value: 
       objectReference: {fileID: 11400000, guid: e3b32b308a5300046a9631baeff2a58e, type: 2}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: damageType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: healthFigth
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: speedAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: magicalDamage
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: rotationSpeed
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: magicalDefense
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: physicalDamage
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: ElCubo
@@ -420,10 +460,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8647763744090113291}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 588960520106938456}
   m_SourcePrefab: {fileID: 100100000, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
 --- !u!4 &8726254377197835590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
   m_PrefabInstance: {fileID: 7385253488218274780}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9021396236254735361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+  m_PrefabInstance: {fileID: 7385253488218274780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &588960520106938456
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021396236254735361}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.7
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.55
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

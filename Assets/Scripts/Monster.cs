@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 using TMPro;
+using UnityEngine.AI;
 
 public class Monster : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class Monster : MonoBehaviour
     public bool dead;
     public int exp;
     public int maxExp;
+    [Tooltip("Para saber si está invocado o no")]
+    public bool inUse = false;
     
 
     private GameManager gameManager;
@@ -43,11 +46,14 @@ public class Monster : MonoBehaviour
     [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
     private MonsterClass monsterClass;
+    private NavMeshAgent agent;
 
     private void Start()
     {
         UpdateStats();
         attacksToSkill = Random.Range(4, 7);
+        inUse = true;
+        agent = FindObjectOfType<NavMeshAgent>();
         
         gameManager = FindAnyObjectByType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
@@ -180,6 +186,7 @@ public class Monster : MonoBehaviour
         if (target == null) return;
 
         Vector3 direction = (target.transform.position - transform.position).normalized;
+        direction = new Vector3(direction.x, 0, direction.z);
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
