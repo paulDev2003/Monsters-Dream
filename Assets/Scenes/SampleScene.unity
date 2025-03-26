@@ -908,10 +908,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2925630609186494491, guid: 7b62cba1901739644b817227ad218870, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7511082247019940707, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: lifeBar
       value: 
@@ -958,11 +954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_Name
-      value: Hongui
-      objectReference: {fileID: 0}
-    - target: {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Hongui1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1418,7 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersInventory:
   - {fileID: 1120575913}
-  - {fileID: 1129500274}
+  - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
   - {fileID: 1129500274}
   - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
   - {fileID: 9021396236254735361, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
@@ -2413,6 +2405,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatSpeed: 1
   fadeSpeed: 1
+--- !u!1 &800932978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2925630609186494491, guid: 7b62cba1901739644b817227ad218870, type: 3}
+  m_PrefabInstance: {fileID: 1786990776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &800932982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800932978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3805fd11a2caf4a89b19fc7fef0990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &801315013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3017,6 +3026,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isUsed: 0
+  monsterScript: {fileID: 0}
+  instantiatedMonster: {fileID: 0}
+  wasChanged: 0
 --- !u!114 &925979973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3554,6 +3567,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isUsed: 0
+  monsterScript: {fileID: 0}
+  instantiatedMonster: {fileID: 0}
+  wasChanged: 0
 --- !u!114 &1015847744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4372,6 +4389,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isUsed: 0
+  monsterScript: {fileID: 0}
+  instantiatedMonster: {fileID: 0}
+  wasChanged: 0
 --- !u!114 &1216415285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4518,6 +4539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isUsed: 0
+  monsterScript: {fileID: 0}
+  instantiatedMonster: {fileID: 0}
+  wasChanged: 0
 --- !u!114 &1219074026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4886,6 +4911,9 @@ MonoBehaviour:
   - {fileID: 1015847743}
   - {fileID: 1579925619}
   - {fileID: 925979972}
+  selector: {fileID: 1102975971870248527, guid: b2658ae7661f71540a491a4eee80e454, type: 3}
+  countMonsters: 0
+  monsterSelected: {fileID: 0}
 --- !u!4 &1458646403
 Transform:
   m_ObjectHideFlags: 0
@@ -5366,6 +5394,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isUsed: 0
+  monsterScript: {fileID: 0}
+  instantiatedMonster: {fileID: 0}
+  wasChanged: 0
 --- !u!114 &1579925620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5857,7 +5889,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2925630609186494491, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 800932982}
   m_SourcePrefab: {fileID: 100100000, guid: 7b62cba1901739644b817227ad218870, type: 3}
 --- !u!1 &1794247857
 GameObject:
@@ -6295,6 +6330,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911590701}
   m_CullTransparentMesh: 1
+--- !u!1 &1913265104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5225547142380228147, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+  m_PrefabInstance: {fileID: 6776728892773613624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1913265110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913265104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3805fd11a2caf4a89b19fc7fef0990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1923390009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6550,6 +6602,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isUsed: 0
+  monsterScript: {fileID: 0}
+  instantiatedMonster: {fileID: 0}
+  wasChanged: 0
 --- !u!114 &1963764957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6986,6 +7042,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076600367600749718, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
       propertyPath: lifeBar
       value: 
       objectReference: {fileID: 1931115879}
@@ -7040,7 +7100,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5225547142380228147, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1913265110}
   m_SourcePrefab: {fileID: 100100000, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

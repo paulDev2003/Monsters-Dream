@@ -42,11 +42,12 @@ public class Monster : MonoBehaviour
     
 
     private GameManager gameManager;
-    [HideInInspector] public List<GameObject> oppositeList;
+     public List<GameObject> oppositeList;
     [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
     private MonsterClass monsterClass;
     private NavMeshAgent agent;
+    public int valueI;
 
     private void Start()
     {
@@ -98,6 +99,10 @@ public class Monster : MonoBehaviour
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
+                if (!enemie)
+                {
+                    gameManager.countMonsters--; 
+                }
             }
         }
     }
@@ -217,6 +222,14 @@ public class Monster : MonoBehaviour
         evasion = monsterClass.Evasion;
         magicalDamage = monsterClass.MagicalDamage;
         magicalDefense = monsterClass.MagicalDefense;
+    }
+
+    public void ChangeSelector()
+    {
+        if (!enemie)
+        {
+            gameManager.ChangeSelector(this.gameObject);
+        }
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena

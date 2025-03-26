@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     public List<TextMeshProUGUI> levelEnemies = new List<TextMeshProUGUI>();
     public List<Image> monsterPanel = new List<Image>();
     public List<MonsterDrop> monsterDrop = new List<MonsterDrop>();
+    public GameObject selector;
+    public int countMonsters = 0;
+    public GameObject monsterSelected;
+    private GameObject selectorActive;
 
     private void Start()
     {
@@ -42,10 +46,12 @@ public class GameManager : MonoBehaviour
         {
             lifeBarsFriends[i].SetActive(true);
             Monster script = friend.GetComponent<Monster>();
+            script.valueI = i;
             lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
             script.lifeBar = superiorBarFriends[i];
             levelFriends[i].text = $"Lv.{script.level}";
             i++;
+            countMonsters++;
         }
         int e = 0;
         foreach (var enemie in enemieList)
@@ -132,5 +138,21 @@ public class GameManager : MonoBehaviour
         {
             defeatScreen.SetActive(true);
         }
+    }
+    public void ChangeSelector(GameObject monsterObject)
+    {
+        if (selectorActive != null)
+        {
+            Destroy(selectorActive);
+        }
+        if (monsterSelected == monsterObject)
+        {
+            monsterSelected = null;
+        }
+        else
+        {
+            selectorActive = Instantiate(selector, monsterObject.transform.position + Vector3.up * 2, Quaternion.identity, monsterObject.transform);
+            monsterSelected = monsterObject;
+        }       
     }
 }
