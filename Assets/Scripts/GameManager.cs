@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject selector;
     public int countMonsters = 0;
     public GameObject monsterSelected;
-    private GameObject selectorActive;
+    public GameObject selectorActive;
 
     private void Start()
     {

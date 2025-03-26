@@ -20,7 +20,6 @@ public class MonsterDrop : MonoBehaviour
         if (monsterSaved !=null)
         {
             monsterScript = monsterSaved.GetComponent<Monster>();
-            Debug.Log("Entró");
         }
         CheckUse();
     }
@@ -51,11 +50,13 @@ public class MonsterDrop : MonoBehaviour
             {
                 if (monster.instantiatedMonster == gameManager.monsterSelected)
                 {
+                    Debug.Log($"Entra {monster.gameObject}");
                     monster.isUsed = false;
                     monster.healthReserve = monster.monsterScript.healthFigth;
                     monster.wasChanged = true;
                     gameManager.lifeBarsFriends[monster.monsterScript.valueI].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[monster.monsterScript.valueI];
+                    monsterScript.lifeBar.UpdateFill(monsterScript);
                     gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterScript.level}";
                     if (wasChanged)
                     {
@@ -65,23 +66,32 @@ public class MonsterDrop : MonoBehaviour
                     }
                     else
                     {
-                        instantiatedMonster = Instantiate(monsterSaved, monster.instantiatedMonster.transform.position + Vector3.up * 2, monster.transform.rotation);
+                        if (monster.instantiatedMonster != null)
+                        {
+                            instantiatedMonster = Instantiate(monsterSaved, monster.instantiatedMonster.transform.position + Vector3.up * 2, monster.transform.rotation);
+                        }                       
                     }              
                     isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
                     isUsed = true;
                     gameManager.friendsList.Add(instantiatedMonster);
                     gameManager.friendsList.Remove(gameManager.monsterSelected);
+                    Destroy(gameManager.selectorActive.gameObject);
                     monster.instantiatedMonster.SetActive(false);
                     gameManager.monsterSelected = null;
                     Monster scriptInstantiated = instantiatedMonster.GetComponent<Monster>();
+                    monsterScript = scriptInstantiated;
+                    Debug.Log(monster.monsterScript);
                     foreach (var enemie in gameManager.enemieList)
                     {
                         Monster scriptEnemie = enemie.GetComponent<Monster>();
                         if (scriptEnemie.target == monster.monsterScript)
                         {
+
+                            Debug.Log("cambia el target");
                             scriptEnemie.target = scriptInstantiated;
                         }
                     }
+                    return;
                 }
             }
         }
@@ -104,7 +114,15 @@ public class MonsterDrop : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit)) // Para juegos 3D
             {
-                instantiatedMonster = Instantiate(monsterSaved, hit.point + Vector3.up * 2, Quaternion.identity);
+                if (!wasChanged)
+                {
+                    instantiatedMonster = Instantiate(monsterSaved, hit.point + Vector3.up * 2, Quaternion.identity);
+                }
+                else
+                {
+                    instantiatedMonster.SetActive(true);
+                    instantiatedMonster.transform.position = hit.point + Vector3.up * 2;
+                }
                 isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
                 isUsed = true;
                 gameManager.friendsList.Add(instantiatedMonster);

@@ -145,7 +145,6 @@ public class Monster : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Lanza su ataque {monsterSO.name}");
                 monsterSO.skill.ShootSkill(this);
                 attacksToSkill = Random.Range(4, 7);
                 attackTime = 1 / speedAttack;

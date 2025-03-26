@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 3166287340216199143}
   - component: {fileID: 5527311317765817528}
   - component: {fileID: 7813099026103278034}
+  - component: {fileID: 3738654007673119768}
   m_Layer: 0
   m_Name: Modelo3D
   m_TagString: Untagged
@@ -354,6 +355,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &3738654007673119768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225547142380228147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3805fd11a2caf4a89b19fc7fef0990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7385253488218274780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -364,7 +377,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: level
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: health
