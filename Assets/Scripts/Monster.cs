@@ -107,7 +107,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private Monster ChooseTarget(List<GameObject> listOpposite)
+    public Monster ChooseTarget(List<GameObject> listOpposite)
     {
         GameObject _target = null;
         float distance = float.MaxValue;

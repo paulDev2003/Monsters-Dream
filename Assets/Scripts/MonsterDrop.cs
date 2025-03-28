@@ -39,7 +39,7 @@ public class MonsterDrop : MonoBehaviour
     // Método para seleccionar el monstruo al hacer clic en la imagen
     public void SelectMonster()
     {
-        if (isUsed) return;
+        if (isUsed || monsterScript.dead) return;
         if (gameManager.monsterSelected == null)
         {
             isMonsterSelected = true;
@@ -56,13 +56,13 @@ public class MonsterDrop : MonoBehaviour
                     monster.wasChanged = true;
                     gameManager.lifeBarsFriends[monster.monsterScript.valueI].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[monster.monsterScript.valueI];
-                    monsterScript.lifeBar.UpdateFill(monsterScript);
                     gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterScript.level}";
                     if (wasChanged)
                     {
                         instantiatedMonster.SetActive(true);
                         instantiatedMonster.transform.position = monster.instantiatedMonster.transform.position;
                         instantiatedMonster.transform.rotation = monster.instantiatedMonster.transform.rotation;
+                        instantiatedMonster.GetComponent<Monster>().target = monster.monsterScript.target;
                     }
                     else
                     {
@@ -80,6 +80,8 @@ public class MonsterDrop : MonoBehaviour
                     gameManager.monsterSelected = null;
                     Monster scriptInstantiated = instantiatedMonster.GetComponent<Monster>();
                     monsterScript = scriptInstantiated;
+                    monsterScript.valueI = monster.monsterScript.valueI;
+                    monsterScript.lifeBar.UpdateFill(monsterScript);
                     Debug.Log(monster.monsterScript);
                     foreach (var enemie in gameManager.enemieList)
                     {
