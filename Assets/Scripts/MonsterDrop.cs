@@ -31,6 +31,7 @@ public class MonsterDrop : MonoBehaviour
             // Si ya hay un monstruo guardado, intentar instanciarlo
             if (isMonsterSelected)
             {
+                RangeArea();
                 SpawnMonster();
             }
         }
@@ -159,5 +160,15 @@ public class MonsterDrop : MonoBehaviour
             }
         }
         
+    }
+
+    private void RangeArea()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            gameManager.damageArea.transform.position = hit.point;
+        }
     }
 }

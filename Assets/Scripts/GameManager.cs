@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int countMonsters = 0;
     public GameObject monsterSelected;
     public GameObject selectorActive;
+    public GameObject damageArea;
 
     private void Start()
     {
