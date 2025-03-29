@@ -2,17 +2,21 @@ using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MonsterDrop : MonoBehaviour
 {
     public GameObject monsterSaved;
-    private bool isMonsterSelected = false; // Bandera para saber si ya se eligió un monstruo
+   [SerializeField] private bool isMonsterSelected = false; // Bandera para saber si ya se eligió un monstruo
     public bool isUsed = false;
     [HideInInspector]public Monster monsterScript;
     private GameManager gameManager;
     public GameObject instantiatedMonster;
     private float healthReserve;
     public bool wasChanged = false;
+    public bool areaInstantiated = false;
+    private GameObject areaInstantiatedObj;
+    private bool wasDown = false;
 
     private void Start()
     {
@@ -26,15 +30,29 @@ public class MonsterDrop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Detecta clic izquierdo
+        if (isMonsterSelected)
         {
-            // Si ya hay un monstruo guardado, intentar instanciarlo
-            if (isMonsterSelected)
+            if (Input.GetMouseButtonDown(0))
             {
                 RangeArea();
-                SpawnMonster();
+                wasDown = true;
+            }           
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (wasDown)
+                {
+                    SpawnMonster();
+                    wasDown = false;
+                }
+                
+            }
+            if (wasDown)
+            {
+                RangeArea();
             }
         }
+        
+   
     }
 
     // Método para seleccionar el monstruo al hacer clic en la imagen
@@ -43,6 +61,7 @@ public class MonsterDrop : MonoBehaviour
         if (isUsed || monsterScript.dead) return;
         if (gameManager.monsterSelected == null)
         {
+            Debug.Log("Entra en SelectMonster");
             isMonsterSelected = true;
         }
         else
@@ -51,7 +70,7 @@ public class MonsterDrop : MonoBehaviour
             {
                 if (monster.instantiatedMonster == gameManager.monsterSelected)
                 {
-                    Debug.Log($"Entra {monster.gameObject}");
+                    Debug.Log("No entra nunca");
                     monster.isUsed = false;
                     monster.healthReserve = monster.monsterScript.healthFigth;
                     monster.wasChanged = true;
@@ -102,15 +121,20 @@ public class MonsterDrop : MonoBehaviour
 
     void SpawnMonster()
     {
-        // Evitar que el clic sobre la UI instancie el monstruo
-        if (EventSystem.current.IsPointerOverGameObject())
+        Debug.Log("Entra spanwMonster");
+        bool isOnButton = IsPointerOverButton();
+        if (isOnButton)
         {
+            Debug.Log("Is Pointer over Button");
             isMonsterSelected = false;
+            areaInstantiatedObj.SetActive(false);
             return;
         }
         // Obtener la posición del clic en el mundo
+        areaInstantiatedObj.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
         if (gameManager.countMonsters < 3)
         {
             gameManager.countMonsters++;
@@ -126,7 +150,6 @@ public class MonsterDrop : MonoBehaviour
                     instantiatedMonster.SetActive(true);
                     instantiatedMonster.transform.position = hit.point + Vector3.up * 2;
                 }
-                isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
                 isUsed = true;
                 gameManager.friendsList.Add(instantiatedMonster);
                 int i = 0;
@@ -148,6 +171,26 @@ public class MonsterDrop : MonoBehaviour
         }
         
     }
+    public bool IsPointerOverButton()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.GetComponent<Button>() != null) // Solo detecta botones
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     void CheckUse()
     {
@@ -164,11 +207,30 @@ public class MonsterDrop : MonoBehaviour
 
     private void RangeArea()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        Vector3 mousePosition = GetMouseWorldPosition();
+        float y = gameManager.damageArea.transform.position.y;
+        Vector3 mouseWithHeigth = new Vector3(mousePosition.x, y, mousePosition.z);
+        if (!areaInstantiated)
         {
-            gameManager.damageArea.transform.position = hit.point;
+            areaInstantiatedObj = Instantiate(gameManager.damageArea, mouseWithHeigth, Quaternion.identity);
+            areaInstantiatedObj.transform.localScale = Vector3.one * monsterScript.distanceAttack * 0.25f;
+            areaInstantiated = true;
         }
+        if (areaInstantiatedObj.activeSelf == false)
+        {
+            areaInstantiatedObj.SetActive(true);
+        }
+        areaInstantiatedObj.transform.position = mouseWithHeigth;
+
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
     }
 }

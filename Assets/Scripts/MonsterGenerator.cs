@@ -152,6 +152,15 @@ public class MonsterGenerator : EditorWindow
         modeloInstance.name = "Modelo3D"; 
         modeloInstance.transform.localPosition = Vector3.zero;
         modeloInstance.transform.localRotation = Quaternion.identity;
+        modeloInstance.AddComponent<ClickOnMonster>();
+        if (modeloInstance.GetComponent<Rigidbody>() == null)
+        {
+            modeloInstance.AddComponent<Rigidbody>();
+        }
+        if (modeloInstance.GetComponent<BoxCollider>() == null)
+        {
+            modeloInstance.AddComponent<BoxCollider>();
+        }
 
 
         string finalPath = AssetDatabase.GenerateUniqueAssetPath($"Assets/Prefabs/Monsters/{monsterName}.prefab");

@@ -576,9 +576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1199,9 +1199,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
   - {fileID: 1129500274}
   - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
-  - {fileID: 9021396236254735361, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+  - {fileID: 5692565554864044551, guid: 04bd8f9b6d0a78144888ae21234aeafc, type: 3}
 --- !u!4 &344312781
 Transform:
   m_ObjectHideFlags: 0
@@ -1694,9 +1694,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2596,7 +2596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.44
+      value: 5.85
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2604,23 +2604,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.81
+      value: 2.78
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.01965123
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9998069
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2628,7 +2628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -177.748
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2701,9 +2701,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3026,10 +3026,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isMonsterSelected: 0
   isUsed: 0
   monsterScript: {fileID: 0}
   instantiatedMonster: {fileID: 0}
   wasChanged: 0
+  areaInstantiated: 0
 --- !u!114 &925979973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3176,7 +3178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &958078447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3602,10 +3604,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isMonsterSelected: 0
   isUsed: 0
   monsterScript: {fileID: 0}
   instantiatedMonster: {fileID: 0}
   wasChanged: 0
+  areaInstantiated: 0
 --- !u!114 &1015847744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4426,10 +4430,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isMonsterSelected: 0
   isUsed: 0
   monsterScript: {fileID: 0}
   instantiatedMonster: {fileID: 0}
   wasChanged: 0
+  areaInstantiated: 0
 --- !u!114 &1216415285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4576,10 +4582,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isMonsterSelected: 0
   isUsed: 0
   monsterScript: {fileID: 0}
   instantiatedMonster: {fileID: 0}
   wasChanged: 0
+  areaInstantiated: 0
 --- !u!114 &1219074026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4728,7 +4736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1289599172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5027,7 +5035,7 @@ MonoBehaviour:
   countMonsters: 0
   monsterSelected: {fileID: 0}
   selectorActive: {fileID: 0}
-  damageArea: {fileID: 1289599171}
+  damageArea: {fileID: 5910404456471128783, guid: c169248a97604644a8edebfe4879df7f, type: 3}
 --- !u!4 &1458646403
 Transform:
   m_ObjectHideFlags: 0
@@ -5508,10 +5516,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isMonsterSelected: 0
   isUsed: 0
   monsterScript: {fileID: 0}
   instantiatedMonster: {fileID: 0}
   wasChanged: 0
+  areaInstantiated: 0
 --- !u!114 &1579925620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5697,9 +5707,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5954,7 +5964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.18
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5962,7 +5972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.94
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6461,7 +6471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1923390010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6490,16 +6500,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923390009}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6699,10 +6709,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSaved: {fileID: 0}
+  isMonsterSelected: 0
   isUsed: 0
   monsterScript: {fileID: 0}
   instantiatedMonster: {fileID: 0}
   wasChanged: 0
+  areaInstantiated: 0
 --- !u!114 &1963764957
 MonoBehaviour:
   m_ObjectHideFlags: 0
