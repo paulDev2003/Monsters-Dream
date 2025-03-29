@@ -13,5 +13,13 @@ public class MonsterEditor : Editor
         {
             currentTarget.UpdateStats();
         }
+        if (GUILayout.Button("Show Distance Attack"))
+        {
+            currentTarget.ShowAreaDistanceAttack();
+        }
+        if (GUILayout.Button("Clean Area Attack"))
+        {
+            currentTarget.CleanAreaDistanceAttack();
+        }
     }
 }

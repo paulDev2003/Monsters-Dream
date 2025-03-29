@@ -24,4 +24,4 @@ MonoBehaviour:
   levelUp: {fileID: 11400000, guid: 04f542998196e434fa186561411594b1, type: 2}
   dropList:
   - {fileID: 11400000, guid: f08984528704e5f4fbd653d6f7e737b9, type: 2}
-  sprite: {fileID: 21300000, guid: d1eb3bd4f658ed4478e6128e18527d02, type: 3}
+  sprite: {fileID: 21300000, guid: 59b9b4140bb12c146b17f62fa44a3d6a, type: 3}

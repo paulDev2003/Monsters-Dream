@@ -48,6 +48,7 @@ public class Monster : MonoBehaviour
     private MonsterClass monsterClass;
     private NavMeshAgent agent;
     public int valueI;
+    public GameObject areaAttack;
 
     private void Start()
     {
@@ -69,6 +70,10 @@ public class Monster : MonoBehaviour
             ownList = gameManager.friendsList;
         }
         target = ChooseTarget(oppositeList);
+        if (areaAttack != null)
+        {
+            Destroy(areaAttack);
+        }
     }
 
     private void Update()
@@ -229,6 +234,23 @@ public class Monster : MonoBehaviour
         {
             gameManager.ChangeSelector(this.gameObject);
         }
+    }
+
+    public void ShowAreaDistanceAttack()
+    {
+        GameManager gameManagerNow = FindObjectOfType<GameManager>();
+        float y = gameManagerNow.damageArea.transform.position.y;
+        if (areaAttack != null)
+        {
+            DestroyImmediate(areaAttack);
+        }
+        Vector3 spawnArea = new Vector3(transform.position.x, y, transform.position.z);
+        areaAttack = Instantiate(gameManagerNow.damageArea, spawnArea, Quaternion.identity);       
+        areaAttack.transform.localScale = Vector3.one * distanceAttack * 0.25f;
+    }
+    public void CleanAreaDistanceAttack()
+    {
+        DestroyImmediate(areaAttack);
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena

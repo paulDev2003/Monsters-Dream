@@ -40,39 +40,9 @@ public class GameManager : MonoBehaviour
         enemiesSaved = new List<GameObject>(enemieList);
         friendsSaved = new List<GameObject>(friendsList);
         listLoot = new List<ItemSO>();
-        inventory = FindAnyObjectByType<Inventory>();
         gameDataController = FindAnyObjectByType<GameDataController>();
-        int i = 0;
-        foreach (var friend in friendsList)
-        {
-            lifeBarsFriends[i].SetActive(true);
-            Monster script = friend.GetComponent<Monster>();
-            script.valueI = i;
-            lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
-            script.lifeBar = superiorBarFriends[i];
-            levelFriends[i].text = $"Lv.{script.level}";
-            i++;
-            countMonsters++;
-        }
-        int e = 0;
-        foreach (var enemie in enemieList)
-        {
-            lifeBarsEnemies[e].SetActive(true);
-            Monster script = enemie.GetComponent<Monster>();
-            lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
-            script.lifeBar = superiorBarEnemies[e];
-            levelEnemies[e].text = $"Lv.{script.level}";
-            e++;
-        }
-        i = 0;
-        foreach (var monster in inventory.monstersInventory)
-        {
-            monsterPanel[i].enabled = true;
-            Monster monsterComponent = monster.GetComponent<Monster>();
-            monsterPanel[i].sprite = monsterComponent.monsterSO.sprite;
-            monsterDrop[i].monsterSaved = monster;
-            i++;
-        }
+        UpdateInterface();
+        
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {
@@ -155,5 +125,41 @@ public class GameManager : MonoBehaviour
             selectorActive = Instantiate(selector, monsterObject.transform.position + Vector3.up * 2, Quaternion.identity, monsterObject.transform);
             monsterSelected = monsterObject;
         }       
+    }
+    public void UpdateInterface()
+    {
+        countMonsters = 0;
+        inventory = FindAnyObjectByType<Inventory>();
+        int i = 0;
+        foreach (var friend in friendsList)
+        {
+            lifeBarsFriends[i].SetActive(true);
+            Monster script = friend.GetComponent<Monster>();
+            script.valueI = i;
+            lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
+            script.lifeBar = superiorBarFriends[i];
+            levelFriends[i].text = $"Lv.{script.level}";
+            i++;
+            countMonsters++;
+        }
+        int e = 0;
+        foreach (var enemie in enemieList)
+        {
+            lifeBarsEnemies[e].SetActive(true);
+            Monster script = enemie.GetComponent<Monster>();
+            lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
+            script.lifeBar = superiorBarEnemies[e];
+            levelEnemies[e].text = $"Lv.{script.level}";
+            e++;
+        }
+        i = 0;
+        foreach (var monster in inventory.monstersInventory)
+        {
+            monsterPanel[i].enabled = true;
+            Monster monsterComponent = monster.GetComponent<Monster>();
+            monsterPanel[i].sprite = monsterComponent.monsterSO.sprite;
+            monsterDrop[i].monsterSaved = monster;
+            i++;
+        }
     }
 }
