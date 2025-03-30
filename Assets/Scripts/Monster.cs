@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Monster : MonoBehaviour
 {
+    public string monsterName = "name";
     public MonsterSO monsterSO;
     public bool enemie;
     public int level = 1;

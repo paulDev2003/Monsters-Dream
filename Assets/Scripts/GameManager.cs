@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public GameObject selectorActive;
     public GameObject damageArea;
     public UnityEvent EventVictory;
+    public UnityEvent EventLoot;
+    public bool expCompleted = false;
     private void Start()
     {
         enemiesSaved = new List<GameObject>(enemieList);
@@ -46,6 +48,18 @@ public class GameManager : MonoBehaviour
         gameDataController = FindAnyObjectByType<GameDataController>();
         UpdateInterface();
         
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (finish && expCompleted)
+            {
+                EventLoot.Invoke();
+                expCompleted = false;
+            }
+        }
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {
@@ -78,26 +92,7 @@ public class GameManager : MonoBehaviour
         if (list == enemieList)
         {
             EventVictory.Invoke();
-            int i = 0;
-            foreach (var enemie in enemiesSaved)
-            {
-                Monster monsterScript = enemie.GetComponent<Monster>();
-                foreach (var drop in monsterScript.monsterSO.dropList)
-                {
-                    bool dropped = drop.RandomDrop();
-                    if (dropped)
-                    {
-                        imagesLoot[i].sprite = drop.sprite;
-                        imagesLoot[i].enabled = true;
-                        i++;
-                        listLoot.Add(drop);
-                        Debug.Log("Drop");
-                    }
-                }
-                Debug.Log("Change enemy");
-            }
-            inventory.Additems(listLoot);
-            gameDataController.SaveData();
+            
         }
         else
         {
@@ -187,5 +182,30 @@ public class GameManager : MonoBehaviour
         {
             lifeBar.SetActive(false);
         }
+    }
+
+    public void LootItems()
+    {
+        int i = 0;
+        
+        foreach (var enemie in enemiesSaved)
+        {
+            Monster monsterScript = enemie.GetComponent<Monster>();
+            foreach (var drop in monsterScript.monsterSO.dropList)
+            {
+                bool dropped = drop.RandomDrop();
+                if (dropped)
+                {
+                    imagesLoot[i].sprite = drop.sprite;
+                    imagesLoot[i].enabled = true;
+                    i++;
+                    listLoot.Add(drop);
+                    Debug.Log("Drop");
+                }
+            }
+            Debug.Log("Change enemy");
+        }
+        inventory.Additems(listLoot);
+        gameDataController.SaveData();
     }
 }

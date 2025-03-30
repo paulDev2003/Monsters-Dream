@@ -12,10 +12,16 @@ public class ExperiencePanel : MonoBehaviour
     public Image backBar;
     public float animationSpeed = 1f; // Velocidad de animación
     private bool animating;
+    private GameManager gameManager;
 
     private float targetFill;
     private float expGained;
     private Monster monsterScript;
+
+    private void Start()
+    {
+        gameManager = FindAnyObjectByType<GameManager>();
+    }
 
     public void ShowPanel(Monster monster, int gainedExp)
     {
@@ -26,7 +32,7 @@ public class ExperiencePanel : MonoBehaviour
         txtLevel.enabled = true;
         txtLevel.text = $"Lv.{monster.level}";
         txtName.enabled = true;
-        txtName.text = monster.name;
+        txtName.text = monster.monsterName;
         expBar.enabled = true;
         expBar.fillAmount = (float)monster.exp / (float)monster.maxExp;
         backBar.enabled = true;
@@ -65,6 +71,7 @@ public class ExperiencePanel : MonoBehaviour
             yield return null;
         }
         expBar.fillAmount = targetFill;
+        gameManager.expCompleted = true;
     }
 
     public void FastUpdate(float gainedXP, Monster monster)
@@ -86,7 +93,7 @@ public class ExperiencePanel : MonoBehaviour
         }
         expBar.fillAmount = targetFill;
         animating = false;
-        
+        gameManager.expCompleted = true;
     }
 
     private void Update()
