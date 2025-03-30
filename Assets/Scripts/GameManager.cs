@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject canvasWorld;
     public List<Image> imagesLoot;
     public Image panelLoot;
+    public GameObject panelMonsters;
     private Inventory inventory;
     private List<ItemSO> listLoot;
     private GameDataController gameDataController;
@@ -29,12 +31,13 @@ public class GameManager : MonoBehaviour
     public List<TextMeshProUGUI> levelEnemies = new List<TextMeshProUGUI>();
     public List<Image> monsterPanel = new List<Image>();
     public List<MonsterDrop> monsterDrop = new List<MonsterDrop>();
+    public List<ExperiencePanel> experienceList = new List<ExperiencePanel>();
     public GameObject selector;
     public int countMonsters = 0;
     public GameObject monsterSelected;
     public GameObject selectorActive;
     public GameObject damageArea;
-
+    public UnityEvent EventVictory;
     private void Start()
     {
         enemiesSaved = new List<GameObject>(enemieList);
@@ -70,20 +73,11 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
+        DesactiveUI();
         finish = true;
-        foreach (var lifeBar in lifeBarsFriends)
-        {
-            lifeBar.SetActive(false);
-        }
-        foreach (var lifeBar in lifeBarsEnemies)
-        {
-            lifeBar.SetActive(false);
-        }
         if (list == enemieList)
         {
-            victoryScreen.SetActive(true);
-            panelVictory.enabled = true;
-            panelLoot.enabled = true;
+            EventVictory.Invoke();
             int i = 0;
             foreach (var enemie in enemiesSaved)
             {
@@ -129,6 +123,7 @@ public class GameManager : MonoBehaviour
     public void UpdateInterface()
     {
         countMonsters = 0;
+        panelMonsters.SetActive(true);
         inventory = FindAnyObjectByType<Inventory>();
         int i = 0;
         foreach (var friend in friendsList)
@@ -160,6 +155,29 @@ public class GameManager : MonoBehaviour
             monsterPanel[i].sprite = monsterComponent.monsterSO.sprite;
             monsterDrop[i].monsterSaved = monster;
             i++;
+        }
+    }
+
+    public void ShowExperience()
+    {
+        int i = 0;
+        foreach (var monster in inventory.monstersInventory)
+        {
+            Monster monsterScript = monster.GetComponent<Monster>();
+            experienceList[i].ShowPanel(monsterScript);
+            i++;
+        }
+    }
+    public void DesactiveUI()
+    {
+        panelMonsters.SetActive(false);
+        foreach (var lifeBar in lifeBarsFriends)
+        {
+            lifeBar.SetActive(false);
+        }
+        foreach (var lifeBar in lifeBarsEnemies)
+        {
+            lifeBar.SetActive(false);
         }
     }
 }

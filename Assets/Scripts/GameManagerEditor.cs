@@ -16,6 +16,10 @@ public class GameManagerEditor : Editor
         {
             currentTarget.UpdateInterface();
         }
+        if (GUILayout.Button("Desactive UI"))
+        {
+            currentTarget.DesactiveUI();
+        }
     }
 
 }
