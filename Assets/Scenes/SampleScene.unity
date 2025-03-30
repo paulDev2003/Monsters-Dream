@@ -1537,6 +1537,7 @@ MonoBehaviour:
   txtName: {fileID: 1209501889}
   expBar: {fileID: 1533399436}
   backBar: {fileID: 1116290144}
+  animationSpeed: 3
 --- !u!1 &290614835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,6 +4042,7 @@ MonoBehaviour:
   txtName: {fileID: 690256548}
   expBar: {fileID: 1546209980}
   backBar: {fileID: 1905278394}
+  animationSpeed: 3
 --- !u!1 &925979967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5728,6 +5730,7 @@ MonoBehaviour:
   txtName: {fileID: 1537756077}
   expBar: {fileID: 1183940824}
   backBar: {fileID: 1282020302}
+  animationSpeed: 3
 --- !u!1 &1209501887
 GameObject:
   m_ObjectHideFlags: 0
@@ -8933,6 +8936,7 @@ MonoBehaviour:
   txtName: {fileID: 2122689653}
   expBar: {fileID: 1900150428}
   backBar: {fileID: 2127642089}
+  animationSpeed: 3
 --- !u!1 &1900150426
 GameObject:
   m_ObjectHideFlags: 0
@@ -9591,6 +9595,7 @@ MonoBehaviour:
   txtName: {fileID: 1229249626}
   expBar: {fileID: 407949742}
   backBar: {fileID: 1273303267}
+  animationSpeed: 3
 --- !u!1 &2035208805
 GameObject:
   m_ObjectHideFlags: 0
@@ -10130,6 +10135,7 @@ MonoBehaviour:
   txtName: {fileID: 362217601}
   expBar: {fileID: 344128384}
   backBar: {fileID: 2068534188}
+  animationSpeed: 3
 --- !u!1 &2122636573
 GameObject:
   m_ObjectHideFlags: 0

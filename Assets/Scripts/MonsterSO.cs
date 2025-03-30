@@ -16,4 +16,5 @@ public class MonsterSO : ScriptableObject
     public LevelUpSO levelUp;
     public List<ItemSO> dropList;
     public Sprite sprite;
+    public int expPerLevel;
 }

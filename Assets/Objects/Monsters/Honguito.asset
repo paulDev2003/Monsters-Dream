@@ -28,3 +28,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0f5f2d127be3144aa243ed0d91493ad, type: 2}
   - {fileID: 11400000, guid: 8c3adfb3e2ba80946ad40cefe7ddd5f8, type: 2}
   - {fileID: 11400000, guid: 8c3adfb3e2ba80946ad40cefe7ddd5f8, type: 2}
+  sprite: {fileID: 0}
+  expPerLevel: 5

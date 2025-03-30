@@ -160,13 +160,21 @@ public class GameManager : MonoBehaviour
 
     public void ShowExperience()
     {
+        int totalExp = 0;
+        foreach (var monster in enemiesSaved)
+        {
+            Monster scriptMonster = monster.GetComponent<Monster>();
+            totalExp += scriptMonster.monsterSO.expPerLevel * scriptMonster.level;
+        }
+        Debug.Log($"TotalExp = {totalExp}");
         int i = 0;
         foreach (var monster in inventory.monstersInventory)
         {
             Monster monsterScript = monster.GetComponent<Monster>();
-            experienceList[i].ShowPanel(monsterScript);
+            experienceList[i].ShowPanel(monsterScript, totalExp);
             i++;
         }
+        
     }
     public void DesactiveUI()
     {
