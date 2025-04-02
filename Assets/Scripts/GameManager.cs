@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public GameObject monsterSelected;
     public GameObject selectorActive;
     public GameObject damageArea;
+    public GameObject circleAttacksToSkill;
+    public GameObject closestMark;
     public UnityEvent EventVictory;
     public UnityEvent EventLoot;
     public bool expCompleted = false;

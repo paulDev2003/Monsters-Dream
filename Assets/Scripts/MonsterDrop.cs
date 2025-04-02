@@ -12,11 +12,14 @@ public class MonsterDrop : MonoBehaviour
     [HideInInspector]public Monster monsterScript;
     private GameManager gameManager;
     public GameObject instantiatedMonster;
+    private GameObject markInstance;
+    private GameObject saveMonsterMarked;
     private float healthReserve;
     public bool wasChanged = false;
     public bool areaInstantiated = false;
     private GameObject areaInstantiatedObj;
     private bool wasDown = false;
+    private bool markInstantiated = false;
 
     private void Start()
     {
@@ -122,6 +125,7 @@ public class MonsterDrop : MonoBehaviour
     void SpawnMonster()
     {
         Debug.Log("Entra spanwMonster");
+        saveMonsterMarked = null;
         bool isOnButton = IsPointerOverButton();
         if (isOnButton)
         {
@@ -221,7 +225,10 @@ public class MonsterDrop : MonoBehaviour
             areaInstantiatedObj.SetActive(true);
         }
         areaInstantiatedObj.transform.position = mouseWithHeigth;
-
+        if (!gameManager.finish)
+        {
+            LookingForClosestEnemie(mousePosition);
+        }       
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -232,5 +239,36 @@ public class MonsterDrop : MonoBehaviour
             return hit.point;
         }
         return Vector3.zero;
+    }
+
+    private void LookingForClosestEnemie(Vector3 mousePosition)
+    {
+        if (gameManager.finish)
+        {
+            return;
+        }
+        float closestDistance = Vector3.Distance(gameManager.enemieList[0].transform.position, mousePosition);
+        GameObject monsterSelected = gameManager.enemieList[0];
+        foreach (var monster in gameManager.enemieList)
+        {
+            float actualDistance = Vector3.Distance(monster.transform.position, mousePosition);
+            if (closestDistance > actualDistance)
+            {
+                closestDistance = actualDistance;
+                monsterSelected = monster;
+            }
+        }
+        if (!markInstantiated)
+        {
+            markInstance = Instantiate(gameManager.closestMark, monsterSelected.transform.position + Vector3.up * 2, Quaternion.identity,
+                monsterSelected.transform);
+            markInstantiated = true;
+        }
+        else if(saveMonsterMarked != monsterSelected)
+        {
+            markInstance.transform.position = monsterSelected.transform.position + Vector3.up * 2;
+            markInstance.transform.parent = monsterSelected.transform;
+        }
+        saveMonsterMarked = monsterSelected;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Assertions;
 using TMPro;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class Monster : MonoBehaviour
     private float enemieDistance;
     private float attackTime;
     private int attacksToSkill;
+    private float totalAmountToSkill;
     [Space(10)]
     public float healthFigth;
     public Monster target;
@@ -50,11 +52,14 @@ public class Monster : MonoBehaviour
     private NavMeshAgent agent;
     public int valueI;
     public GameObject areaAttack;
+    private Image circleAttacksToSkill;
+    private GameObject objCircleAttacks;
 
     private void Start()
     {
         UpdateStats();
         attacksToSkill = Random.Range(4, 7);
+        totalAmountToSkill = 1f/(float)attacksToSkill;
         inUse = true;
         agent = FindObjectOfType<NavMeshAgent>();
         
@@ -70,6 +75,10 @@ public class Monster : MonoBehaviour
             oppositeList = gameManager.enemieList;
             ownList = gameManager.friendsList;
         }
+        objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity, 
+            gameManager.canvasWorld.transform);
+        circleAttacksToSkill = objCircleAttacks.GetComponent<Image>();
+        circleAttacksToSkill.fillAmount = 0;
         target = ChooseTarget(oppositeList);
         if (areaAttack != null)
         {
@@ -79,6 +88,7 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
+        objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
         if (gameManager.finish)
         {
             stopFigth = true;
@@ -148,14 +158,17 @@ public class Monster : MonoBehaviour
                 target.healthFigth -= damage;
                 AttackScreenInfo(damage, target);
                 target.lifeBar.UpdateFill(target);
+                circleAttacksToSkill.fillAmount += totalAmountToSkill;
+                attacksToSkill -= 1;
             }
             else
             {
                 monsterSO.skill.ShootSkill(this);
                 attacksToSkill = Random.Range(4, 7);
+                totalAmountToSkill = 1f/(float)attacksToSkill;
+                circleAttacksToSkill.fillAmount = 0;
                 attackTime = 1 / speedAttack;
             }
-            attacksToSkill -= 1;
             if (target.healthFigth <= 0)
             {
                 target.healthFigth = 0;
@@ -252,6 +265,21 @@ public class Monster : MonoBehaviour
     public void CleanAreaDistanceAttack()
     {
         DestroyImmediate(areaAttack);
+    }
+
+    private void OnDisable()
+    {
+        if (objCircleAttacks != null)
+        {
+            objCircleAttacks.SetActive(false);
+        }       
+    }
+    private void OnEnable()
+    {
+        if (objCircleAttacks != null)
+        {
+            objCircleAttacks.SetActive(true);
+        }      
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena
