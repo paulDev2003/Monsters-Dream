@@ -55,6 +55,11 @@ public class Monster : MonoBehaviour
     private Image circleAttacksToSkill;
     private GameObject objCircleAttacks;
 
+    [Space(10)]
+    public int damageBuff;
+    public int basicDamageBuff;
+    public int magicDamageBuff;
+
     private void Start()
     {
         UpdateStats();
@@ -154,7 +159,7 @@ public class Monster : MonoBehaviour
         {
             if (attacksToSkill > 0)
             {
-                float damage = CalculateDamage();
+                float damage = CalculateDamage() + basicDamageBuff;
                 target.healthFigth -= damage;
                 AttackScreenInfo(damage, target);
                 target.lifeBar.UpdateFill(target);
@@ -234,11 +239,11 @@ public class Monster : MonoBehaviour
         monsterClass = new MonsterClass(monsterSO, level);
         health = monsterClass.Health;
         healthFigth = monsterClass.Health;
-        physicalDamage = monsterClass.PhysicalDamage;
+        physicalDamage = monsterClass.PhysicalDamage + damageBuff;
         speedAttack = monsterClass.SpeedAttack;
         defense = monsterClass.Defense;
         evasion = monsterClass.Evasion;
-        magicalDamage = monsterClass.MagicalDamage;
+        magicalDamage = monsterClass.MagicalDamage + magicDamageBuff;
         magicalDefense = monsterClass.MagicalDefense;
     }
 

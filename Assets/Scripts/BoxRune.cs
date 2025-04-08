@@ -15,6 +15,10 @@ public class BoxRune : MonoBehaviour
     public void CheckSlots()
     {
         bool checker = true;
+        if (managerRunes.runeSelected == null)
+        {
+            return;
+        }
         rune = managerRunes.runeSelected;
         foreach (var slot in rune.positionsSlots)
         {
@@ -48,6 +52,20 @@ public class BoxRune : MonoBehaviour
         Debug.Log("Dropea");
         if (canDrop)
         {
+            if (rune.isUsed)
+            {
+                foreach (var slot in rune.positionsSlots)
+                {
+                    managerRunes.slotsChecker[rune.savePosition.x + slot.x, rune.savePosition.y + slot.y] = true;
+                }
+            }
+            else
+            {
+                managerRunes.prefabsRunes.Add(rune.gameObject);
+                managerRunes.allRunes.Add(rune);
+                rune.isUsed = true;
+            }
+            rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
             rune.transform.position = transform.position;
             foreach (var slot in rune.positionsSlots)
             {
@@ -58,7 +76,9 @@ public class BoxRune : MonoBehaviour
 
     public void PositiveCheck()
     {
+        
         canDrop = true;
+        
         Debug.Log("PositiveCheck");
     }
 

@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public GameObject closestMark;
     public UnityEvent EventVictory;
     public UnityEvent EventLoot;
+    public ManagerRunes runeManager;
     public bool expCompleted = false;
     private void Start()
     {
@@ -49,7 +50,10 @@ public class GameManager : MonoBehaviour
         listLoot = new List<ItemSO>();
         gameDataController = FindAnyObjectByType<GameDataController>();
         UpdateInterface();
-        
+        if (runeManager != null)
+        {
+            runeManager.isFigth = true;
+        }
     }
 
     private void Update()

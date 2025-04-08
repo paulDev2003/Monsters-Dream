@@ -5,6 +5,9 @@ public class Rune : MonoBehaviour
 {
     public List<Vector2Int> positionsSlots;
     private ManagerRunes managerRunes;
+    public bool isUsed = false;
+    public Vector2Int savePosition;
+    public RuneSO runeSO;
     void Start()
     {
         managerRunes = FindAnyObjectByType<ManagerRunes>();
