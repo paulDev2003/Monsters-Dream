@@ -11,6 +11,7 @@ public class MonsterDrop : MonoBehaviour
     public bool isUsed = false;
     [HideInInspector]public Monster monsterScript;
     private GameManager gameManager;
+    private ManagerRunes runeManager;
     public GameObject instantiatedMonster;
     private GameObject markInstance;
     private GameObject saveMonsterMarked;
@@ -24,6 +25,7 @@ public class MonsterDrop : MonoBehaviour
     private void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
+        runeManager = FindAnyObjectByType<ManagerRunes>();
         if (monsterSaved !=null)
         {
             monsterScript = monsterSaved.GetComponent<Monster>();
@@ -92,6 +94,8 @@ public class MonsterDrop : MonoBehaviour
                         if (monster.instantiatedMonster != null)
                         {
                             instantiatedMonster = Instantiate(monsterSaved, monster.instantiatedMonster.transform.position + Vector3.up * 2, monster.transform.rotation);
+                            Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
+                            runeManager.AddBuffs(scriptMonster);
                         }                       
                     }              
                     isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
@@ -148,6 +152,8 @@ public class MonsterDrop : MonoBehaviour
                 if (!wasChanged)
                 {
                     instantiatedMonster = Instantiate(monsterSaved, hit.point + Vector3.up * 2, Quaternion.identity);
+                    Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
+                    runeManager.AddBuffs(scriptMonster);
                 }
                 else
                 {
@@ -163,7 +169,9 @@ public class MonsterDrop : MonoBehaviour
                     {
                         gameManager.lifeBarsFriends[i].SetActive(true);
                         gameManager.lifeBarsFriends[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
-                        monsterScript.lifeBar = gameManager.superiorBarFriends[i];
+                        Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
+                        Debug.Log("Entra en el spawn y debería tomar la lifebar");
+                        scriptMonster.lifeBar = gameManager.superiorBarFriends[i];
                         gameManager.levelFriends[i].text = $"Lv.{monsterScript.level}";
                         monsterScript.valueI = i;
                         return;

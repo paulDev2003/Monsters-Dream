@@ -30,6 +30,8 @@ public class Monster : MonoBehaviour
     public float distanceAttack;
     public float speedMovement;
     public float rotationSpeed = 5;
+    public float regenerationTime = 3.5f;
+    private float currentTimeRegeneration;
     private float enemieDistance;
     private float attackTime;
     private int attacksToSkill;
@@ -58,13 +60,16 @@ public class Monster : MonoBehaviour
     [Space(10)]
     public int damageBuff;
     public int basicDamageBuff;
+    public int healthBuff;
+    public int healthRegeneration;
     public int magicDamageBuff;
+    public int hola;
 
     private void Start()
     {
-        UpdateStats();
         attacksToSkill = Random.Range(4, 7);
         totalAmountToSkill = 1f/(float)attacksToSkill;
+        currentTimeRegeneration = regenerationTime;
         inUse = true;
         agent = FindObjectOfType<NavMeshAgent>();
         
@@ -113,7 +118,15 @@ public class Monster : MonoBehaviour
             {
                 Attack();
             }
-
+            if (currentTimeRegeneration > 0)
+            {
+                currentTimeRegeneration -= Time.deltaTime;
+            }
+            else if(healthRegeneration > 0)
+            {
+                RegenerateHealth();
+                currentTimeRegeneration = regenerationTime;
+            }
             if (healthFigth <= 0)
             {
                 Debug.Log("Hola");
@@ -237,8 +250,8 @@ public class Monster : MonoBehaviour
     public void UpdateStats()
     {
         monsterClass = new MonsterClass(monsterSO, level);
-        health = monsterClass.Health;
-        healthFigth = monsterClass.Health;
+        health = monsterClass.Health + healthBuff;
+        healthFigth = monsterClass.Health + healthBuff;
         physicalDamage = monsterClass.PhysicalDamage + damageBuff;
         speedAttack = monsterClass.SpeedAttack;
         defense = monsterClass.Defense;
@@ -270,6 +283,20 @@ public class Monster : MonoBehaviour
     public void CleanAreaDistanceAttack()
     {
         DestroyImmediate(areaAttack);
+    }
+
+    private void RegenerateHealth()
+    {
+        healthFigth += healthRegeneration;
+        if (healthFigth > health)
+        {
+            healthFigth = health;
+        }
+        GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
+        TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
+        textComponent.text = $"+{healthRegeneration}";
+        textComponent.color = Color.green;
+        lifeBar.UpdateFill(this);
     }
 
     private void OnDisable()

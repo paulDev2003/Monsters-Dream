@@ -15,4 +15,10 @@ public class RedRune : RuneSO
             scriptMonster.damageBuff += damageIncreased;
         }
     }
+
+    public override void UsePower(Monster monster)
+    {
+        monster.basicDamageBuff += basicDamageIncreased;
+        monster.damageBuff += damageIncreased;
+    }
 }

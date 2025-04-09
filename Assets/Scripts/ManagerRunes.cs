@@ -28,6 +28,11 @@ public class ManagerRunes : MonoBehaviour
             {
                 rune.runeSO.UsePower(friendList);
             }
+            foreach (var monster in friendList)
+            {
+                Monster scriptMonster = monster.GetComponent<Monster>();
+                scriptMonster.UpdateStats();
+            }
         }
         
     }
@@ -53,5 +58,15 @@ public class ManagerRunes : MonoBehaviour
             if (foundSlot)
                 continue; // va al siguiente rune
         }
+    }
+
+    //Para cuando aparece un monstruo que o estaba en la escena
+    public void AddBuffs(Monster monster)
+    {
+        foreach (var rune in allRunes)
+        {
+            rune.runeSO.UsePower(monster);
+        }
+        monster.UpdateStats();
     }
 }

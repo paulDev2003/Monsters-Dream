@@ -14,4 +14,9 @@ public class BlueRune : RuneSO
             scriptMonster.magicDamageBuff += magicDamageIncreased;
         }
     }
+
+    public override void UsePower(Monster monster)
+    {
+        monster.magicDamageBuff += magicDamageIncreased;
+    }
 }
