@@ -63,12 +63,14 @@ public class Monster : MonoBehaviour
     public int healthBuff;
     public int healthRegeneration;
     public int magicDamageBuff;
-    public int hola;
+    public float decreasedCoolDown = 1;
+    public float multiplierIncreasedSpeedAttack = 1;
+    public int physicIncreaseDefense;
+    public int magicIncreaseDefense;
 
     private void Start()
     {
-        attacksToSkill = Random.Range(4, 7);
-        totalAmountToSkill = 1f/(float)attacksToSkill;
+        ReloadAttackToSkill();
         currentTimeRegeneration = regenerationTime;
         inUse = true;
         agent = FindObjectOfType<NavMeshAgent>();
@@ -181,9 +183,7 @@ public class Monster : MonoBehaviour
             }
             else
             {
-                monsterSO.skill.ShootSkill(this);
-                attacksToSkill = Random.Range(4, 7);
-                totalAmountToSkill = 1f/(float)attacksToSkill;
+                ReloadAttackToSkill();
                 circleAttacksToSkill.fillAmount = 0;
                 attackTime = 1 / speedAttack;
             }
@@ -253,11 +253,11 @@ public class Monster : MonoBehaviour
         health = monsterClass.Health + healthBuff;
         healthFigth = monsterClass.Health + healthBuff;
         physicalDamage = monsterClass.PhysicalDamage + damageBuff;
-        speedAttack = monsterClass.SpeedAttack;
-        defense = monsterClass.Defense;
+        speedAttack = monsterClass.SpeedAttack * multiplierIncreasedSpeedAttack;
+        defense = monsterClass.Defense + physicIncreaseDefense;
         evasion = monsterClass.Evasion;
         magicalDamage = monsterClass.MagicalDamage + magicDamageBuff;
-        magicalDefense = monsterClass.MagicalDefense;
+        magicalDefense = monsterClass.MagicalDefense + magicIncreaseDefense;
     }
 
     public void ChangeSelector()
@@ -297,6 +297,15 @@ public class Monster : MonoBehaviour
         textComponent.text = $"+{healthRegeneration}";
         textComponent.color = Color.green;
         lifeBar.UpdateFill(this);
+    }
+
+    private void ReloadAttackToSkill()
+    {
+        attacksToSkill = Random.Range(4, 7);
+        Debug.Log(attacksToSkill + " " + monsterName);
+        attacksToSkill = Mathf.RoundToInt(attacksToSkill / decreasedCoolDown);
+        Debug.Log(attacksToSkill + " " + monsterName);
+        totalAmountToSkill = 1f / (float)attacksToSkill;
     }
 
     private void OnDisable()

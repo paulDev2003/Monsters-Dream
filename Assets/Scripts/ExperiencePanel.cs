@@ -49,7 +49,6 @@ public class ExperiencePanel : MonoBehaviour
         animating = true;
         float startFill = currentXP / maxXP;
         targetFill = (currentXP + gainedXP) / maxXP;
-        Debug.Log("Entra acá");
         float elapsedTime = 0f;
         float rest = 0;
         int lvlSaver = monster.level;
