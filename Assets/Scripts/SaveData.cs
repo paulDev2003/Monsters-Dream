@@ -11,4 +11,7 @@ public class SaveData
     public List<string> molecularKeys;
     public List<ItemMolecule> molecularValues;
     public List<int> molecularAmount;
+
+    public List<MonsterData> monstersHouse;
+    public List<MonsterData> monstersDungeon;
 }

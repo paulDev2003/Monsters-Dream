@@ -302,9 +302,7 @@ public class Monster : MonoBehaviour
     private void ReloadAttackToSkill()
     {
         attacksToSkill = Random.Range(4, 7);
-        Debug.Log(attacksToSkill + " " + monsterName);
         attacksToSkill = Mathf.RoundToInt(attacksToSkill / decreasedCoolDown);
-        Debug.Log(attacksToSkill + " " + monsterName);
         totalAmountToSkill = 1f / (float)attacksToSkill;
     }
 

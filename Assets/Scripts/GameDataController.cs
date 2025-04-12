@@ -43,6 +43,7 @@ public class GameDataController : MonoBehaviour
             {
                 inventory.capturableInventory.Add(saveData.capturableKeys[i], saveData.capturableValues[i]);
                 inventory.countCapturables.Add(saveData.capturableKeys[i], saveData.capturableAmount[i]);
+               
             }
 
             //inventory.moleculeInventory = new Dictionary<string, ItemMolecule>();
