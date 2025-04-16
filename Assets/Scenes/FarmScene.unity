@@ -1273,6 +1273,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -2610,6 +2611,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -3963,6 +3965,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -4773,6 +4776,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 1
   i: 4
   savedBox: {fileID: 0}
@@ -6630,6 +6634,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 1
   i: 1
   savedBox: {fileID: 0}
@@ -7743,6 +7748,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -8479,31 +8485,38 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   - baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   - baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   - baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   - baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   - baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
+  dungeonTeam: {fileID: 1834131915}
   i: 0
 --- !u!1 &970186489
 GameObject:
@@ -9431,7 +9444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersInventory: []
   monstersHouse: {fileID: 1834131914}
-  currentTeam: {fileID: 955125791}
+  dungeonTeam: {fileID: 1834131915}
 --- !u!4 &1019109033
 Transform:
   m_ObjectHideFlags: 0
@@ -9680,6 +9693,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -9853,6 +9867,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -10377,6 +10392,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 1
   i: 3
   savedBox: {fileID: 0}
@@ -10686,6 +10702,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -11913,6 +11930,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -12086,6 +12104,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 1
   i: 5
   savedBox: {fileID: 0}
@@ -12531,6 +12550,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -12992,6 +13012,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -13165,6 +13186,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -13695,6 +13717,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -15934,6 +15957,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 1
   i: 2
   savedBox: {fileID: 0}
@@ -16651,6 +16675,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -17045,6 +17070,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 1
   i: 0
   savedBox: {fileID: 0}
@@ -17506,6 +17532,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -17728,8 +17755,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1834131913}
   - component: {fileID: 1834131914}
+  - component: {fileID: 1834131915}
   m_Layer: 0
-  m_Name: MonstersInHouse
+  m_Name: MonstersSaved
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17764,6 +17792,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listMonsters: []
   id: 0
+--- !u!114 &1834131915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834131912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c052682d8ad13e64db0ceebb8fcef584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allMonsters: []
 --- !u!1 &1852937606
 GameObject:
   m_ObjectHideFlags: 0
@@ -18287,6 +18328,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -18971,6 +19013,7 @@ MonoBehaviour:
     level: 0
     currentXP: 0
     currentHealth: 0
+    isUsed: 0
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}

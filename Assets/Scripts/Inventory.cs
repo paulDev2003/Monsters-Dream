@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
 
     public List<GameObject> monstersInventory = new List<GameObject>();
     public MonstersHouse monstersHouse;
-    public CurrentTeam currentTeam;
+    public DungeonTeam dungeonTeam;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
         gameDataController = FindAnyObjectByType<GameDataController>();
         if (gameDataController != null)
         {
-            gameDataController.LoadData(this, monstersHouse, currentTeam);
+            gameDataController.LoadData(this, monstersHouse, dungeonTeam);
         }
         else
         {

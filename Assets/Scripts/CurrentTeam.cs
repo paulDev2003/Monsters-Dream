@@ -13,10 +13,32 @@ public class CurrentTeam : MonoBehaviour
     public TextMeshProUGUI[] textsList = new TextMeshProUGUI[6];
     public List<GameObject> allIcons = new List<GameObject>();
     public List<TextMeshProUGUI> allTexts = new List<TextMeshProUGUI>();
-    [System.NonSerialized]
     public List<MonsterData> allMonsters;
+    public DungeonTeam dungeonTeam;
     public int i = 0;
 
+    private void Start()
+    {
+        allMonsters = new List<MonsterData>(dungeonTeam.allMonsters);
+        foreach (var monster in allMonsters)
+        {
+            if (monster.monsterName == "")
+            {
+                return;
+            }
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+            
+            Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
+            iconsList[i].SetActive(true);
+            iconsList[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
+            BoxSelectMonster boxSelect = iconsList[i].GetComponent<BoxSelectMonster>();
+            boxSelect.monsterData = monster;
+            //boxSelect.savedBox = monsterSelected;
+            textsList[i].text = monster.monsterName;
+           // monsterSelected.i = i;
+            i++;
+        }
+    }
     public void ActivateAllIcons()
     {
         int e = 0;
@@ -33,7 +55,7 @@ public class CurrentTeam : MonoBehaviour
     }
     public void AddMonster()
     {
-        if (i > 5 || monsterSelected == null || monsterSelected.isUsed)
+        if (i > 5 || monsterSelected == null || monsterSelected.monsterData.isUsed)
         {
             if (i>5)
             {
@@ -43,7 +65,7 @@ public class CurrentTeam : MonoBehaviour
             {
                 Debug.Log("Monster Selected es igual a null");
             }
-            if (monsterSelected.isUsed)
+            if (monsterSelected.monsterData.isUsed)
             {
                 Debug.Log("Monster Selected is used");
             }
@@ -57,7 +79,7 @@ public class CurrentTeam : MonoBehaviour
         boxSelect.monsterData = monsterSelected.monsterData;
         boxSelect.savedBox = monsterSelected;
         textsList[i].text = monsterSelected.monsterData.monsterName;
-        monsterSelected.isUsed = true;
+        monsterSelected.monsterData.isUsed = true;
         monsterSelected.i = i;
         i++;
     }
@@ -91,7 +113,17 @@ public class CurrentTeam : MonoBehaviour
         }
 
         int indexToRemove = teamMonsterSelected.i;
-        teamMonsterSelected.savedBox.isUsed = false;
+        //teamMonsterSelected.savedBox.isUsed = false;
+        foreach (var monster in allIcons)
+        {
+            MonsterData monsterData = monster.GetComponent<BoxSelectMonster>().monsterData;
+            if (monsterData.monsterName == teamMonsterSelected.monsterData.monsterName)
+            {
+                monsterData.isUsed = false;
+                break;
+            }
+        }
+        teamMonsterSelected.monsterData.isUsed = false;
 
         // 2. Desplazar todos los monstruos una posición atrás a partir del eliminado
         for (int j = indexToRemove; j < i - 1; j++)
@@ -137,5 +169,6 @@ public class CurrentTeam : MonoBehaviour
             allMonsters[e] = monsterData;
             e++;
         }
+        dungeonTeam.allMonsters = allMonsters;
     }
 }

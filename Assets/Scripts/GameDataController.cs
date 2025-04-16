@@ -10,7 +10,7 @@ public class GameDataController : MonoBehaviour
     public MonsterDataBase monsterDataBase;
     private Inventory inventory;
     private MonstersHouse monstersHouse;
-    private CurrentTeam currentTeam;
+    private DungeonTeam dungeonTeam;
 
     private void Awake()
     {
@@ -21,14 +21,14 @@ public class GameDataController : MonoBehaviour
     {
         inventory = FindAnyObjectByType<Inventory>();
         monstersHouse = FindAnyObjectByType<MonstersHouse>();
-        currentTeam = FindAnyObjectByType<CurrentTeam>();
+        dungeonTeam = FindAnyObjectByType<DungeonTeam>();
         if (inventory == null)
         {
             Debug.Log("Can´t find inventory");
         }
     }
 
-    public void LoadData(Inventory inventory, MonstersHouse monstersHouse, CurrentTeam currentTeam)
+    public void LoadData(Inventory inventory, MonstersHouse monstersHouse, DungeonTeam dungeonTeam)
     {
         if (File.Exists(saveFiles))
         {
@@ -73,7 +73,7 @@ public class GameDataController : MonoBehaviour
             }
             if (saveData.monstersDungeon != null)
             {
-                currentTeam.allMonsters = new List<MonsterData>(saveData.monstersDungeon);
+                dungeonTeam.allMonsters = new List<MonsterData>(saveData.monstersDungeon);
             }
             
         }
@@ -102,7 +102,7 @@ public class GameDataController : MonoBehaviour
             molecularAmount = new List<int>(inventory.countMolecules.Values),
 
             monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
-            monstersDungeon = new List<MonsterData>(currentTeam.allMonsters)
+            monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters)
 
         };
         foreach (var value in inventory.capturableInventory)
