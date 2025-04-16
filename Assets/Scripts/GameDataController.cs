@@ -6,7 +6,11 @@ public class GameDataController : MonoBehaviour
 {
     public string saveFiles;
     public SaveData saveData = new SaveData();
+    public DataBaseSO itemDataBaseSO;
+    public MonsterDataBase monsterDataBase;
     private Inventory inventory;
+    private MonstersHouse monstersHouse;
+    private CurrentTeam currentTeam;
 
     private void Awake()
     {
@@ -15,14 +19,16 @@ public class GameDataController : MonoBehaviour
 
     private void Start()
     {
-        inventory = FindAnyObjectByType<Inventory>(); // Se asegura de encontrarlo en Start()
+        inventory = FindAnyObjectByType<Inventory>();
+        monstersHouse = FindAnyObjectByType<MonstersHouse>();
+        currentTeam = FindAnyObjectByType<CurrentTeam>();
         if (inventory == null)
         {
             Debug.Log("Can´t find inventory");
         }
     }
 
-    public void LoadData(Inventory inventory)
+    public void LoadData(Inventory inventory, MonstersHouse monstersHouse, CurrentTeam currentTeam)
     {
         if (File.Exists(saveFiles))
         {
@@ -41,19 +47,35 @@ public class GameDataController : MonoBehaviour
 
             for (int i = 0; i < saveData.capturableKeys.Count; i++)
             {
-                inventory.capturableInventory.Add(saveData.capturableKeys[i], saveData.capturableValues[i]);
-                inventory.countCapturables.Add(saveData.capturableKeys[i], saveData.capturableAmount[i]);
-               
+                var id = saveData.capturableIDs[i];
+                var item = itemDataBaseSO.GetCapturableByID(id);
+                if (item != null)
+                {
+                    inventory.capturableInventory.Add(saveData.capturableKeys[i], item);
+                    inventory.countCapturables.Add(saveData.capturableKeys[i], saveData.capturableAmount[i]);
+                }
             }
-
-            //inventory.moleculeInventory = new Dictionary<string, ItemMolecule>();
-            //inventory.countMolecules = new Dictionary<string, int>();
 
             for (int i = 0; i < saveData.molecularKeys.Count; i++)
             {
-                inventory.moleculeInventory.Add(saveData.molecularKeys[i], saveData.molecularValues[i]);
-                inventory.countMolecules.Add(saveData.molecularKeys[i], saveData.molecularAmount[i]);
+                var id = saveData.molecularIDs[i];
+                var item = itemDataBaseSO.GetMoleculeByID(id);
+                if (item != null)
+                {
+                    inventory.moleculeInventory.Add(saveData.molecularKeys[i], item);
+                    inventory.countMolecules.Add(saveData.molecularKeys[i], saveData.molecularAmount[i]);
+                }
             }
+
+            if (saveData.monstersHouse != null)
+            {
+                monstersHouse.listMonsters = new List<MonsterData>(saveData.monstersHouse);
+            }
+            if (saveData.monstersDungeon != null)
+            {
+                currentTeam.allMonsters = new List<MonsterData>(saveData.monstersDungeon);
+            }
+            
         }
         else
         {
@@ -72,13 +94,22 @@ public class GameDataController : MonoBehaviour
         SaveData newData = new SaveData()
         {
             capturableKeys = new List<string>(inventory.capturableInventory.Keys),
-            capturableValues = new List<ItemCapturable>(inventory.capturableInventory.Values),
+            capturableIDs = new List<string>(),
             capturableAmount = new List<int>(inventory.countCapturables.Values),
 
             molecularKeys = new List<string>(inventory.moleculeInventory.Keys),
-            molecularValues = new List<ItemMolecule>(inventory.moleculeInventory.Values),
-            molecularAmount = new List<int>(inventory.countMolecules.Values)
+            molecularIDs = new List<string>(),
+            molecularAmount = new List<int>(inventory.countMolecules.Values),
+
+            monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
+            monstersDungeon = new List<MonsterData>(currentTeam.allMonsters)
+
         };
+        foreach (var value in inventory.capturableInventory)
+            newData.capturableIDs.Add(value.Key);
+
+        foreach (var value in inventory.moleculeInventory)
+            newData.molecularIDs.Add(value.Key);
 
         string chainJSON = JsonUtility.ToJson(newData);
         File.WriteAllText(saveFiles, chainJSON);

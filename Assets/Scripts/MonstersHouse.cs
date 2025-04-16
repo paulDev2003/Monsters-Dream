@@ -13,12 +13,11 @@ public class MonstersHouse : MonoBehaviour
             Monster monsterScript = monster.GetComponent<Monster>();
             MonsterData m = new MonsterData()
             {
-                id = id,
+                baseId = id,
                 monsterName = monsterScript.monsterName,
                 level = monsterScript.level,
                 currentXP = monsterScript.exp,
                 currentHealth = monsterScript.healthFigth,
-                monsterPrefab = monster
             };
             listMonsters.Add(m);
             id++;

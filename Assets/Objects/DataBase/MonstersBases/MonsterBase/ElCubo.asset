@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce85230159565b14fac4ae6723b97f0d, type: 3}
-  m_Name: DataBaseCapturables
+  m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
+  m_Name: ElCubo
   m_EditorClassIdentifier: 
+  id: 1
+  monsterName: ElCubo
+  prefabMonster: {fileID: 9021396236254735361, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}

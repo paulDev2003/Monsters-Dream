@@ -1268,12 +1268,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -2606,12 +2605,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -3960,12 +3958,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -4771,12 +4768,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 1
   i: 4
   savedBox: {fileID: 0}
@@ -6629,12 +6625,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 1
   i: 1
   savedBox: {fileID: 0}
@@ -7743,12 +7738,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -8430,6 +8424,7 @@ MonoBehaviour:
   monstersHouse: {fileID: 1834131914}
   monsterSelected: {fileID: 0}
   teamMonsterSelected: {fileID: 0}
+  monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
   iconsList:
   - {fileID: 1713868465}
   - {fileID: 761749842}
@@ -8478,6 +8473,37 @@ MonoBehaviour:
   - {fileID: 851836511}
   - {fileID: 1331307134}
   - {fileID: 535038800}
+  allMonsters:
+  - baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
+  - baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
+  - baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
+  - baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
+  - baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
+  - baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
   i: 0
 --- !u!1 &970186489
 GameObject:
@@ -9115,6 +9141,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 955125791}
+        m_TargetAssemblyTypeName: CurrentTeam, Assembly-CSharp
+        m_MethodName: SaveMonstersInAllMonsters
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &980877196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9392,6 +9430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersInventory: []
+  monstersHouse: {fileID: 1834131914}
+  currentTeam: {fileID: 955125791}
 --- !u!4 &1019109033
 Transform:
   m_ObjectHideFlags: 0
@@ -9635,12 +9675,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -9809,12 +9848,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -10334,12 +10372,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 1
   i: 3
   savedBox: {fileID: 0}
@@ -10644,12 +10681,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -11872,12 +11908,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -12046,12 +12081,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 1
   i: 5
   savedBox: {fileID: 0}
@@ -12492,12 +12526,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -12954,12 +12987,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -13128,12 +13160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -13659,12 +13690,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -15899,12 +15929,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 1
   i: 2
   savedBox: {fileID: 0}
@@ -16617,12 +16646,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -17012,12 +17040,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 1
   i: 0
   savedBox: {fileID: 0}
@@ -17474,12 +17501,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -18256,12 +18282,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -18941,12 +18966,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData:
-    id: 0
+    baseId: 0
     monsterName: 
     level: 0
     currentXP: 0
     currentHealth: 0
-    monsterPrefab: {fileID: 0}
   isUsed: 0
   i: 0
   savedBox: {fileID: 0}
@@ -19691,13 +19715,15 @@ MonoBehaviour:
   saveFiles: 
   saveData:
     capturableKeys: []
-    capturableValues: []
+    capturableIDs: []
     capturableAmount: 
     molecularKeys: []
-    molecularValues: []
+    molecularIDs: []
     molecularAmount: 
     monstersHouse: []
     monstersDungeon: []
+  itemDataBaseSO: {fileID: 11400000, guid: 571e50af525288b47a17c18ebaf383d7, type: 2}
+  monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
 --- !u!4 &2103305999
 Transform:
   m_ObjectHideFlags: 0

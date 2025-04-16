@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class SaveData
 {
     public List<string> capturableKeys;
-    public List<ItemCapturable> capturableValues;
+    public List<string> capturableIDs;
     public List<int> capturableAmount;
 
     public List<string> molecularKeys;
-    public List<ItemMolecule> molecularValues;
+    public List<string> molecularIDs;
     public List<int> molecularAmount;
 
     public List<MonsterData> monstersHouse;

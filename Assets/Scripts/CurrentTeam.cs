@@ -8,10 +8,13 @@ public class CurrentTeam : MonoBehaviour
     public MonstersHouse monstersHouse;
     public BoxSelectMonster monsterSelected;
     public BoxSelectMonster teamMonsterSelected;
+    public MonsterDataBase monsterDataBase;
     public GameObject[] iconsList = new GameObject[6];
     public TextMeshProUGUI[] textsList = new TextMeshProUGUI[6];
     public List<GameObject> allIcons = new List<GameObject>();
     public List<TextMeshProUGUI> allTexts = new List<TextMeshProUGUI>();
+    [System.NonSerialized]
+    public List<MonsterData> allMonsters;
     public int i = 0;
 
     public void ActivateAllIcons()
@@ -19,7 +22,8 @@ public class CurrentTeam : MonoBehaviour
         int e = 0;
         foreach (var monster in monstersHouse.listMonsters)
         {
-            Monster monsterScript = monster.monsterPrefab.GetComponent<Monster>();
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+            Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
             allIcons[e].SetActive(true);
             allIcons[e].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
             allIcons[e].GetComponent<BoxSelectMonster>().monsterData = monster;
@@ -45,7 +49,8 @@ public class CurrentTeam : MonoBehaviour
             }
             return;
         }
-        Monster monsterScript = monsterSelected.monsterData.monsterPrefab.GetComponent<Monster>();
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterSelected.monsterData.monsterName);
+        Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
         iconsList[i].SetActive(true);
         iconsList[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
         BoxSelectMonster boxSelect = iconsList[i].GetComponent<BoxSelectMonster>();
@@ -64,7 +69,8 @@ public class CurrentTeam : MonoBehaviour
             Debug.Log("Return en Change");
             return;
         }
-        Monster monsterScript = monsterSelected.monsterData.monsterPrefab.GetComponent<Monster>();
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterSelected.monsterData.monsterName);
+        Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
         iconsList[teamMonsterSelected.i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
         textsList[teamMonsterSelected.i].text = monsterSelected.monsterData.monsterName;
         monsterSelected.isUsed = true;
@@ -120,5 +126,16 @@ public class CurrentTeam : MonoBehaviour
 
         // 5. Limpiar selección
         teamMonsterSelected = null;
+    }
+
+    public void SaveMonstersInAllMonsters()
+    {
+        int e = 0;
+        foreach (var box in iconsList)
+        {
+            MonsterData monsterData = box.GetComponent<BoxSelectMonster>().monsterData;
+            allMonsters[e] = monsterData;
+            e++;
+        }
     }
 }

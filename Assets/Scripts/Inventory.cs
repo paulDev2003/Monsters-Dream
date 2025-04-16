@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
     private GameDataController gameDataController;
 
     public List<GameObject> monstersInventory = new List<GameObject>();
+    public MonstersHouse monstersHouse;
+    public CurrentTeam currentTeam;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class Inventory : MonoBehaviour
         gameDataController = FindAnyObjectByType<GameDataController>();
         if (gameDataController != null)
         {
-            gameDataController.LoadData(this);
+            gameDataController.LoadData(this, monstersHouse, currentTeam);
         }
         else
         {
@@ -36,26 +38,26 @@ public class Inventory : MonoBehaviour
             switch (item.type)
             {
                 case ItemSO.typeItem.Capturable:
-                    if (capturableInventory.ContainsKey(item.name))
+                    if (capturableInventory.ContainsKey(item.itemName))
                     {
-                        countCapturables[item.name] += 1;
+                        countCapturables[item.itemName] += 1;
                     }
                     else
                     {
-                        capturableInventory.Add(item.name, item as ItemCapturable);
-                        countCapturables.Add(item.name, 1);                       
+                        capturableInventory.Add(item.itemName, item as ItemCapturable);
+                        countCapturables.Add(item.itemName, 1);                       
                     }
                     
                     break;
                 case ItemSO.typeItem.Molecule:
-                    if (moleculeInventory.ContainsKey(item.name))
+                    if (moleculeInventory.ContainsKey(item.itemName))
                     {
-                        countMolecules[item.name] += 1;
+                        countMolecules[item.itemName] += 1;
                     }
                     else
                     {
-                        moleculeInventory.Add(item.name, item as ItemMolecule);
-                        countMolecules.Add(item.name, 1);
+                        moleculeInventory.Add(item.itemName, item as ItemMolecule);
+                        countMolecules.Add(item.itemName, 1);
                     }
                     break;
                 default:
