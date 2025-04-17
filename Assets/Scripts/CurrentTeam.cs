@@ -11,10 +11,12 @@ public class CurrentTeam : MonoBehaviour
     public MonsterDataBase monsterDataBase;
     public GameObject[] iconsList = new GameObject[6];
     public TextMeshProUGUI[] textsList = new TextMeshProUGUI[6];
+    public List<Image> starterIcons = new List<Image>();
     public List<GameObject> allIcons = new List<GameObject>();
     public List<TextMeshProUGUI> allTexts = new List<TextMeshProUGUI>();
     public List<MonsterData> allMonsters;
     public DungeonTeam dungeonTeam;
+    private int countStarters = 0;
     public int i = 0;
 
     private void Start()
@@ -26,7 +28,14 @@ public class CurrentTeam : MonoBehaviour
             {
                 return;
             }
+            if (monster.isStarter)
+            {
+                starterIcons[i].enabled = true;
+                countStarters++;
+            }
             MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+            
+
             
             Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
             iconsList[i].SetActive(true);
@@ -71,6 +80,12 @@ public class CurrentTeam : MonoBehaviour
             }
             return;
         }
+        if (countStarters == 0)
+        {
+            starterIcons[i].enabled = true;
+            monsterSelected.monsterData.isStarter = true;
+            countStarters++;
+        }
         MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterSelected.monsterData.monsterName);
         Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
         iconsList[i].SetActive(true);
@@ -111,7 +126,12 @@ public class CurrentTeam : MonoBehaviour
             Debug.Log("No hay monstruo del equipo seleccionado para eliminar.");
             return;
         }
-
+        if (teamMonsterSelected.monsterData.isStarter)
+        {
+            starterIcons[teamMonsterSelected.i].enabled = false;
+            countStarters--;
+        }
+        
         int indexToRemove = teamMonsterSelected.i;
         //teamMonsterSelected.savedBox.isUsed = false;
         foreach (var monster in allIcons)
@@ -120,6 +140,7 @@ public class CurrentTeam : MonoBehaviour
             if (monsterData.monsterName == teamMonsterSelected.monsterData.monsterName)
             {
                 monsterData.isUsed = false;
+                monsterData.isStarter = false;
                 break;
             }
         }
@@ -155,7 +176,12 @@ public class CurrentTeam : MonoBehaviour
 
         // 4. Actualizar el índice
         i--;
-
+        if (i > 0 && countStarters == 0)
+        {
+            starterIcons[0].enabled = true;
+            iconsList[0].GetComponent<BoxSelectMonster>().monsterData.isStarter = true;
+            countStarters++;
+        }
         // 5. Limpiar selección
         teamMonsterSelected = null;
     }
@@ -170,5 +196,50 @@ public class CurrentTeam : MonoBehaviour
             e++;
         }
         dungeonTeam.allMonsters = allMonsters;
+    }
+
+    public void SelectStarter()
+    {
+        if (teamMonsterSelected == null)
+        {
+            Debug.Log("No hay monstruo seleccionado");
+            return;
+        }
+        if (countStarters >= 3)
+        {
+            Debug.Log("Son suficientes starters");
+            return;
+        }
+        if (teamMonsterSelected.monsterData.isStarter)
+        {
+            Debug.Log("Este monstruo ya es Starter");
+            return;
+        }
+        teamMonsterSelected.monsterData.isStarter = true;
+        countStarters++;
+        starterIcons[teamMonsterSelected.i].enabled = true;
+    }
+
+    public void DeselectStarter()
+    {
+        if (teamMonsterSelected == null)
+        {
+            Debug.Log("No hay monstruo seleccionado");
+            return;
+        }
+        if (!teamMonsterSelected.monsterData.isStarter)
+        {
+            Debug.Log("Este monstruo no es starter");
+            return;
+        }
+        teamMonsterSelected.monsterData.isStarter = false;
+        countStarters--;
+        starterIcons[teamMonsterSelected.i].enabled = false;
+        if (i > 0 && countStarters == 0)
+        {
+            starterIcons[0].enabled = true;
+            iconsList[0].GetComponent<BoxSelectMonster>().monsterData.isStarter = true;
+            countStarters++;
+        }
     }
 }

@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     public List<GameObject> monstersInventory = new List<GameObject>();
     public MonstersHouse monstersHouse;
     public DungeonTeam dungeonTeam;
+    public MonsterDataBase monsterDataBase;
 
     private void Start()
     {
@@ -29,6 +30,16 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Can´t find DataController");
             
+        }
+        foreach (var monster in dungeonTeam.allMonsters)
+        {
+            if (monster.monsterName == "")
+            {
+                return;
+            }
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+            GameObject monsterPrefab = monsterBase.prefabMonster;
+            monstersInventory.Add(monsterPrefab);
         }
     }
     public void Additems(List<ItemSO> listLoot)

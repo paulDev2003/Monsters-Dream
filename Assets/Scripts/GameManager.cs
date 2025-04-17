@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    public List<GameObject> enemiesToChoice = new List<GameObject>();
+    public Vector2Int levelToSpawn;
     public List<GameObject> friendsList = new List<GameObject>();
     public List<GameObject> enemieList = new List<GameObject>();
     public List<GameObject> enemiesSaved;
@@ -43,13 +44,16 @@ public class GameManager : MonoBehaviour
     public UnityEvent EventLoot;
     public ManagerRunes runeManager;
     public bool expCompleted = false;
+    public List<Transform> friendSpawnPoints = new List<Transform>();
+    public List<Transform> enemySpawnPoints = new List<Transform>();
+    public DungeonTeam dungeonTeam;
+    public MonsterDataBase monsterDataBase;
     private void Start()
-    {
-        enemiesSaved = new List<GameObject>(enemieList);
+    { 
         friendsSaved = new List<GameObject>(friendsList);
         listLoot = new List<ItemSO>();
         gameDataController = FindAnyObjectByType<GameDataController>();
-        UpdateInterface();
+        SpawnMonsters();
         if (runeManager != null)
         {
             runeManager.isFigth = true;
@@ -66,6 +70,34 @@ public class GameManager : MonoBehaviour
                 expCompleted = false;
             }
         }
+    }
+
+    public void SpawnMonsters()
+    {
+        int countEnemies = Random.Range(1, 4);
+        for (int i = 0; i < countEnemies; i++)
+        {
+            GameObject enemyToSpawn = enemiesToChoice[Random.Range(0, enemiesToChoice.Count)];
+            GameObject enemySpawned = Instantiate(enemyToSpawn, enemySpawnPoints[i].position, Quaternion.identity);
+            Monster enemyScript = enemyToSpawn.GetComponent<Monster>();
+            enemyScript.level = Random.Range(levelToSpawn.x, levelToSpawn.y);
+            enemyScript.enemie = true;
+            enemieList.Add(enemySpawned);
+        }
+        enemiesSaved = new List<GameObject>(enemieList);
+        int e = 0;
+        foreach (var monster in dungeonTeam.allMonsters)
+        {
+            if (monster.isStarter)
+            {
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+                GameObject friendSpawned = Instantiate(monsterBase.prefabMonster, friendSpawnPoints[e].position, Quaternion.identity);
+                friendSpawned.GetComponent<Monster>().enemie = false;
+                friendsList.Add(friendSpawned);
+                e++;
+            }
+        }
+        UpdateInterface();
     }
     public void RemoveFromList(List<GameObject> list, Monster monsterdead)
     {

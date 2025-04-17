@@ -139,6 +139,10 @@ public class MonsterDrop : MonoBehaviour
             return;
         }
         // Obtener la posición del clic en el mundo
+        if (markInstance != null)
+        {
+            markInstance.SetActive(false);
+        }
         areaInstantiatedObj.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -170,7 +174,6 @@ public class MonsterDrop : MonoBehaviour
                         gameManager.lifeBarsFriends[i].SetActive(true);
                         gameManager.lifeBarsFriends[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                         Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
-                        Debug.Log("Entra en el spawn y debería tomar la lifebar");
                         scriptMonster.lifeBar = gameManager.superiorBarFriends[i];
                         gameManager.levelFriends[i].text = $"Lv.{monsterScript.level}";
                         monsterScript.valueI = i;
@@ -272,10 +275,14 @@ public class MonsterDrop : MonoBehaviour
                 monsterSelected.transform);
             markInstantiated = true;
         }
-        else if(saveMonsterMarked != monsterSelected)
+        else
         {
-            markInstance.transform.position = monsterSelected.transform.position + Vector3.up * 2;
-            markInstance.transform.parent = monsterSelected.transform;
+            markInstance.SetActive(true);
+            if (saveMonsterMarked != monsterSelected)
+            {
+                markInstance.transform.position = monsterSelected.transform.position + Vector3.up * 2;
+                markInstance.transform.parent = monsterSelected.transform;
+            }                
         }
         saveMonsterMarked = monsterSelected;
     }

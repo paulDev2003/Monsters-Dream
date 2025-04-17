@@ -9,4 +9,5 @@ public class MonsterData
     public int currentXP;
     public float currentHealth;
     public bool isUsed = false;
+    public bool isStarter = false;
 }

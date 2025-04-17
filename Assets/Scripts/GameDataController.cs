@@ -75,7 +75,6 @@ public class GameDataController : MonoBehaviour
             {
                 dungeonTeam.allMonsters = new List<MonsterData>(saveData.monstersDungeon);
             }
-            
         }
         else
         {
