@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 2
   monsterName: Magic
   prefabMonster: {fileID: 5692565554864044551, guid: 04bd8f9b6d0a78144888ae21234aeafc, type: 3}
+  monsterSO: {fileID: 11400000, guid: a6adea2594115df41897729366ff330c, type: 2}

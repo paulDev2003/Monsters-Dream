@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 1
   monsterName: ElCubo
   prefabMonster: {fileID: 9021396236254735361, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
+  monsterSO: {fileID: 11400000, guid: e3b32b308a5300046a9631baeff2a58e, type: 2}

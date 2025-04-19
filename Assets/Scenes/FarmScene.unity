@@ -10087,6 +10087,7 @@ MonoBehaviour:
   monstersInventory: []
   monstersHouse: {fileID: 1834131914}
   dungeonTeam: {fileID: 1834131915}
+  monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
 --- !u!4 &1019109033
 Transform:
   m_ObjectHideFlags: 0
@@ -16254,6 +16255,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608647166}
   m_CullTransparentMesh: 1
+--- !u!1 &1616581337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616581339}
+  - component: {fileID: 1616581338}
+  m_Layer: 0
+  m_Name: DungeonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1616581338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616581337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1df4b93f4a8224ea959f7c6f925171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1616581339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616581337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.070564, y: -13.501673, z: 7.432943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622097607
 GameObject:
   m_ObjectHideFlags: 0
@@ -19703,7 +19748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+  sceneAsset: {fileID: 102900000, guid: d8861b3588935c9459a4707d3e539809, type: 3}
 --- !u!114 &1926776284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19748,6 +19793,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1616581338}
+        m_TargetAssemblyTypeName: BeginDungeon, Assembly-CSharp
+        m_MethodName: InitializeDungeon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1926776283}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadScene
@@ -21332,3 +21389,4 @@ SceneRoots:
   - {fileID: 2103305999}
   - {fileID: 379171643}
   - {fileID: 1834131913}
+  - {fileID: 1616581339}

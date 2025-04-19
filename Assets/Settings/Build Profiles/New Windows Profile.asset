@@ -24,6 +24,10 @@ MonoBehaviour:
     m_path: Assets/Scenes/FarmScene.unity
   - m_enabled: 1
     m_path: Assets/Scenes/SampleScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/FigthStance.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/IntermediateScene.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings: []

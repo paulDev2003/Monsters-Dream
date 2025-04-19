@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class UILifeBar : MonoBehaviour
 {
-    private Image image;
+    public Image image;
     void Start()
     {
-        image = GetComponent<Image>();
+       // image = GetComponent<Image>();
     }
 
     public void UpdateFill(Monster monster)

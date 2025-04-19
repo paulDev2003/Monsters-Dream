@@ -6,4 +6,5 @@ public class MonsterBase : ScriptableObject
     public int id;
     public string monsterName;
     public GameObject prefabMonster;
+    public MonsterSO monsterSO;
 }

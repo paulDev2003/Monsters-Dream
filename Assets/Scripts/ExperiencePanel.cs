@@ -16,6 +16,7 @@ public class ExperiencePanel : MonoBehaviour
 
     private float targetFill;
     private float expGained;
+    private MonsterData newDataMonster = new MonsterData();
     private Monster monsterScript;
 
     private void Start()
@@ -23,44 +24,56 @@ public class ExperiencePanel : MonoBehaviour
         gameManager = FindAnyObjectByType<GameManager>();
     }
 
-    public void ShowPanel(Monster monster, int gainedExp)
+    public MonsterData ShowPanel(MonsterSO monsterSO, int gainedExp, MonsterData monsterData)
     {
+        newDataMonster.currentXP = monsterData.currentXP;
+        newDataMonster.level = monsterData.level;
         expGained = gainedExp;
-        monsterScript = monster;
         sprite.enabled = true;
-        sprite.sprite = monster.monsterSO.sprite;
+        sprite.sprite = monsterSO.sprite;
         txtLevel.enabled = true;
-        txtLevel.text = $"Lv.{monster.level}";
+        txtLevel.text = $"Lv.{monsterData.level}";
         txtName.enabled = true;
-        txtName.text = monster.monsterName;
+        txtName.text = monsterData.monsterName;
         expBar.enabled = true;
-        expBar.fillAmount = (float)monster.exp / (float)monster.maxExp;
+        expBar.fillAmount = (float)monsterData.currentXP /((float)monsterData.level * 50f); ;
+        float rest = (float)monsterData.currentXP + gainedExp;
+        while (monsterData.currentXP + gainedExp >= newDataMonster.level * 50)
+        {
+            rest = newDataMonster.currentXP + gainedExp - newDataMonster.level * 50;
+            newDataMonster.level += 1;
+            txtLevel.text = $"Lv.{monsterData.level}";
+        }
+        newDataMonster.currentXP = (int)rest;
+        Debug.Log((float)monsterData.currentXP);
+        Debug.Log($"La experiencia en showPanel porcentual es: {expBar.fillAmount}");
         backBar.enabled = true;
-        UpdateExperience(monster.exp, monster.maxExp, gainedExp, monster);
+        UpdateExperience(monsterData.currentXP, monsterData.level * 50, gainedExp, monsterData);
+        return newDataMonster;
     }
 
-    public void UpdateExperience(float currentXP, float maxXP, float gainedXP, Monster monster)
+    public void UpdateExperience(float currentXP, float maxXP, float gainedXP,  MonsterData originalData)
     {
-        StartCoroutine(AnimateXPBar(currentXP, maxXP, gainedXP, monster));
+        StartCoroutine(AnimateXPBar(currentXP, maxXP, gainedXP,originalData));
     }
 
-    private IEnumerator AnimateXPBar(float currentXP, float maxXP, float gainedXP, Monster monster)
+    private IEnumerator AnimateXPBar(float currentXP, float maxXP, float gainedXP,  MonsterData dataMonster)
     {
         animating = true;
         float startFill = currentXP / maxXP;
         targetFill = (currentXP + gainedXP) / maxXP;
         float elapsedTime = 0f;
-        float rest = 0;
-        int lvlSaver = monster.level;
+        float rest = currentXP + gainedXP;
+        int savedLevel = dataMonster.level;
         while (elapsedTime < animationSpeed)
         {
             if (expBar.fillAmount >= 1)
             {
                 rest = currentXP + gainedXP- maxXP;
-                maxXP += 25;
+                savedLevel += 1;
+                maxXP = dataMonster.level *50;
                 startFill = 0;
-                lvlSaver += 1; //Esto se cambiará en el futuro
-                txtLevel.text = $"Lv.{lvlSaver}";
+                txtLevel.text = $"Lv.{savedLevel}";
                 
                 targetFill = rest / maxXP;
             }
@@ -73,21 +86,19 @@ public class ExperiencePanel : MonoBehaviour
         gameManager.expCompleted = true;
     }
 
-    public void FastUpdate(float gainedXP, Monster monster)
+    public void FastUpdate(float gainedXP, MonsterData monsterData)
     {
         StopAllCoroutines();
-        float startFill = monster.exp / monster.maxExp;
-        targetFill = (monster.exp + gainedXP) / monster.maxExp;
-        float rest;
-        int lvlSaver = monster.level;
+        float startFill = monsterData.currentXP / (monsterData.level * 50);
+        targetFill = (monsterData.currentXP + gainedXP) / (monsterData.level * 50);
+        float rest = monsterData.currentXP + gainedXP;
         while (targetFill >= 1)
         {
-            rest = monster.exp + gainedXP - monster.maxExp;
-            monster.maxExp += 25;
+            rest = monsterData.currentXP + gainedXP - monsterData.level * 50;
+            monsterData.level += 1;
             startFill = 0;
-            lvlSaver += 1; 
-            txtLevel.text = $"Lv.{lvlSaver}";
-            targetFill = rest/ monster.maxExp;
+            txtLevel.text = $"Lv.{monsterData.level}";
+            targetFill = rest / (monsterData.level * 50);
             Debug.Log("Entra al while");
         }
         expBar.fillAmount = targetFill;
@@ -101,7 +112,7 @@ public class ExperiencePanel : MonoBehaviour
         {
             if (animating)
             {
-                FastUpdate(expGained, monsterScript);
+                FastUpdate(expGained, newDataMonster);
                 animating = false;
             }
         }

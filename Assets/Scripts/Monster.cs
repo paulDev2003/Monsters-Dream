@@ -9,6 +9,7 @@ public class Monster : MonoBehaviour
 {
     public string monsterName = "name";
     public MonsterSO monsterSO;
+    public MonsterData monsterData;
     public bool enemie;
     public int level = 1;
     public float health;
@@ -19,6 +20,7 @@ public class Monster : MonoBehaviour
     public float magicalDamage;
     public float magicalDefense;
     public UILifeBar lifeBar;
+    public bool wasSpawned = false;
     public enum typeDamage
     { 
         Physical,
@@ -74,6 +76,7 @@ public class Monster : MonoBehaviour
         currentTimeRegeneration = regenerationTime;
         inUse = true;
         agent = FindObjectOfType<NavMeshAgent>();
+        maxExp = level * 50;
         
         gameManager = FindAnyObjectByType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
@@ -249,15 +252,30 @@ public class Monster : MonoBehaviour
 
     public void UpdateStats()
     {
-        monsterClass = new MonsterClass(monsterSO, level);
+        monsterClass = new MonsterClass(monsterSO, monsterData.level);
+        level = monsterData.level;
+        exp = monsterData.currentXP;
         health = monsterClass.Health + healthBuff;
-        healthFigth = monsterClass.Health + healthBuff;
+        if (PlayerPrefs.GetInt("BattleNumber") == 0)
+        {
+            healthFigth = monsterClass.Health + healthBuff;
+            Debug.Log("Entra en battleNumber 0");
+        }
+        else
+        {
+            healthFigth = monsterData.currentHealth;
+            Debug.Log("Entra en con la vida previa");
+        }
         physicalDamage = monsterClass.PhysicalDamage + damageBuff;
         speedAttack = monsterClass.SpeedAttack * multiplierIncreasedSpeedAttack;
         defense = monsterClass.Defense + physicIncreaseDefense;
         evasion = monsterClass.Evasion;
         magicalDamage = monsterClass.MagicalDamage + magicDamageBuff;
         magicalDefense = monsterClass.MagicalDefense + magicIncreaseDefense;
+        if (monsterData.isStarter)
+        {
+            lifeBar.UpdateFill(this);
+        }       
     }
 
     public void ChangeSelector()
@@ -304,6 +322,11 @@ public class Monster : MonoBehaviour
         attacksToSkill = Random.Range(4, 7);
         attacksToSkill = Mathf.RoundToInt(attacksToSkill / decreasedCoolDown);
         totalAmountToSkill = 1f / (float)attacksToSkill;
+    }
+
+    public void UpdateBar()
+    {
+        lifeBar.UpdateFill(this);
     }
 
     private void OnDisable()

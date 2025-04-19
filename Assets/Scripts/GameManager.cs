@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public List<Transform> enemySpawnPoints = new List<Transform>();
     public DungeonTeam dungeonTeam;
     public MonsterDataBase monsterDataBase;
+    private List<Monster> friendsMonsters = new List<Monster>();
     private void Start()
     { 
         friendsSaved = new List<GameObject>(friendsList);
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnMonsters()
     {
-        int countEnemies = Random.Range(1, 4);
+        int countEnemies = Random.Range(1, 3);
         for (int i = 0; i < countEnemies; i++)
         {
             GameObject enemyToSpawn = enemiesToChoice[Random.Range(0, enemiesToChoice.Count)];
@@ -92,7 +93,11 @@ public class GameManager : MonoBehaviour
             {
                 MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
                 GameObject friendSpawned = Instantiate(monsterBase.prefabMonster, friendSpawnPoints[e].position, Quaternion.identity);
-                friendSpawned.GetComponent<Monster>().enemie = false;
+                Monster scriptMonster = friendSpawned.GetComponent<Monster>();
+                scriptMonster.enemie = false;
+                scriptMonster.monsterData = monster;
+                scriptMonster.wasSpawned = true;         
+                friendsMonsters.Add(scriptMonster);
                 friendsList.Add(friendSpawned);
                 e++;
             }
@@ -166,6 +171,7 @@ public class GameManager : MonoBehaviour
             script.valueI = i;
             lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
             script.lifeBar = superiorBarFriends[i];
+            //superiorBarFriends[i].UpdateFill(script);
             levelFriends[i].text = $"Lv.{script.level}";
             i++;
             countMonsters++;
@@ -187,6 +193,22 @@ public class GameManager : MonoBehaviour
             Monster monsterComponent = monster.GetComponent<Monster>();
             monsterPanel[i].sprite = monsterComponent.monsterSO.sprite;
             monsterDrop[i].monsterSaved = monster;
+            foreach (var monsterPrefab in friendsList)
+            {
+                Monster monsterScript = monsterPrefab.GetComponent<Monster>();
+                if (monsterScript.monsterName == monsterComponent.monsterName)
+                {
+                    monsterDrop[i].instantiatedMonster = monsterPrefab;
+                }
+            }
+            foreach (var monsterData in dungeonTeam.allMonsters)
+            {
+                if (monsterData.monsterName == monsterComponent.monsterName)
+                {
+                    monsterComponent.monsterData = monsterData;
+
+                }
+            }
             i++;
         }
     }
@@ -201,11 +223,18 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log($"TotalExp = {totalExp}");
         int i = 0;
-        foreach (var monster in inventory.monstersInventory)
+        foreach (var monster in dungeonTeam.allMonsters)
         {
-            Monster monsterScript = monster.GetComponent<Monster>();
-            experienceList[i].ShowPanel(monsterScript, totalExp);
-            i++;
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+            if (monster.monsterName != "")
+            {
+                MonsterData updatedData = experienceList[i].ShowPanel(monsterBase.monsterSO, totalExp, monster);
+                monster.level = updatedData.level;
+                monster.currentXP = updatedData.currentXP;
+                i++;
+
+            }
+            
         }
         
     }
@@ -243,7 +272,32 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("Change enemy");
         }
+        SaveStats();
         inventory.Additems(listLoot);
         gameDataController.SaveData();
+        int battleNumber = PlayerPrefs.GetInt("BattleNumber");
+        battleNumber++;
+        PlayerPrefs.SetInt("BattleNumber", battleNumber);
+    }
+
+    private void SaveStats()
+    {
+        foreach (var monsterDropped in monsterDrop)
+        {
+            if (monsterDropped.instantiatedMonster != null)
+            {
+                Monster monsterScript = monsterDropped.instantiatedMonster.GetComponent<Monster>();
+                MonsterData monsterDataDrop = monsterScript.monsterData;
+                foreach (var monsterData in dungeonTeam.allMonsters)
+                {
+                    if (monsterData.monsterName == monsterDataDrop.monsterName)
+                    {
+                        monsterData.currentHealth = monsterScript.healthFigth;
+                        //monsterData.currentXP = monsterScript.exp;
+                        //monsterData.level = monsterScript.level;
+                    }
+                }
+            }
+        }
     }
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 3
   monsterName: Ricardo
   prefabMonster: {fileID: 474295513406848900, guid: 06206bae1d521fc4299bead06435699c, type: 3}
+  monsterSO: {fileID: 11400000, guid: d758adaf03c4ea548b1777ec82a99c25, type: 2}

@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 0
   monsterName: Hongui
   prefabMonster: {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
+  monsterSO: {fileID: 11400000, guid: d758adaf03c4ea548b1777ec82a99c25, type: 2}

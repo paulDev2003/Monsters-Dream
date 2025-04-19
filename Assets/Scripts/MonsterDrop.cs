@@ -63,7 +63,10 @@ public class MonsterDrop : MonoBehaviour
     // Método para seleccionar el monstruo al hacer clic en la imagen
     public void SelectMonster()
     {
-        if (isUsed || monsterScript.dead) return;
+        if (isUsed || monsterScript.dead)
+        {
+            return;
+        }
         if (gameManager.monsterSelected == null)
         {
             Debug.Log("Entra en SelectMonster");
@@ -71,6 +74,7 @@ public class MonsterDrop : MonoBehaviour
         }
         else
         {
+            Debug.Log("Hasta acá bien");
             foreach (var monster in gameManager.monsterDrop)
             {
                 if (monster.instantiatedMonster == gameManager.monsterSelected)
@@ -157,6 +161,8 @@ public class MonsterDrop : MonoBehaviour
                 {
                     instantiatedMonster = Instantiate(monsterSaved, hit.point + Vector3.up * 2, Quaternion.identity);
                     Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
+                    scriptMonster.exp = scriptMonster.monsterData.currentXP;
+                    scriptMonster.level = scriptMonster.monsterData.level;
                     runeManager.AddBuffs(scriptMonster);
                 }
                 else
