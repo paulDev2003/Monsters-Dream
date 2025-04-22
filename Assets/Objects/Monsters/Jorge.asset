@@ -29,3 +29,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
   sprite: {fileID: 21300000, guid: a78047e45237dea4eb71f8620b1fccfd, type: 3}
   expPerLevel: 5
+  moneyPerLevel: 2

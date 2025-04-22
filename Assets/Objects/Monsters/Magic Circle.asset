@@ -25,3 +25,5 @@ MonoBehaviour:
   dropList:
   - {fileID: 11400000, guid: f08984528704e5f4fbd653d6f7e737b9, type: 2}
   sprite: {fileID: 21300000, guid: 59b9b4140bb12c146b17f62fa44a3d6a, type: 3}
+  expPerLevel: 1
+  moneyPerLevel: 1

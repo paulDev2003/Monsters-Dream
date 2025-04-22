@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     public DungeonTeam dungeonTeam;
     public MonsterDataBase monsterDataBase;
     private List<Monster> friendsMonsters = new List<Monster>();
+    public TextMeshProUGUI txtMoney;
+    public TextMeshProUGUI txtMoneyReward;
+    public Image imageMoneyReward;
     private void Start()
     { 
         friendsSaved = new List<GameObject>(friendsList);
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
                 GameObject friendSpawned = Instantiate(monsterBase.prefabMonster, friendSpawnPoints[e].position, Quaternion.identity);
                 Monster scriptMonster = friendSpawned.GetComponent<Monster>();
                 scriptMonster.enemie = false;
+                scriptMonster.level = monster.level;
                 scriptMonster.monsterData = monster;
                 scriptMonster.wasSpawned = true;         
                 friendsMonsters.Add(scriptMonster);
@@ -206,7 +210,11 @@ public class GameManager : MonoBehaviour
                 if (monsterData.monsterName == monsterComponent.monsterName)
                 {
                     monsterComponent.monsterData = monsterData;
-
+                    monsterDrop[i].monsterData = monsterData;
+                    if (monsterData.isStarter)
+                    {
+                        monsterDrop[i].isUsed = true;
+                    }
                 }
             }
             i++;
@@ -215,6 +223,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowExperience()
     {
+        int money = PlayerPrefs.GetInt("Money", 0);
+        txtMoney.text = money.ToString();
         int totalExp = 0;
         foreach (var monster in enemiesSaved)
         {
@@ -254,7 +264,7 @@ public class GameManager : MonoBehaviour
     public void LootItems()
     {
         int i = 0;
-        
+        int moneyReward = 0;
         foreach (var enemie in enemiesSaved)
         {
             Monster monsterScript = enemie.GetComponent<Monster>();
@@ -267,11 +277,16 @@ public class GameManager : MonoBehaviour
                     imagesLoot[i].enabled = true;
                     i++;
                     listLoot.Add(drop);
-                    Debug.Log("Drop");
                 }
-            }
-            Debug.Log("Change enemy");
+            }           
+            moneyReward += monsterScript.monsterSO.moneyPerLevel * monsterScript.level;
         }
+        txtMoneyReward.enabled = true;
+        imageMoneyReward.enabled = true;
+        txtMoneyReward.text = moneyReward.ToString();
+        int totalMoney = PlayerPrefs.GetInt("Money", 0);
+        totalMoney += moneyReward;
+        PlayerPrefs.SetInt("Money", totalMoney);
         SaveStats();
         inventory.Additems(listLoot);
         gameDataController.SaveData();

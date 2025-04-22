@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class ManagerRunes : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ManagerRunes : MonoBehaviour
     public List<GameObject> prefabsRunes = new List<GameObject>();
     public List<GameObject> friendList = new List<GameObject>();
     public bool isFigth = false;
+    public TextMeshProUGUI txtMoney;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class ManagerRunes : MonoBehaviour
 
     public void ColocateRunes()
     {
+        int money = PlayerPrefs.GetInt("Money", 0);
+        txtMoney.text = money.ToString();
         foreach (var rune in allRunes)
         {
             bool foundSlot = false; 

@@ -21,6 +21,7 @@ public class MonsterDrop : MonoBehaviour
     private GameObject areaInstantiatedObj;
     private bool wasDown = false;
     private bool markInstantiated = false;
+    public MonsterData monsterData;
 
     private void Start()
     {
@@ -85,7 +86,7 @@ public class MonsterDrop : MonoBehaviour
                     monster.wasChanged = true;
                     gameManager.lifeBarsFriends[monster.monsterScript.valueI].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[monster.monsterScript.valueI];
-                    gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterScript.level}";
+                    gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterData.level}";
                     if (wasChanged)
                     {
                         instantiatedMonster.SetActive(true);
@@ -181,7 +182,7 @@ public class MonsterDrop : MonoBehaviour
                         gameManager.lifeBarsFriends[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                         Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                         scriptMonster.lifeBar = gameManager.superiorBarFriends[i];
-                        gameManager.levelFriends[i].text = $"Lv.{monsterScript.level}";
+                        gameManager.levelFriends[i].text = $"Lv.{monsterData.level}";
                         monsterScript.valueI = i;
                         return;
                     }
