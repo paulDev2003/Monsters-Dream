@@ -5,18 +5,23 @@ using System.Collections.Generic;
 public class BlueRune : RuneSO
 {
     public int magicDamageIncreased;
+
+    public int additionalDamagePerLevel;
     
-    public override void UsePower(List<GameObject> friendList)
+    public override void UsePower(List<GameObject> friendList, int level)
     {
+        int finalDamage = magicDamageIncreased + additionalDamagePerLevel * level;
         foreach (var monster in friendList)
         {
             Monster scriptMonster = monster.GetComponent<Monster>();
-            scriptMonster.magicDamageBuff += magicDamageIncreased;
+            scriptMonster.magicDamageBuff += finalDamage;
         }
     }
 
-    public override void UsePower(Monster monster)
+    public override void UsePower(Monster monster, int level)
     {
-        monster.magicDamageBuff += magicDamageIncreased;
+        int finalDamage = magicDamageIncreased + additionalDamagePerLevel * level;
+        monster.magicDamageBuff += finalDamage;
     }
+
 }

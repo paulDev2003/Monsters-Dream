@@ -8,6 +8,7 @@ public class Rune : MonoBehaviour
     public bool isUsed = false;
     public Vector2Int savePosition;
     public RuneSO runeSO;
+    public int level = 1;
     void Start()
     {
         managerRunes = FindAnyObjectByType<ManagerRunes>();

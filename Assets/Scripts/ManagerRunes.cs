@@ -28,7 +28,7 @@ public class ManagerRunes : MonoBehaviour
             friendList = FindAnyObjectByType<GameManager>().friendsList;
             foreach (var rune in allRunes)
             {
-                rune.runeSO.UsePower(friendList);
+                rune.runeSO.UsePower(friendList, rune.level);
             }
             foreach (var monster in friendList)
             {
@@ -69,7 +69,7 @@ public class ManagerRunes : MonoBehaviour
     {
         foreach (var rune in allRunes)
         {
-            rune.runeSO.UsePower(monster);
+            rune.runeSO.UsePower(monster, rune.level);
         }
         monster.UpdateStats();
     }

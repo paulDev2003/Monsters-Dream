@@ -6,19 +6,26 @@ public class RedRune : RuneSO
 {
     public int damageIncreased;
     public int basicDamageIncreased;
-    public override void UsePower(List<GameObject> friendList)
+
+    public int damagePerLevel;
+    public int basicDamagePerLevel;
+    public override void UsePower(List<GameObject> friendList, int level)
     {
+        int finalDamage = damageIncreased + damagePerLevel * level;
+        int finalBasicDamage = basicDamageIncreased + basicDamagePerLevel * level;
         foreach (var monster in friendList)
         {
             Monster scriptMonster = monster.GetComponent<Monster>();
-            scriptMonster.basicDamageBuff += basicDamageIncreased;
-            scriptMonster.damageBuff += damageIncreased;
+            scriptMonster.basicDamageBuff += finalBasicDamage;
+            scriptMonster.damageBuff += finalDamage;
         }
     }
 
-    public override void UsePower(Monster monster)
+    public override void UsePower(Monster monster, int level)
     {
-        monster.basicDamageBuff += basicDamageIncreased;
-        monster.damageBuff += damageIncreased;
+        int finalDamage = damageIncreased + damagePerLevel * level;
+        int finalBasicDamage = basicDamageIncreased + basicDamagePerLevel * level;
+        monster.basicDamageBuff += finalBasicDamage;
+        monster.damageBuff += finalDamage;
     }
 }

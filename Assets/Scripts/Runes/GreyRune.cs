@@ -6,19 +6,27 @@ public class GreyRune : RuneSO
 {
     public int physicIncreaseDefense;
     public int magicIncreaseDefense;
-    public override void UsePower(List<GameObject> friendList)
+
+    public int additionalPhysicPerLevel;
+    public int additionalMagicPerLevel;
+    public override void UsePower(List<GameObject> friendList, int level)
     {
+        int finalPhysic = physicIncreaseDefense + additionalPhysicPerLevel * level;
+        int finalMagic = magicIncreaseDefense + additionalMagicPerLevel * level;
         foreach (var monster in friendList)
         {
             Monster scriptMonster = monster.GetComponent<Monster>();
-            scriptMonster.physicIncreaseDefense += physicIncreaseDefense;
-            scriptMonster.magicIncreaseDefense += magicIncreaseDefense;
+            scriptMonster.physicIncreaseDefense += finalPhysic;
+            scriptMonster.magicIncreaseDefense += finalMagic;
         }
     }
 
-    public override void UsePower(Monster monster)
+    public override void UsePower(Monster monster, int level)
     {
-        monster.physicIncreaseDefense += physicIncreaseDefense;
-        monster.magicIncreaseDefense += magicIncreaseDefense;
+        int finalPhysic = physicIncreaseDefense + additionalPhysicPerLevel * level;
+        int finalMagic = magicIncreaseDefense + additionalMagicPerLevel * level;
+        monster.physicIncreaseDefense += finalPhysic;
+        monster.magicIncreaseDefense += finalMagic;
     }
+
 }

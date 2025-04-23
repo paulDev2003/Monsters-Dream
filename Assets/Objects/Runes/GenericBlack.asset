@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40640d4ec554aa48b053cf4b81d16ba, type: 3}
   m_Name: GenericBlack
   m_EditorClassIdentifier: 
-  multiplierSpeedAttack: 1.25
-  decreasedCoolDownPercentage: 50
+  multiplierSpeedAttack: 1.1
+  decreasedCoolDownPercentage: 25

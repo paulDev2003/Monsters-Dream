@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateInterface()
     {
+        AntiBugEnemie();
         countMonsters = 0;
         panelMonsters.SetActive(true);
         inventory = FindAnyObjectByType<Inventory>();
@@ -313,6 +314,14 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void AntiBugEnemie()
+    {
+        foreach (var enemie in enemieList)
+        {
+            enemie.GetComponent<Monster>().enemie = true;
         }
     }
 }

@@ -6,39 +6,46 @@ public class BlackRune : RuneSO
 {
     public float multiplierSpeedAttack;
     public float decreasedCoolDownPercentage;
-    public override void UsePower(List<GameObject> friendList)
+
+    public float additionalSA_perLevel;
+    public float additionalCDP_perLevel;
+    public override void UsePower(List<GameObject> friendList, int level)
     {
         float decreasedCooldown = 0;
         float increasedSpeedAttack = 0;
-        if (increasedSpeedAttack != 0)
+        if (multiplierSpeedAttack != 0)
         {
-            increasedSpeedAttack = multiplierSpeedAttack / 10;
+            float finalSA = multiplierSpeedAttack + additionalSA_perLevel * level;
+            increasedSpeedAttack = finalSA / 10;
         }
         if (decreasedCoolDownPercentage != 0)
         {
-            decreasedCooldown = decreasedCoolDownPercentage / 100;
+            float finalDC = decreasedCoolDownPercentage + additionalCDP_perLevel * level; 
+            decreasedCooldown = finalDC / 100;
         }
         foreach (var monster in friendList)
         {
             Monster scriptMonster = monster.GetComponent<Monster>();
-            scriptMonster.multiplierIncreasedSpeedAttack += multiplierSpeedAttack;
+            scriptMonster.multiplierIncreasedSpeedAttack += increasedSpeedAttack;
             scriptMonster.decreasedCoolDown += decreasedCooldown;
         }
     }
 
-    public override void UsePower(Monster monster)
+    public override void UsePower(Monster monster, int level)
     {
         float decreasedCooldown = 0;
         float increasedSpeedAttack = 0;
         if (increasedSpeedAttack != 0)
         {
-            increasedSpeedAttack = multiplierSpeedAttack / 10;
+            float finalSA = multiplierSpeedAttack + additionalSA_perLevel * level;
+            increasedSpeedAttack = finalSA / 10;
         }
         if (decreasedCoolDownPercentage != 0)
         {
-            decreasedCooldown = decreasedCoolDownPercentage / 100;
+            float finalDC = decreasedCoolDownPercentage + additionalCDP_perLevel * level;
+            decreasedCooldown = finalDC / 100;
         }
-        monster.multiplierIncreasedSpeedAttack += multiplierSpeedAttack;
+        monster.multiplierIncreasedSpeedAttack += increasedSpeedAttack;
         monster.decreasedCoolDown += decreasedCooldown;
     }
 }
