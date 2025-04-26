@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d9bdc0c3b67174a93e4fd8d8bc1c23, type: 3}
+  m_Name: MagicRD
+  m_EditorClassIdentifier: 
+  runeName: Magic
+  cost: 12
+  runePrefab: {fileID: 2496821245930440959, guid: ee96bbef06219aa4a8e35c70bba984cf, type: 3}
+  blueRune: {fileID: 11400000, guid: cb5e45e164915e649829fb68db5549f1, type: 2}
+  txtInfo: Magic attack increased by 3333

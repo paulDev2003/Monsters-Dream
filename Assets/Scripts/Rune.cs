@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Rune : MonoBehaviour
 {
+    public string runeName;
     public List<Vector2Int> positionsSlots;
     private ManagerRunes managerRunes;
     public bool isUsed = false;
@@ -17,6 +18,7 @@ public class Rune : MonoBehaviour
     public void SelectRune()
     {
         managerRunes.runeSelected = this;
+        gameObject.transform.parent = managerRunes.runePanel.transform;
     }
 
     public void DropRune()

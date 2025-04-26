@@ -4,14 +4,22 @@ using TMPro;
 
 public class ManagerRunes : MonoBehaviour
 {
-    public bool[,] slotsChecker = new bool[4,8];
+    public bool[,] slotsChecker = new bool[4, 8];
     public List<BoxRune> slotsRunes = new List<BoxRune>();
+    public GameObject runePanel;
     public Rune runeSelected;
     public List<Rune> allRunes = new List<Rune>();
     public List<GameObject> prefabsRunes = new List<GameObject>();
     public List<GameObject> friendList = new List<GameObject>();
     public bool isFigth = false;
     public TextMeshProUGUI txtMoney;
+    public List<GameObject> optionsRunes = new List<GameObject>();
+    public List<RuneDataSO> runesToDrop = new List<RuneDataSO>();
+    public Vector2Int levelRunes;
+    public GameObject btnNextRoom;
+    public RuneDataBase runeDataBase;
+    public List<RuneClass> runesDungeon = new List<RuneClass>();
+
 
     private void Start()
     {
@@ -37,6 +45,25 @@ public class ManagerRunes : MonoBehaviour
             }
         }
         
+    }
+
+    private void ChargeSavedRunes()
+    {
+        foreach (var rune in runesDungeon)
+        {
+            RuneBase runeBase = runeDataBase.GetRuneBaseByName(rune.runeName);
+            BoxRune savedBox = slotsRunes[0];
+            foreach (var slot in slotsRunes)
+            {
+                if (slot.horizontalPosition == rune.savePosition.x && slot.verticalPosition == rune.savePosition.y)
+                {
+                    savedBox = slot;
+                    break;
+                }
+            }
+            GameObject runeInstantiated = Instantiate(runeBase.runeDataSO.runePrefab, savedBox.gameObject.transform);
+
+        }
     }
 
     public void ColocateRunes()
@@ -72,5 +99,29 @@ public class ManagerRunes : MonoBehaviour
             rune.runeSO.UsePower(monster, rune.level);
         }
         monster.UpdateStats();
+    }
+
+    public void DesactiveteOptions()
+    {
+        foreach (var option in optionsRunes)
+        {
+            option.SetActive(false);
+        }
+    }
+
+    public void DropRunes()
+    {
+        foreach (var option in optionsRunes)
+        {
+            RuneDataSO runeData = runesToDrop[Random.Range(0, runesToDrop.Count)];
+            int level = Random.Range(levelRunes.x, levelRunes.y + 1);
+            string info = runeData.LoadData(level);
+            OptionRune scriptOption = option.GetComponent<OptionRune>();
+            GameObject runeInstancied = Instantiate(runeData.runePrefab, scriptOption.spotPrefab.position, Quaternion.identity, option.transform);
+            scriptOption.txtLevel.text = $"Lvl {level}";
+            scriptOption.txtDescription.text = info;
+            scriptOption.txtCost.text = runeData.finalCost.ToString();
+            scriptOption.rune = runeInstancied.GetComponent<Rune>();
+        }
     }
 }

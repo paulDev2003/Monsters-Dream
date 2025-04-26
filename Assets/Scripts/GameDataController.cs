@@ -8,9 +8,12 @@ public class GameDataController : MonoBehaviour
     public SaveData saveData = new SaveData();
     public DataBaseSO itemDataBaseSO;
     public MonsterDataBase monsterDataBase;
+    public RuneDataBase runeDataBase;
     private Inventory inventory;
     private MonstersHouse monstersHouse;
     private DungeonTeam dungeonTeam;
+    private ManagerRunes runesManager;
+
 
     private void Awake()
     {
@@ -22,13 +25,14 @@ public class GameDataController : MonoBehaviour
         inventory = FindAnyObjectByType<Inventory>();
         monstersHouse = FindAnyObjectByType<MonstersHouse>();
         dungeonTeam = FindAnyObjectByType<DungeonTeam>();
+        runesManager = FindAnyObjectByType<ManagerRunes>();
         if (inventory == null)
         {
             Debug.Log("Can´t find inventory");
         }
     }
 
-    public void LoadData(Inventory inventory, MonstersHouse monstersHouse, DungeonTeam dungeonTeam)
+    public void LoadData(Inventory inventory, MonstersHouse monstersHouse, DungeonTeam dungeonTeam, ManagerRunes runesManager)
     {
         if (File.Exists(saveFiles))
         {
@@ -75,6 +79,10 @@ public class GameDataController : MonoBehaviour
             {
                 dungeonTeam.allMonsters = new List<MonsterData>(saveData.monstersDungeon);
             }
+            if (saveData.runesDungeon != null)
+            {
+                runesManager.runesDungeon = new List<RuneClass>(saveData.runesDungeon);
+            }
         }
         else
         {
@@ -101,8 +109,9 @@ public class GameDataController : MonoBehaviour
             molecularAmount = new List<int>(inventory.countMolecules.Values),
 
             monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
-            monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters)
-
+            monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters),
+            
+            //runesDungeon = new List<RuneClass>(runesManager.runesDungeon)
         };
         foreach (var value in inventory.capturableInventory)
             newData.capturableIDs.Add(value.Key);

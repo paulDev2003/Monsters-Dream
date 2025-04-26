@@ -61,9 +61,18 @@ public class BoxRune : MonoBehaviour
             }
             else
             {
+                managerRunes.btnNextRoom.SetActive(true);
                 managerRunes.prefabsRunes.Add(rune.gameObject);
                 managerRunes.allRunes.Add(rune);
                 rune.isUsed = true;
+                managerRunes.DesactiveteOptions();
+                RuneClass runeClass = new RuneClass()
+                {
+                    runeName = rune.runeName,
+                    level = rune.level,
+                    savePosition = rune.savePosition
+                };
+                managerRunes.runesDungeon.Add(runeClass);
             }
             rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
             rune.transform.position = transform.position;

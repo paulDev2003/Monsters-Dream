@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef617e782e82cd4f820f01855e4d376, type: 3}
-  m_Name: GenericRed
+  m_Script: {fileID: 11500000, guid: 2eb6ba3f93bec82449a232f84c4ae5a0, type: 3}
+  m_Name: RuneDataBase
   m_EditorClassIdentifier: 
-  damageIncreased: 0
-  basicDamageIncreased: 2
-  damagePerLevel: 0
-  basicDamagePerLevel: 1
+  allRunes:
+  - {fileID: 11400000, guid: bd924c4ddb4ac2e4782f99c93ca9b96f, type: 2}
+  - {fileID: 11400000, guid: 8882a6793b0c9a44eaa1cc27a53804e3, type: 2}
