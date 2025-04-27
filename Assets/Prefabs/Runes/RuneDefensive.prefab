@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c37ecfb328a47f42a529e453113ebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runeName: Defensive
   positionsSlots:
   - {x: 0, y: 0}
   - {x: -1, y: 0}
@@ -67,6 +68,7 @@ MonoBehaviour:
   isUsed: 0
   savePosition: {x: 0, y: 0}
   runeSO: {fileID: 11400000, guid: d7ab2c77a11854b4998abef2f8be489c, type: 2}
+  level: 1
 --- !u!1 &2085046062427824979
 GameObject:
   m_ObjectHideFlags: 0

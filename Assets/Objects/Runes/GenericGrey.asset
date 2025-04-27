@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: GenericGrey
   m_EditorClassIdentifier: 
   physicIncreaseDefense: 2
-  magicIncreaseDefense: 2
+  magicIncreaseDefense: 0
+  additionalPhysicPerLevel: 1
+  additionalMagicPerLevel: 0

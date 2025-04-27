@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c37ecfb328a47f42a529e453113ebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runeName: Life
   positionsSlots:
   - {x: 0, y: 0}
   - {x: 0, y: -1}
@@ -221,6 +222,7 @@ MonoBehaviour:
   isUsed: 0
   savePosition: {x: 0, y: 0}
   runeSO: {fileID: 11400000, guid: 94e4b4917cd4e18419e83294c053d8d7, type: 2}
+  level: 1
 --- !u!1 &7391437467422770048
 GameObject:
   m_ObjectHideFlags: 0

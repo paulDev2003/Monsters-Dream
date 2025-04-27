@@ -290,7 +290,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Money", totalMoney);
         SaveStats();
         inventory.Additems(listLoot);
-        gameDataController.SaveData();
         int battleNumber = PlayerPrefs.GetInt("BattleNumber");
         battleNumber++;
         PlayerPrefs.SetInt("BattleNumber", battleNumber);

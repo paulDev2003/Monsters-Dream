@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c37ecfb328a47f42a529e453113ebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runeName: Magic
   positionsSlots:
   - {x: 0, y: 0}
   - {x: -1, y: -1}

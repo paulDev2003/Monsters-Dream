@@ -11,8 +11,8 @@ public class GreenRune : RuneSO
     public int additionalRegenerationPerLevel;
     public override void UsePower(List<GameObject> friendList, int level)
     {
-        int finalHealth = healthIncreased + additionalHealthPerLevel * level;
-        int finalRegeneration = healthRegeneration + additionalRegenerationPerLevel * level;
+        int finalHealth = healthIncreased + additionalHealthPerLevel * (level - 1);
+        int finalRegeneration = healthRegeneration + additionalRegenerationPerLevel * (level - 1);
         foreach (var monster in friendList)
         {
             Monster scriptMonster = monster.GetComponent<Monster>();
@@ -23,8 +23,8 @@ public class GreenRune : RuneSO
 
     public override void UsePower(Monster monster, int level)
     {
-        int finalHealth = healthIncreased + additionalHealthPerLevel * level;
-        int finalRegeneration = healthRegeneration + additionalRegenerationPerLevel * level;
+        int finalHealth = healthIncreased + additionalHealthPerLevel * (level - 1);
+        int finalRegeneration = healthRegeneration + additionalRegenerationPerLevel * (level - 1);
         monster.healthBuff += finalHealth;
         monster.healthRegeneration += finalRegeneration;
     }

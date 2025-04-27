@@ -15,12 +15,12 @@ public class BlackRune : RuneSO
         float increasedSpeedAttack = 0;
         if (multiplierSpeedAttack != 0)
         {
-            float finalSA = multiplierSpeedAttack + additionalSA_perLevel * level;
+            float finalSA = multiplierSpeedAttack + additionalSA_perLevel * (level - 1);
             increasedSpeedAttack = finalSA / 10;
         }
         if (decreasedCoolDownPercentage != 0)
         {
-            float finalDC = decreasedCoolDownPercentage + additionalCDP_perLevel * level; 
+            float finalDC = decreasedCoolDownPercentage + additionalCDP_perLevel * (level - 1); 
             decreasedCooldown = finalDC / 100;
         }
         foreach (var monster in friendList)
@@ -37,12 +37,12 @@ public class BlackRune : RuneSO
         float increasedSpeedAttack = 0;
         if (increasedSpeedAttack != 0)
         {
-            float finalSA = multiplierSpeedAttack + additionalSA_perLevel * level;
+            float finalSA = multiplierSpeedAttack + additionalSA_perLevel * (level - 1);
             increasedSpeedAttack = finalSA / 10;
         }
         if (decreasedCoolDownPercentage != 0)
         {
-            float finalDC = decreasedCoolDownPercentage + additionalCDP_perLevel * level;
+            float finalDC = decreasedCoolDownPercentage + additionalCDP_perLevel * (level - 1);
             decreasedCooldown = finalDC / 100;
         }
         monster.multiplierIncreasedSpeedAttack += increasedSpeedAttack;

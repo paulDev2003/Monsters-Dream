@@ -111,7 +111,7 @@ public class GameDataController : MonoBehaviour
             monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
             monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters),
             
-            //runesDungeon = new List<RuneClass>(runesManager.runesDungeon)
+            runesDungeon = new List<RuneClass>(runesManager.runesDungeon)
         };
         foreach (var value in inventory.capturableInventory)
             newData.capturableIDs.Add(value.Key);

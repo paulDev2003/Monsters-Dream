@@ -10087,6 +10087,7 @@ MonoBehaviour:
   monstersInventory: []
   monstersHouse: {fileID: 1834131914}
   dungeonTeam: {fileID: 1834131915}
+  runesManager: {fileID: 1293642171}
   monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
 --- !u!4 &1019109033
 Transform:
@@ -12480,6 +12481,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279623192}
   m_CullTransparentMesh: 1
+--- !u!1 &1293642170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1293642172}
+  - component: {fileID: 1293642171}
+  m_Layer: 0
+  m_Name: RunesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1293642171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293642170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7274968df7af6084d94fc686e9b96679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotsRunes: []
+  runePanel: {fileID: 0}
+  runeSelected: {fileID: 0}
+  allRunes: []
+  prefabsRunes: []
+  friendList: []
+  isFigth: 0
+  txtMoney: {fileID: 0}
+  optionsRunes: []
+  runesToDrop: []
+  levelRunes: {x: 0, y: 0}
+  btnNextRoom: {fileID: 0}
+  runeDataBase: {fileID: 0}
+  runesDungeon: []
+--- !u!4 &1293642172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293642170}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 285, y: 170.82736, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1300344201
 GameObject:
   m_ObjectHideFlags: 0
@@ -20855,8 +20914,10 @@ MonoBehaviour:
     molecularAmount: 
     monstersHouse: []
     monstersDungeon: []
+    runesDungeon: []
   itemDataBaseSO: {fileID: 11400000, guid: 571e50af525288b47a17c18ebaf383d7, type: 2}
   monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
+  runeDataBase: {fileID: 0}
 --- !u!4 &2103305999
 Transform:
   m_ObjectHideFlags: 0
@@ -21390,3 +21451,4 @@ SceneRoots:
   - {fileID: 379171643}
   - {fileID: 1834131913}
   - {fileID: 1616581339}
+  - {fileID: 1293642172}

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runeName: Magic
   cost: 12
+  finalCost: 0
+  fontSize: 29.7
   runePrefab: {fileID: 2496821245930440959, guid: ee96bbef06219aa4a8e35c70bba984cf, type: 3}
   blueRune: {fileID: 11400000, guid: cb5e45e164915e649829fb68db5549f1, type: 2}
-  txtInfo: Magic attack increased by 3333
+  txtInfo: Magic attack increased by

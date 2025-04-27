@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b40640d4ec554aa48b053cf4b81d16ba, type: 3}
-  m_Name: GenericBlack
+  m_Script: {fileID: 11500000, guid: 6fef0e41828c9184d8ffa9d5dee7ca1d, type: 3}
+  m_Name: SpeedRB
   m_EditorClassIdentifier: 
-  multiplierSpeedAttack: 1.1
-  decreasedCoolDownPercentage: 10
-  additionalSA_perLevel: 0.1
-  additionalCDP_perLevel: 2
+  runeName: Speed
+  runeDataSO: {fileID: 11400000, guid: 31e8a7733eca66646b36f619a3a83108, type: 2}

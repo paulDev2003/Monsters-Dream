@@ -31,8 +31,10 @@ public class ManagerRunes : MonoBehaviour
                 slotsChecker[i, e] = true;
             }
         }
+        
         if (isFigth)
         {
+            ChargeSavedRunes();
             friendList = FindAnyObjectByType<GameManager>().friendsList;
             foreach (var rune in allRunes)
             {
@@ -52,16 +54,12 @@ public class ManagerRunes : MonoBehaviour
         foreach (var rune in runesDungeon)
         {
             RuneBase runeBase = runeDataBase.GetRuneBaseByName(rune.runeName);
-            BoxRune savedBox = slotsRunes[0];
-            foreach (var slot in slotsRunes)
-            {
-                if (slot.horizontalPosition == rune.savePosition.x && slot.verticalPosition == rune.savePosition.y)
-                {
-                    savedBox = slot;
-                    break;
-                }
-            }
-            GameObject runeInstantiated = Instantiate(runeBase.runeDataSO.runePrefab, savedBox.gameObject.transform);
+            GameObject runeInstantiated = Instantiate(runeBase.runeDataSO.runePrefab, runePanel.transform);
+            prefabsRunes.Add(runeInstantiated);
+            Rune scriptRune = runeInstantiated.GetComponent<Rune>();
+            scriptRune.savePosition = rune.savePosition;
+            allRunes.Add(scriptRune);
+
 
         }
     }
@@ -120,8 +118,10 @@ public class ManagerRunes : MonoBehaviour
             GameObject runeInstancied = Instantiate(runeData.runePrefab, scriptOption.spotPrefab.position, Quaternion.identity, option.transform);
             scriptOption.txtLevel.text = $"Lvl {level}";
             scriptOption.txtDescription.text = info;
+            scriptOption.txtDescription.fontSize = runeData.fontSize;
             scriptOption.txtCost.text = runeData.finalCost.ToString();
             scriptOption.rune = runeInstancied.GetComponent<Rune>();
+            runeInstancied.GetComponent<Rune>().isUsed = false;
         }
     }
 }

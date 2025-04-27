@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a66ad0410ddef4a9b93153e3c99630, type: 3}
   m_Name: GenericGreen
   m_EditorClassIdentifier: 
-  healthIncreased: 3
+  healthIncreased: 0
   healthRegeneration: 1
+  additionalHealthPerLevel: 1
+  additionalRegenerationPerLevel: 0

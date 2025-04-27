@@ -10,7 +10,7 @@ public class BlueRune : RuneSO
     
     public override void UsePower(List<GameObject> friendList, int level)
     {
-        int finalDamage = magicDamageIncreased + additionalDamagePerLevel * level;
+        int finalDamage = magicDamageIncreased + additionalDamagePerLevel * (level - 1);
         foreach (var monster in friendList)
         {
             Monster scriptMonster = monster.GetComponent<Monster>();
@@ -20,7 +20,7 @@ public class BlueRune : RuneSO
 
     public override void UsePower(Monster monster, int level)
     {
-        int finalDamage = magicDamageIncreased + additionalDamagePerLevel * level;
+        int finalDamage = magicDamageIncreased + additionalDamagePerLevel * (level - 1);
         monster.magicDamageBuff += finalDamage;
     }
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843fef6898c735b45adb363c4e3e843e, type: 3}
+  m_Name: LifeRD
+  m_EditorClassIdentifier: 
+  runeName: Life
+  cost: 13
+  finalCost: 0
+  fontSize: 29.7
+  runePrefab: {fileID: 6365653885830511121, guid: f11fd61c773df5d4990c812bc5313179, type: 3}
+  greenRune: {fileID: 11400000, guid: 94e4b4917cd4e18419e83294c053d8d7, type: 2}
+  txtInfo: 'Health regeneration increased by '

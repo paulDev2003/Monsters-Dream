@@ -52,6 +52,7 @@ public class BoxRune : MonoBehaviour
         Debug.Log("Dropea");
         if (canDrop)
         {
+            rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
             if (rune.isUsed)
             {
                 foreach (var slot in rune.positionsSlots)
@@ -74,7 +75,7 @@ public class BoxRune : MonoBehaviour
                 };
                 managerRunes.runesDungeon.Add(runeClass);
             }
-            rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
+            
             rune.transform.position = transform.position;
             foreach (var slot in rune.positionsSlots)
             {

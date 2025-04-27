@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runeName: Force
   cost: 10
+  finalCost: 0
+  fontSize: 29.7
   runePrefab: {fileID: 3939063736228603524, guid: 1a8a3925ed535a24dba065dd5cb646ca, type: 3}
   redRune: {fileID: 11400000, guid: dbd7afea9d9784b44838426b6c9572bd, type: 2}
-  txtInfo: Basic Damage increased by 11
+  txtInfo: Basic Damage increased by

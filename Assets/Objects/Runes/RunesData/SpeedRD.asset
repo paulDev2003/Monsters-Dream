@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4cbde825b3a20488bbfec0740eeeb8, type: 3}
+  m_Name: SpeedRD
+  m_EditorClassIdentifier: 
+  runeName: Speed
+  cost: 20
+  finalCost: 0
+  fontSize: 22.14
+  runePrefab: {fileID: 2403926789880759686, guid: 0c9fb689313ef784996aa56a3f09527b, type: 3}
+  blackRune: {fileID: 11400000, guid: af0a2accf9688f747b011bc3a74dcea4, type: 2}
+  txtInfo: 
