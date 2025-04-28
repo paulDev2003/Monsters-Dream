@@ -14,6 +14,8 @@ public class ManagerRunes : MonoBehaviour
     public bool isFigth = false;
     public TextMeshProUGUI txtMoney;
     public List<GameObject> optionsRunes = new List<GameObject>();
+    public GameObject btnResetRunes;
+    public GameObject btnSkipRunes;
     public List<RuneDataSO> runesToDrop = new List<RuneDataSO>();
     public Vector2Int levelRunes;
     public GameObject btnNextRoom;
@@ -57,10 +59,11 @@ public class ManagerRunes : MonoBehaviour
             GameObject runeInstantiated = Instantiate(runeBase.runeDataSO.runePrefab, runePanel.transform);
             prefabsRunes.Add(runeInstantiated);
             Rune scriptRune = runeInstantiated.GetComponent<Rune>();
+            scriptRune.cost = rune.cost;
+            scriptRune.level = rune.level;
             scriptRune.savePosition = rune.savePosition;
+            scriptRune.isUsed = true;
             allRunes.Add(scriptRune);
-
-
         }
     }
 
@@ -105,6 +108,8 @@ public class ManagerRunes : MonoBehaviour
         {
             option.SetActive(false);
         }
+        btnResetRunes.SetActive(false);
+        btnSkipRunes.SetActive(false);
     }
 
     public void DropRunes()
@@ -120,8 +125,11 @@ public class ManagerRunes : MonoBehaviour
             scriptOption.txtDescription.text = info;
             scriptOption.txtDescription.fontSize = runeData.fontSize;
             scriptOption.txtCost.text = runeData.finalCost.ToString();
-            scriptOption.rune = runeInstancied.GetComponent<Rune>();
-            runeInstancied.GetComponent<Rune>().isUsed = false;
+            Rune scriptRune = runeInstancied.GetComponent<Rune>();
+            scriptOption.rune = scriptRune;
+            scriptRune.isUsed = false;
+            scriptRune.cost = runeData.finalCost;
+            scriptRune.level = level;
         }
     }
 }

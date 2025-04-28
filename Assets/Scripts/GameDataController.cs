@@ -98,6 +98,18 @@ public class GameDataController : MonoBehaviour
 
     public void SaveData()
     {
+        List<RuneClass> listRunes = new List<RuneClass>();
+        foreach (var rune in runesManager.allRunes)
+        {
+            RuneClass runeClass = new RuneClass()
+            {
+                runeName = rune.runeName,
+                level = rune.level,
+                savePosition = rune.savePosition,
+                cost = rune.cost
+            };
+            listRunes.Add(runeClass);
+        }
         SaveData newData = new SaveData()
         {
             capturableKeys = new List<string>(inventory.capturableInventory.Keys),
@@ -111,7 +123,7 @@ public class GameDataController : MonoBehaviour
             monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
             monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters),
             
-            runesDungeon = new List<RuneClass>(runesManager.runesDungeon)
+            runesDungeon = new List<RuneClass>(listRunes)
         };
         foreach (var value in inventory.capturableInventory)
             newData.capturableIDs.Add(value.Key);

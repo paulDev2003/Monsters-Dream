@@ -51,17 +51,18 @@ public class BoxRune : MonoBehaviour
     {
         Debug.Log("Dropea");
         if (canDrop)
-        {
-            rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
+        {            
             if (rune.isUsed)
             {
                 foreach (var slot in rune.positionsSlots)
                 {
                     managerRunes.slotsChecker[rune.savePosition.x + slot.x, rune.savePosition.y + slot.y] = true;
                 }
+                rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
             }
             else
             {
+                rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
                 managerRunes.btnNextRoom.SetActive(true);
                 managerRunes.prefabsRunes.Add(rune.gameObject);
                 managerRunes.allRunes.Add(rune);
@@ -71,7 +72,8 @@ public class BoxRune : MonoBehaviour
                 {
                     runeName = rune.runeName,
                     level = rune.level,
-                    savePosition = rune.savePosition
+                    savePosition = rune.savePosition,
+                    cost = rune.cost
                 };
                 managerRunes.runesDungeon.Add(runeClass);
             }

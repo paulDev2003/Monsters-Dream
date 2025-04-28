@@ -10,6 +10,7 @@ public class Rune : MonoBehaviour
     public Vector2Int savePosition;
     public RuneSO runeSO;
     public int level = 1;
+    public int cost = 10;
     void Start()
     {
         managerRunes = FindAnyObjectByType<ManagerRunes>();
