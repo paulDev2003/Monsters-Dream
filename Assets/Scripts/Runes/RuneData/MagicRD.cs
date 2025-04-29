@@ -4,7 +4,6 @@ using UnityEngine;
 public class MagicRD : RuneDataSO
 {
     public BlueRune blueRune;
-    public string txtInfo = "Magic attack increased by ";
 
 
     public override string LoadData(int level)

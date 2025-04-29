@@ -4,7 +4,6 @@ using UnityEngine;
 public class SpeedRD : RuneDataSO
 {
     public BlackRune blackRune;
-    public string txtInfo;
     public override string LoadData(int level)
     {
         float totalSA = (blackRune.multiplierSpeedAttack + blackRune.additionalSA_perLevel * (level - 1));
@@ -13,4 +12,5 @@ public class SpeedRD : RuneDataSO
         finalCost = cost + level * 2;
         return txtInfo;
     }
+
 }

@@ -9,6 +9,7 @@ public class Rune : MonoBehaviour
     public bool isUsed = false;
     public Vector2Int savePosition;
     public RuneSO runeSO;
+    public RuneDataSO runeData;
     public int level = 1;
     public int cost = 10;
     void Start()
@@ -20,10 +21,30 @@ public class Rune : MonoBehaviour
     {
         managerRunes.runeSelected = this;
         gameObject.transform.parent = managerRunes.runePanel.transform;
+        if (isUsed)
+        {
+            foreach (var saveSlot in positionsSlots)
+            {
+                managerRunes.slotsChecker[savePosition.x + saveSlot.x, savePosition.y + saveSlot.y] = true;
+            }
+        }
     }
 
     public void DropRune()
     {
         managerRunes.runeSelected = null;
+    }
+
+    public void ShowInfo()
+    {
+        if (isUsed)
+        {
+            managerRunes.ShowPrefabInfo(this);
+        }       
+    }
+
+    public void DisableInfo()
+    {
+        managerRunes.DisableAllPrefabInfo();
     }
 }

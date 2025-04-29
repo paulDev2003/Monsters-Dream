@@ -9,6 +9,8 @@ public class BlackRune : RuneSO
 
     public float additionalSA_perLevel;
     public float additionalCDP_perLevel;
+
+
     public override void UsePower(List<GameObject> friendList, int level)
     {
         float decreasedCooldown = 0;

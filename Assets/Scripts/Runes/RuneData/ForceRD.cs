@@ -4,7 +4,6 @@ using UnityEngine;
 public class ForceRD : RuneDataSO
 {
     public RedRune redRune;
-    public string txtInfo = $"Basic Damage increased by ";
 
     public override string LoadData(int level)
     {

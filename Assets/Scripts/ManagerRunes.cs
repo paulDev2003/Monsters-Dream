@@ -21,7 +21,10 @@ public class ManagerRunes : MonoBehaviour
     public GameObject btnNextRoom;
     public RuneDataBase runeDataBase;
     public List<RuneClass> runesDungeon = new List<RuneClass>();
-
+    public GameObject prefabInfo;
+    public TextMeshProUGUI txtNamePrefab;
+    public TextMeshProUGUI txtInfoPrefab;
+    public GameObject lineToConect;
 
     private void Start()
     {
@@ -131,5 +134,23 @@ public class ManagerRunes : MonoBehaviour
             scriptRune.cost = runeData.finalCost;
             scriptRune.level = level;
         }
+    }
+
+    public void ShowPrefabInfo(Rune rune)
+    {
+        prefabInfo.SetActive(true);
+        lineToConect.SetActive(true);
+        RectTransform rectTransformRune = rune.GetComponent<RectTransform>();
+        lineToConect.GetComponent<SimpleUILine>().ConectLine(rectTransformRune);
+        string info = rune.runeData.LoadData(rune.level);
+        txtNamePrefab.text = rune.runeName;
+        txtInfoPrefab.text = info;
+    }
+
+    public void DisableAllPrefabInfo()
+    {
+        prefabInfo.SetActive(false);
+        lineToConect.GetComponent<SimpleUILine>().destinyPoint.gameObject.SetActive(false);
+        lineToConect.SetActive(false);       
     }
 }

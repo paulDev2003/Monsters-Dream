@@ -73,7 +73,7 @@ public class BoxRune : MonoBehaviour
                     runeName = rune.runeName,
                     level = rune.level,
                     savePosition = rune.savePosition,
-                    cost = rune.cost
+                    cost = rune.cost,
                 };
                 managerRunes.runesDungeon.Add(runeClass);
             }
