@@ -9,7 +9,7 @@ public class MonsterDrop : MonoBehaviour
     public GameObject monsterSaved;
    [SerializeField] private bool isMonsterSelected = false; // Bandera para saber si ya se eligió un monstruo
     public bool isUsed = false;
-    [HideInInspector]public Monster monsterScript;
+    public Monster monsterScript;
     private GameManager gameManager;
     private ManagerRunes runeManager;
     public GameObject instantiatedMonster;
@@ -27,7 +27,7 @@ public class MonsterDrop : MonoBehaviour
     {
         gameManager = FindAnyObjectByType<GameManager>();
         runeManager = FindAnyObjectByType<ManagerRunes>();
-        if (monsterSaved !=null)
+        if (monsterSaved !=null && !isUsed)
         {
             monsterScript = monsterSaved.GetComponent<Monster>();
         }
@@ -117,6 +117,7 @@ public class MonsterDrop : MonoBehaviour
                     Debug.Log(monster.monsterScript);
                     foreach (var enemie in gameManager.enemieList)
                     {
+                        Debug.Log("Encuentra al igual");
                         Monster scriptEnemie = enemie.GetComponent<Monster>();
                         if (scriptEnemie.target == monster.monsterScript)
                         {

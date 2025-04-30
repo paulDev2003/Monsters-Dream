@@ -36,10 +36,10 @@ public class ManagerRunes : MonoBehaviour
                 slotsChecker[i, e] = true;
             }
         }
-        
+        ChargeSavedRunes();
         if (isFigth)
         {
-            ChargeSavedRunes();
+            
             friendList = FindAnyObjectByType<GameManager>().friendsList;
             foreach (var rune in allRunes)
             {

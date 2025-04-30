@@ -89,6 +89,7 @@ public class Monster : MonoBehaviour
         {
             oppositeList = gameManager.enemieList;
             ownList = gameManager.friendsList;
+            gameManager.monsterDrop[valueI].monsterScript = this;
         }
         objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity, 
             gameManager.canvasWorld.transform);
