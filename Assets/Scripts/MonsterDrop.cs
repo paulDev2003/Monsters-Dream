@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class MonsterDrop : MonoBehaviour
 {
+    public float timeCooldown;
+    public float currentTimeCooldown;
+    public bool available = true;
     public GameObject monsterSaved;
    [SerializeField] private bool isMonsterSelected = false; // Bandera para saber si ya se eligió un monstruo
     public bool isUsed = false;
@@ -22,26 +25,47 @@ public class MonsterDrop : MonoBehaviour
     private bool wasDown = false;
     private bool markInstantiated = false;
     public MonsterData monsterData;
+    public Image circleCooldown;
 
     private void Start()
     {
+        currentTimeCooldown = timeCooldown;
         gameManager = FindAnyObjectByType<GameManager>();
         runeManager = FindAnyObjectByType<ManagerRunes>();
-        if (monsterSaved !=null && !isUsed)
+        if (monsterSaved !=null)
         {
-            monsterScript = monsterSaved.GetComponent<Monster>();
+            circleCooldown.enabled = true;
+            if (!isUsed)
+            {
+                monsterScript = monsterSaved.GetComponent<Monster>();
+            }
+            
         }
         CheckUse();
     }
 
     void Update()
     {
+        if (currentTimeCooldown < timeCooldown)
+        {
+            currentTimeCooldown += Time.deltaTime;
+            circleCooldown.fillAmount = currentTimeCooldown / timeCooldown;
+            available = false;
+        }
+        else
+        {
+            available = true;
+        }
+
         if (isMonsterSelected)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                RangeArea();
-                wasDown = true;
+                if (available && gameManager.countMonsters < 3)
+                {
+                    RangeArea();
+                    wasDown = true;
+                }                
             }           
             else if (Input.GetMouseButtonUp(0))
             {
@@ -64,7 +88,37 @@ public class MonsterDrop : MonoBehaviour
     // Método para seleccionar el monstruo al hacer clic en la imagen
     public void SelectMonster()
     {
-        if (isUsed || monsterScript.dead)
+        //Método para que el summon vuelva al inventario y deje la pelea
+        bool backNow = false;
+        if (isUsed && instantiatedMonster == gameManager.monsterSelected)
+        {
+            Debug.Log("ES IGUAAL");
+            if (gameManager.countMonsters > 1)
+            {
+                instantiatedMonster.SetActive(false);
+                foreach (var enemie in gameManager.enemieList)
+                {
+                    Debug.Log("Encuentra al igual");
+                    Monster scriptEnemie = enemie.GetComponent<Monster>();
+                    if (scriptEnemie.target == monsterScript)
+                    {
+
+                        Debug.Log("cambia el target");                       
+                        gameManager.friendsList.Remove(gameManager.monsterSelected);
+                        gameManager.monsterSelected = null;
+                        Destroy(gameManager.selectorActive.gameObject);
+                        gameManager.lifeBarsFriends[monsterScript.valueI].SetActive(false);
+                        scriptEnemie.target = scriptEnemie.ChooseTarget(scriptEnemie.oppositeList);
+                        wasChanged = true;
+                        isUsed = false;
+                        backNow = true;
+                        gameManager.countMonsters--;
+                        ResetCooldown();
+                    }
+                }
+            }
+        }
+        if (isUsed || monsterScript.dead || backNow)
         {
             return;
         }
@@ -75,6 +129,10 @@ public class MonsterDrop : MonoBehaviour
         }
         else
         {
+            if (!available)
+            {
+                return;
+            }
             Debug.Log("Hasta acá bien");
             foreach (var monster in gameManager.monsterDrop)
             {
@@ -87,6 +145,7 @@ public class MonsterDrop : MonoBehaviour
                     gameManager.lifeBarsFriends[monster.monsterScript.valueI].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[monster.monsterScript.valueI];
                     gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterData.level}";
+                    monster.ResetCooldown();
                     if (wasChanged)
                     {
                         instantiatedMonster.SetActive(true);
@@ -293,5 +352,12 @@ public class MonsterDrop : MonoBehaviour
             }                
         }
         saveMonsterMarked = monsterSelected;
+    }
+
+    private void ResetCooldown()
+    {
+        available = false;
+        circleCooldown.fillAmount = 0;
+        currentTimeCooldown = 0;
     }
 }
