@@ -48,7 +48,7 @@ public class Monster : MonoBehaviour
     public bool inUse = false;
     
 
-    private GameManager gameManager;
+    [HideInInspector]public GameManager gameManager;
      public List<GameObject> oppositeList;
     [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
@@ -70,20 +70,34 @@ public class Monster : MonoBehaviour
     public int physicIncreaseDefense;
     public int magicIncreaseDefense;
 
-    private void Start()
+    protected virtual void Start()
+    {
+        SetupCore();
+        SetupLists();
+        SetupUI();
+        SetupTarget();
+        SetupExtras();
+    }
+
+    protected virtual void SetupCore()
     {
         ReloadAttackToSkill();
         currentTimeRegeneration = regenerationTime;
         inUse = true;
         agent = FindObjectOfType<NavMeshAgent>();
         maxExp = level * 50;
-        
+
         gameManager = FindAnyObjectByType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
+    }
+
+    protected virtual void SetupLists()
+    {
         if (enemie)
         {
             oppositeList = gameManager.friendsList;
             ownList = gameManager.enemieList;
+            UpdateStats();
         }
         else
         {
@@ -91,18 +105,29 @@ public class Monster : MonoBehaviour
             ownList = gameManager.friendsList;
             gameManager.monsterDrop[valueI].monsterScript = this;
         }
-        objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity, 
+    }
+
+    protected virtual void SetupUI()
+    {
+        objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity,
             gameManager.canvasWorld.transform);
         circleAttacksToSkill = objCircleAttacks.GetComponent<Image>();
         circleAttacksToSkill.fillAmount = 0;
+    }
+
+    protected virtual void SetupTarget()
+    {
         target = ChooseTarget(oppositeList);
+    }
+
+    protected virtual void SetupExtras()
+    {
         if (areaAttack != null)
         {
             Destroy(areaAttack);
         }
     }
-
-    private void Update()
+    protected virtual void Update()
     {
         objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
         if (gameManager.finish)
@@ -164,10 +189,14 @@ public class Monster : MonoBehaviour
         {
             scriptTarget = _target.GetComponent<Monster>();
         }
+        if (scriptTarget == null)
+        {
+            scriptTarget = _target.GetComponentInChildren<Monster>();
+        }
         return scriptTarget;
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         //attacking = true;
         if (distanceAttack < enemieDistance)
@@ -200,7 +229,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private float CalculateDamage()
+    protected virtual float CalculateDamage()
     {
         attackTime = 1 / speedAttack;
         float randomChance = Random.Range(0f, 100f);
@@ -254,18 +283,26 @@ public class Monster : MonoBehaviour
     public void UpdateStats()
     {
         monsterClass = new MonsterClass(monsterSO, monsterData.level);
-        level = monsterData.level;
-        exp = monsterData.currentXP;
+        if (!enemie)
+        {
+            level = monsterData.level;
+            exp = monsterData.currentXP;
+        }        
+        
         health = monsterClass.Health + healthBuff;
         if (PlayerPrefs.GetInt("BattleNumber") == 0)
         {
             healthFigth = monsterClass.Health + healthBuff;
             Debug.Log("Entra en battleNumber 0");
         }
-        else
+        else if(!enemie)
         {
             healthFigth = monsterData.currentHealth;
             Debug.Log("Entra en con la vida previa");
+        }
+        else
+        {
+            healthFigth = health;
         }
         physicalDamage = monsterClass.PhysicalDamage + damageBuff;
         speedAttack = monsterClass.SpeedAttack * multiplierIncreasedSpeedAttack;

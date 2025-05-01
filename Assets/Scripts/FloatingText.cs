@@ -17,7 +17,8 @@ public class FloatingText : MonoBehaviour
     private void Update()
     {
         transform.position += Vector3.up * floatSpeed * Time.deltaTime; // Hace que el texto suba
-        //textMesh.color = new Color(startColor.r, startColor.g, startColor.b, textMesh.color.a - fadeSpeed * Time.deltaTime); // Hace que se desvanezca
+                                                                        // Hacer que el texto mire hacia la cámara
+        transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
 
 
     }

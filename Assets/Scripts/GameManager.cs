@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemieList = new List<GameObject>();
     public List<GameObject> enemiesSaved;
     private List<GameObject> friendsSaved;
+    public Vector2Int totalEnemiesToSpawn;
     public GameObject victoryScreen;
     public Image panelVictory;
     public GameObject defeatScreen;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI txtMoney;
     public TextMeshProUGUI txtMoneyReward;
     public Image imageMoneyReward;
+    public bool specialEvent = false;
     private void Start()
     { 
         friendsSaved = new List<GameObject>(friendsList);
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnMonsters()
     {
-        int countEnemies = Random.Range(1, 3);
+        int countEnemies = Random.Range(totalEnemiesToSpawn.x, totalEnemiesToSpawn.y);
         for (int i = 0; i < countEnemies; i++)
         {
             GameObject enemyToSpawn = enemiesToChoice[Random.Range(0, enemiesToChoice.Count)];
@@ -129,20 +131,28 @@ public class GameManager : MonoBehaviour
         foreach (var monster in list)
         {
             Monster monsterScript = monster.GetComponent<Monster>();
+            if (monsterScript == null)
+            {
+                monsterScript = monster.GetComponentInChildren<Monster>();
+            }
             if (!monsterScript.dead)
             {
                 return;
             }
-        }
-        DesactiveUI();
-        finish = true;
+        }        
         if (list == enemieList)
         {
-            EventVictory.Invoke();
-            
+            if (!specialEvent)
+            {
+                DesactiveUI();
+                finish = true;
+                EventVictory.Invoke();
+            }       
         }
         else
         {
+            DesactiveUI();
+            finish = true;
             defeatScreen.SetActive(true);
         }
     }

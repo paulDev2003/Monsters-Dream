@@ -100,6 +100,10 @@ public class MonsterDrop : MonoBehaviour
                 {
                     Debug.Log("Encuentra al igual");
                     Monster scriptEnemie = enemie.GetComponent<Monster>();
+                    if (scriptEnemie == null)
+                    {
+                        scriptEnemie = enemie.GetComponentInChildren<Monster>();
+                    }
                     if (scriptEnemie.target == monsterScript)
                     {
 
