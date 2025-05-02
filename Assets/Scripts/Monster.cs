@@ -19,7 +19,9 @@ public class Monster : MonoBehaviour
     public float evasion;
     public float magicalDamage;
     public float magicalDefense;
+    public float shield;
     public UILifeBar lifeBar;
+    public UIShieldBar shieldBar;
     public bool wasSpawned = false;
     public enum typeDamage
     { 
@@ -58,6 +60,7 @@ public class Monster : MonoBehaviour
     public GameObject areaAttack;
     private Image circleAttacksToSkill;
     private GameObject objCircleAttacks;
+    public bool shieldActivated = false;
 
     [Space(10)]
     public int damageBuff;
@@ -69,6 +72,7 @@ public class Monster : MonoBehaviour
     public float multiplierIncreasedSpeedAttack = 1;
     public int physicIncreaseDefense;
     public int magicIncreaseDefense;
+    public int shieldIncrease;
 
     protected virtual void Start()
     {
@@ -188,11 +192,12 @@ public class Monster : MonoBehaviour
         if (_target != null)
         {
             scriptTarget = _target.GetComponent<Monster>();
+            if (scriptTarget == null)
+            {
+                scriptTarget = _target.GetComponentInChildren<Monster>();
+            }
         }
-        if (scriptTarget == null)
-        {
-            scriptTarget = _target.GetComponentInChildren<Monster>();
-        }
+        
         return scriptTarget;
     }
 
@@ -207,10 +212,7 @@ public class Monster : MonoBehaviour
         {
             if (attacksToSkill > 0)
             {
-                float damage = CalculateDamage() + basicDamageBuff;
-                target.healthFigth -= damage;
-                AttackScreenInfo(damage, target);
-                target.lifeBar.UpdateFill(target);
+                BasicAttackDamage();
                 circleAttacksToSkill.fillAmount += totalAmountToSkill;
                 attacksToSkill -= 1;
             }
@@ -310,8 +312,15 @@ public class Monster : MonoBehaviour
         evasion = monsterClass.Evasion;
         magicalDamage = monsterClass.MagicalDamage + magicDamageBuff;
         magicalDefense = monsterClass.MagicalDefense + magicIncreaseDefense;
+        shield = shieldIncrease;
+        if (shield > 0)
+        {
+            shieldActivated = true;
+            shieldBar.UpdateShield(this);
+        }
         if (monsterData.isStarter)
         {
+            
             lifeBar.UpdateFill(this);
         }       
     }
@@ -364,7 +373,35 @@ public class Monster : MonoBehaviour
 
     public void UpdateBar()
     {
-        lifeBar.UpdateFill(this);
+        if (shieldActivated)
+        {
+            shieldBar.UpdateShield(this);
+        }
+        else
+        {
+            lifeBar.UpdateFill(this);
+        }
+        
+    }
+
+    private void BasicAttackDamage()
+    {
+        float damage = CalculateDamage() + basicDamageBuff;
+        if (target.shieldActivated)
+        {
+            target.shield -= damage;
+            if (damage > target.shield)
+            {
+                float restDamage = damage - target.shield;
+                target.healthFigth -= restDamage;
+            }
+        }
+        else
+        {
+            target.healthFigth -= damage;
+        }       
+        AttackScreenInfo(damage, target);
+        target.UpdateBar();
     }
 
     private void OnDisable()

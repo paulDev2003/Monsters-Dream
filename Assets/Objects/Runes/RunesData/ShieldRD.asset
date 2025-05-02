@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c6084ea5a1ba74a8ec823e17db52b4, type: 3}
+  m_Name: ShieldRD
+  m_EditorClassIdentifier: 
+  runeName: Shield
+  cost: 17
+  finalCost: 20
+  fontSize: 29.7
+  runePrefab: {fileID: 3016980601856252092, guid: 0ef21b81c18ddb94ea85512d33c05d18, type: 3}
+  txtInfo: Shield is activated and increased by 8
+  greenRune: {fileID: 11400000, guid: 0c81416db6da6b543a9d9ad906936e98, type: 2}

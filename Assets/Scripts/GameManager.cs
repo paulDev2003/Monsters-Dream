@@ -27,9 +27,11 @@ public class GameManager : MonoBehaviour
     private GameDataController gameDataController;
     public List<GameObject> lifeBarsFriends = new List<GameObject>();
     public List<UILifeBar> superiorBarFriends = new List<UILifeBar>();
+    public List<UIShieldBar> shieldsFriends = new List<UIShieldBar>();
     public List<TextMeshProUGUI> levelFriends = new List<TextMeshProUGUI>();
     public List<GameObject> lifeBarsEnemies = new List<GameObject>();
     public List<UILifeBar> superiorBarEnemies = new List<UILifeBar>();
+    public List<UIShieldBar> shieldsEnemies = new List<UIShieldBar>();
     public List<TextMeshProUGUI> levelEnemies = new List<TextMeshProUGUI>();
     public List<Image> monsterPanel = new List<Image>();
     public List<MonsterDrop> monsterDrop = new List<MonsterDrop>();
@@ -186,6 +188,7 @@ public class GameManager : MonoBehaviour
             script.valueI = i;
             lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
             script.lifeBar = superiorBarFriends[i];
+            script.shieldBar = shieldsFriends[i];
             //superiorBarFriends[i].UpdateFill(script);
             levelFriends[i].text = $"Lv.{script.level}";
             i++;
@@ -198,6 +201,7 @@ public class GameManager : MonoBehaviour
             Monster script = enemie.GetComponent<Monster>();
             lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
             script.lifeBar = superiorBarEnemies[e];
+            script.shieldBar = shieldsEnemies[e];
             levelEnemies[e].text = $"Lv.{script.level}";
             e++;
         }
