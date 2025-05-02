@@ -148,6 +148,7 @@ public class MonsterDrop : MonoBehaviour
                     monster.wasChanged = true;
                     gameManager.lifeBarsFriends[monster.monsterScript.valueI].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[monster.monsterScript.valueI];
+                    monsterScript.shieldBar = gameManager.shieldsFriends[monster.monsterScript.valueI];
                     gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterData.level}";
                     monster.ResetCooldown();
                     if (wasChanged)
@@ -228,7 +229,7 @@ public class MonsterDrop : MonoBehaviour
                     Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                     scriptMonster.exp = scriptMonster.monsterData.currentXP;
                     scriptMonster.level = scriptMonster.monsterData.level;
-                    runeManager.AddBuffs(scriptMonster);
+                    //runeManager.AddBuffs(scriptMonster);
                 }
                 else
                 {
@@ -246,6 +247,8 @@ public class MonsterDrop : MonoBehaviour
                         gameManager.lifeBarsFriends[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                         Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                         scriptMonster.lifeBar = gameManager.superiorBarFriends[i];
+                        scriptMonster.shieldBar = gameManager.shieldsFriends[i];
+                        runeManager.AddBuffs(scriptMonster);
                         gameManager.levelFriends[i].text = $"Lv.{monsterData.level}";
                         monsterScript.valueI = i;
                         return;
