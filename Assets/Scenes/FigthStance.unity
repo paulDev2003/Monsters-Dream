@@ -159,6 +159,7 @@ MonoBehaviour:
     monstersHouse: []
     monstersDungeon: []
     runesDungeon: []
+    upgradesDungeon: []
   itemDataBaseSO: {fileID: 11400000, guid: 571e50af525288b47a17c18ebaf383d7, type: 2}
   monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
   runeDataBase: {fileID: 0}
@@ -2441,6 +2442,7 @@ MonoBehaviour:
   runePanel: {fileID: 1763457514}
   runeSelected: {fileID: 0}
   allRunes: []
+  allUpgrades: []
   prefabsRunes: []
   friendList: []
   isFigth: 0
@@ -2461,7 +2463,9 @@ MonoBehaviour:
   levelRunes: {x: 1, y: 3}
   btnNextRoom: {fileID: 785101402}
   runeDataBase: {fileID: 11400000, guid: 2a44045d20c9fad42b37521fc03107c6, type: 2}
+  upgradeDataBase: {fileID: 11400000, guid: d4c5360330e53ae41a30954bc8991c4e, type: 2}
   runesDungeon: []
+  upgradesDungeon: []
   prefabInfo: {fileID: 1063138093}
   txtNamePrefab: {fileID: 1943056315}
   txtInfoPrefab: {fileID: 653705924}

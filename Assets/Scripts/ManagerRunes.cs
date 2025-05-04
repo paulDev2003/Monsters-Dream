@@ -23,6 +23,7 @@ public class ManagerRunes : MonoBehaviour
     public RuneDataBase runeDataBase;
     public UpgradeDataBase upgradeDataBase;
     public List<RuneClass> runesDungeon = new List<RuneClass>();
+    public List<UpgradeData> upgradesDungeon = new List<UpgradeData>();
     public GameObject prefabInfo;
     public TextMeshProUGUI txtNamePrefab;
     public TextMeshProUGUI txtInfoPrefab;
@@ -39,6 +40,7 @@ public class ManagerRunes : MonoBehaviour
             }
         }
         ChargeSavedRunes();
+        ChargeSavedUpgrades();
         if (isFigth)
         {
 
@@ -51,7 +53,15 @@ public class ManagerRunes : MonoBehaviour
             {
                 Monster scriptMonster = monster.GetComponent<Monster>();
                 scriptMonster.UpdateStats();
+                foreach (var upgrade in allUpgrades)
+                {
+                    if (upgrade.permanentEffect)
+                    {
+                        upgrade.UseUpgrade(scriptMonster);
+                    }
+                }
             }
+            
         }
 
     }
@@ -69,6 +79,15 @@ public class ManagerRunes : MonoBehaviour
             scriptRune.savePosition = rune.savePosition;
             scriptRune.isUsed = true;
             allRunes.Add(scriptRune);
+        }
+    }
+
+    private void ChargeSavedUpgrades()
+    {
+        foreach (var upgrade in upgradesDungeon)
+        {
+            UpgradeBase upgradeBase = upgradeDataBase.GetUpgradeBaseByName(upgrade.upgradeName);
+            allUpgrades.Add(upgradeBase.upgradeSO);
         }
     }
 
@@ -105,6 +124,13 @@ public class ManagerRunes : MonoBehaviour
             rune.runeSO.UsePower(monster, rune.level);
         }
         monster.UpdateStats();
+        foreach (var upgrade in allUpgrades)
+        {
+            if (upgrade.permanentEffect)
+            {
+                upgrade.UseUpgrade(monster);
+            }           
+        }
     }
 
     public void DesactiveteOptions()
@@ -149,6 +175,10 @@ public class ManagerRunes : MonoBehaviour
         prefabInfo.SetActive(true);
         lineToConect.SetActive(true);
         RectTransform rectTransformRune = rune.GetComponent<RectTransform>();
+        if (rune.onSell)
+        {
+            rectTransformRune = rune.transform.parent.parent.GetComponent<RectTransform>();
+        }
         lineToConect.GetComponent<SimpleUILine>().ConectLine(rectTransformRune);
         string info = rune.runeData.LoadData(rune.level);
         txtNamePrefab.text = rune.runeName;

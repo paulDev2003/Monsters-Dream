@@ -7,6 +7,7 @@ public class Rune : MonoBehaviour
     public List<Vector2Int> positionsSlots;
     private ManagerRunes managerRunes;
     public bool isUsed = false;
+    public bool onSell = false;
     public Vector2Int savePosition;
     public RuneSO runeSO;
     public RuneDataSO runeData;
@@ -37,7 +38,7 @@ public class Rune : MonoBehaviour
 
     public void ShowInfo()
     {
-        if (isUsed)
+        if (isUsed || onSell)
         {
             managerRunes.ShowPrefabInfo(this);
         }       

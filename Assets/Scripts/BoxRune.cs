@@ -63,7 +63,10 @@ public class BoxRune : MonoBehaviour
             else
             {
                 rune.savePosition = new Vector2Int(horizontalPosition, verticalPosition);
-                managerRunes.btnNextRoom.SetActive(true);
+                if (managerRunes.btnNextRoom != null)
+                {
+                    managerRunes.btnNextRoom.SetActive(true);
+                }                
                 managerRunes.prefabsRunes.Add(rune.gameObject);
                 managerRunes.allRunes.Add(rune);
                 rune.isUsed = true;
@@ -79,6 +82,8 @@ public class BoxRune : MonoBehaviour
             }
             
             rune.transform.position = transform.position;
+            rune.transform.localScale = Vector3.one;
+            rune.transform.parent = managerRunes.runePanel.transform;
             foreach (var slot in rune.positionsSlots)
             {
                 managerRunes.slotsChecker[horizontalPosition + slot.x, verticalPosition + slot.y] = false;
