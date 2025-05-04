@@ -110,6 +110,16 @@ public class GameDataController : MonoBehaviour
             };
             listRunes.Add(runeClass);
         }
+        List<UpgradeData> listUpgrades = new List<UpgradeData>();
+        foreach (var upgrade in runesManager.allUpgrades)
+        {
+            UpgradeData upgradeData = new UpgradeData()
+            {
+                upgradeName = upgrade.upgradeName,
+                cost = upgrade.cost
+            };
+            listUpgrades.Add(upgradeData);
+        }
         SaveData newData = new SaveData()
         {
             capturableKeys = new List<string>(inventory.capturableInventory.Keys),
@@ -123,7 +133,8 @@ public class GameDataController : MonoBehaviour
             monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
             monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters),
             
-            runesDungeon = new List<RuneClass>(listRunes)
+            runesDungeon = new List<RuneClass>(listRunes),
+            upgradesDungeon = new List<UpgradeData>(listUpgrades)
         };
         foreach (var value in inventory.capturableInventory)
             newData.capturableIDs.Add(value.Key);

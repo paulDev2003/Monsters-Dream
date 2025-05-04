@@ -16,4 +16,5 @@ public class SaveData
     public List<MonsterData> monstersDungeon;
 
     public List<RuneClass> runesDungeon;
+    public List<UpgradeData> upgradesDungeon;
 }
