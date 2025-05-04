@@ -9,7 +9,6 @@ public class ManagerRunes : MonoBehaviour
     public GameObject runePanel;
     public Rune runeSelected;
     public List<Rune> allRunes = new List<Rune>();
-    public List<Upgrade> allUpgrades = new List<Upgrade>();
     public List<GameObject> prefabsRunes = new List<GameObject>();
     public List<GameObject> friendList = new List<GameObject>();
     public bool isFigth = false;
@@ -21,7 +20,6 @@ public class ManagerRunes : MonoBehaviour
     public Vector2Int levelRunes;
     public GameObject btnNextRoom;
     public RuneDataBase runeDataBase;
-    public UpgradeDataBase upgradeDataBase;
     public List<RuneClass> runesDungeon = new List<RuneClass>();
     public GameObject prefabInfo;
     public TextMeshProUGUI txtNamePrefab;
@@ -113,14 +111,8 @@ public class ManagerRunes : MonoBehaviour
         {
             option.SetActive(false);
         }
-        if (btnResetRunes != null)
-        {
-            btnResetRunes.SetActive(false);
-        }
-        if (btnSkipRunes != null)
-        {
-            btnSkipRunes.SetActive(false);
-        }       
+        btnResetRunes.SetActive(false);
+        btnSkipRunes.SetActive(false);
     }
 
     public void DropRunes()
