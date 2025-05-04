@@ -1989,8 +1989,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420760595}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.2852478, y: 0.012893677, z: 0.87}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.2852144, y: 0.012899329, z: 0.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2461,7 +2461,6 @@ MonoBehaviour:
   levelRunes: {x: 1, y: 3}
   btnNextRoom: {fileID: 785101402}
   runeDataBase: {fileID: 11400000, guid: 2a44045d20c9fad42b37521fc03107c6, type: 2}
-  upgradeDataBase: {fileID: 11400000, guid: 59f73e761268d7c4ebcdf5e078a8def1, type: 2}
   runesDungeon: []
   prefabInfo: {fileID: 1063138093}
   txtNamePrefab: {fileID: 1943056315}
@@ -3001,9 +3000,9 @@ SceneRoots:
   - {fileID: 53803191}
   - {fileID: 1458646403}
   - {fileID: 2396234665953897675}
-  - {fileID: 1420760597}
   - {fileID: 344312781}
   - {fileID: 36258360}
+  - {fileID: 1420760597}
   - {fileID: 1681861896}
   - {fileID: 1141512563}
   - {fileID: 1464797524}

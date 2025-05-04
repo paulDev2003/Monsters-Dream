@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4236686226285093441}
   - component: {fileID: 5921480091571582343}
   - component: {fileID: 9068617615107606332}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3804279936764448313}
   - component: {fileID: 5792263001561911475}
   - component: {fileID: 3872171413474147242}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 2675865685061126650}
   - component: {fileID: 6699408547994905428}
   - component: {fileID: 7299758503508115684}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 5845084210872404308}
   - component: {fileID: 558054984732040585}
   - component: {fileID: 8394024456961488631}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.023
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 3860605041902388771}
   - component: {fileID: 5495815499724621609}
   - component: {fileID: 2155063987008258887}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 4598930887404292569}
   - component: {fileID: 3442442158046753182}
   - component: {fileID: 5491729082798592543}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 8182618877708789403}
   - component: {fileID: 4483489172022398160}
   - component: {fileID: 4124084919540814048}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 148157351856347079}
   - component: {fileID: 545433886141641545}
   - component: {fileID: 4031499174687184565}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 6928444646769855546}
   - component: {fileID: 6382494001240716684}
   - component: {fileID: 4273622244829651654}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 2575432231072159748}
   - component: {fileID: 2835843994770648486}
   - component: {fileID: 6297484789584899612}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 8126460021470349843}
   - component: {fileID: 8383265263949281150}
   - component: {fileID: 1509283175746153042}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.022
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 5365939444611181888}
   - component: {fileID: 5733628615359903914}
   - component: {fileID: 838142390656366153}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 3246339812039486011}
   - component: {fileID: 3462610048634873707}
   - component: {fileID: 2294706240489278808}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1129,7 @@ GameObject:
   - component: {fileID: 8735675645206733092}
   - component: {fileID: 3294907366976989428}
   - component: {fileID: 3113717622486838509}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: 183892904309703258}
   - component: {fileID: 5435281803724236070}
   - component: {fileID: 2722730215754664133}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1301,7 @@ GameObject:
   - component: {fileID: 6974979496882524377}
   - component: {fileID: 5907383159864121919}
   - component: {fileID: 1140825135663134699}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Modelo3D
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 2983390186280987171}
   - component: {fileID: 6655926535616501134}
   - component: {fileID: 8574672711060724904}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PiernaDerecha.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,7 +1502,7 @@ GameObject:
   - component: {fileID: 2628142954916770841}
   - component: {fileID: 5116427400108620727}
   - component: {fileID: 3047029037222781743}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1588,7 +1588,7 @@ GameObject:
   - component: {fileID: 6967665042633724516}
   - component: {fileID: 2655725333634510263}
   - component: {fileID: 4394294771814963737}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BasedelHongo.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1674,7 +1674,7 @@ GameObject:
   - component: {fileID: 5907889253097690157}
   - component: {fileID: 7733072500111794219}
   - component: {fileID: 2777033098063947043}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PiernaDerecha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1761,7 +1761,7 @@ GameObject:
   - component: {fileID: 2009609829980115499}
   - component: {fileID: 2212327473112899445}
   - component: {fileID: 1032528683411277046}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1847,7 +1847,7 @@ GameObject:
   - component: {fileID: 6514631155150502388}
   - component: {fileID: 8230865921618285739}
   - component: {fileID: 5039305766819072821}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1933,7 +1933,7 @@ GameObject:
   - component: {fileID: 3601996334082921136}
   - component: {fileID: 1672187395939665199}
   - component: {fileID: 7138758861687241116}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2019,7 +2019,7 @@ GameObject:
   - component: {fileID: 1619405435779571986}
   - component: {fileID: 8418074455933652621}
   - component: {fileID: 4239909193710320203}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: SombrerodelHongo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2105,7 +2105,7 @@ GameObject:
   - component: {fileID: 6275266029393308565}
   - component: {fileID: 5072101553144704095}
   - component: {fileID: 3304766428152494435}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BasedelHongo.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2191,7 +2191,7 @@ GameObject:
   - component: {fileID: 4533412660147758383}
   - component: {fileID: 2352139077273651937}
   - component: {fileID: 2483750582615912515}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: OjoIzq
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,7 +2277,7 @@ GameObject:
   - component: {fileID: 2519784459624212233}
   - component: {fileID: 7306943412012087024}
   - component: {fileID: 2365226312091076848}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BrazoDerecha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2363,7 +2363,7 @@ GameObject:
   - component: {fileID: 659809386751054528}
   - component: {fileID: 7229779386157259465}
   - component: {fileID: 4454262734995794163}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BasedelHongo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2449,7 +2449,7 @@ GameObject:
   - component: {fileID: 8716716346645593685}
   - component: {fileID: 2028385396432038224}
   - component: {fileID: 3035917557913217512}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2535,7 +2535,7 @@ GameObject:
   - component: {fileID: 928684566843652847}
   - component: {fileID: 1290094456745763789}
   - component: {fileID: 3148239394278539671}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2621,7 +2621,7 @@ GameObject:
   - component: {fileID: 3032524162128740803}
   - component: {fileID: 4574494969486580470}
   - component: {fileID: 2600968216561255574}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: SombrerodelHongo.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2707,7 +2707,7 @@ GameObject:
   - component: {fileID: 3769123651329135024}
   - component: {fileID: 8067691382832245284}
   - component: {fileID: 3986794299804484993}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2793,7 +2793,7 @@ GameObject:
   - component: {fileID: 8327255721787554321}
   - component: {fileID: 6233965837560570312}
   - component: {fileID: 576843356468712474}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cubo.021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2879,7 +2879,7 @@ GameObject:
   - component: {fileID: 7573592341095646400}
   - component: {fileID: 7883945803558459347}
   - component: {fileID: 5106506861098004208}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BrazoIzquierda
   m_TagString: Untagged
   m_Icon: {fileID: 0}

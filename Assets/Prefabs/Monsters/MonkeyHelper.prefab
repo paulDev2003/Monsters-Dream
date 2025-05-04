@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1646392862948887236}
   - component: {fileID: 6097227288501482120}
   - component: {fileID: 5348275395439943435}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Modelo3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 9107819219271103370}
   - component: {fileID: 3284903520870640740}
   - component: {fileID: 5698990367173064320}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: ear (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 8899353759099474088}
   - component: {fileID: 1136268077478395689}
   - component: {fileID: 3067548016872339265}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 1329819356979134444}
   - component: {fileID: 4097517178039285563}
   - component: {fileID: 4859199172471296760}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,10 +480,6 @@ PrefabInstance:
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: MonkeyHelper
-      objectReference: {fileID: 0}
-    - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_TagString
