@@ -83,6 +83,10 @@ public class GameDataController : MonoBehaviour
             {
                 runesManager.runesDungeon = new List<RuneClass>(saveData.runesDungeon);
             }
+            if (saveData.upgradesDungeon != null)
+            {
+                runesManager.upgradesDungeon = new List<UpgradeData>(saveData.upgradesDungeon);
+            }
         }
         else
         {

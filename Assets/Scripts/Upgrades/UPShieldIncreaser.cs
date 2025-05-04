@@ -8,6 +8,7 @@ public class UPShieldincreaser : Upgrade
     public override void UseUpgrade(Monster monster)
     {
         monster.shield *= multiplierToIncrease;
+        monster.UpdateBar();
     }
 
 

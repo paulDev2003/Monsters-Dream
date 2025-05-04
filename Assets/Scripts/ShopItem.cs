@@ -34,7 +34,15 @@ public class ShopItem : MonoBehaviour
         {
             return;
         }
-        targetImage.color = selectColor;
+        if (shopManager.selectedItem != this)
+        {
+            targetImage.color = selectColor;
+        }
+        else
+        {
+            targetImage.color = initialColor;
+        }
+        
         shopManager.SelectItem(this);
     }
     public void BuyItem()
@@ -55,5 +63,18 @@ public class ShopItem : MonoBehaviour
         {
             shopManager.ActivateRuneSelection.Invoke(); 
         }
+    }
+
+    public void ShowInfoUpgrade()
+    {
+        if (myType == ShopItem.TypeItem.upgrade)
+        {
+            runeManager.prefabInfo.SetActive(true);
+            runeManager.lineToConect.SetActive(true);
+            RectTransform rectTransformItem = gameObject.GetComponent<RectTransform>();
+            runeManager.lineToConect.GetComponent<SimpleUILine>().ConectLine(rectTransformItem);
+            runeManager.txtNamePrefab.text = upgradeSO.upgradeName;
+            runeManager.txtInfoPrefab.text = upgradeSO.txtInfo;
+        }       
     }
 }

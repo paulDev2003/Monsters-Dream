@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Health
   cost: 35
+  txtInfo: Increase the health by 20%
   sprite: {fileID: 21300000, guid: 89470c631c3aa384f8593a53b8d050d7, type: 3}
-  permanentEffect: 0
+  permanentEffect: 1
   instantEffectMonsters: 1
   instantEffectRunes: 0
   multiplierToIncrease: 1.2

@@ -6,6 +6,7 @@ public abstract class Upgrade : ScriptableObject
 {
     public string upgradeName;
     public int cost;
+    public string txtInfo;
     public Sprite sprite;
     public bool permanentEffect;
     public bool instantEffectMonsters;

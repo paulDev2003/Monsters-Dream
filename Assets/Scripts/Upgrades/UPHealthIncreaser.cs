@@ -17,6 +17,8 @@ public class UPHealthIncreaser : Upgrade
     public override void UseUpgrade(Monster monster)
     {
         monster.health *= multiplierToIncrease;
+        monster.UpdateBar();
+        Debug.Log("Lo está usando");
     }
 
 

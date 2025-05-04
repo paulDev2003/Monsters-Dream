@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
@@ -20,10 +21,18 @@ public class ShopManager : MonoBehaviour
 
     public UnityEvent ActivateRuneSelection;
     public Transform spotRuneSelection;
+    public TextMeshProUGUI txtMoney;
+
+    public GameObject lineToConnectRunes;
+    public GameObject prefabInfo;
+    public TextMeshProUGUI txtInfoPrefab;
+    public TextMeshProUGUI txtNamePrefab;
 
     private void Start()
     {
         DropItems();
+        int totalMoney = PlayerPrefs.GetInt("Money", 0);
+        txtMoney.text = totalMoney.ToString();
     }
     private void Update()
     {
@@ -59,25 +68,25 @@ public class ShopManager : MonoBehaviour
                 Upgrade upgrade = upgradesToDrop[Random.Range(0, upgradesToDrop.Count)];
                 item.upgradeSO = upgrade;
                 item.costItem = upgrade.cost;
+                item.spriteImage.enabled = true;
                 item.spriteImage.sprite = upgrade.sprite;
+                item.txtCost.text = item.costItem.ToString();
             }
             if (item.myType == ShopItem.TypeItem.rune)
             {
                 RuneDataSO runeData = runesToDrop[Random.Range(0, runesToDrop.Count)];
                 int level = Random.Range(runeManager.levelRunes.x, runeManager.levelRunes.y + 1);
                 string info = runeData.LoadData(level);
-                GameObject runeInstancied = Instantiate(runeData.runePrefab, item.spotRune.position, Quaternion.identity, item.transform);
-                // scriptOption.txtLevel.text = $"Lvl {level}";
-                // scriptOption.txtDescription.text = info;
-                // scriptOption.txtDescription.fontSize = runeData.fontSize;
-                // scriptOption.txtCost.text = runeData.finalCost.ToString();
+                GameObject runeInstancied = Instantiate(runeData.runePrefab, item.spotRune.position, Quaternion.identity, item.targetImage.transform);
+                runeInstancied.transform.localScale = Vector3.one;
                 Rune scriptRune = runeInstancied.GetComponent<Rune>();
-                // scriptOption.rune = scriptRune;
+                scriptRune.onSell = true;
                 scriptRune.isUsed = false;
                 scriptRune.cost = runeData.finalCost;
                 scriptRune.level = level;
                 item.rune = scriptRune;
                 runeInstancied.transform.position = item.spotRune.position;
+                item.txtCost.text = scriptRune.cost.ToString();
             }
         }
 
@@ -88,8 +97,17 @@ public class ShopManager : MonoBehaviour
         if (selectedItem != null)
         {
             selectedItem.targetImage.color = selectedItem.initialColor;
+            
         }
-        selectedItem = itemToSelect;
+        if (itemToSelect == selectedItem)
+        {
+            selectedItem = null;
+        }
+        else
+        {
+            selectedItem = itemToSelect;
+        }
+        
 
     }
 
@@ -102,6 +120,8 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
+            totalMoney -= selectedItem.costItem;
+            PlayerPrefs.SetInt("Money", totalMoney);
             selectedItem.buyed = true;
             selectedItem.targetImage.color = selectedItem.buyedColor;
             if (selectedItem.myType == ShopItem.TypeItem.upgrade)
@@ -128,7 +148,13 @@ public class ShopManager : MonoBehaviour
     public void ChangeRunePosition()
     {
         selectedItem.rune.gameObject.transform.position = spotRuneSelection.position;
-        selectedItem.rune.gameObject.transform.parent = runeManager.runePanel.transform;
+        selectedItem.rune.gameObject.transform.parent = spotRuneSelection.transform;
+        selectedItem.rune.gameObject.transform.localScale = Vector3.one;
+        runeManager.lineToConect = lineToConnectRunes;
+        runeManager.prefabInfo = prefabInfo;
+        runeManager.txtInfoPrefab = txtInfoPrefab;
+        runeManager.txtNamePrefab = txtNamePrefab;
+        selectedItem.rune.onSell = false;
     }
 }
 

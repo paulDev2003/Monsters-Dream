@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Shield
   cost: 30
+  txtInfo: Increase shield runes by 25%
   sprite: {fileID: 21300000, guid: 99b9ca5c1f24d414abf7106624957741, type: 3}
-  permanentEffect: 0
+  permanentEffect: 1
   instantEffectMonsters: 0
   instantEffectRunes: 0
   multiplierToIncrease: 1.25
