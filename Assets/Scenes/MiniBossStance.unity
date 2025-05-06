@@ -209,6 +209,7 @@ MonoBehaviour:
     monstersHouse: []
     monstersDungeon: []
     runesDungeon: []
+    upgradesDungeon: []
   itemDataBaseSO: {fileID: 11400000, guid: 571e50af525288b47a17c18ebaf383d7, type: 2}
   monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
   runeDataBase: {fileID: 0}
@@ -797,6 +798,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &544491523 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5258438421712945627, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d0bb82cccac2d46bf70f75cd074d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &545686337 stripped
@@ -2144,6 +2156,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7af914cef22a64d90d556671d0af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1320988947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4244401195824954519, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d0bb82cccac2d46bf70f75cd074d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1340040218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2457,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414652002}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1414840132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6459795029503422648, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d0bb82cccac2d46bf70f75cd074d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1415234996 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8918925760972150526, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -2573,6 +2607,10 @@ MonoBehaviour:
   - {fileID: 1931115879}
   - {fileID: 1567903719}
   - {fileID: 1544511256}
+  shieldsFriends:
+  - {fileID: 1320988947}
+  - {fileID: 544491523}
+  - {fileID: 1414840132}
   levelFriends:
   - {fileID: 1730907521}
   - {fileID: 1106943419}
@@ -2585,6 +2623,10 @@ MonoBehaviour:
   - {fileID: 1006439203}
   - {fileID: 570895441}
   - {fileID: 548607154}
+  shieldsEnemies:
+  - {fileID: 1568846468}
+  - {fileID: 1462761964}
+  - {fileID: 1787824529}
   levelEnemies:
   - {fileID: 1096834922}
   - {fileID: 2035208807}
@@ -2751,6 +2793,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneAsset: {fileID: 102900000, guid: ce4534bdf557865428a40de9ca51df51, type: 3}
+--- !u!114 &1462761964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5452333673205867583, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d0bb82cccac2d46bf70f75cd074d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464797522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3056,6 +3109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38014d0bb1caf994b925dc248b0d1926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1568846468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7608757888518182302, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d0bb82cccac2d46bf70f75cd074d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1572971865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 936396405184902744, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -3152,7 +3216,9 @@ MonoBehaviour:
   evasion: 0
   magicalDamage: 0
   magicalDefense: 0
+  shield: 0
   lifeBar: {fileID: 1353337704}
+  shieldBar: {fileID: 0}
   wasSpawned: 0
   damageType: 0
   distanceAttack: 0
@@ -3170,6 +3236,7 @@ MonoBehaviour:
   ownList: []
   valueI: 0
   areaAttack: {fileID: 0}
+  shieldActivated: 0
   damageBuff: 0
   basicDamageBuff: 0
   healthBuff: 0
@@ -3179,6 +3246,7 @@ MonoBehaviour:
   multiplierIncreasedSpeedAttack: 1
   physicIncreaseDefense: 0
   magicIncreaseDefense: 0
+  shieldIncrease: 0
 --- !u!1 &1681861894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,6 +3312,7 @@ MonoBehaviour:
   runePanel: {fileID: 1763457514}
   runeSelected: {fileID: 0}
   allRunes: []
+  allUpgrades: []
   prefabsRunes: []
   friendList: []
   isFigth: 0
@@ -3263,7 +3332,9 @@ MonoBehaviour:
   levelRunes: {x: 1, y: 3}
   btnNextRoom: {fileID: 785101402}
   runeDataBase: {fileID: 11400000, guid: 2a44045d20c9fad42b37521fc03107c6, type: 2}
+  upgradeDataBase: {fileID: 11400000, guid: d4c5360330e53ae41a30954bc8991c4e, type: 2}
   runesDungeon: []
+  upgradesDungeon: []
   prefabInfo: {fileID: 1063138093}
   txtNamePrefab: {fileID: 1943056315}
   txtInfoPrefab: {fileID: 653705924}
@@ -3313,6 +3384,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d7af914cef22a64d90d556671d0af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1787824529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 167010990766270917, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d0bb82cccac2d46bf70f75cd074d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1796588887

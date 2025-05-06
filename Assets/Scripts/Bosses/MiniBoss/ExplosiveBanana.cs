@@ -51,9 +51,7 @@ public class ExplosiveBanana : MonoBehaviour
                 Monster monsterScript = hit.GetComponentInParent<Monster>();
                 if (!monsterScript.enemie)
                 {
-                    monsterScript.healthFigth -= damage;
-                    monsterScript.AttackScreenInfo(damage, monsterScript);
-                    monsterScript.UpdateBar();
+                    monsterScript.TakeDamage(damage);
                     monsterScript.gameManager.CheckIfAnyAlive(monsterScript.ownList);
                 }
             }

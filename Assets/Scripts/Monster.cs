@@ -418,6 +418,25 @@ public class Monster : MonoBehaviour
             objCircleAttacks.SetActive(true);
         }      
     }
+
+    public void TakeDamage(int damage)
+    {
+        if (shieldActivated)
+        {
+            shield -= damage;
+            if (damage > shield)
+            {
+                float restDamage = damage - shield;
+                healthFigth -= restDamage;
+            }
+        }
+        else
+        {
+            healthFigth -= damage;
+        }
+        AttackScreenInfo(damage, this);
+        UpdateBar();
+    }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena
     //
