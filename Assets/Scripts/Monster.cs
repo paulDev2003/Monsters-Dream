@@ -90,7 +90,7 @@ public class Monster : MonoBehaviour
         inUse = true;
         agent = FindObjectOfType<NavMeshAgent>();
         maxExp = level * 50;
-
+        agent.avoidancePriority = Random.Range(30, 60);
         gameManager = FindAnyObjectByType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
     }

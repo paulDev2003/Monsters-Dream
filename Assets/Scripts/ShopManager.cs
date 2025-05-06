@@ -6,6 +6,7 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    public bool chestStance = false;
     public List<RuneDataSO> runesToDrop = new List<RuneDataSO>();
     public List<Upgrade> upgradesToDrop = new List<Upgrade>();
 
@@ -50,6 +51,10 @@ public class ShopManager : MonoBehaviour
     {
         foreach (var item in shopItems)
         {
+            if (item.buyed)
+            {
+                continue;
+            }
             int randomChoice = Random.Range(0, 2);
             switch (randomChoice)
             {
@@ -66,11 +71,14 @@ public class ShopManager : MonoBehaviour
             if (item.myType == ShopItem.TypeItem.upgrade)
             {
                 Upgrade upgrade = upgradesToDrop[Random.Range(0, upgradesToDrop.Count)];
-                item.upgradeSO = upgrade;
-                item.costItem = upgrade.cost;
+                item.upgradeSO = upgrade;                
                 item.spriteImage.enabled = true;
                 item.spriteImage.sprite = upgrade.sprite;
-                item.txtCost.text = item.costItem.ToString();
+                if (!chestStance)
+                {
+                    item.costItem = upgrade.cost;
+                    item.txtCost.text = item.costItem.ToString();
+                }               
             }
             if (item.myType == ShopItem.TypeItem.rune)
             {
@@ -86,7 +94,11 @@ public class ShopManager : MonoBehaviour
                 scriptRune.level = level;
                 item.rune = scriptRune;
                 runeInstancied.transform.position = item.spotRune.position;
-                item.txtCost.text = scriptRune.cost.ToString();
+                if (!chestStance)
+                {
+                    item.costItem = scriptRune.cost;
+                    item.txtCost.text = scriptRune.cost.ToString();
+                }                
             }
         }
 
@@ -114,14 +126,17 @@ public class ShopManager : MonoBehaviour
     public void Buy()
     {
         int totalMoney = PlayerPrefs.GetInt("Money", 0);
-        if (selectedItem == null || totalMoney < selectedItem.costItem)
+        if (selectedItem == null || totalMoney < selectedItem.costItem && !chestStance)
         {
             return;
         }
         else
         {
-            totalMoney -= selectedItem.costItem;
-            PlayerPrefs.SetInt("Money", totalMoney);
+            if (!chestStance)
+            {
+                totalMoney -= selectedItem.costItem;
+                PlayerPrefs.SetInt("Money", totalMoney);
+            }           
             selectedItem.buyed = true;
             selectedItem.targetImage.color = selectedItem.buyedColor;
             if (selectedItem.myType == ShopItem.TypeItem.upgrade)
@@ -155,6 +170,24 @@ public class ShopManager : MonoBehaviour
         runeManager.txtInfoPrefab = txtInfoPrefab;
         runeManager.txtNamePrefab = txtNamePrefab;
         selectedItem.rune.onSell = false;
+    }
+
+    public void DestroyRunes()
+    {
+        foreach (var item in shopItems)
+        {
+            if (item.buyed)
+            {
+                continue;
+            }
+            if (item.rune != null)
+            {
+                Destroy(item.rune.gameObject);
+                item.rune = null;
+            }
+            item.spriteImage.sprite = null;
+            item.spriteImage.enabled = false;
+        }
     }
 }
 

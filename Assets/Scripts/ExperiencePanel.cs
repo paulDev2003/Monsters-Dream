@@ -83,7 +83,11 @@ public class ExperiencePanel : MonoBehaviour
             yield return null;
         }
         expBar.fillAmount = targetFill;
-        gameManager.expCompleted = true;
+        animating = false;
+        if (gameManager != null)
+        {
+            gameManager.expCompleted = true;
+        }      
     }
 
     public void FastUpdate(float gainedXP, MonsterData monsterData)
@@ -103,7 +107,10 @@ public class ExperiencePanel : MonoBehaviour
         }
         expBar.fillAmount = targetFill;
         animating = false;
-        gameManager.expCompleted = true;
+        if (gameManager != null)
+        {
+            gameManager.expCompleted = true;
+        }       
     }
 
     private void Update()
