@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5b357a376146743824289fa7f3e0e0, type: 3}
+  m_Name: BleedEffect
+  m_EditorClassIdentifier: 
+  duration: 50
+  tickInterval: 2
+  damagePerTick: 2
+  sprite: {fileID: 21300000, guid: 40aa94f5659545e4dbd1ae117e123c7f, type: 3}

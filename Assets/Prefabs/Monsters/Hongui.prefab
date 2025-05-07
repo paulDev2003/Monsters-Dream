@@ -3000,8 +3000,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d758adaf03c4ea548b1777ec82a99c25, type: 2}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: summonType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: healthFigth
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: hitToEffect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: monsterName
@@ -3016,6 +3024,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterEffect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: distanceAttack
       value: 1.78
       objectReference: {fileID: 0}
@@ -3027,6 +3039,10 @@ PrefabInstance:
       propertyPath: physicalDamage
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: testStatusEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 5966fabd476fc7c4da92a40e32adf81d, type: 2}
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: Hongui

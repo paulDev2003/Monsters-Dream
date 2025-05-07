@@ -24,12 +24,20 @@ public class Monster : MonoBehaviour
     public UIShieldBar shieldBar;
     public bool wasSpawned = false;
     public enum typeDamage
-    { 
+    {
         Physical,
         Magical
     };
     public typeDamage damageType;
 
+    public enum typeSummon
+    {
+        Normal,
+        Edge
+    }
+    public int hitAcumulation;
+    public int hitToEffect;
+    public typeSummon summonType;
     [Space(10)]
     public float distanceAttack;
     public float speedMovement;
@@ -48,10 +56,10 @@ public class Monster : MonoBehaviour
     public int maxExp;
     [Tooltip("Para saber si está invocado o no")]
     public bool inUse = false;
-    
 
-    [HideInInspector]public GameManager gameManager;
-     public List<GameObject> oppositeList;
+
+    [HideInInspector] public GameManager gameManager;
+    public List<GameObject> oppositeList;
     [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
     private MonsterClass monsterClass;
@@ -74,13 +82,19 @@ public class Monster : MonoBehaviour
     public int magicIncreaseDefense;
     public int shieldIncrease;
 
+    private List<Sprite> spriteStates = new List<Sprite>();
+    private List<int> intStates = new List<int>();
+    private List<int> intStatesEffects = new List<int>();
+    public List<StatusEffect> activeEffects = new List<StatusEffect>();
+    public StatusEffect monsterEffect;
+
     protected virtual void Start()
     {
         SetupCore();
         SetupLists();
         SetupUI();
         SetupTarget();
-        SetupExtras();
+        SetupExtras();       
     }
 
     protected virtual void SetupCore()
@@ -134,12 +148,14 @@ public class Monster : MonoBehaviour
     protected virtual void Update()
     {
         objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
+
         if (gameManager.finish)
         {
             stopFigth = true;
         }
         if (!dead && !stopFigth)
         {
+            UpdateStatsEffects();
             if (target != null)
             {
                 enemieDistance = Vector3.Distance(transform.position, target.transform.position);
@@ -157,7 +173,7 @@ public class Monster : MonoBehaviour
             {
                 currentTimeRegeneration -= Time.deltaTime;
             }
-            else if(healthRegeneration > 0)
+            else if (healthRegeneration > 0)
             {
                 RegenerateHealth();
                 currentTimeRegeneration = regenerationTime;
@@ -170,12 +186,23 @@ public class Monster : MonoBehaviour
                 dead = true;
                 if (!enemie)
                 {
-                    gameManager.countMonsters--; 
+                    gameManager.countMonsters--;
                 }
             }
         }
     }
 
+    private void UpdateStatsEffects()
+    {
+        for (int i = activeEffects.Count - 1; i >= 0; i--)
+        {
+            activeEffects[i].Tick(this, Time.deltaTime, intStatesEffects[i]);
+            //if (activeEffects[i].IsFinished)
+            //{
+            //    activeEffects.RemoveAt(i);
+            //}
+        }
+    }
     public Monster ChooseTarget(List<GameObject> listOpposite)
     {
         GameObject _target = null;
@@ -197,7 +224,7 @@ public class Monster : MonoBehaviour
                 scriptTarget = _target.GetComponentInChildren<Monster>();
             }
         }
-        
+
         return scriptTarget;
     }
 
@@ -249,7 +276,7 @@ public class Monster : MonoBehaviour
         {
             damageDone = magicalDamage - target.magicalDefense;
         }
-        
+
         if (damageDone < 1)
         {
             return 1;
@@ -289,15 +316,15 @@ public class Monster : MonoBehaviour
         {
             level = monsterData.level;
             exp = monsterData.currentXP;
-        }        
-        
+        }
+
         health = monsterClass.Health + healthBuff;
         if (PlayerPrefs.GetInt("BattleNumber") == 0)
         {
             healthFigth = monsterClass.Health + healthBuff;
             Debug.Log("Entra en battleNumber 0");
         }
-        else if(!enemie)
+        else if (!enemie)
         {
             healthFigth = monsterData.currentHealth;
             Debug.Log("Entra en con la vida previa");
@@ -320,9 +347,9 @@ public class Monster : MonoBehaviour
         }
         if (monsterData.isStarter)
         {
-            
+
             lifeBar.UpdateFill(this);
-        }       
+        }
     }
 
     public void ChangeSelector()
@@ -342,7 +369,7 @@ public class Monster : MonoBehaviour
             DestroyImmediate(areaAttack);
         }
         Vector3 spawnArea = new Vector3(transform.position.x, y, transform.position.z);
-        areaAttack = Instantiate(gameManagerNow.damageArea, spawnArea, Quaternion.identity);       
+        areaAttack = Instantiate(gameManagerNow.damageArea, spawnArea, Quaternion.identity);
         areaAttack.transform.localScale = Vector3.one * distanceAttack * 0.25f;
     }
     public void CleanAreaDistanceAttack()
@@ -381,27 +408,65 @@ public class Monster : MonoBehaviour
         {
             lifeBar.UpdateFill(this);
         }
-        
+
     }
 
     private void BasicAttackDamage()
     {
         float damage = CalculateDamage() + basicDamageBuff;
-        if (target.shieldActivated)
+        target.TakeDamage((int)damage);
+        if (summonType == Monster.typeSummon.Edge)
         {
-            target.shield -= damage;
-            if (damage > target.shield)
+            if (hitAcumulation < hitToEffect)
             {
-                float restDamage = damage - target.shield;
-                target.healthFigth -= restDamage;
+                hitAcumulation++;
+            }
+            else
+            {
+                target.AddStatusEffect(monsterEffect);
+                hitAcumulation = 0;
             }
         }
-        else
+    }
+
+    public void AddStatusEffect(StatusEffect effect)
+    {
+        effect.ApplyEffect(this);
+        ApplyEffectStatus(effect);
+    }
+
+    public void ApplyStatus(Sprite sprite)
+    {
+        int i = 0;
+        foreach (var image in spriteStates)
         {
-            target.healthFigth -= damage;
-        }       
-        AttackScreenInfo(damage, target);
-        target.UpdateBar();
+            if (image == sprite)
+            {
+                intStates[i] += 1;
+                lifeBar.ShowStates(intStates, spriteStates);
+                return;
+            }
+            i++;
+        }
+        intStates.Add(1);
+        spriteStates.Add(sprite);
+        lifeBar.ShowStates(intStates, spriteStates);
+    }
+
+    public void ApplyEffectStatus(StatusEffect statusEffect)
+    {
+        int i = 0;
+        foreach (var effect in activeEffects)
+        {
+            if (effect == statusEffect)
+            {
+                intStatesEffects[i]++;
+                return;
+            }
+            i++;
+        }
+        activeEffects.Add(statusEffect);
+        intStatesEffects.Add(1);
     }
 
     private void OnDisable()
@@ -434,6 +499,13 @@ public class Monster : MonoBehaviour
         {
             healthFigth -= damage;
         }
+        AttackScreenInfo(damage, this);
+        UpdateBar();
+    }
+
+    public void TakeDamageHealth(int damage)
+    {  
+        healthFigth -= damage;
         AttackScreenInfo(damage, this);
         UpdateBar();
     }
