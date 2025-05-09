@@ -26,4 +26,18 @@ public class UILifeBar : MonoBehaviour
             }
         }
     }
+
+    public void DesactivateStates(int totalStates)
+    {
+        int i = 0;
+        foreach (var image in imgStateEffect)
+        {
+            if (i >= totalStates)
+            {
+                imgStateEffect[i].enabled = false;
+                txtStateEffect[i].enabled = false;
+            }
+            i++;
+        }
+    }
 }

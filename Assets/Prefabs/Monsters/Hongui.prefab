@@ -888,7 +888,7 @@ Transform:
   m_GameObject: {fileID: 2925630609186494491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.393, z: 0}
   m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3044,12 +3044,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5966fabd476fc7c4da92a40e32adf81d, type: 2}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.level
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.baseId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.isUsed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.currentXP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.isStarter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: rangeAttacksToSkill.x
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: rangeAttacksToSkill.y
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.monsterName
+      value: Hongui
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterData.currentHealth
+      value: 18.720001
       objectReference: {fileID: 0}
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
@@ -3073,15 +3101,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5929527
+      value: -5.3479967
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.736
+      value: -2.119
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.2344115
+      value: 6.0374627
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3150,7 +3178,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.9
+  m_Height: 0.98
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

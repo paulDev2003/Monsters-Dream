@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gigant Wolf
   m_EditorClassIdentifier: 
   monsterName: Gigant Wolf
-  health: 230
+  health: 500
   physicalDamage: 10
   speedAttack: 1.5
   defense: 10

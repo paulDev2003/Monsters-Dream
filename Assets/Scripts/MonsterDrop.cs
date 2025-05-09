@@ -156,7 +156,11 @@ public class MonsterDrop : MonoBehaviour
                         instantiatedMonster.SetActive(true);
                         instantiatedMonster.transform.position = monster.instantiatedMonster.transform.position;
                         instantiatedMonster.transform.rotation = monster.instantiatedMonster.transform.rotation;
-                        instantiatedMonster.GetComponent<Monster>().target = monster.monsterScript.target;
+                        Monster scriptIns = instantiatedMonster.GetComponent<Monster>();
+                        scriptIns.target = monster.monsterScript.target;
+                        scriptIns.lifeBar.ShowStates(scriptIns.intStates, scriptIns.spriteStates);
+                        scriptIns.lifeBar.DesactivateStates(scriptIns.spriteStates.Count);
+
                     }
                     else
                     {
@@ -165,6 +169,7 @@ public class MonsterDrop : MonoBehaviour
                             instantiatedMonster = Instantiate(monsterSaved, monster.instantiatedMonster.transform.position + Vector3.up * 2, monster.transform.rotation);
                             Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                             runeManager.AddBuffs(scriptMonster);
+                            scriptMonster.lifeBar.DesactivateStates(0);
                         }                       
                     }              
                     isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
@@ -178,6 +183,8 @@ public class MonsterDrop : MonoBehaviour
                     monsterScript = scriptInstantiated;
                     monsterScript.valueI = monster.monsterScript.valueI;
                     monsterScript.UpdateBar();
+                    monsterScript.lifeBar.UpdateFill(monsterScript);
+
                     Debug.Log(monster.monsterScript);
                     foreach (var enemie in gameManager.enemieList)
                     {

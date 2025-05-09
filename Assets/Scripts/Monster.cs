@@ -84,8 +84,8 @@ public class Monster : MonoBehaviour
     public int magicIncreaseDefense;
     public int shieldIncrease;
 
-    private List<Sprite> spriteStates = new List<Sprite>();
-    private List<int> intStates = new List<int>();
+    public List<Sprite> spriteStates = new List<Sprite>();
+    public List<int> intStates = new List<int>();
     private List<int> intStatesEffects = new List<int>();
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
     public StatusEffect monsterEffect;
@@ -104,7 +104,7 @@ public class Monster : MonoBehaviour
         ReloadAttackToSkill();
         currentTimeRegeneration = regenerationTime;
         inUse = true;
-        agent = FindObjectOfType<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         maxExp = level * 50;
         agent.avoidancePriority = Random.Range(30, 60);
         gameManager = FindAnyObjectByType<GameManager>();
@@ -149,6 +149,10 @@ public class Monster : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if (agent == null)
+        {
+            Debug.Log("No encuentra el navMesh");
+        }
         objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
 
         if (gameManager.finish)
@@ -169,7 +173,8 @@ public class Monster : MonoBehaviour
                 {
                     enemieDistance = Vector3.Distance(transform.position, target.transform.position);
                 }
-                RotateTowardsTarget();
+               // RotateTowardsTarget();
+                
             }
             if (attackTime > 0)
             {
@@ -190,6 +195,7 @@ public class Monster : MonoBehaviour
             }
             if (healthFigth <= 0)
             {
+                agent.isStopped = true;
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
@@ -197,6 +203,22 @@ public class Monster : MonoBehaviour
                 if (!enemie)
                 {
                     gameManager.countMonsters--;
+                }
+            }
+            else
+            {
+                if (target != null && !agent.isStopped)
+                {
+                    if (enemieDistance > distanceAttack)
+                    {
+                        // Ir hacia el objetivo (automáticamente esquiva obstáculos)
+                        agent.SetDestination(target.transform.position);
+                    }
+                    else
+                    {
+                        // Ya está en rango de ataque, detener el agente
+                        agent.ResetPath(); // o agent.isStopped = true;
+                    }
                 }
             }
         }
@@ -244,12 +266,16 @@ public class Monster : MonoBehaviour
 
     protected virtual void Attack()
     {
-        if (distanceAttack < enemieDistance)
+        if (enemieDistance > distanceAttack)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speedMovement * Time.deltaTime);
+            // Ya no se usa MoveTowards
+            agent.SetDestination(target.transform.position);
         }
         else if (attackTime <= 0)
         {
+            Debug.Log("Se detiene");
+            agent.ResetPath(); // Detener el movimiento al atacar
+
             if (attacksToSkill > 0)
             {
                 BasicAttackDamage();
@@ -263,6 +289,7 @@ public class Monster : MonoBehaviour
                 circleAttacksToSkill.fillAmount = 0;
                 attackTime = 1 / speedAttack;
             }
+
             if (target.healthFigth <= 0)
             {
                 target.healthFigth = 0;
