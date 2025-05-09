@@ -35,6 +35,7 @@ public class Monster : MonoBehaviour
         Normal,
         Edge
     }
+    public Vector2Int rangeAttacksToSkill = new Vector2Int();
     public int hitAcumulation;
     public int hitToEffect;
     public typeSummon summonType;
@@ -67,6 +68,7 @@ public class Monster : MonoBehaviour
     public int valueI;
     public GameObject areaAttack;
     private Image circleAttacksToSkill;
+    private Collider targetCollider;
     private GameObject objCircleAttacks;
     public bool shieldActivated = false;
 
@@ -158,7 +160,15 @@ public class Monster : MonoBehaviour
             UpdateStatsEffects();
             if (target != null)
             {
-                enemieDistance = Vector3.Distance(transform.position, target.transform.position);
+                if (targetCollider != null)
+                {
+                    Vector3 closestPoint = targetCollider.ClosestPoint(transform.position);
+                    enemieDistance = Vector3.Distance(transform.position, closestPoint);
+                }
+                else
+                {
+                    enemieDistance = Vector3.Distance(transform.position, target.transform.position);
+                }
                 RotateTowardsTarget();
             }
             if (attackTime > 0)
@@ -180,10 +190,10 @@ public class Monster : MonoBehaviour
             }
             if (healthFigth <= 0)
             {
-                Debug.Log("Hola");
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
+                lifeBar.UpdateFill(this);
                 if (!enemie)
                 {
                     gameManager.countMonsters--;
@@ -224,13 +234,16 @@ public class Monster : MonoBehaviour
                 scriptTarget = _target.GetComponentInChildren<Monster>();
             }
         }
+        if (scriptTarget != null)
+        {
+            targetCollider = scriptTarget.GetComponentInChildren<Collider>();
+        }
 
         return scriptTarget;
     }
 
     protected virtual void Attack()
     {
-        //attacking = true;
         if (distanceAttack < enemieDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speedMovement * Time.deltaTime);
@@ -246,6 +259,7 @@ public class Monster : MonoBehaviour
             else
             {
                 ReloadAttackToSkill();
+                monsterSO.skill.ShootSkill(target);
                 circleAttacksToSkill.fillAmount = 0;
                 attackTime = 1 / speedAttack;
             }
@@ -393,7 +407,7 @@ public class Monster : MonoBehaviour
 
     private void ReloadAttackToSkill()
     {
-        attacksToSkill = Random.Range(4, 7);
+        attacksToSkill = Random.Range(rangeAttacksToSkill.x, rangeAttacksToSkill.y);
         attacksToSkill = Mathf.RoundToInt(attacksToSkill / decreasedCoolDown);
         totalAmountToSkill = 1f / (float)attacksToSkill;
     }
@@ -507,7 +521,7 @@ public class Monster : MonoBehaviour
     {  
         healthFigth -= damage;
         AttackScreenInfo(damage, this);
-        UpdateBar();
+        lifeBar.UpdateFill(this);
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena

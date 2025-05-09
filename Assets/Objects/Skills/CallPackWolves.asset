@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1419eb07df2ea4d8918912feeb3565, type: 3}
   m_Name: CallPackWolves
   m_EditorClassIdentifier: 
-  skillName: Gigant Wolf
-  prefabMiniWolf: {fileID: 0}
+  skillName: Call Pack Wolves
+  prefabMiniWolf: {fileID: 6855802019272620380, guid: a7bbd70c961b7f14d9abea0e87ee97ed, type: 3}

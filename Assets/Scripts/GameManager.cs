@@ -197,13 +197,17 @@ public class GameManager : MonoBehaviour
         int e = 0;
         foreach (var enemie in enemieList)
         {
-            lifeBarsEnemies[e].SetActive(true);
-            Monster script = enemie.GetComponent<Monster>();
-            lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
-            script.lifeBar = superiorBarEnemies[e];
-            script.shieldBar = shieldsEnemies[e];
-            levelEnemies[e].text = $"Lv.{script.level}";
-            e++;
+            Monster scriptMonster = enemie.GetComponent<Monster>();
+            if (scriptMonster.lifeBar == null)
+            {
+                lifeBarsEnemies[e].SetActive(true);
+                Monster script = enemie.GetComponent<Monster>();
+                lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
+                script.lifeBar = superiorBarEnemies[e];
+                script.shieldBar = shieldsEnemies[e];
+                levelEnemies[e].text = $"Lv.{script.level}";
+                e++;
+            }            
         }
         i = 0;
         foreach (var monster in inventory.monstersInventory)

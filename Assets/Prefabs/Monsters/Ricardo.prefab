@@ -2978,6 +2978,14 @@ PrefabInstance:
       propertyPath: monsterName
       value: Ricardo
       objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: rangeAttacksToSkill.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: rangeAttacksToSkill.y
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: Ricardo

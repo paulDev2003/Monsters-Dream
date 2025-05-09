@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a31c3c1d671274ab66b4798d85f6a5, type: 3}
-  m_Name: Gigant Wolf
+  m_Name: LittleWolf
   m_EditorClassIdentifier: 
-  monsterName: Gigant Wolf
-  health: 230
-  physicalDamage: 10
-  speedAttack: 1.5
-  defense: 10
-  evasion: 2
+  monsterName: Little Wolf
+  health: 6
+  physicalDamage: 12
+  speedAttack: 1
+  defense: 7
+  evasion: 0
   magicalDamage: 0
-  magicalDefense: 10
-  skill: {fileID: 11400000, guid: d3f326840cbce85498212e141be67957, type: 2}
-  levelUp: {fileID: 11400000, guid: 494d6dfeaf0c3da4d8b682d265826b24, type: 2}
+  magicalDefense: 7
+  skill: {fileID: 11400000, guid: 3ae2a22d4787daf479a57ab203ccfbbd, type: 2}
+  levelUp: {fileID: 11400000, guid: 3d3c0fa0c84ca384391e2704f5044840, type: 2}
   dropList:
   - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
   sprite: {fileID: 21300000, guid: 35328fbf3dde03240a93a6fa8f2b8e5b, type: 3}
-  expPerLevel: 100
-  moneyPerLevel: 40
+  expPerLevel: 0
+  moneyPerLevel: 0
