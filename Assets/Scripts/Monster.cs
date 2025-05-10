@@ -23,6 +23,7 @@ public class Monster : MonoBehaviour
     public UILifeBar lifeBar;
     public UIShieldBar shieldBar;
     public bool wasSpawned = false;
+    public bool boss = false;
     public enum typeDamage
     {
         Physical,
@@ -68,6 +69,7 @@ public class Monster : MonoBehaviour
     public int valueI;
     public GameObject areaAttack;
     private Image circleAttacksToSkill;
+    public Transform positionAttacksToSkill;
     private Collider targetCollider;
     private GameObject objCircleAttacks;
     public bool shieldActivated = false;
@@ -129,8 +131,17 @@ public class Monster : MonoBehaviour
 
     protected virtual void SetupUI()
     {
-        objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity,
+        if (positionAttacksToSkill == null)
+        {
+            objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity,
             gameManager.canvasWorld.transform);
+        }
+        else
+        {
+            objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, positionAttacksToSkill.position, Quaternion.identity,
+            gameManager.canvasWorld.transform);
+            Debug.Log("Se instancia en segundo");
+        }
         circleAttacksToSkill = objCircleAttacks.GetComponent<Image>();
         circleAttacksToSkill.fillAmount = 0;
     }
@@ -153,7 +164,14 @@ public class Monster : MonoBehaviour
         {
             Debug.Log("No encuentra el navMesh");
         }
-        objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
+        if (positionAttacksToSkill == null)
+        {
+            objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
+        }
+        else
+        {
+            objCircleAttacks.transform.position = positionAttacksToSkill.position;
+        }
 
         if (gameManager.finish)
         {
@@ -196,10 +214,16 @@ public class Monster : MonoBehaviour
             if (healthFigth <= 0)
             {
                 agent.isStopped = true;
+                agent.enabled = false;
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
                 lifeBar.UpdateFill(this);
+                if (!boss && enemie)
+                {
+                    Invoke("DesactivateMonster", 2.5f);
+                }
+                
                 if (!enemie)
                 {
                     gameManager.countMonsters--;
@@ -218,6 +242,7 @@ public class Monster : MonoBehaviour
                     {
                         // Ya está en rango de ataque, detener el agente
                         agent.ResetPath(); // o agent.isStopped = true;
+                        RotateTowardsTarget();
                     }
                 }
             }
@@ -549,6 +574,11 @@ public class Monster : MonoBehaviour
         healthFigth -= damage;
         AttackScreenInfo(damage, this);
         lifeBar.UpdateFill(this);
+    }
+
+    public void DesactivateMonster()
+    {
+        gameObject.SetActive(false);
     }
     //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
     //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena

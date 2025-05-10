@@ -30,6 +30,7 @@ public class SKCallPackWolves : SkillSO
                 owner.gameManager.lifeBarsEnemies[i].GetComponent<Image>().sprite = scriptWolf.monsterSO.sprite;
                 scriptWolf.lifeBar = owner.gameManager.superiorBarEnemies[i];
                 owner.gameManager.levelEnemies[i].text = $"Lv.{scriptWolf.level}";
+                scriptWolf.UpdateBar();
             }
         }    
     }

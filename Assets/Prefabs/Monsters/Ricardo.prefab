@@ -2979,6 +2979,10 @@ PrefabInstance:
       value: Ricardo
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: distanceAttack
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: rangeAttacksToSkill.x
       value: 11
       objectReference: {fileID: 0}
