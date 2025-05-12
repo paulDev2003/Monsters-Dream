@@ -20,6 +20,12 @@ public class MapGenerator : MonoBehaviour
     public Material lineMaterial;
 
     private List<List<Transform>> nodeGrid = new List<List<Transform>>();
+    public DungeonManager dungeonManager;
+
+    public RoomType beginType;
+    public RoomType bossType;
+    public RoomType figthType;
+    public List<RoomType> typeOptions;
 
     void Start()
     {
@@ -33,6 +39,9 @@ public class MapGenerator : MonoBehaviour
         // Nodo inicial (columna 0)
         List<Transform> startColumn = new List<Transform>();
         var startNode = Instantiate(nodePrefab, startPosition, Quaternion.identity, this.transform);
+        NodeRoom firstNode = startNode.GetComponent<NodeRoom>();
+        firstNode.roomType = beginType;
+        dungeonManager.currentNode = firstNode;
         startColumn.Add(startNode.transform);
         nodeGrid.Add(startColumn);
 
@@ -54,6 +63,16 @@ public class MapGenerator : MonoBehaviour
                 );
 
                 var node = Instantiate(nodePrefab, position, Quaternion.identity, this.transform);
+                NodeRoom nodeScript = node.GetComponent<NodeRoom>();
+                int randomNumber = Random.Range(1, 100);
+                if (randomNumber < 50)
+                {
+                    nodeScript.roomType = figthType;
+                }
+                else
+                {
+                    nodeScript.roomType = typeOptions[Random.Range(0, typeOptions.Count)];
+                }
                 columnNodes.Add(node.transform);
             }
 
@@ -92,11 +111,13 @@ public class MapGenerator : MonoBehaviour
 
             foreach (Transform fromNode in currentColumn)
             {
+                NodeRoom scriptNode = fromNode.GetComponent<NodeRoom>();
                 if (i == 0)
                 {
                     // Primer nodo conecta con todos
                     foreach (Transform toNode in nextColumn)
                     {
+                        scriptNode.outNodes.Add(toNode.GetComponent<NodeRoom>());
                         DrawLine(fromNode.position, toNode.position);
                         hasOutgoing[fromNode] = true;
                         hasIncoming[toNode] = true;
@@ -120,6 +141,7 @@ public class MapGenerator : MonoBehaviour
 
                     if (closest != null)
                     {
+                        scriptNode.outNodes.Add(closest.GetComponent<NodeRoom>());
                         DrawLine(fromNode.position, closest.position);
                         hasOutgoing[fromNode] = true;
                         hasIncoming[closest] = true;
@@ -147,6 +169,8 @@ public class MapGenerator : MonoBehaviour
 
                     if (closest != null)
                     {
+                        NodeRoom scriptNodeIn = closest.GetComponent<NodeRoom>();
+                        scriptNodeIn.outNodes.Add(toNode.GetComponent<NodeRoom>());
                         DrawLine(closest.position, toNode.position);
                         hasOutgoing[closest] = true;
                         hasIncoming[toNode] = true;
@@ -157,6 +181,7 @@ public class MapGenerator : MonoBehaviour
             // Asegurar que todos los nodos actuales tengan salida
             foreach (Transform fromNode in currentColumn)
             {
+                NodeRoom nodeScript = fromNode.GetComponent<NodeRoom>();
                 if (!hasOutgoing[fromNode])
                 {
                     Transform closest = null;
@@ -174,6 +199,7 @@ public class MapGenerator : MonoBehaviour
 
                     if (closest != null)
                     {
+                        nodeScript.outNodes.Add(closest.GetComponent<NodeRoom>());
                         DrawLine(fromNode.position, closest.position);
                         hasOutgoing[fromNode] = true;
                         hasIncoming[closest] = true;
@@ -181,6 +207,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+        dungeonManager.EnableRooms();
     }
 
     private void DrawLine(Vector3 start, Vector3 end)

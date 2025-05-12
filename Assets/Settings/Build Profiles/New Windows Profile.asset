@@ -27,7 +27,17 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/FigthStance.unity
   - m_enabled: 1
-    m_path: Assets/Scenes/IntermediateScene.unity
+    m_path: Assets/Scenes/DungeonFloor.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/ChestStance.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/BossStance.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/HealthStance.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/MiniBossStance.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/ShopStance.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings: []
