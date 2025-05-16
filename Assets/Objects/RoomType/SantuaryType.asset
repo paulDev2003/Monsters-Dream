@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SantuaryType
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: a2d8353e4f1e17242bbc89a73225d02d, type: 3}
+  spriteScale: {x: 0.15, y: 0.15, z: 1}
   sceneAsset: {fileID: 102900000, guid: ea3d6d2fe446c104eb435652eef04f0a, type: 3}

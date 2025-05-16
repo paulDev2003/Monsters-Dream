@@ -73,6 +73,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     nodeScript.roomType = typeOptions[Random.Range(0, typeOptions.Count)];
                 }
+                nodeScript.ShowSpriteRoom();
                 columnNodes.Add(node.transform);
             }
 
@@ -87,6 +88,9 @@ public class MapGenerator : MonoBehaviour
         );
         List<Transform> finalColumn = new List<Transform>();
         var bossNode = Instantiate(nodePrefab, finalPosition, Quaternion.identity, this.transform);
+        NodeRoom scriptBossRoom = bossNode.GetComponent<NodeRoom>();
+        scriptBossRoom.roomType = bossType;
+        scriptBossRoom.ShowSpriteRoom();
         finalColumn.Add(bossNode.transform);
         nodeGrid.Add(finalColumn);
 

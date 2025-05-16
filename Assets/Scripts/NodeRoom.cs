@@ -6,6 +6,8 @@ public class NodeRoom : MonoBehaviour
     public List<NodeRoom> outNodes = new List<NodeRoom>();
     public bool canChoose = false;
     public RoomType roomType;
+    public GameObject sonSprite;
+
 
     public void SelectRoom()
     {
@@ -20,5 +22,11 @@ public class NodeRoom : MonoBehaviour
     private void OnMouseDown()
     {
         SelectRoom();
+    }
+
+    public void ShowSpriteRoom()
+    {
+        sonSprite.transform.localScale = roomType.spriteScale;
+        sonSprite.GetComponent<SpriteRenderer>().sprite = roomType.sprite;        
     }
 }
