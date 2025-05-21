@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class MonsterDrop : MonoBehaviour
 {
+    public int valueI;
     public float timeCooldown;
     public float currentTimeCooldown;
     public bool available = true;
@@ -25,16 +26,15 @@ public class MonsterDrop : MonoBehaviour
     private bool wasDown = false;
     private bool markInstantiated = false;
     public MonsterData monsterData;
-    public Image circleCooldown;
+    public Image imgCooldown;
 
     private void Start()
     {
-        currentTimeCooldown = timeCooldown;
         gameManager = FindAnyObjectByType<GameManager>();
         runeManager = FindAnyObjectByType<ManagerRunes>();
         if (monsterSaved !=null)
         {
-            circleCooldown.enabled = true;
+            imgCooldown.enabled = true;
             if (!isUsed)
             {
                 monsterScript = monsterSaved.GetComponent<Monster>();
@@ -46,10 +46,10 @@ public class MonsterDrop : MonoBehaviour
 
     void Update()
     {
-        if (currentTimeCooldown < timeCooldown)
+        if (currentTimeCooldown > 0)
         {
-            currentTimeCooldown += Time.deltaTime;
-            circleCooldown.fillAmount = currentTimeCooldown / timeCooldown;
+            currentTimeCooldown -= Time.deltaTime;
+            imgCooldown.fillAmount = currentTimeCooldown / timeCooldown;
             available = false;
         }
         else
@@ -111,7 +111,7 @@ public class MonsterDrop : MonoBehaviour
                         gameManager.friendsList.Remove(gameManager.monsterSelected);
                         gameManager.monsterSelected = null;
                         Destroy(gameManager.selectorActive.gameObject);
-                        gameManager.lifeBarsFriends[monsterScript.valueI].SetActive(false);
+                        //gameManager.lifeBarsFriends[monsterScript.valueI].SetActive(false);
                         scriptEnemie.target = scriptEnemie.ChooseTarget(scriptEnemie.oppositeList);
                         wasChanged = true;
                         isUsed = false;
@@ -146,10 +146,8 @@ public class MonsterDrop : MonoBehaviour
                     monster.isUsed = false;
                     monster.healthReserve = monster.monsterScript.healthFigth;
                     monster.wasChanged = true;
-                    gameManager.lifeBarsFriends[monster.monsterScript.valueI].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
-                    monsterScript.lifeBar = gameManager.superiorBarFriends[monster.monsterScript.valueI];
-                    monsterScript.shieldBar = gameManager.shieldsFriends[monster.monsterScript.valueI];
-                    gameManager.levelFriends[monster.monsterScript.valueI].text = $"Lv.{monsterData.level}";
+                    monsterScript.lifeBar = gameManager.superiorBarFriends[valueI];
+                    monsterScript.shieldBar = gameManager.shieldsFriends[valueI];
                     monster.ResetCooldown();
                     if (wasChanged)
                     {
@@ -158,8 +156,8 @@ public class MonsterDrop : MonoBehaviour
                         instantiatedMonster.transform.rotation = monster.instantiatedMonster.transform.rotation;
                         Monster scriptIns = instantiatedMonster.GetComponent<Monster>();
                         scriptIns.target = monster.monsterScript.target;
-                        scriptIns.lifeBar.ShowStates(scriptIns.intStates, scriptIns.spriteStates);
-                        scriptIns.lifeBar.DesactivateStates(scriptIns.spriteStates.Count);
+                        //scriptIns.lifeBar.ShowStates(scriptIns.intStates, scriptIns.spriteStates);
+                        //scriptIns.lifeBar.DesactivateStates(scriptIns.spriteStates.Count);
 
                     }
                     else
@@ -169,7 +167,7 @@ public class MonsterDrop : MonoBehaviour
                             instantiatedMonster = Instantiate(monsterSaved, monster.instantiatedMonster.transform.position + Vector3.up * 2, monster.transform.rotation);
                             Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                             runeManager.AddBuffs(scriptMonster);
-                            scriptMonster.lifeBar.DesactivateStates(0);
+                            //scriptMonster.lifeBar.DesactivateStates(0);
                         }                       
                     }              
                     isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
@@ -181,9 +179,9 @@ public class MonsterDrop : MonoBehaviour
                     gameManager.monsterSelected = null;
                     Monster scriptInstantiated = instantiatedMonster.GetComponent<Monster>();
                     monsterScript = scriptInstantiated;
-                    monsterScript.valueI = monster.monsterScript.valueI;
-                    monsterScript.UpdateBar();
-                    monsterScript.lifeBar.UpdateFill(monsterScript);
+                  //  monsterScript.valueI = monster.monsterScript.valueI;
+                  //  monsterScript.UpdateBar();
+                 //   monsterScript.lifeBar.UpdateFill(monsterScript);
 
                     Debug.Log(monster.monsterScript);
                     foreach (var enemie in gameManager.enemieList)
@@ -245,22 +243,16 @@ public class MonsterDrop : MonoBehaviour
                 }
                 isUsed = true;
                 gameManager.friendsList.Add(instantiatedMonster);
-                int i = 0;
                 foreach (var list in gameManager.lifeBarsFriends)
                 {
                     if (list.activeSelf == false)
                     {
-                        gameManager.lifeBarsFriends[i].SetActive(true);
-                        gameManager.lifeBarsFriends[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
                         Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
-                        scriptMonster.lifeBar = gameManager.superiorBarFriends[i];
-                        scriptMonster.shieldBar = gameManager.shieldsFriends[i];
-                        gameManager.levelFriends[i].text = $"Lv.{monsterData.level}";
-                        monsterScript.valueI = i;
+                        scriptMonster.lifeBar = gameManager.superiorBarFriends[valueI];
+                        scriptMonster.shieldBar = gameManager.shieldsFriends[valueI];
                         runeManager.AddBuffs(scriptMonster);
                         return;
                     }
-                    i++;
                 }
             }
             
@@ -292,13 +284,13 @@ public class MonsterDrop : MonoBehaviour
     {
         if (monsterSaved != null)
         {
-            if (monsterScript.inUse)
+            if (isUsed)
             {
                 isUsed = true;
-                instantiatedMonster = monsterScript.gameObject;
+                monsterScript = instantiatedMonster.GetComponent<Monster>();
             }
         }
-        
+
     }
 
     private void RangeArea()
@@ -371,7 +363,7 @@ public class MonsterDrop : MonoBehaviour
     private void ResetCooldown()
     {
         available = false;
-        circleCooldown.fillAmount = 0;
-        currentTimeCooldown = 0;
+        imgCooldown.fillAmount = 1;
+        currentTimeCooldown = timeCooldown;
     }
 }

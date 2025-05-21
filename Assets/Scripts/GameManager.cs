@@ -181,17 +181,44 @@ public class GameManager : MonoBehaviour
         panelMonsters.SetActive(true);
         inventory = FindAnyObjectByType<Inventory>();
         int i = 0;
-        foreach (var friend in friendsList)
+        foreach (var monster in inventory.monstersInventory)
         {
             lifeBarsFriends[i].SetActive(true);
-            Monster script = friend.GetComponent<Monster>();
-            script.valueI = i;
-            lifeBarsFriends[i].GetComponent<Image>().sprite = script.monsterSO.sprite;
-            script.lifeBar = superiorBarFriends[i];
-            script.shieldBar = shieldsFriends[i];
-            //superiorBarFriends[i].UpdateFill(script);
-            levelFriends[i].text = $"Lv.{script.level}";
+            monsterPanel[i].enabled = true;
+            Monster monsterComponent = monster.GetComponent<Monster>();
+            lifeBarsFriends[i].GetComponent<Image>().sprite = monsterComponent.monsterSO.sprite;
+            monsterDrop[i].monsterSaved = monster;
+            monsterDrop[i].valueI = i;
+            
+            foreach (var monsterPrefab in friendsList)
+            {
+                Monster monsterScript = monsterPrefab.GetComponent<Monster>();
+                if (monsterScript.monsterName == monsterComponent.monsterName)
+                {
+                    monsterDrop[i].instantiatedMonster = monsterPrefab;
+                    monsterDrop[i].monsterScript = monsterScript;
+                    monsterScript.lifeBar = superiorBarFriends[i];
+                    monsterScript.shieldBar = shieldsFriends[i];
+                }
+            }
+            foreach (var monsterData in dungeonTeam.allMonsters)
+            {
+                levelFriends[i].text = $"Lv.{monsterData.level}";
+                if (monsterData.monsterName == monsterComponent.monsterName)
+                {
+                    monsterComponent.monsterData = monsterData;
+                    monsterDrop[i].monsterData = monsterData;
+                    if (monsterData.isStarter)
+                    {
+                        monsterDrop[i].isUsed = true;
+                    }
+                }
+            }
             i++;
+        }
+        i = 0;
+        foreach (var friend in friendsList)
+        {
             countMonsters++;
         }
         int e = 0;
@@ -209,35 +236,7 @@ public class GameManager : MonoBehaviour
                 e++;
             }            
         }
-        i = 0;
-        foreach (var monster in inventory.monstersInventory)
-        {
-            monsterPanel[i].enabled = true;
-            Monster monsterComponent = monster.GetComponent<Monster>();
-            monsterPanel[i].sprite = monsterComponent.monsterSO.sprite;
-            monsterDrop[i].monsterSaved = monster;
-            foreach (var monsterPrefab in friendsList)
-            {
-                Monster monsterScript = monsterPrefab.GetComponent<Monster>();
-                if (monsterScript.monsterName == monsterComponent.monsterName)
-                {
-                    monsterDrop[i].instantiatedMonster = monsterPrefab;
-                }
-            }
-            foreach (var monsterData in dungeonTeam.allMonsters)
-            {
-                if (monsterData.monsterName == monsterComponent.monsterName)
-                {
-                    monsterComponent.monsterData = monsterData;
-                    monsterDrop[i].monsterData = monsterData;
-                    if (monsterData.isStarter)
-                    {
-                        monsterDrop[i].isUsed = true;
-                    }
-                }
-            }
-            i++;
-        }
+        
     }
 
     public void ShowExperience()
