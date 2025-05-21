@@ -3517,6 +3517,10 @@ PrefabInstance:
       propertyPath: runesManager
       value: 
       objectReference: {fileID: 1681861895}
+    - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 8a571af48e6efe941958cb0be29537a8, type: 3}
     - target: {fileID: 3428486458210989937, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_IsActive
       value: 0

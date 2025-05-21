@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: cc4293ed2d3bc2a41ba31efee9ebaa8e, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: de5a9dbccd839284c88b9dce71b6791a, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1420760597
 Transform:
@@ -2737,6 +2737,10 @@ PrefabInstance:
       propertyPath: runesManager
       value: 
       objectReference: {fileID: 1681861895}
+    - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 8a571af48e6efe941958cb0be29537a8, type: 3}
     - target: {fileID: 3852067099200885011, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

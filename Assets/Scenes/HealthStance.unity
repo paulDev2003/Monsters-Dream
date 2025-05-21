@@ -2703,6 +2703,7 @@ MonoBehaviour:
   runePanel: {fileID: 701104101}
   runeSelected: {fileID: 0}
   allRunes: []
+  allUpgrades: []
   prefabsRunes: []
   friendList: []
   isFigth: 0
@@ -2714,7 +2715,9 @@ MonoBehaviour:
   levelRunes: {x: 0, y: 0}
   btnNextRoom: {fileID: 0}
   runeDataBase: {fileID: 11400000, guid: 2a44045d20c9fad42b37521fc03107c6, type: 2}
+  upgradeDataBase: {fileID: 0}
   runesDungeon: []
+  upgradesDungeon: []
   prefabInfo: {fileID: 0}
   txtNamePrefab: {fileID: 0}
   txtInfoPrefab: {fileID: 0}
@@ -3034,6 +3037,7 @@ MonoBehaviour:
     monstersHouse: []
     monstersDungeon: []
     runesDungeon: []
+    upgradesDungeon: []
   itemDataBaseSO: {fileID: 11400000, guid: 571e50af525288b47a17c18ebaf383d7, type: 2}
   monsterDataBase: {fileID: 11400000, guid: 31ab954846213a948a7b95f6857efe7a, type: 2}
   runeDataBase: {fileID: 11400000, guid: 2a44045d20c9fad42b37521fc03107c6, type: 2}
@@ -3755,7 +3759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 2b5c12014c0618740bc36bde2bae1653, type: 3}
+  sceneAsset: {fileID: 102900000, guid: 8a571af48e6efe941958cb0be29537a8, type: 3}
 --- !u!114 &1890308896
 MonoBehaviour:
   m_ObjectHideFlags: 0

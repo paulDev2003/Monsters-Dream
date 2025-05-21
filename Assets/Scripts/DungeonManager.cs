@@ -7,6 +7,12 @@ public class DungeonManager : MonoBehaviour
     public NodeRoom selectedRoom;
     public Color selectedColor;
     public Color normalColor;
+    public Color currentRoomColor;
+
+    private void Start()
+    {
+        currentNode.GetComponent<SpriteRenderer>().color = currentRoomColor;
+    }
 
     public void SelectRoom(NodeRoom selectedNode)
     {

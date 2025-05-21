@@ -3222,7 +3222,9 @@ MonoBehaviour:
   lifeBar: {fileID: 1353337704}
   shieldBar: {fileID: 0}
   wasSpawned: 0
+  boss: 0
   damageType: 0
+  rangeAttacksToSkill: {x: 0, y: 0}
   hitAcumulation: 0
   hitToEffect: 0
   summonType: 0
@@ -3241,6 +3243,7 @@ MonoBehaviour:
   ownList: []
   valueI: 0
   areaAttack: {fileID: 0}
+  positionAttacksToSkill: {fileID: 0}
   shieldActivated: 0
   damageBuff: 0
   basicDamageBuff: 0
@@ -3252,6 +3255,8 @@ MonoBehaviour:
   physicIncreaseDefense: 0
   magicIncreaseDefense: 0
   shieldIncrease: 0
+  spriteStates: []
+  intStates: 
   activeEffects: []
   monsterEffect: {fileID: 0}
 --- !u!1 &1681861894
@@ -3745,6 +3750,10 @@ PrefabInstance:
       propertyPath: runesManager
       value: 
       objectReference: {fileID: 1681861895}
+    - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 8a571af48e6efe941958cb0be29537a8, type: 3}
     - target: {fileID: 3428486458210989937, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_IsActive
       value: 0

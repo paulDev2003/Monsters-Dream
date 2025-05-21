@@ -744,6 +744,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f294ddd66c2c3044995a559906052d6, type: 2}
   - {fileID: 11400000, guid: ca5cd87578bc3e1438d894565894449c, type: 2}
   - {fileID: 11400000, guid: 090619f136ca7344ab2ff78b8ba9e25f, type: 2}
+  allRoomTypes:
+  - {fileID: 11400000, guid: 2906b5dfc06f68a4f9178588db53ae89, type: 2}
+  - {fileID: 11400000, guid: f7cad2d9410e70443a3697eef35af700, type: 2}
+  - {fileID: 11400000, guid: ca5cd87578bc3e1438d894565894449c, type: 2}
+  - {fileID: 11400000, guid: 258f0b07fd9ce0c46bf9984b4e921278, type: 2}
+  - {fileID: 11400000, guid: 5f294ddd66c2c3044995a559906052d6, type: 2}
+  - {fileID: 11400000, guid: 45524da58c242444ea4117e9976a6fd2, type: 2}
+  - {fileID: 11400000, guid: 090619f136ca7344ab2ff78b8ba9e25f, type: 2}
 --- !u!4 &842043534
 Transform:
   m_ObjectHideFlags: 0
@@ -1420,6 +1428,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 842043533}
+        m_TargetAssemblyTypeName: MapGenerator, Assembly-CSharp
+        m_MethodName: SaveGeneratedMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1925282919}
         m_TargetAssemblyTypeName: DungeonManager, Assembly-CSharp
         m_MethodName: LoadScene
@@ -1503,6 +1523,7 @@ MonoBehaviour:
   selectedRoom: {fileID: 0}
   selectedColor: {r: 1, g: 0.50789076, b: 0.033018887, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+  currentRoomColor: {r: 0.90289295, g: 1, b: 0, a: 1}
 --- !u!4 &1925282920
 Transform:
   m_ObjectHideFlags: 0

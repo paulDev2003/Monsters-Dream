@@ -27,11 +27,20 @@ public class MapGenerator : MonoBehaviour
     public RoomType figthType;
     public List<RoomType> typeOptions;
 
+    public List<RoomType> allRoomTypes;
+
     void Start()
     {
-        GenerateMap();
+        MapData mapData = MapSaveSystem.LoadMap();
+        if (PlayerPrefs.GetInt("MapGenerated") == 0)
+        {
+            GenerateMap();
+        }
+        else if(mapData != null)
+        {
+            LoadMapFromData(mapData);
+        }
     }
-
     void GenerateMap()
     {
         nodeGrid.Clear();
@@ -95,6 +104,7 @@ public class MapGenerator : MonoBehaviour
         nodeGrid.Add(finalColumn);
 
         ConnectNodes();
+        PlayerPrefs.SetInt("MapGenerated", 1);
     }
 
     private void ConnectNodes()
@@ -227,5 +237,104 @@ public class MapGenerator : MonoBehaviour
         lr.startWidth = 0.1f;
         lr.endWidth = 0.1f;
         lr.sortingOrder = -1; // behind nodes
+    }
+
+    public void SaveGeneratedMap()
+    {
+        MapData mapData = new MapData();
+        int id = 0;
+        Dictionary<Transform, int> nodeToId = new Dictionary<Transform, int>();
+
+        foreach (var column in nodeGrid)
+        {
+            foreach (var node in column)
+            {
+                NodeRoom nr = node.GetComponent<NodeRoom>();
+                var data = new NodeData
+                {
+                    id = id,
+                    position = node.position,
+                    roomType = nr.roomType.name
+                };
+
+                nodeToId[node] = id;
+                mapData.allNodes.Add(data);
+                id++;
+            }
+        }
+
+        // Agrega las conexiones
+        for (int i = 0; i < nodeGrid.Count; i++)
+        {
+            foreach (Transform node in nodeGrid[i])
+            {
+                NodeRoom nr = node.GetComponent<NodeRoom>();
+                NodeData nodeData = mapData.allNodes[nodeToId[node]];
+
+                foreach (NodeRoom connected in nr.outNodes)
+                {
+                    Transform target = connected.transform;
+                    nodeData.connectedNodeIds.Add(nodeToId[target]);
+                }
+            }
+        }
+
+        // Nodo actual del jugador
+        mapData.currentNodeId = nodeToId[dungeonManager.selectedRoom.transform];
+
+        MapSaveSystem.SaveMap(mapData);
+    }
+
+    void LoadMapFromData(MapData data)
+    {
+        nodeGrid.Clear();
+        Dictionary<int, Transform> idToNode = new Dictionary<int, Transform>();
+        Dictionary<int, NodeRoom> idToScript = new Dictionary<int, NodeRoom>();
+
+        foreach (var nodeData in data.allNodes)
+        {
+            var node = Instantiate(nodePrefab, nodeData.position, Quaternion.identity, this.transform);
+            var script = node.GetComponent<NodeRoom>();
+            script.roomType = GetRoomTypeByName(nodeData.roomType);
+            script.ShowSpriteRoom();
+
+            idToNode[nodeData.id] = node.transform;
+            idToScript[nodeData.id] = script;
+
+            // Agrupar por columnas según posición X
+            int columnIndex = Mathf.RoundToInt((nodeData.position.x - startPosition.x) / horizontalSpacing);
+            while (nodeGrid.Count <= columnIndex)
+                nodeGrid.Add(new List<Transform>());
+
+            nodeGrid[columnIndex].Add(node.transform);
+        }
+
+        // Conexiones
+        foreach (var nodeData in data.allNodes)
+        {
+            var script = idToScript[nodeData.id];
+            foreach (int targetId in nodeData.connectedNodeIds)
+            {
+                script.outNodes.Add(idToScript[targetId]);
+                DrawLine(idToNode[nodeData.id].position, idToNode[targetId].position);
+            }
+        }
+
+        // Nodo actual del jugador
+        dungeonManager.currentNode = idToScript[data.currentNodeId];
+        dungeonManager.EnableRooms();
+    }
+
+    private RoomType GetRoomTypeByName(string name)
+    {
+        RoomType targetRoom = null;
+        foreach (var room in allRoomTypes)
+        {
+            if (room.name == name)
+            {
+                targetRoom = room;
+            }
+        }
+        return targetRoom;
     }
 }
