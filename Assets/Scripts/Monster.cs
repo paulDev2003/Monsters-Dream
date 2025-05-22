@@ -70,7 +70,7 @@ public class Monster : MonoBehaviour
     public GameObject areaAttack;
     private Image circleAttacksToSkill;
     public Transform positionAttacksToSkill;
-    private Collider targetCollider;
+    public Collider targetCollider;
     private GameObject objCircleAttacks;
     public bool shieldActivated = false;
 
@@ -289,6 +289,28 @@ public class Monster : MonoBehaviour
         return scriptTarget;
     }
 
+    public Monster ChooseTarget(GameObject target)
+    {
+        Debug.Log("ChooseTarget");
+        GameObject _target = target;
+        
+        
+        Monster scriptTarget = null;
+
+        scriptTarget = _target.GetComponent<Monster>();
+        if (scriptTarget == null)
+        {
+            scriptTarget = _target.GetComponentInChildren<Monster>();
+        }
+        
+        if (scriptTarget != null)
+        {
+            targetCollider = scriptTarget.GetComponentInChildren<Collider>();
+        }
+
+        return scriptTarget;
+    }
+
     protected virtual void Attack()
     {
         if (enemieDistance > distanceAttack)
@@ -360,7 +382,7 @@ public class Monster : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    public void AttackScreenInfo(float damage, Monster monsterDamaged)
+    public void AttackScreenInfo(float damage, GameObject monsterDamaged)
     {
         GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, monsterDamaged.transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
         TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
@@ -423,6 +445,15 @@ public class Monster : MonoBehaviour
         if (!enemie)
         {
             gameManager.ChangeSelector(this.gameObject);
+        }
+    }
+
+    public void ChangeToTarget()
+    {
+        if (enemie && gameManager.monsterSelected != null)
+        {
+            Monster friendMonster = gameManager.monsterSelected.GetComponent<Monster>();
+            friendMonster.target = friendMonster.ChooseTarget(gameObject);
         }
     }
 
@@ -565,14 +596,14 @@ public class Monster : MonoBehaviour
         {
             healthFigth -= damage;
         }
-        AttackScreenInfo(damage, this);
+        AttackScreenInfo(damage, gameObject);
         UpdateBar();
     }
 
     public void TakeDamageHealth(int damage)
     {  
         healthFigth -= damage;
-        AttackScreenInfo(damage, this);
+        AttackScreenInfo(damage, gameObject);
         lifeBar.UpdateFill(this);
     }
 

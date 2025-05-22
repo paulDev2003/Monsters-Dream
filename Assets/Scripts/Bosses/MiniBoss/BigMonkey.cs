@@ -29,6 +29,7 @@ public class BigMonkey : Monster
         // El minijefe no ataca normalmente
     }
 
+
     public void IncreaseDistanceAttackFriends()
     {
         foreach (var monster in gameManager.friendsList)

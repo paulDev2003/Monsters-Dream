@@ -203,9 +203,10 @@ public class GameManager : MonoBehaviour
             }
             foreach (var monsterData in dungeonTeam.allMonsters)
             {
-                levelFriends[i].text = $"Lv.{monsterData.level}";
+                
                 if (monsterData.monsterName == monsterComponent.monsterName)
                 {
+                    levelFriends[i].text = $"Lv.{monsterData.level}";
                     monsterComponent.monsterData = monsterData;
                     monsterDrop[i].monsterData = monsterData;
                     if (monsterData.isStarter)
