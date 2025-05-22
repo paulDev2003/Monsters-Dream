@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: StrongHit
   m_EditorClassIdentifier: 
   skillName: Strong Hit
+  sprite: {fileID: 21300000, guid: 0217ed0c98b8b5e49bba4a2aa4f18a6f, type: 3}
+  attackMultiplier: 2

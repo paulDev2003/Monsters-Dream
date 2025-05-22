@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class SkillSO : ScriptableObject
 {
     public string skillName;
+    public Sprite sprite;
 
     public abstract void ShootSkill(Monster owner);
 }

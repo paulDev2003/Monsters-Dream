@@ -96,9 +96,15 @@ public class MonsterDrop : MonoBehaviour
             if (gameManager.countMonsters > 1)
             {
                 instantiatedMonster.SetActive(false);
+                wasChanged = true;
+                isUsed = false;
+                backNow = true;
+                gameManager.countMonsters--;
+                gameManager.attacksPanel[monsterScript.valueI].enabled = false;
+                ResetCooldown(monsterScript.valueI);
+                Destroy(gameManager.selectorActive.gameObject);
                 foreach (var enemie in gameManager.enemieList)
                 {
-                    Debug.Log("Encuentra al igual");
                     Monster scriptEnemie = enemie.GetComponent<Monster>();
                     if (scriptEnemie == null)
                     {
@@ -109,15 +115,11 @@ public class MonsterDrop : MonoBehaviour
 
                         Debug.Log("cambia el target");                       
                         gameManager.friendsList.Remove(gameManager.monsterSelected);
+
                         gameManager.monsterSelected = null;
-                        Destroy(gameManager.selectorActive.gameObject);
-                        //gameManager.lifeBarsFriends[monsterScript.valueI].SetActive(false);
+                        
                         scriptEnemie.target = scriptEnemie.ChooseTarget(scriptEnemie.oppositeList);
-                        wasChanged = true;
-                        isUsed = false;
-                        backNow = true;
-                        gameManager.countMonsters--;
-                        ResetCooldown();
+                        
                     }
                 }
             }
@@ -148,7 +150,8 @@ public class MonsterDrop : MonoBehaviour
                     monster.wasChanged = true;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[valueI];
                     monsterScript.shieldBar = gameManager.shieldsFriends[valueI];
-                    monster.ResetCooldown();
+                    gameManager.attacksPanel[monster.monsterScript.valueI].targetImage.sprite = monsterScript.monsterSO.skill.sprite;
+                    monster.ResetCooldown(monster.monsterScript.valueI);
                     if (wasChanged)
                     {
                         instantiatedMonster.SetActive(true);
@@ -156,9 +159,6 @@ public class MonsterDrop : MonoBehaviour
                         instantiatedMonster.transform.rotation = monster.instantiatedMonster.transform.rotation;
                         Monster scriptIns = instantiatedMonster.GetComponent<Monster>();
                         scriptIns.target = monster.monsterScript.target;
-                        //scriptIns.lifeBar.ShowStates(scriptIns.intStates, scriptIns.spriteStates);
-                        //scriptIns.lifeBar.DesactivateStates(scriptIns.spriteStates.Count);
-
                     }
                     else
                     {
@@ -167,7 +167,6 @@ public class MonsterDrop : MonoBehaviour
                             instantiatedMonster = Instantiate(monsterSaved, monster.instantiatedMonster.transform.position + Vector3.up * 2, monster.transform.rotation);
                             Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                             runeManager.AddBuffs(scriptMonster);
-                            //scriptMonster.lifeBar.DesactivateStates(0);
                         }                       
                     }              
                     isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
@@ -203,7 +202,6 @@ public class MonsterDrop : MonoBehaviour
 
     void SpawnMonster()
     {
-        Debug.Log("Entra spanwMonster");
         saveMonsterMarked = null;
         bool isOnButton = IsPointerOverButton();
         if (isOnButton)
@@ -231,9 +229,9 @@ public class MonsterDrop : MonoBehaviour
                 if (!wasChanged)
                 {
                     instantiatedMonster = Instantiate(monsterSaved, hit.point + Vector3.up * 2, Quaternion.identity);
-                    Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
-                    scriptMonster.exp = scriptMonster.monsterData.currentXP;
-                    scriptMonster.level = scriptMonster.monsterData.level;
+                    Monster scriptSummon = instantiatedMonster.GetComponent<Monster>();
+                    scriptSummon.exp = scriptSummon.monsterData.currentXP;
+                    scriptSummon.level = scriptSummon.monsterData.level;
                     
                 }
                 else
@@ -243,15 +241,16 @@ public class MonsterDrop : MonoBehaviour
                 }
                 isUsed = true;
                 gameManager.friendsList.Add(instantiatedMonster);
-                foreach (var list in gameManager.lifeBarsFriends)
+                Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
+                scriptMonster.lifeBar = gameManager.superiorBarFriends[valueI];
+                scriptMonster.shieldBar = gameManager.shieldsFriends[valueI];
+                runeManager.AddBuffs(scriptMonster);
+                foreach (var attack in gameManager.attacksPanel)
                 {
-                    if (list.activeSelf == false)
+                    if (attack.targetImage.enabled == false)
                     {
-                        Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
-                        scriptMonster.lifeBar = gameManager.superiorBarFriends[valueI];
-                        scriptMonster.shieldBar = gameManager.shieldsFriends[valueI];
-                        runeManager.AddBuffs(scriptMonster);
-                        return;
+                        attack.targetImage.enabled = true;
+                        attack.targetImage.sprite = scriptMonster.monsterSO.skill.sprite;
                     }
                 }
             }
@@ -360,10 +359,11 @@ public class MonsterDrop : MonoBehaviour
         saveMonsterMarked = monsterSelected;
     }
 
-    private void ResetCooldown()
+    private void ResetCooldown(int i)
     {
         available = false;
         imgCooldown.fillAmount = 1;
         currentTimeCooldown = timeCooldown;
+        gameManager.attacksPanel[i].cooldownImage.fillAmount = 0;
     }
 }

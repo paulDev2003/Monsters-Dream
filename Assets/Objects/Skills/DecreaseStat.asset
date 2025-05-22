@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DecreaseStat
   m_EditorClassIdentifier: 
   skillName: Slow All
-  statToIncrease: 2
+  sprite: {fileID: 21300000, guid: 7d793c663453ae04bb0f25f9762fe76c, type: 3}
+  statToDecrease: 0
   decreaseAmount: 0.2

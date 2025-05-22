@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public List<UILifeBar> superiorBarEnemies = new List<UILifeBar>();
     public List<UIShieldBar> shieldsEnemies = new List<UIShieldBar>();
     public List<TextMeshProUGUI> levelEnemies = new List<TextMeshProUGUI>();
-    public List<Image> monsterPanel = new List<Image>();
+    public List<SkillDrop> attacksPanel = new List<SkillDrop>();
     public List<MonsterDrop> monsterDrop = new List<MonsterDrop>();
     public List<ExperiencePanel> experienceList = new List<ExperiencePanel>();
     public GameObject selector;
@@ -104,9 +104,17 @@ public class GameManager : MonoBehaviour
                 scriptMonster.enemie = false;
                 scriptMonster.level = monster.level;
                 scriptMonster.monsterData = monster;
-                scriptMonster.wasSpawned = true;         
+                scriptMonster.wasSpawned = true;
+                scriptMonster.valueI = e;
                 friendsMonsters.Add(scriptMonster);
                 friendsList.Add(friendSpawned);
+                scriptMonster.skillDrop = attacksPanel[e];
+                attacksPanel[e].skill = scriptMonster.monsterSO.skill;
+                attacksPanel[e].targetImage.enabled = true;               
+                if (scriptMonster.monsterSO.skill.sprite != null)
+                {
+                    attacksPanel[e].targetImage.sprite = scriptMonster.monsterSO.skill.sprite;
+                }
                 e++;
             }
         }
@@ -184,7 +192,6 @@ public class GameManager : MonoBehaviour
         foreach (var monster in inventory.monstersInventory)
         {
             lifeBarsFriends[i].SetActive(true);
-            monsterPanel[i].enabled = true;
             Monster monsterComponent = monster.GetComponent<Monster>();
             lifeBarsFriends[i].GetComponent<Image>().sprite = monsterComponent.monsterSO.sprite;
             monsterDrop[i].monsterSaved = monster;

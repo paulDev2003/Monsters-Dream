@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: IncreaseDefense
   m_EditorClassIdentifier: 
   skillName: Increase Defense
+  sprite: {fileID: 21300000, guid: afd968d39d836294fb2d83464c62e2fc, type: 3}
   statToIncrease: 3
   increaseAmount: 5

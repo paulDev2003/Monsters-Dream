@@ -22,6 +22,7 @@ public class Monster : MonoBehaviour
     public float shield;
     public UILifeBar lifeBar;
     public UIShieldBar shieldBar;
+    public SkillDrop skillDrop;
     public bool wasSpawned = false;
     public bool boss = false;
     public enum typeDamage
@@ -327,6 +328,10 @@ public class Monster : MonoBehaviour
             {
                 BasicAttackDamage();
                 circleAttacksToSkill.fillAmount += totalAmountToSkill;
+                if (!enemie)
+                {
+                    skillDrop.cooldownImage.fillAmount = circleAttacksToSkill.fillAmount;
+                }              
                 attacksToSkill -= 1;
             }
             else
@@ -334,6 +339,10 @@ public class Monster : MonoBehaviour
                 ReloadAttackToSkill();
                 monsterSO.skill.ShootSkill(target);
                 circleAttacksToSkill.fillAmount = 0;
+                if (!enemie)
+                {
+                    skillDrop.cooldownImage.fillAmount = 0;
+                }                
                 attackTime = 1 / speedAttack;
             }
 
