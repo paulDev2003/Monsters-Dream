@@ -393,17 +393,20 @@ public class Monster : MonoBehaviour
 
     public void AttackScreenInfo(float damage, GameObject monsterDamaged)
     {
-        GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, monsterDamaged.transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
-        TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
-        if (damage == 0)
+        if (monsterDamaged != null)
         {
-            textComponent.text = "Evade";
-        }
-        else
-        {
-            textComponent.text = $"-{damage}";
-        }
-        Destroy(textInstanced, 1.2f);
+            GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, monsterDamaged.transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
+            TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
+            if (damage == 0)
+            {
+                textComponent.text = "Evade";
+            }
+            else
+            {
+                textComponent.text = $"-{damage}";
+            }
+            Destroy(textInstanced, 1.2f);
+        }      
     }
 
     public void UpdateStats()

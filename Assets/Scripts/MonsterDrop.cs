@@ -100,7 +100,7 @@ public class MonsterDrop : MonoBehaviour
                 isUsed = false;
                 backNow = true;
                 gameManager.countMonsters--;
-                gameManager.attacksPanel[monsterScript.valueI].enabled = false;
+                gameManager.attacksPanel[monsterScript.valueI].targetImage.enabled = false;
                 ResetCooldown(monsterScript.valueI);
                 Destroy(gameManager.selectorActive.gameObject);
                 foreach (var enemie in gameManager.enemieList)
@@ -151,6 +151,8 @@ public class MonsterDrop : MonoBehaviour
                     monsterScript.lifeBar = gameManager.superiorBarFriends[valueI];
                     monsterScript.shieldBar = gameManager.shieldsFriends[valueI];
                     gameManager.attacksPanel[monster.monsterScript.valueI].targetImage.sprite = monsterScript.monsterSO.skill.sprite;
+                    monsterScript.valueI = monster.monsterScript.valueI;
+                    monsterScript.skillDrop = gameManager.attacksPanel[monsterScript.valueI];
                     monster.ResetCooldown(monster.monsterScript.valueI);
                     if (wasChanged)
                     {
@@ -251,6 +253,8 @@ public class MonsterDrop : MonoBehaviour
                     {
                         attack.targetImage.enabled = true;
                         attack.targetImage.sprite = scriptMonster.monsterSO.skill.sprite;
+                        scriptMonster.skillDrop = attack;
+                        return;
                     }
                 }
             }
