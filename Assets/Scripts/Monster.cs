@@ -4,6 +4,7 @@ using UnityEngine.Assertions;
 using TMPro;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Monster : MonoBehaviour
 {
@@ -66,7 +67,8 @@ public class Monster : MonoBehaviour
     [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
     private MonsterClass monsterClass;
-    private NavMeshAgent agent;
+  [HideInInspector]public NavMeshAgent agent;
+    public Animator animator;
     public int valueI;
     public GameObject areaAttack;
     private Image circleAttacksToSkill;
@@ -321,11 +323,19 @@ public class Monster : MonoBehaviour
         if (enemieDistance > distanceAttack)
         {
             // Ya no se usa MoveTowards
+            if (animator != null)
+            {
+                animator.SetBool("Attacking", false);
+            }          
             agent.SetDestination(target.transform.position);
         }
         else if (attackTime <= 0)
         {
             Debug.Log("Se detiene");
+            if (animator != null)
+            {
+                animator.SetBool("Attacking", true);
+            }
             agent.ResetPath(); // Detener el movimiento al atacar
 
             if (attacksToSkill > 0 || awaitToSpecialAttack || !enemie && !specialAttack )
@@ -649,7 +659,9 @@ public class Monster : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    //Los monstruos tienen su skill (Scriptable Object?), sus atributos (variables)
-    //La lógica de movimiento (en teoría en este script), hay momentos el que el monstruo no ataca pero va a estar en la escena
-    //
+
+    public void RunSkillCoroutine(IEnumerator routine)
+    {
+        StartCoroutine(routine);
+    }
 }
