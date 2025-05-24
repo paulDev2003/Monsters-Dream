@@ -32,6 +32,7 @@ public class SKCallPackWolves : SkillSO
                 owner.gameManager.levelEnemies[i].text = $"Lv.{scriptWolf.level}";
                 scriptWolf.UpdateBar();
             }
-        }    
+        }
+        owner.specialAttack = false;
     }
 }

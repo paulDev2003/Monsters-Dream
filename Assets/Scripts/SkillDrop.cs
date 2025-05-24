@@ -5,9 +5,9 @@ public class SkillDrop : MonoBehaviour
 {
     public Image cooldownImage;
     public Image targetImage;
-    public SkillSO skill;
+    public Monster monsterOwner;
     public void ShootSkill()
     {
-
+        monsterOwner.ShootSpecialAttack();
     }
 }

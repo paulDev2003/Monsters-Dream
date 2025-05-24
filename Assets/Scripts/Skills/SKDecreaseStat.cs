@@ -21,6 +21,7 @@ public class SKDecreaseStat : SkillSO
     public override void ShootSkill(Monster owner)
     {
         IncreaseStat(owner.target);
+        owner.specialAttack = false;
     }
 
     private void IncreaseStat(Monster target)
@@ -55,9 +56,10 @@ public class SKDecreaseStat : SkillSO
                 break;
             case StatType.MagicalDefense:
                 target.magicalDefense -= decreaseAmount;
+                Debug.Log("Decrementa defensa");
                 break;
             
         }
-
+        
     }
 }

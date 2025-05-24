@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
                 friendsMonsters.Add(scriptMonster);
                 friendsList.Add(friendSpawned);
                 scriptMonster.skillDrop = attacksPanel[e];
-                attacksPanel[e].skill = scriptMonster.monsterSO.skill;
+                attacksPanel[e].monsterOwner = scriptMonster;
                 attacksPanel[e].targetImage.enabled = true;               
                 if (scriptMonster.monsterSO.skill.sprite != null)
                 {

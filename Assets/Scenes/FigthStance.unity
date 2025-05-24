@@ -836,7 +836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownImage: {fileID: 188864183}
   targetImage: {fileID: 548983030}
-  skill: {fileID: 0}
+  monsterOwner: {fileID: 0}
 --- !u!114 &401581393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,7 +880,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 548983030}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 401581392}
+        m_TargetAssemblyTypeName: SkillDrop, Assembly-CSharp
+        m_MethodName: ShootSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &416313683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2984967673763078769, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -1723,7 +1735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownImage: {fileID: 767898886}
   targetImage: {fileID: 2069057074}
-  skill: {fileID: 0}
+  monsterOwner: {fileID: 0}
 --- !u!114 &828859719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1767,7 +1779,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2069057074}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 828859718}
+        m_TargetAssemblyTypeName: SkillDrop, Assembly-CSharp
+        m_MethodName: ShootSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &876069530 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7756132502803807075, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -1832,7 +1856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownImage: {fileID: 719074327}
   targetImage: {fileID: 1365563430}
-  skill: {fileID: 0}
+  monsterOwner: {fileID: 0}
 --- !u!114 &880423916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1876,7 +1900,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1365563430}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 880423915}
+        m_TargetAssemblyTypeName: SkillDrop, Assembly-CSharp
+        m_MethodName: ShootSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &887802110 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7354919554048463008, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -2729,7 +2765,7 @@ MonoBehaviour:
   friendsList: []
   enemieList: []
   enemiesSaved: []
-  totalEnemiesToSpawn: {x: 1, y: 3}
+  totalEnemiesToSpawn: {x: 1, y: 4}
   victoryScreen: {fileID: 488874482}
   panelVictory: {fileID: 1923390011}
   defeatScreen: {fileID: 814289560}
@@ -3026,6 +3062,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7af914cef22a64d90d556671d0af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1554541441
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.0733125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.091638
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.3610182
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9995938
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.028499532
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -3.266
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291260054501528243, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      propertyPath: m_Name
+      value: Hongui
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3406963434858534846, guid: 7b62cba1901739644b817227ad218870, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1554541443}
+  m_SourcePrefab: {fileID: 100100000, guid: 7b62cba1901739644b817227ad218870, type: 3}
+--- !u!1 &1554541442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3406963434858534846, guid: 7b62cba1901739644b817227ad218870, type: 3}
+  m_PrefabInstance: {fileID: 1554541441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1554541443
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554541442}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58beed6a073dd3f4bb1242faf0e6c50f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1572971865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 936396405184902744, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -3842,3 +3965,4 @@ SceneRoots:
   - {fileID: 1141512563}
   - {fileID: 1464797524}
   - {fileID: 803157826}
+  - {fileID: 1554541441}

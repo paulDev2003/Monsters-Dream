@@ -93,6 +93,10 @@ public class Monster : MonoBehaviour
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
     public StatusEffect monsterEffect;
 
+    public bool specialAttack = false;
+    private bool awaitToSpecialAttack = false;
+    private int enemieRandomSpecialAttack;
+
     protected virtual void Start()
     {
         SetupCore();
@@ -324,7 +328,7 @@ public class Monster : MonoBehaviour
             Debug.Log("Se detiene");
             agent.ResetPath(); // Detener el movimiento al atacar
 
-            if (attacksToSkill > 0)
+            if (attacksToSkill > 0 || awaitToSpecialAttack || !enemie && !specialAttack )
             {
                 BasicAttackDamage();
                 circleAttacksToSkill.fillAmount += totalAmountToSkill;
@@ -333,17 +337,26 @@ public class Monster : MonoBehaviour
                     skillDrop.cooldownImage.fillAmount = circleAttacksToSkill.fillAmount;
                 }              
                 attacksToSkill -= 1;
-            }
-            else
-            {
-                ReloadAttackToSkill();
-                monsterSO.skill.ShootSkill(target);
-                circleAttacksToSkill.fillAmount = 0;
-                if (!enemie)
+                if (enemie && attacksToSkill <= 0)
                 {
-                    skillDrop.cooldownImage.fillAmount = 0;
-                }                
-                attackTime = 1 / speedAttack;
+                    if (!awaitToSpecialAttack)
+                    {
+                        awaitToSpecialAttack = true;
+                        enemieRandomSpecialAttack = Random.Range(2, 4);
+                    }
+                    else
+                    {
+                        enemieRandomSpecialAttack--;
+                        if (enemieRandomSpecialAttack <= 0)
+                        {
+                            awaitToSpecialAttack = false;
+                        }
+                    }
+                }
+            }
+            else if(!specialAttack && enemie)
+            {
+                ShootSpecialAttack();
             }
 
             if (target.healthFigth <= 0)
@@ -353,6 +366,19 @@ public class Monster : MonoBehaviour
                 target = ChooseTarget(oppositeList);
             }
         }
+    }
+
+    public void ShootSpecialAttack()
+    {
+        ReloadAttackToSkill();
+        monsterSO.skill.ShootSkill(this);
+        circleAttacksToSkill.fillAmount = 0;
+        if (!enemie)
+        {
+            skillDrop.cooldownImage.fillAmount = 0;
+        }
+        attackTime = 1 / speedAttack;
+        specialAttack = true;
     }
 
     protected virtual float CalculateDamage()

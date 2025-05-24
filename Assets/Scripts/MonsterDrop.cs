@@ -153,6 +153,7 @@ public class MonsterDrop : MonoBehaviour
                     gameManager.attacksPanel[monster.monsterScript.valueI].targetImage.sprite = monsterScript.monsterSO.skill.sprite;
                     monsterScript.valueI = monster.monsterScript.valueI;
                     monsterScript.skillDrop = gameManager.attacksPanel[monsterScript.valueI];
+                    gameManager.attacksPanel[monsterScript.valueI].monsterOwner = monsterScript;
                     monster.ResetCooldown(monster.monsterScript.valueI);
                     if (wasChanged)
                     {
@@ -253,6 +254,7 @@ public class MonsterDrop : MonoBehaviour
                     {
                         attack.targetImage.enabled = true;
                         attack.targetImage.sprite = scriptMonster.monsterSO.skill.sprite;
+                        attack.monsterOwner = scriptMonster;
                         scriptMonster.skillDrop = attack;
                         return;
                     }

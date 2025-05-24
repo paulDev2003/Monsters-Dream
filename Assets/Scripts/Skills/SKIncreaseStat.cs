@@ -21,6 +21,7 @@ public class SKIncreaseStat : SkillSO
     public override void ShootSkill(Monster owner)
     {
         IncreaseStat(owner);
+        owner.specialAttack = false;
     }
 
     private void IncreaseStat(Monster owner)

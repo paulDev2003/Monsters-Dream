@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Slow All
   sprite: {fileID: 21300000, guid: 7d793c663453ae04bb0f25f9762fe76c, type: 3}
-  statToDecrease: 0
-  decreaseAmount: 0.2
+  statToDecrease: 6
+  decreaseAmount: 2
