@@ -6,6 +6,7 @@ public class SKHeaderAttack : SkillSO
 {
     public float distanceBehind = 1.5f;
     public float moveSpeed = 5f;
+    public int damage;
 
     public override void ShootSkill(Monster owner)
     {
@@ -28,6 +29,8 @@ public class SKHeaderAttack : SkillSO
             );
             yield return null;
         }
+        owner.target.TakeDamage(damage);
+        owner.target.UpdateBar();
         owner.agent.enabled = true;
         owner.specialAttack = false;
         Debug.Log("Habilidad completada: llegó detrás del target");

@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 231977905}
   - component: {fileID: 231977904}
   - component: {fileID: 231977903}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,6 +936,12 @@ MonoBehaviour:
   cooldownImage: {fileID: 188864183}
   targetImage: {fileID: 548983030}
   monsterOwner: {fileID: 0}
+  showingArea: 0
+  areaInstantiated: {fileID: 0}
+  maxDistance: 5
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &401581393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1956,6 +1962,12 @@ MonoBehaviour:
   cooldownImage: {fileID: 767898886}
   targetImage: {fileID: 2069057074}
   monsterOwner: {fileID: 0}
+  showingArea: 0
+  areaInstantiated: {fileID: 0}
+  maxDistance: 5
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &828859719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2088,6 +2100,12 @@ MonoBehaviour:
   cooldownImage: {fileID: 719074327}
   targetImage: {fileID: 1365563430}
   monsterOwner: {fileID: 0}
+  showingArea: 0
+  areaInstantiated: {fileID: 0}
+  maxDistance: 5
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &880423916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3090,7 +3108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToChoice:
   - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
-  - {fileID: 9021396236254735361, guid: b6ac7591ba0bd744cb47b1641182bf9d, type: 3}
   levelToSpawn: {x: 2, y: 5}
   friendsList: []
   enemieList: []

@@ -352,7 +352,7 @@ public class Monster : MonoBehaviour
                     if (!awaitToSpecialAttack)
                     {
                         awaitToSpecialAttack = true;
-                        enemieRandomSpecialAttack = Random.Range(2, 4);
+                        enemieRandomSpecialAttack = Random.Range(1, 2);
                     }
                     else
                     {
@@ -663,5 +663,13 @@ public class Monster : MonoBehaviour
     public void RunSkillCoroutine(IEnumerator routine)
     {
         StartCoroutine(routine);
+    }
+
+    public void ReloadNotInstanceAttack()
+    {
+        ReloadAttackToSkill();
+        circleAttacksToSkill.fillAmount = 0;
+        skillDrop.cooldownImage.fillAmount = 0;
+        attackTime = 1 / speedAttack;
     }
 }
