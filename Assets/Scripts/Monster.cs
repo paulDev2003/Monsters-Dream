@@ -98,6 +98,7 @@ public class Monster : MonoBehaviour
     public bool specialAttack = false;
     private bool awaitToSpecialAttack = false;
     private int enemieRandomSpecialAttack;
+    [HideInInspector] public int skillCount = 0;
 
     protected virtual void Start()
     {
@@ -220,8 +221,12 @@ public class Monster : MonoBehaviour
             }
             if (healthFigth <= 0)
             {
-                agent.isStopped = true;
-                agent.enabled = false;
+                if (agent != null && agent.enabled)
+                {
+                    agent.isStopped = true;
+                    agent.enabled = false;
+                }
+                
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
@@ -238,19 +243,23 @@ public class Monster : MonoBehaviour
             }
             else
             {
-                if (target != null && !agent.isStopped)
+                if (target != null &&  agent.enabled == true)
                 {
-                    if (enemieDistance > distanceAttack)
+                    if (!agent.isStopped)
                     {
-                        // Ir hacia el objetivo (automáticamente esquiva obstáculos)
-                        agent.SetDestination(target.transform.position);
+                        if (enemieDistance > distanceAttack)
+                        {
+                            // Ir hacia el objetivo (automáticamente esquiva obstáculos)
+                            agent.SetDestination(target.transform.position);
+                        }
+                        else
+                        {
+                            // Ya está en rango de ataque, detener el agente
+                            agent.ResetPath(); // o agent.isStopped = true;
+                            RotateTowardsTarget();
+                        }
                     }
-                    else
-                    {
-                        // Ya está en rango de ataque, detener el agente
-                        agent.ResetPath(); // o agent.isStopped = true;
-                        RotateTowardsTarget();
-                    }
+                    
                 }
             }
         }
@@ -326,8 +335,15 @@ public class Monster : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("Attacking", false);
-            }          
-            agent.SetDestination(target.transform.position);
+            }
+            if (agent != null && agent.enabled)
+            {
+                agent.SetDestination(target.transform.position);
+            }
+            else
+            {
+                Debug.Log("No encuentra el navMesh");
+            }
         }
         else if (attackTime <= 0)
         {
@@ -336,8 +352,10 @@ public class Monster : MonoBehaviour
             {
                 animator.SetBool("Attacking", true);
             }
-            agent.ResetPath(); // Detener el movimiento al atacar
-
+            if (agent != null && agent.enabled)
+            {
+                agent.ResetPath(); // Detener el movimiento al atacar
+            }          
             if (attacksToSkill > 0 || awaitToSpecialAttack || !enemie && !specialAttack )
             {
                 BasicAttackDamage();
@@ -389,6 +407,7 @@ public class Monster : MonoBehaviour
         }
         attackTime = 1 / speedAttack;
         specialAttack = true;
+        skillCount++;
     }
 
     protected virtual float CalculateDamage()

@@ -22,9 +22,9 @@ public class SKToxicSlap : SkillSO
         else
         {
             GameObject areaInstantiated = Instantiate(areaSlap, owner.target.transform.position, Quaternion.identity);
-            PoisonArea posionArea = areaInstantiated.GetComponent<PoisonArea>();
-            posionArea.enemie = true;
-            posionArea.ActivateArea();
+            PoisonArea poisonArea = areaInstantiated.GetComponent<PoisonArea>();
+            poisonArea.enemie = true;
+            poisonArea.ActivateArea();
         }
         
     }

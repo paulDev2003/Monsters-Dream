@@ -31,6 +31,7 @@ public class PoisonArea : MonoBehaviour
                     monsterScript.TakeDamage(damage);
                     monsterScript.AddStatusEffect(poisonEffect);
                 }
+
             }
         }
         Destroy(gameObject, 0.1f);
