@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a31c3c1d671274ab66b4798d85f6a5, type: 3}
+  m_Name: ClonedMonster
+  m_EditorClassIdentifier: 
+  monsterName: Little
+  health: 10
+  physicalDamage: 19
+  speedAttack: 1.5
+  defense: 10
+  evasion: 2
+  magicalDamage: 0
+  magicalDefense: 10
+  skill: {fileID: 0}
+  levelUp: {fileID: 11400000, guid: 3d3c0fa0c84ca384391e2704f5044840, type: 2}
+  dropList: []
+  sprite: {fileID: 0}
+  expPerLevel: 0
+  moneyPerLevel: 0

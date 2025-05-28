@@ -20,7 +20,7 @@ MonoBehaviour:
   evasion: 6
   magicalDamage: 1
   magicalDefense: 1
-  skill: {fileID: 11400000, guid: caf2f234fd47f9a47825c63d7837456a, type: 2}
+  skill: {fileID: 11400000, guid: b3b6d42f7f3f50646be366569aa7fc75, type: 2}
   levelUp: {fileID: 11400000, guid: 494d6dfeaf0c3da4d8b682d265826b24, type: 2}
   dropList:
   - {fileID: 11400000, guid: d0f5f2d127be3144aa243ed0d91493ad, type: 2}

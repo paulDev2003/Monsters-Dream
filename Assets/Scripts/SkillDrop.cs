@@ -9,6 +9,7 @@ public class SkillDrop : MonoBehaviour
     public bool showingArea;
     public GameObject areaInstantiated;
     public float maxDistance = 5f;
+    public float aroundDistance = 2f;
     public LayerMask floorLayer;
     public void ShootSkill()
     {
@@ -35,6 +36,7 @@ public class SkillDrop : MonoBehaviour
                     LimitedArea();
                     break;
                 case SkillSO.Area.aroundCharacter:
+                    AroundCharacter();
                     break;
                 default:
                     break;
@@ -68,6 +70,28 @@ public class SkillDrop : MonoBehaviour
 
             areaInstantiated.transform.position = monsterOwner.transform.position + offset;
             areaInstantiated.transform.position += Vector3.up * 0.5f; ;
+        }
+    }
+
+    private void AroundCharacter()
+    {
+        if (areaInstantiated == null) return;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorLayer))
+        {
+            Vector3 direction = hit.point - monsterOwner.transform.position;
+
+            if (direction.magnitude > 0.1f)
+            {
+                direction = direction.normalized;
+                Vector3 finalPosition = monsterOwner.transform.position + direction * aroundDistance;
+                finalPosition.y += 0.5f; // Ajuste visual opcional
+                areaInstantiated.transform.position = finalPosition;
+
+                // Opcional: rotar el área para que mire hacia afuera
+                areaInstantiated.transform.rotation = Quaternion.LookRotation(direction);
+            }
         }
     }
 

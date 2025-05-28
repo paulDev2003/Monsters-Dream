@@ -939,6 +939,7 @@ MonoBehaviour:
   showingArea: 0
   areaInstantiated: {fileID: 0}
   maxDistance: 5
+  aroundDistance: 2
   floorLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1965,6 +1966,7 @@ MonoBehaviour:
   showingArea: 0
   areaInstantiated: {fileID: 0}
   maxDistance: 5
+  aroundDistance: 2
   floorLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -2103,6 +2105,7 @@ MonoBehaviour:
   showingArea: 0
   areaInstantiated: {fileID: 0}
   maxDistance: 5
+  aroundDistance: 2
   floorLayer:
     serializedVersion: 2
     m_Bits: 8

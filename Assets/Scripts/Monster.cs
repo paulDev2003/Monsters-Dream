@@ -67,7 +67,7 @@ public class Monster : MonoBehaviour
     [HideInInspector] public List<GameObject> ownList;
     private bool stopFigth = false;
     private MonsterClass monsterClass;
-  [HideInInspector]public NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     public Animator animator;
     public int valueI;
     public GameObject areaAttack;
@@ -99,6 +99,8 @@ public class Monster : MonoBehaviour
     private bool awaitToSpecialAttack = false;
     private int enemieRandomSpecialAttack;
     [HideInInspector] public int skillCount = 0;
+    [HideInInspector] public bool notShowInterface = false;
+    public bool underControl = false;
 
     protected virtual void Start()
     {
@@ -133,30 +135,39 @@ public class Monster : MonoBehaviour
         {
             oppositeList = gameManager.enemieList;
             ownList = gameManager.friendsList;
-            gameManager.monsterDrop[valueI].monsterScript = this;
+            if (!notShowInterface)
+            {
+                gameManager.monsterDrop[valueI].monsterScript = this;
+            }            
         }
     }
 
     protected virtual void SetupUI()
     {
-        if (positionAttacksToSkill == null)
+        if (!notShowInterface)
         {
-            objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity,
-            gameManager.canvasWorld.transform);
-        }
-        else
-        {
-            objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, positionAttacksToSkill.position, Quaternion.identity,
-            gameManager.canvasWorld.transform);
-            Debug.Log("Se instancia en segundo");
-        }
-        circleAttacksToSkill = objCircleAttacks.GetComponent<Image>();
-        circleAttacksToSkill.fillAmount = 0;
+            if (positionAttacksToSkill == null)
+            {
+                objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, transform.position + Vector3.up, Quaternion.identity,
+                gameManager.canvasWorld.transform);
+            }
+            else
+            {
+                objCircleAttacks = Instantiate(gameManager.circleAttacksToSkill, positionAttacksToSkill.position, Quaternion.identity,
+                gameManager.canvasWorld.transform);
+                Debug.Log("Se instancia en segundo");
+            }
+            circleAttacksToSkill = objCircleAttacks.GetComponent<Image>();
+            circleAttacksToSkill.fillAmount = 0;
+        }        
     }
 
     protected virtual void SetupTarget()
     {
-        target = ChooseTarget(oppositeList);
+        if (!notShowInterface)
+        {
+            target = ChooseTarget(oppositeList);
+        }      
     }
 
     protected virtual void SetupExtras()
@@ -172,11 +183,11 @@ public class Monster : MonoBehaviour
         {
             Debug.Log("No encuentra el navMesh");
         }
-        if (positionAttacksToSkill == null)
+        if (positionAttacksToSkill == null && !notShowInterface)
         {
             objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
         }
-        else
+        else if(!notShowInterface)
         {
             objCircleAttacks.transform.position = positionAttacksToSkill.position;
         }
@@ -230,7 +241,11 @@ public class Monster : MonoBehaviour
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
                 dead = true;
-                lifeBar.UpdateFill(this);
+                if (!notShowInterface)
+                {
+                    lifeBar.UpdateFill(this);
+                }
+                
                 if (!boss && enemie)
                 {
                     Invoke("DesactivateMonster", 2.5f);
@@ -243,7 +258,7 @@ public class Monster : MonoBehaviour
             }
             else
             {
-                if (target != null &&  agent.enabled == true)
+                if (target != null &&  agent.enabled == true && !underControl)
                 {
                     if (!agent.isStopped)
                     {
@@ -329,7 +344,7 @@ public class Monster : MonoBehaviour
 
     protected virtual void Attack()
     {
-        if (enemieDistance > distanceAttack)
+        if (enemieDistance > distanceAttack && !underControl)
         {
             // Ya no se usa MoveTowards
             if (animator != null)
@@ -345,7 +360,7 @@ public class Monster : MonoBehaviour
                 Debug.Log("No encuentra el navMesh");
             }
         }
-        else if (attackTime <= 0)
+        else if (attackTime <= 0 && !underControl)
         {
             Debug.Log("Se detiene");
             if (animator != null)
@@ -359,8 +374,11 @@ public class Monster : MonoBehaviour
             if (attacksToSkill > 0 || awaitToSpecialAttack || !enemie && !specialAttack )
             {
                 BasicAttackDamage();
-                circleAttacksToSkill.fillAmount += totalAmountToSkill;
-                if (!enemie)
+                if (!notShowInterface)
+                {
+                    circleAttacksToSkill.fillAmount += totalAmountToSkill;
+                }              
+                if (!enemie && !notShowInterface)
                 {
                     skillDrop.cooldownImage.fillAmount = circleAttacksToSkill.fillAmount;
                 }              
@@ -664,14 +682,20 @@ public class Monster : MonoBehaviour
             healthFigth -= damage;
         }
         AttackScreenInfo(damage, gameObject);
-        UpdateBar();
+        if (lifeBar != null)
+        {
+            UpdateBar();
+        }      
     }
 
     public void TakeDamageHealth(int damage)
     {  
         healthFigth -= damage;
         AttackScreenInfo(damage, gameObject);
-        lifeBar.UpdateFill(this);
+        if (lifeBar!=null)
+        {
+            lifeBar.UpdateFill(this);
+        }      
     }
 
     public void DesactivateMonster()
