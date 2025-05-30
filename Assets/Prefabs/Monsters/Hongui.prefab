@@ -272,7 +272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: level
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: enemie
@@ -329,7 +329,7 @@ PrefabInstance:
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: monsterEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 5966fabd476fc7c4da92a40e32adf81d, type: 2}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: rotationSpeed
       value: 90
@@ -364,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: monsterData.currentXP
-      value: 154
+      value: 169
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: monsterData.isStarter

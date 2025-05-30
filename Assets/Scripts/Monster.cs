@@ -50,7 +50,7 @@ public class Monster : MonoBehaviour
     private float currentTimeRegeneration;
     private float enemieDistance;
     private float attackTime;
-    private int attacksToSkill;
+    public int attacksToSkill;
     private float totalAmountToSkill;
     [Space(10)]
     public float healthFigth;
@@ -71,7 +71,7 @@ public class Monster : MonoBehaviour
     public Animator animator;
     public int valueI;
     public GameObject areaAttack;
-    private Image circleAttacksToSkill;
+    [HideInInspector]public Image circleAttacksToSkill;
     public Transform positionAttacksToSkill;
     public Collider targetCollider;
     private GameObject objCircleAttacks;
@@ -91,7 +91,7 @@ public class Monster : MonoBehaviour
 
     public List<Sprite> spriteStates = new List<Sprite>();
     public List<int> intStates = new List<int>();
-    private List<int> intStatesEffects = new List<int>();
+    public List<int> intStatesEffects = new List<int>();
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
     public StatusEffect monsterEffect;
 
@@ -227,7 +227,7 @@ public class Monster : MonoBehaviour
             }
             else if (healthRegeneration > 0)
             {
-                RegenerateHealth();
+                RegenerateHealth(healthRegeneration);
                 currentTimeRegeneration = regenerationTime;
             }
             if (healthFigth <= 0)
@@ -416,8 +416,7 @@ public class Monster : MonoBehaviour
 
     public void ShootSpecialAttack()
     {
-        ReloadAttackToSkill();
-        monsterSO.skill.ShootSkill(this);
+        ReloadAttackToSkill();       
         circleAttacksToSkill.fillAmount = 0;
         if (!enemie)
         {
@@ -426,6 +425,7 @@ public class Monster : MonoBehaviour
         attackTime = 1 / speedAttack;
         specialAttack = true;
         skillCount++;
+        monsterSO.skill.ShootSkill(this);
     }
 
     protected virtual float CalculateDamage()
@@ -559,16 +559,16 @@ public class Monster : MonoBehaviour
         DestroyImmediate(areaAttack);
     }
 
-    private void RegenerateHealth()
+    public void RegenerateHealth(int healthUp)
     {
-        healthFigth += healthRegeneration;
+        healthFigth += healthUp;
         if (healthFigth > health)
         {
             healthFigth = health;
         }
         GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
         TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
-        textComponent.text = $"+{healthRegeneration}";
+        textComponent.text = $"+{healthUp}";
         textComponent.color = Color.green;
         lifeBar.UpdateFill(this);
     }
