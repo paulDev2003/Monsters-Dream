@@ -777,7 +777,9 @@ GameObject:
   m_Component:
   - component: {fileID: 424608698}
   - component: {fileID: 424608697}
-  m_Layer: 0
+  - component: {fileID: 424608700}
+  - component: {fileID: 424608699}
+  m_Layer: 6
   m_Name: PrefabMonkeyKing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,6 +825,111 @@ Transform:
   - {fileID: 971157101}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -85.746, z: 0}
+--- !u!195 &424608699
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424608696}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2.16
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3.44
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &424608700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424608696}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e1ba6f39d830748aebbc7e5985dd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterName: Big Monkey
+  monsterSO: {fileID: 11400000, guid: 6bdb400b0ec1f384bab465e57169d5a8, type: 2}
+  monsterData:
+    baseId: 0
+    monsterName: 
+    level: 0
+    currentXP: 0
+    currentHealth: 0
+    isUsed: 0
+    isStarter: 0
+  enemie: 1
+  level: 1
+  health: 0
+  physicalDamage: 0
+  speedAttack: 0
+  defense: 0
+  evasion: 0
+  magicalDamage: 0
+  magicalDefense: 0
+  shield: 0
+  lifeBar: {fileID: 1353337704}
+  shieldBar: {fileID: 0}
+  skillDrop: {fileID: 0}
+  wasSpawned: 0
+  boss: 0
+  damageType: 0
+  rangeAttacksToSkill: {x: 0, y: 0}
+  hitAcumulation: 0
+  hitToEffect: 0
+  summonType: 0
+  distanceAttack: 0
+  speedMovement: 0
+  rotationSpeed: 5
+  regenerationTime: 3.5
+  attacksToSkill: 0
+  healthFigth: 0
+  target: {fileID: 0}
+  dead: 0
+  exp: 0
+  maxExp: 0
+  inUse: 0
+  gameManager: {fileID: 0}
+  oppositeList: []
+  ownList: []
+  agent: {fileID: 0}
+  animator: {fileID: 0}
+  valueI: 0
+  areaAttack: {fileID: 0}
+  circleAttacksToSkill: {fileID: 0}
+  positionAttacksToSkill: {fileID: 0}
+  targetCollider: {fileID: 0}
+  shieldActivated: 0
+  damageBuff: 0
+  basicDamageBuff: 0
+  healthBuff: 0
+  healthRegeneration: 0
+  magicDamageBuff: 0
+  decreasedCoolDown: 1
+  multiplierIncreasedSpeedAttack: 1
+  physicIncreaseDefense: 0
+  magicIncreaseDefense: 0
+  shieldIncrease: 0
+  spriteStates: []
+  intStates: 
+  intStatesEffects: 
+  activeEffects: []
+  monsterEffect: {fileID: 0}
+  specialAttack: 0
+  skillCount: 0
+  notShowInterface: 0
+  underControl: 0
 --- !u!1 &465388845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8439395391685227433, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -909,6 +1016,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &561543769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4187970155068557214, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec09a460728935438455330e703774a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &611934925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4906782673189978482, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -944,7 +1062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 638872988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
@@ -1224,6 +1342,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &783838060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4273762618355009573, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec09a460728935438455330e703774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &785101402 stripped
@@ -1508,17 +1637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a915c206b910804fbc8302c007794ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &925979969 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6297682479152646124, guid: be8bcb49133542641aa822730b736dcc, type: 3}
-  m_PrefabInstance: {fileID: 2396234665953897675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &942815493 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1223283321060440077, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -1542,7 +1660,7 @@ GameObject:
   - component: {fileID: 944213267}
   - component: {fileID: 944213266}
   - component: {fileID: 944213265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1753,7 +1871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971157101}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnShoot
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -1806,17 +1924,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d7af914cef22a64d90d556671d0af49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1015847740 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8243275102512025271, guid: be8bcb49133542641aa822730b736dcc, type: 3}
-  m_PrefabInstance: {fileID: 2396234665953897675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1022937679 stripped
@@ -2111,28 +2218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1216415281 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7371530275785081079, guid: be8bcb49133542641aa822730b736dcc, type: 3}
-  m_PrefabInstance: {fileID: 2396234665953897675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1219074022 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 118571576455479032, guid: be8bcb49133542641aa822730b736dcc, type: 3}
-  m_PrefabInstance: {fileID: 2396234665953897675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1244171194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 737776817631654951, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -2142,6 +2227,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1298804762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2137073566993230721, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec09a460728935438455330e703774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1317456523 stripped
@@ -2376,7 +2472,7 @@ GameObject:
   - component: {fileID: 1414652006}
   - component: {fileID: 1414652005}
   - component: {fileID: 1414652004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2649,13 +2745,10 @@ MonoBehaviour:
   - {fileID: 2131959285}
   - {fileID: 527888711}
   - {fileID: 1556261007}
-  monsterPanel:
-  - {fileID: 1216415281}
-  - {fileID: 1219074022}
-  - {fileID: 1963764953}
-  - {fileID: 1015847740}
-  - {fileID: 1579925616}
-  - {fileID: 925979969}
+  attacksPanel:
+  - {fileID: 561543769}
+  - {fileID: 783838060}
+  - {fileID: 1298804762}
   monsterDrop:
   - {fileID: 488120801}
   - {fileID: 1724122463}
@@ -2868,7 +2961,7 @@ GameObject:
   - component: {fileID: 1509164878}
   - component: {fileID: 1509164877}
   - component: {fileID: 1509164876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2987,7 +3080,7 @@ GameObject:
   - component: {fileID: 1515964499}
   - component: {fileID: 1515964498}
   - component: {fileID: 1515964497}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ear (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3127,17 +3220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7af914cef22a64d90d556671d0af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1579925616 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8970753839672224908, guid: be8bcb49133542641aa822730b736dcc, type: 3}
-  m_PrefabInstance: {fileID: 2396234665953897675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1613458347 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8595165262627828895, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -3158,9 +3240,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624664740}
-  - component: {fileID: 1624664741}
   - component: {fileID: 1624664742}
-  m_Layer: 0
+  - component: {fileID: 1624664741}
+  m_Layer: 6
   m_Name: PointToHit
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -3183,101 +3265,54 @@ Transform:
   - {fileID: 944213264}
   m_Father: {fileID: 424608698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1624664741
-MonoBehaviour:
+--- !u!54 &1624664741
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624664739}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7e1ba6f39d830748aebbc7e5985dd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterName: Big Monkey
-  monsterSO: {fileID: 11400000, guid: 6bdb400b0ec1f384bab465e57169d5a8, type: 2}
-  monsterData:
-    baseId: 0
-    monsterName: 
-    level: 0
-    currentXP: 0
-    currentHealth: 0
-    isUsed: 0
-    isStarter: 0
-  enemie: 1
-  level: 1
-  health: 0
-  physicalDamage: 0
-  speedAttack: 0
-  defense: 0
-  evasion: 0
-  magicalDamage: 0
-  magicalDefense: 0
-  shield: 0
-  lifeBar: {fileID: 1353337704}
-  shieldBar: {fileID: 0}
-  wasSpawned: 0
-  boss: 0
-  damageType: 0
-  rangeAttacksToSkill: {x: 0, y: 0}
-  hitAcumulation: 0
-  hitToEffect: 0
-  summonType: 0
-  distanceAttack: 0
-  speedMovement: 0
-  rotationSpeed: 5
-  regenerationTime: 3.5
-  healthFigth: 0
-  target: {fileID: 0}
-  dead: 0
-  exp: 0
-  maxExp: 0
-  inUse: 0
-  gameManager: {fileID: 0}
-  oppositeList: []
-  ownList: []
-  valueI: 0
-  areaAttack: {fileID: 0}
-  positionAttacksToSkill: {fileID: 0}
-  targetCollider: {fileID: 0}
-  shieldActivated: 0
-  damageBuff: 0
-  basicDamageBuff: 0
-  healthBuff: 0
-  healthRegeneration: 0
-  magicDamageBuff: 0
-  decreasedCoolDown: 1
-  multiplierIncreasedSpeedAttack: 1
-  physicIncreaseDefense: 0
-  magicIncreaseDefense: 0
-  shieldIncrease: 0
-  spriteStates: []
-  intStates: 
-  activeEffects: []
-  monsterEffect: {fileID: 0}
---- !u!195 &1624664742
-NavMeshAgent:
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1624664742
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624664739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 2.31
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 3.71
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  serializedVersion: 3
+  m_Size: {x: 2.2214565, y: 4.455083, z: 4.3484077}
+  m_Center: {x: 0.61072797, y: 1.7657655, z: -0.12154674}
 --- !u!114 &1659628367 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1100702876760018015, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -3747,17 +3782,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 142358935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1963764953 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 271578103492190616, guid: be8bcb49133542641aa822730b736dcc, type: 3}
-  m_PrefabInstance: {fileID: 2396234665953897675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1964865086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6745882027905036694, guid: be8bcb49133542641aa822730b736dcc, type: 3}

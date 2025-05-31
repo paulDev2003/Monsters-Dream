@@ -13,6 +13,7 @@ public class ManagerRunes : MonoBehaviour
     public List<GameObject> prefabsRunes = new List<GameObject>();
     public List<GameObject> friendList = new List<GameObject>();
     public bool isFigth = false;
+    public bool lobby = false;
     public TextMeshProUGUI txtMoney;
     public List<GameObject> optionsRunes = new List<GameObject>();
     public GameObject btnResetRunes;
@@ -39,8 +40,11 @@ public class ManagerRunes : MonoBehaviour
                 slotsChecker[i, e] = true;
             }
         }
-        ChargeSavedRunes();
-        ChargeSavedUpgrades();
+        if (!lobby)
+        {
+            ChargeSavedRunes();
+            ChargeSavedUpgrades();
+        }       
         if (isFigth)
         {
 

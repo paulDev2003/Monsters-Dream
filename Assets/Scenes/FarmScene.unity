@@ -12518,6 +12518,7 @@ MonoBehaviour:
   prefabsRunes: []
   friendList: []
   isFigth: 0
+  lobby: 1
   txtMoney: {fileID: 0}
   optionsRunes: []
   btnResetRunes: {fileID: 0}
