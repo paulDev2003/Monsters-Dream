@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class MonsterSlot : MonoBehaviour
 {
-    public string monsterName;
+    public MonsterData monsterData;
     public LobbyMonsterLevel lobbyMonsters;
 
     public void ChangeMonsterPrefab()
     {
-        lobbyMonsters.ChangeMonsterPrefab(monsterName);
+        lobbyMonsters.ChangeMonsterPrefab(monsterData);
     }
 }

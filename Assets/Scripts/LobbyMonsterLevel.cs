@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Events;
-
+using TMPro;
 public class LobbyMonsterLevel : MonoBehaviour
 {
     public List<Image> monstersImg = new List<Image>();
@@ -14,6 +14,20 @@ public class LobbyMonsterLevel : MonoBehaviour
     private GameObject monsterPrefab;
     private bool insideCollider = false;
     private bool monsterSpawned = false;
+    public TextMeshProUGUI txtDam;
+    public TextMeshProUGUI txtMDam;
+    public TextMeshProUGUI txtDef;
+    public TextMeshProUGUI txtASp;
+    public TextMeshProUGUI txtMDef;
+    public TextMeshProUGUI txtEva;
+    public TextMeshProUGUI txtHealth;
+    public TextMeshProUGUI txtLevel;
+    public TextMeshProUGUI txtItemAmount;
+    public TextMeshProUGUI txtMonsterName;
+    public Image imgItem;
+    public Image superiorBarExp;
+    private ItemSO itemForFeed;
+    private int amountItem;
 
     private void Update()
     {
@@ -33,10 +47,21 @@ public class LobbyMonsterLevel : MonoBehaviour
                 monstersImg[i].enabled = true;
                 MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
                 monstersImg[i].sprite = monsterBase.monsterSO.sprite;
-                monstersImg[i].GetComponent<MonsterSlot>().monsterName = monsterBase.monsterName;
+                monstersImg[i].GetComponent<MonsterSlot>().monsterData = monster;
                 if (!monsterSpawned)
                 {
                     monsterPrefab = Instantiate(monsterBase.prefabMonster, spawnRender.position, spawnRender.transform.rotation);
+                    MonsterClass monsterClass = new MonsterClass(monsterBase.monsterSO, monster.level);
+                    txtLevel.text = monster.level.ToString();
+                    txtMonsterName.text = monster.monsterName;
+                    imgItem.sprite = monsterBase.monsterSO.itemForUpLevel.sprite;
+                    itemForFeed = monsterBase.monsterSO.itemForUpLevel;
+                    amountItem = monster.level * 5;
+                    txtItemAmount.text = amountItem.ToString();
+                    float maxExp = 50 * monster.level;
+                    superiorBarExp.fillAmount = monster.currentXP / maxExp;
+
+                    ShowStats(monsterClass);
                     InstantiateMonsterRender();
                 }
             }
@@ -44,11 +69,33 @@ public class LobbyMonsterLevel : MonoBehaviour
         }
     }
 
-    public void ChangeMonsterPrefab(string monsterName)
+    private void ShowStats(MonsterClass monsterClass)
     {
-        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterName);
+        txtDam.text = monsterClass.PhysicalDamage.ToString();
+        txtMDam.text = monsterClass.MagicalDamage.ToString();
+        txtDef.text = monsterClass.Defense.ToString();
+        txtASp.text = monsterClass.SpeedAttack.ToString();
+        txtMDef.text = monsterClass.MagicalDefense.ToString();
+        txtEva.text = monsterClass.Evasion.ToString();
+        txtHealth.text = monsterClass.Health.ToString();
+        
+    }
+
+    public void ChangeMonsterPrefab(MonsterData monsterData)
+    {
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterData.monsterName);
         Destroy(monsterPrefab);
         monsterPrefab = Instantiate(monsterBase.prefabMonster, spawnRender.position, spawnRender.transform.rotation);
+        MonsterClass monsterClass = new MonsterClass(monsterBase.monsterSO, monsterData.level);
+        txtLevel.text = monsterData.level.ToString();
+        imgItem.sprite = monsterBase.monsterSO.itemForUpLevel.sprite;
+        itemForFeed = monsterBase.monsterSO.itemForUpLevel;
+        amountItem = monsterData.level * 5;
+        txtItemAmount.text = amountItem.ToString();
+        txtMonsterName.text = monsterData.monsterName;
+        float maxExp = 50 * monsterData.level;
+        superiorBarExp.fillAmount = monsterData.currentXP / maxExp;
+        ShowStats(monsterClass);
         InstantiateMonsterRender();
     }
 
@@ -60,6 +107,7 @@ public class LobbyMonsterLevel : MonoBehaviour
         rb.useGravity = false;
         Transform firstChild = monsterPrefab.transform.GetChild(0);
         firstChild.gameObject.AddComponent<CharacterPreviewRotation>();
+        
     }
 
     private void OnTriggerEnter(Collider other)

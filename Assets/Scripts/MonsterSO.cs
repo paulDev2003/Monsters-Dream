@@ -18,4 +18,5 @@ public class MonsterSO : ScriptableObject
     public Sprite sprite;
     public int expPerLevel;
     public int moneyPerLevel;
+    public ItemSO itemForUpLevel;
 }
