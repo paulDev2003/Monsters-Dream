@@ -79,6 +79,10 @@ public class GameDataController : MonoBehaviour
             {
                 dungeonTeam.allMonsters = new List<MonsterData>(saveData.monstersDungeon);
             }
+            if (saveData.bestiary != null)
+            {
+                monstersHouse.bestiary = new List<DiscoverMonster>(saveData.bestiary);
+            }
             if (saveData.runesDungeon != null)
             {
                 runesManager.runesDungeon = new List<RuneClass>(saveData.runesDungeon);
@@ -136,6 +140,7 @@ public class GameDataController : MonoBehaviour
 
             monstersHouse = new List<MonsterData>(monstersHouse.listMonsters),
             monstersDungeon = new List<MonsterData>(dungeonTeam.allMonsters),
+            bestiary = new List<DiscoverMonster>(monstersHouse.bestiary),
             
             runesDungeon = new List<RuneClass>(listRunes),
             upgradesDungeon = new List<UpgradeData>(listUpgrades)

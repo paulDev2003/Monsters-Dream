@@ -8,6 +8,7 @@ public class LobbyMonsterLevel : MonoBehaviour
     public List<Image> monstersImg = new List<Image>();
     public MonstersHouse monstersHouse;
     public MonsterDataBase monsterDataBase;
+    public Inventory inventory;
     public int pageNumber = 1;
     public UnityEvent EnabledInterface;
     public Transform spawnRender;
@@ -24,8 +25,10 @@ public class LobbyMonsterLevel : MonoBehaviour
     public TextMeshProUGUI txtLevel;
     public TextMeshProUGUI txtItemAmount;
     public TextMeshProUGUI txtMonsterName;
+    private MonsterData currentMonster;
     public Image imgItem;
     public Image superiorBarExp;
+    public int feedAmount = 25;
     private ItemSO itemForFeed;
     private int amountItem;
 
@@ -60,7 +63,7 @@ public class LobbyMonsterLevel : MonoBehaviour
                     txtItemAmount.text = amountItem.ToString();
                     float maxExp = 50 * monster.level;
                     superiorBarExp.fillAmount = monster.currentXP / maxExp;
-
+                    currentMonster = monster;
                     ShowStats(monsterClass);
                     InstantiateMonsterRender();
                 }
@@ -95,6 +98,7 @@ public class LobbyMonsterLevel : MonoBehaviour
         txtMonsterName.text = monsterData.monsterName;
         float maxExp = 50 * monsterData.level;
         superiorBarExp.fillAmount = monsterData.currentXP / maxExp;
+        currentMonster = monsterData;
         ShowStats(monsterClass);
         InstantiateMonsterRender();
     }
@@ -108,6 +112,45 @@ public class LobbyMonsterLevel : MonoBehaviour
         Transform firstChild = monsterPrefab.transform.GetChild(0);
         firstChild.gameObject.AddComponent<CharacterPreviewRotation>();
         
+    }
+
+    public void FeedMonster()
+    {
+    
+        if (inventory.moleculeInventory.ContainsKey(itemForFeed.itemName))
+        {
+            Debug.Log("No es null molecule");
+            if (inventory.countMolecules[itemForFeed.itemName] >= amountItem)
+            {
+                Debug.Log("Es mayor");
+                inventory.countMolecules[itemForFeed.itemName] -= amountItem;
+                ApplyFeed();
+            }
+        }
+        else if(inventory.capturableInventory.ContainsKey(itemForFeed.itemName))
+        {
+            Debug.Log("No es null Capturable");
+            if (inventory.countCapturables[itemForFeed.itemName] >= amountItem)
+            {               
+                Debug.Log("Es mayor");
+                inventory.countCapturables[itemForFeed.itemName] -= amountItem;
+                ApplyFeed();
+            }
+        }
+        
+    }
+
+    private void ApplyFeed()
+    {
+        currentMonster.currentXP += feedAmount;
+        int maxExp = currentMonster.level * 50;
+        if (currentMonster.currentXP >= maxExp)
+        {
+            currentMonster.currentXP -= maxExp;
+            currentMonster.level += 1;
+            txtLevel.text = currentMonster.level.ToString();
+        }
+        superiorBarExp.fillAmount = (float)currentMonster.currentXP / (float)maxExp;
     }
 
     private void OnTriggerEnter(Collider other)

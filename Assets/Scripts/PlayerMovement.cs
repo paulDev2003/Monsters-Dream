@@ -5,30 +5,40 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float rotationSpeed = 720f; // grados por segundo
     public bool canMove = true;
-
+    public Rigidbody rb;
     private Vector3 moveDirection;
+    public float speed;
 
     void Update()
     {
-        // Obtener entrada
-        float horizontal = Input.GetAxisRaw("Horizontal"); // A/D o Flechas Izq/Der
-        float vertical = Input.GetAxisRaw("Vertical");     // W/S o Flechas Arr/Ab
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-        // Crear dirección de movimiento
         if (canMove)
         {
             moveDirection = new Vector3(-vertical, 0f, horizontal).normalized;
 
-            // Mover al personaje
             if (moveDirection.magnitude > 0)
             {
-                transform.position += moveDirection * moveSpeed * Time.deltaTime;
+                rb.linearVelocity = moveDirection * moveSpeed;
 
-                // Rotar hacia la dirección del movimiento
                 Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             }
-        }       
+            else
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+    }
+
+    public void ActiveMovement()
+    {
+        canMove = true;
     }
 
     public void DesactiveMovement()

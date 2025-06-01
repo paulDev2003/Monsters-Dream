@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class MonstersHouse : MonoBehaviour
 {
     public List<MonsterData> listMonsters = new List<MonsterData>();
+    public List<DiscoverMonster> bestiary = new List<DiscoverMonster>();
     public int id = 0;
 
     public void InsertOnMonsterHouse(List<GameObject> monsterList)

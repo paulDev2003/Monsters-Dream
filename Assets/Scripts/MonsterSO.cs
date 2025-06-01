@@ -19,4 +19,7 @@ public class MonsterSO : ScriptableObject
     public int expPerLevel;
     public int moneyPerLevel;
     public ItemSO itemForUpLevel;
+    public GameObject egg;
+    public ItemSO itemForEgg;
+    public int amountForEgg;
 }
