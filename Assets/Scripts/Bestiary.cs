@@ -12,25 +12,36 @@ public class Bestiary : MonoBehaviour
     public Inventory inventory;
     public UnityEvent ShowPanel;
     public UnityEvent ClosePanel;
+    public UnityEvent ShowEggPanel;
     public int page = 1;
-    public Transform spawnEgg;
+    public Transform spawnCreateEgg;
     private bool insideTrigger = false;
     public GameObject eggInstantiated;
     private string savedName;
     public TextMeshProUGUI txtAmount;
     public TextMeshProUGUI txtName;
     public Image imgItem;
+    public Camera cameraCreateEggs;
     public Camera cameraEggs;
     private ItemSO savedItem;
     private int amountEgg;
     public bool chooseEgg = false;
     private bool eggSpawned = false;
+    public Egg eggInvoked;
+    public Transform spawnEgg;
+    private bool onPanel = false;
 
     private void Update()
     {
-        if (insideTrigger && Input.GetKeyDown(KeyCode.E))
+        if (insideTrigger && Input.GetKeyDown(KeyCode.E) && !onPanel)
         {
             ShowPanel.Invoke();
+            onPanel = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && onPanel)
+        {
+            onPanel = false;
+            ClosePanel.Invoke();
         }
     }
     public void FillMonstersSlots()
@@ -97,7 +108,7 @@ public class Bestiary : MonoBehaviour
 
     private void SpawnEgg(MonsterBase monsterBase)
     {
-        eggInstantiated = Instantiate(monsterBase.monsterSO.egg, spawnEgg.position, monsterBase.monsterSO.egg.transform.rotation);
+        eggInstantiated = Instantiate(monsterBase.monsterSO.egg, spawnCreateEgg.position, monsterBase.monsterSO.egg.transform.rotation);
         savedName = monsterBase.monsterName;
         imgItem.sprite = monsterBase.monsterSO.itemForEgg.sprite;
         savedItem = monsterBase.monsterSO.itemForEgg;
@@ -132,10 +143,19 @@ public class Bestiary : MonoBehaviour
 
     private void EggToNursery()
     {
+        Egg egg = eggInstantiated.GetComponent<Egg>();
+        egg.bestiary = this;
+        egg.growing = true;
         ClosePanel.Invoke();
         chooseEgg = true;
-        cameraEggs.enabled = true;
+        cameraCreateEggs.enabled = true;
     }
+
+    public void InspectEgg()
+    {
+        GameObject egg = Instantiate(eggInvoked.gameObject, spawnEgg.position, eggInvoked.transform.rotation);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

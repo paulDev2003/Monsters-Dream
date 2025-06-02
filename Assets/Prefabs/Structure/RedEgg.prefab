@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6958309697147046224}
   - component: {fileID: 7930041957943693783}
   - component: {fileID: 7934412343439405539}
+  - component: {fileID: -1954630980213226257}
   m_Layer: 0
   m_Name: RedEgg
   m_TagString: Untagged
@@ -122,3 +123,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
+--- !u!114 &-1954630980213226257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666215883700778614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fa4432e2afea643b1ce6db09e05ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggSO: {fileID: 11400000, guid: a0758ae2c1899f442a481707a1d5a577, type: 2}
+  bestiary: {fileID: 0}
+  growing: 0
+  eggData:
+    id: 0
+    currentPoints: 0
+    itemProgress: 00000000000000000000000000000000

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4c33f0fafd1684b86a367acae1b3ac, type: 3}
+  m_Name: HonguiEgg
+  m_EditorClassIdentifier: 
+  typeItems:
+  - {fileID: 11400000, guid: 2d59f3cae2e31794194619f697af1559, type: 2}
+  - {fileID: 11400000, guid: f08984528704e5f4fbd653d6f7e737b9, type: 2}
+  amountItems: 0500000002000000
+  totalPoints: 50

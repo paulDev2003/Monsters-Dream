@@ -5,6 +5,7 @@ public class MonstersHouse : MonoBehaviour
 {
     public List<MonsterData> listMonsters = new List<MonsterData>();
     public List<DiscoverMonster> bestiary = new List<DiscoverMonster>();
+    public List<EggData> eggs = new List<EggData>();
     public int id = 0;
 
     public void InsertOnMonsterHouse(List<GameObject> monsterList)

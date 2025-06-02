@@ -10,6 +10,8 @@ public class EggSpot : MonoBehaviour
     public Camera eggsCamera;
     public GameObject progressBar;
     public Image imgSuperiorBar;
+    public EggPanel eggPanel;
+    public int id;
 
     void Update()
     {
@@ -26,10 +28,15 @@ public class EggSpot : MonoBehaviour
             if (available)
             {
                 egg = Instantiate(bestiary.eggInstantiated, spawnEgg.position, bestiary.eggInstantiated.transform.rotation);
+                Egg scriptEgg = egg.GetComponent<Egg>();
+                scriptEgg.eggData.id = id;
+                scriptEgg.eggSpot = this;
                 available = false;
                 eggsCamera.enabled = false;
                 progressBar.SetActive(true);
                 imgSuperiorBar.fillAmount = 0.01f;
+                eggPanel.eggs.Add(scriptEgg);
+                bestiary.chooseEgg = false;
             }
         }
     }

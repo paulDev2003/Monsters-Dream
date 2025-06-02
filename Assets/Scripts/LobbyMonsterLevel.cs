@@ -11,6 +11,7 @@ public class LobbyMonsterLevel : MonoBehaviour
     public Inventory inventory;
     public int pageNumber = 1;
     public UnityEvent EnabledInterface;
+    public UnityEvent DisabledInterface;
     public Transform spawnRender;
     private GameObject monsterPrefab;
     private bool insideCollider = false;
@@ -31,13 +32,19 @@ public class LobbyMonsterLevel : MonoBehaviour
     public int feedAmount = 25;
     private ItemSO itemForFeed;
     private int amountItem;
+    private bool onInterface = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && insideCollider)
+        if (Input.GetKeyDown(KeyCode.E) && insideCollider && !onInterface)
         {
-            
+            onInterface = true;
             EnabledInterface.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && onInterface)
+        {
+            DisabledInterface.Invoke();
+            onInterface = false;
         }
     }
     public void FillImages()

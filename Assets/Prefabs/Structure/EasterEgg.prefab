@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 9041764266757491141}
   - component: {fileID: 5302365841650820788}
   - component: {fileID: 7455538594209685843}
+  - component: {fileID: -4879584081715569474}
   m_Layer: 0
   m_Name: EasterEgg
   m_TagString: Untagged
@@ -154,3 +155,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 42.675377, y: 45.10444, z: 56.78061}
   m_Center: {x: -1.9363234, y: 1.7813473, z: 31.836432}
+--- !u!114 &-4879584081715569474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212416099142837632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fa4432e2afea643b1ce6db09e05ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggSO: {fileID: 11400000, guid: a0758ae2c1899f442a481707a1d5a577, type: 2}
+  bestiary: {fileID: 0}
+  growing: 0
+  eggData:
+    id: 0
+    currentPoints: 0
+    itemProgress: 00000000000000000000000000000000

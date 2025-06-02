@@ -15,6 +15,7 @@ public class SaveData
     public List<MonsterData> monstersHouse;
     public List<MonsterData> monstersDungeon;
     public List<DiscoverMonster> bestiary;
+    public List<EggData> eggs;
 
     public List<RuneClass> runesDungeon;
     public List<UpgradeData> upgradesDungeon;
