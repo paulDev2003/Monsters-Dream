@@ -16,6 +16,7 @@ public class EggPanel : MonoBehaviour
     public UnityEvent ClosePanel;
     public List<Egg> eggs = new List<Egg>();
     public Image superiorBar;
+    public GameObject btnHatch;
     private int i;
     private float totalPoints = 0;
     private bool onPanel = false;
@@ -26,6 +27,11 @@ public class EggPanel : MonoBehaviour
         onPanel = true;
         Egg scriptEgg = bestiary.eggInvoked;
         superiorBar.fillAmount = scriptEgg.eggData.currentPoints / (float)scriptEgg.eggSO.totalPoints;
+        if (scriptEgg.eggData.currentPoints >= scriptEgg.eggSO.totalPoints)
+        {
+            btnHatch.SetActive(true);
+            return;
+        }
         if (scriptEgg.eggData.currentPoints == 0)
         {
             superiorBar.fillAmount = 0.01f;
@@ -40,6 +46,7 @@ public class EggPanel : MonoBehaviour
             txtCounts[i].text = scriptEgg.eggData.itemProgress[i].ToString();
             txtTotals[i].enabled = true;
             txtTotals[i].text = $"/ {bestiary.eggInvoked.eggSO.amountItems[i].ToString()}";
+            btnEggProgress[i].current = scriptEgg.eggData.itemProgress[i];
             btnEggProgress[i].total = bestiary.eggInvoked.eggSO.amountItems[i];
             i++;
         }
@@ -61,6 +68,11 @@ public class EggPanel : MonoBehaviour
         scriptEgg.eggSpot.imgSuperiorBar.fillAmount = superiorBar.fillAmount;
         txtCounts[eggProgress.valueI].text = eggProgress.current.ToString();
         scriptEgg.eggData.itemProgress[eggProgress.valueI] = eggProgress.current;
+        if (total <= scriptEgg.eggData.currentPoints)
+        {
+            btnHatch.SetActive(true);
+            DesactiveItems();
+        }
     }
 
     public void SaveEggs()
@@ -79,6 +91,17 @@ public class EggPanel : MonoBehaviour
         {
             ClosePanel.Invoke();
             onPanel = true;
+        }
+    }
+
+    private void DesactiveItems()
+    {
+        for (int e = 0; e <= i ; e++)
+        {
+            imgsBtns[e].enabled = false;
+            imgsitems[e].enabled = false;
+            txtCounts[e].enabled = false;
+            txtTotals[e].enabled = false;
         }
     }
 }

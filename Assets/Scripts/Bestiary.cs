@@ -146,6 +146,7 @@ public class Bestiary : MonoBehaviour
         Egg egg = eggInstantiated.GetComponent<Egg>();
         egg.bestiary = this;
         egg.growing = true;
+        egg.eggData.monsterName = savedName;
         ClosePanel.Invoke();
         chooseEgg = true;
         cameraCreateEggs.enabled = true;

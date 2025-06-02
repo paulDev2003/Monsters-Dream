@@ -180,6 +180,8 @@ MonoBehaviour:
     molecularAmount: 
     monstersHouse: []
     monstersDungeon: []
+    bestiary: []
+    eggs: []
     runesDungeon: []
     upgradesDungeon: []
   itemDataBaseSO: {fileID: 11400000, guid: 571e50af525288b47a17c18ebaf383d7, type: 2}
@@ -1257,6 +1259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listMonsters: []
+  bestiary: []
+  eggs: []
   id: 0
 --- !u!4 &803157826
 Transform:
@@ -2497,6 +2501,7 @@ MonoBehaviour:
   prefabsRunes: []
   friendList: []
   isFigth: 0
+  lobby: 0
   txtMoney: {fileID: 1943995212}
   optionsRunes:
   - {fileID: 619923537}

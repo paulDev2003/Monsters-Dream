@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EggData
 {
     public int id;
+    public string monsterName;
     public float currentPoints;
     public List<int> itemProgress;
 }
