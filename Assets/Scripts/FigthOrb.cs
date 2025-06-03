@@ -7,6 +7,7 @@ public class FigthOrb : MonoBehaviour
     private bool showing = false;
     public UnityEvent ShowPanel;
     public UnityEvent ClosePanel;
+    public GameObject txtPressE;
 
     private void Update()
     {
@@ -26,6 +27,7 @@ public class FigthOrb : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             insideTrigger = true;
+            txtPressE.SetActive(true);
         }
     }
 
@@ -34,6 +36,7 @@ public class FigthOrb : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             insideTrigger = false;
+            txtPressE.SetActive(false);
         }
     }
 }

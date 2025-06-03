@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Egg : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Egg : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
         if (growing)
         {
             bestiary.eggInvoked = this;

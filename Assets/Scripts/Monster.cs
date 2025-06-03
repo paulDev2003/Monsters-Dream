@@ -213,6 +213,7 @@ public class Monster : MonoBehaviour
                // RotateTowardsTarget();
                 
             }
+            
             if (attackTime > 0)
             {
                 attackTime -= Time.deltaTime;
@@ -240,6 +241,11 @@ public class Monster : MonoBehaviour
                 
                 healthFigth = 0;
                 gameManager.RemoveFromList(ownList, this);
+                if (!enemie)
+                {
+                    gameManager.attacksPanel[valueI].targetImage.enabled = false;
+                    gameManager.attacksPanel[valueI].cooldownImage.fillAmount = 0;
+                }
                 dead = true;
                 if (!notShowInterface)
                 {

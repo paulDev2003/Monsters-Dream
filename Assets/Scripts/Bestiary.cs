@@ -16,6 +16,8 @@ public class Bestiary : MonoBehaviour
     public int page = 1;
     public Transform spawnCreateEgg;
     private bool insideTrigger = false;
+    public Image btnLeftArrow;
+    public Image btnRigthArrow;
     public GameObject eggInstantiated;
     private string savedName;
     public TextMeshProUGUI txtAmount;
@@ -24,11 +26,13 @@ public class Bestiary : MonoBehaviour
     public Camera cameraCreateEggs;
     public Camera cameraEggs;
     private ItemSO savedItem;
+    public Sprite unknownMonster;
     private int amountEgg;
     public bool chooseEgg = false;
     private bool eggSpawned = false;
     public Egg eggInvoked;
     public Transform spawnEgg;
+    public GameObject txtPressE;
     private bool onPanel = false;
 
     private void Update()
@@ -49,51 +53,54 @@ public class Bestiary : MonoBehaviour
         int i = 0;
         foreach (var monsterBase in monsterDataBase.allMonsters)
         {
-            if (i >= page * 9 || i < (page - 1) * 9)
+            if (i < page * 9 && i >= (page - 1) * 9)
             {
-                return;
-            }
-            if (!eggSpawned)
-            {
-                SpawnEgg(monsterBase);
-                eggSpawned = true;
-            }
-            monstersSlots[i].monsterData.monsterName = monsterBase.monsterName;
-            monstersSlots[i].img.enabled = true;
-            bool found = false;
-            foreach (var monsterData in monstersHouse.listMonsters)
-            {
-                if (monsterData.monsterName == monsterBase.monsterName)
+                if (!eggSpawned)
                 {
-                    monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
-                    monstersSlots[i].available = true;
-                    found = true;
-                    break;
+                    SpawnEgg(monsterBase);
+                    eggSpawned = true;
                 }
-            }
-            if (found)
-            {
-                i++;
-                continue;
-            }
-            foreach (var monsterData in monstersHouse.bestiary)
-            {
-                if (monsterData.monsterName == monsterBase.monsterName)
+                monstersSlots[i].monsterData.monsterName = monsterBase.monsterName;
+                monstersSlots[i].img.enabled = true;
+                bool found = false;
+                foreach (var monsterData in monstersHouse.listMonsters)
                 {
-                    if (monsterData.wasFriend)
+                    if (monsterData.monsterName == monsterBase.monsterName)
                     {
                         monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
                         monstersSlots[i].available = true;
-                        monstersSlots[i].img.color = Color.black;
+                        found = true;
+                        break;
                     }
-                    else if (monsterData.viewed)
-                    {
-                        monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
-                        monstersSlots[i].img.color = Color.black;
-                    }
-                    i++;
-                    break;
                 }
+                if (found)
+                {
+                    i++;
+                    continue;
+                }
+                foreach (var monsterData in monstersHouse.bestiary)
+                {
+                    if (monsterData.monsterName == monsterBase.monsterName)
+                    {
+                        if (monsterData.wasFriend)
+                        {
+                            monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
+                            monstersSlots[i].available = true;
+                            monstersSlots[i].img.color = Color.black;
+                        }
+                        else if (monsterData.viewed)
+                        {
+                            monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
+                            monstersSlots[i].img.color = Color.black;
+                        }
+                        i++;
+                        break;
+                    }
+                }
+            }
+            else if (i >= 9)
+            {
+                btnRigthArrow.enabled = true;
             }
             i++;
         }
@@ -157,19 +164,142 @@ public class Bestiary : MonoBehaviour
         GameObject egg = Instantiate(eggInvoked.gameObject, spawnEgg.position, eggInvoked.transform.rotation);
     }
 
+    public void LeftArrow()
+    {
+        int i = 0;
+        btnRigthArrow.enabled = true;
+        btnLeftArrow.enabled = false;
+        page -= 1;
+        foreach (var monsterBase in monsterDataBase.allMonsters)
+        {
+            if (i < (page - 1) * 9)
+            {
+                btnLeftArrow.enabled = true;
+            }
+            if (i < page * 9 && i >= (page - 1) * 9)
+            {
+                monstersSlots[i - (page - 1) * 9].monsterData.monsterName = monsterBase.monsterName;
+                monstersSlots[i - (page - 1) * 9].img.enabled = true;
+                monstersSlots[i - (page - 1) * 9].img.sprite = unknownMonster;
+                monstersSlots[i - (page - 1) * 9].available = false;
+                bool found = false;
+                foreach (var monsterData in monstersHouse.listMonsters)
+                {
+                    if (monsterData.monsterName == monsterBase.monsterName)
+                    {
+                        monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
+                        monstersSlots[i - (page - 1) * 9].available = true;
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    i++;
+                    continue;
+                }
+                foreach (var monsterData in monstersHouse.bestiary)
+                {
+                    if (monsterData.monsterName == monsterBase.monsterName)
+                    {
+                        if (monsterData.wasFriend)
+                        {
+                            monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
+                            monstersSlots[i - (page - 1) * 9].available = true;
+                            monstersSlots[i - (page - 1) * 9].img.color = Color.black;
+                        }
+                        else if (monsterData.viewed)
+                        {
+                            monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
+                            monstersSlots[i - (page - 1) * 9].img.color = Color.black;
+                        }
+                        i++;
+                        break;
+                    }
+                }
+            }
+            i++;
+        }
+    }
+    private void CleanAll()
+    {
+        foreach (var slot in monstersSlots)
+        {
+            slot.img.enabled = false;
+        }
+    }
+    public void RigthArrow()
+    {
+        CleanAll();
+        int i = 0;
+        btnRigthArrow.enabled = false;
+        btnLeftArrow.enabled = true;
+        page += 1;
+        foreach (var monsterBase in monsterDataBase.allMonsters)
+        {
+            if (i < page * 9 && i >= (page - 1) * 9)
+            {
+                monstersSlots[i - (page - 1) * 9].monsterData.monsterName = monsterBase.monsterName;
+                monstersSlots[i - (page - 1) * 9].img.enabled = true;
+                monstersSlots[i - (page - 1) * 9].img.sprite = unknownMonster;
+                monstersSlots[i - (page - 1) * 9].available = false;
+                bool found = false;
+                foreach (var monsterData in monstersHouse.listMonsters)
+                {
+                    if (monsterData.monsterName == monsterBase.monsterName)
+                    {
+                        monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
+                        monstersSlots[i - (page - 1) * 9].available = true;
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    i++;
+                    continue;
+                }
+                foreach (var monsterData in monstersHouse.bestiary)
+                {
+                    if (monsterData.monsterName == monsterBase.monsterName)
+                    {
+                        if (monsterData.wasFriend)
+                        {
+                            monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
+                            monstersSlots[i - (page - 1) * 9].available = true;
+                            monstersSlots[i - (page - 1) * 9].img.color = Color.black;
+                        }
+                        else if (monsterData.viewed)
+                        {
+                            monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
+                            monstersSlots[i - (page - 1) * 9].img.color = Color.black;
+                        }
+                        i++;
+                        break;
+                    }
+                }
+            }
+            if (i > page * 9)
+            {
+                btnRigthArrow.enabled = true;
+            }
+            i++;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             insideTrigger = true;
+            txtPressE.SetActive(true);
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             insideTrigger = false;
+            txtPressE.SetActive(false);
         }
     }
 }

@@ -37,6 +37,7 @@ public class EggSpot : MonoBehaviour
                 imgSuperiorBar.fillAmount = 0.01f;
                 eggPanel.eggs.Add(scriptEgg);
                 bestiary.chooseEgg = false;
+                eggPanel.SaveEggs();
             }
         }
     }

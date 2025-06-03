@@ -26,9 +26,12 @@ public class LobbyMonsterLevel : MonoBehaviour
     public TextMeshProUGUI txtLevel;
     public TextMeshProUGUI txtItemAmount;
     public TextMeshProUGUI txtMonsterName;
+    public GameObject txtPressE;
     private MonsterData currentMonster;
     public Image imgItem;
     public Image superiorBarExp;
+    public Image btnLeftArrow;
+    public Image btnRigthArrow;
     public int feedAmount = 25;
     private ItemSO itemForFeed;
     private int amountItem;
@@ -50,6 +53,10 @@ public class LobbyMonsterLevel : MonoBehaviour
     public void FillImages()
     {
         int i = 0;
+        if (pageNumber == 1)
+        {
+            btnLeftArrow.enabled = false;
+        }
         foreach (var monster in monstersHouse.listMonsters)
         {
             if (i < pageNumber * 9 && i >= (pageNumber - 1) * 9)
@@ -74,6 +81,10 @@ public class LobbyMonsterLevel : MonoBehaviour
                     ShowStats(monsterClass);
                     InstantiateMonsterRender();
                 }
+            }
+            else if (i > pageNumber * 9)
+            {
+                btnRigthArrow.enabled = true;
             }
             i++;
         }
@@ -163,11 +174,65 @@ public class LobbyMonsterLevel : MonoBehaviour
         superiorBarExp.fillAmount = (float)currentMonster.currentXP / (float)maxExp;
     }
 
+    public void LeftArrow()
+    {
+        int i = 0;
+        btnRigthArrow.enabled = true;
+        btnLeftArrow.enabled = false;
+        pageNumber -= 1;
+        foreach (var monster in monstersHouse.listMonsters)
+        {
+            if (i < (pageNumber - 1) * 9)
+            {
+                btnLeftArrow.enabled = true;
+            }
+            if (i < pageNumber * 9 && i >= (pageNumber - 1) * 9)
+            {
+                monstersImg[i - (pageNumber - 1) * 9].enabled = true;
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+                monstersImg[i - (pageNumber - 1) * 9].sprite = monsterBase.monsterSO.sprite;
+                monstersImg[i - (pageNumber - 1) * 9].GetComponent<MonsterSlot>().monsterData = monster;
+            }
+            i++;
+        }
+    }
+    private void CleanAll()
+    {
+        foreach (var img in monstersImg)
+        {
+            img.enabled = false;
+        }
+    }
+    public void RigthArrow()
+    {
+        CleanAll();
+        int i = 0;
+        btnRigthArrow.enabled = false;
+        btnLeftArrow.enabled = true;
+        pageNumber += 1;
+        foreach (var monster in monstersHouse.listMonsters)
+        {
+            if (i < pageNumber * 9 && i >= (pageNumber - 1) * 9)
+            {
+                monstersImg[i - (pageNumber - 1) * 9].enabled = true;
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+                monstersImg[i - (pageNumber - 1) * 9].sprite = monsterBase.monsterSO.sprite;
+                monstersImg[i - (pageNumber - 1) * 9].GetComponent<MonsterSlot>().monsterData = monster;
+            }
+            if (i > pageNumber * 9)
+            {
+                btnRigthArrow.enabled = true;
+            }
+            i++;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             insideCollider = true;
+            txtPressE.SetActive(true);
         }
     }
 
@@ -176,6 +241,7 @@ public class LobbyMonsterLevel : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             insideCollider = false;
+            txtPressE.SetActive(false);
         }
     }
 }

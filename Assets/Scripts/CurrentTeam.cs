@@ -16,8 +16,11 @@ public class CurrentTeam : MonoBehaviour
     public List<TextMeshProUGUI> allTexts = new List<TextMeshProUGUI>();
     public List<MonsterData> allMonsters;
     public DungeonTeam dungeonTeam;
+    public Image btnRigthArrow;
+    public Image btnLeftArrow;
     private int countStarters = 0;
     public int i = 0;
+    public int page = 1;
 
     private void Start()
     {
@@ -53,12 +56,20 @@ public class CurrentTeam : MonoBehaviour
         int e = 0;
         foreach (var monster in monstersHouse.listMonsters)
         {
-            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
-            Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
-            allIcons[e].SetActive(true);
-            allIcons[e].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
-            allIcons[e].GetComponent<BoxSelectMonster>().monsterData = monster;
-            allTexts[e].text = monster.monsterName;
+            if (e < page * 16 && e >= (page - 1) * 16)
+            {
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+                Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
+                allIcons[e].SetActive(true);
+                allIcons[e].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
+                allIcons[e].GetComponent<BoxSelectMonster>().monsterData = monster;
+                allTexts[e].text = monster.monsterName;
+                
+            }
+            else if (e > page * 16)
+            {
+                btnRigthArrow.enabled = true;
+            }
             e++;
         }
     }
@@ -240,6 +251,65 @@ public class CurrentTeam : MonoBehaviour
             starterIcons[0].enabled = true;
             iconsList[0].GetComponent<BoxSelectMonster>().monsterData.isStarter = true;
             countStarters++;
+        }
+    }
+
+    public void LeftArrow()
+    {
+        int i = 0;
+        btnRigthArrow.enabled = true;
+        btnLeftArrow.enabled = false;
+        page -= 1;
+        foreach (var monster in monstersHouse.listMonsters)
+        {
+            if (i < (page - 1) * 16)
+            {
+                btnLeftArrow.enabled = true;
+            }
+            if (i < page * 16 && i >= (page - 1) * 16)
+            {
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+                Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
+                allIcons[i - (page - 1) * 16].SetActive(true);
+                allIcons[i - (page - 1) * 16].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
+                allIcons[i - (page - 1) * 16].GetComponent<BoxSelectMonster>().monsterData = monster;
+                allTexts[i - (page - 1) * 16].text = monster.monsterName;
+            }
+            i++;
+        }
+    }
+    private void CleanAll()
+    {
+        int e = 0;
+        foreach (var icon in allIcons)
+        {
+            icon.SetActive(false);
+            allTexts[e].text = "";
+        }
+    }
+    public void RigthArrow()
+    {
+        CleanAll();
+        int i = 0;
+        btnRigthArrow.enabled = false;
+        btnLeftArrow.enabled = true;
+        page += 1;
+        foreach (var monster in monstersHouse.listMonsters)
+        {
+            if (i < page * 16 && i >= (page - 1) * 16)
+            {
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
+                Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
+                allIcons[i - (page - 1) * 16].SetActive(true);
+                allIcons[i - (page - 1) * 16].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
+                allIcons[i - (page - 1) * 16].GetComponent<BoxSelectMonster>().monsterData = monster;
+                allTexts[i - (page - 1) * 16].text = monster.monsterName;
+            }
+            if (i > page * 16)
+            {
+                btnRigthArrow.enabled = true;
+            }
+            i++;
         }
     }
 }

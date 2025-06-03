@@ -101,6 +101,8 @@ public class MonsterDrop : MonoBehaviour
                 backNow = true;
                 gameManager.countMonsters--;
                 gameManager.attacksPanel[monsterScript.valueI].targetImage.enabled = false;
+                gameManager.friendsList.Remove(gameManager.monsterSelected);
+                gameManager.monsterSelected = null;               
                 ResetCooldown(monsterScript.valueI);
                 Destroy(gameManager.selectorActive.gameObject);
                 foreach (var enemie in gameManager.enemieList)
@@ -116,7 +118,7 @@ public class MonsterDrop : MonoBehaviour
                         Debug.Log("cambia el target");                       
                         gameManager.friendsList.Remove(gameManager.monsterSelected);
 
-                        gameManager.monsterSelected = null;
+                        
                         
                         scriptEnemie.target = scriptEnemie.ChooseTarget(scriptEnemie.oppositeList);
                         

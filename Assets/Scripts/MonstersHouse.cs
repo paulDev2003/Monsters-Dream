@@ -51,4 +51,14 @@ public class MonstersHouse : MonoBehaviour
             }
         }
     }
+
+    public void AddPointsToEggs()
+    {
+        int pointsGained = PlayerPrefs.GetInt("BattleNumber", 0);
+        Debug.Log(pointsGained);
+        foreach (var egg in eggs)
+        {
+            egg.currentPoints += pointsGained;
+        }
+    }
 }
