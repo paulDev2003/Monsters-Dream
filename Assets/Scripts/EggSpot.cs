@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class EggSpot : MonoBehaviour
 {
     public Bestiary bestiary;
-    private bool available = true;
+    public bool available = true;
     public Transform spawnEgg;
     private GameObject egg;
     public Camera eggsCamera;

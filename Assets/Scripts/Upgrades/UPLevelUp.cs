@@ -12,6 +12,7 @@ public class UPLevelUp : Upgrade
         int i = 0;
         ContainerExperiencePanel contExpPanel = FindAnyObjectByType<ContainerExperiencePanel>();
         contExpPanel.gameObject.GetComponent<Image>().enabled = true;
+        contExpPanel.btnPanel.enabled = true;
         foreach (var monster in dungeonTeam)
         {
             MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);

@@ -245,9 +245,10 @@ MonoBehaviour:
   runeName: Shield
   positionsSlots:
   - {x: 0, y: 0}
-  - {x: 1, y: 0}
+  - {x: -1, y: 0}
   - {x: 0, y: 1}
   isUsed: 0
+  onSell: 0
   savePosition: {x: 0, y: 0}
   runeSO: {fileID: 11400000, guid: 0c81416db6da6b543a9d9ad906936e98, type: 2}
   runeData: {fileID: 11400000, guid: 75f060f2b77f93f4bba307fa6826ac73, type: 2}

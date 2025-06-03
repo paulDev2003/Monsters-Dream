@@ -156,6 +156,9 @@ public class LobbyMonsterLevel : MonoBehaviour
             currentMonster.currentXP -= maxExp;
             currentMonster.level += 1;
             txtLevel.text = currentMonster.level.ToString();
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(currentMonster.monsterName);
+            MonsterClass monsterClass = new MonsterClass(monsterBase.monsterSO, currentMonster.level);
+            ShowStats(monsterClass);
         }
         superiorBarExp.fillAmount = (float)currentMonster.currentXP / (float)maxExp;
     }

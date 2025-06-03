@@ -14,9 +14,15 @@ public class EggPanel : MonoBehaviour
     public List<TextMeshProUGUI> txtCounts = new List<TextMeshProUGUI>();
     public List<TextMeshProUGUI> txtTotals = new List<TextMeshProUGUI>();
     public UnityEvent ClosePanel;
+    public UnityEvent HatchSummon;
     public List<Egg> eggs = new List<Egg>();
     public Image superiorBar;
     public GameObject btnHatch;
+    public Transform spawnMonsterUnlocked;
+    public Camera camMonsterUnlocked;
+    public MonsterDataBase monsterDataBase;
+    public TextMeshProUGUI txtSummon;
+    private GameObject monsterInstantiated;
     private int i;
     private float totalPoints = 0;
     private bool onPanel = false;
@@ -103,5 +109,30 @@ public class EggPanel : MonoBehaviour
             txtCounts[e].enabled = false;
             txtTotals[e].enabled = false;
         }
+    }
+
+    public void Hatch()
+    {
+        camMonsterUnlocked.enabled = true;
+        Egg scriptEgg = bestiary.eggInvoked;
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(scriptEgg.eggData.monsterName);
+        monsterInstantiated = Instantiate(monsterBase.prefabMonster, spawnMonsterUnlocked.position, 
+            spawnMonsterUnlocked.transform.rotation);
+        monsterInstantiated.GetComponent<Monster>().enabled = false;
+        Rigidbody rb = monsterInstantiated.GetComponentInChildren<Rigidbody>();
+        rb.useGravity = false;
+        Transform firstChild = monsterInstantiated.transform.GetChild(0);
+        firstChild.gameObject.AddComponent<CharacterPreviewRotation>();
+        monstersHouse.InsertOnMonsterHouse(scriptEgg.eggData.monsterName);
+        scriptEgg.eggSpot.progressBar.SetActive(false);
+        scriptEgg.eggSpot.available = true;
+        monstersHouse.RemoveEgg(scriptEgg.eggData.id);
+        txtSummon.text = bestiary.eggInvoked.eggData.monsterName;
+        Destroy(scriptEgg.gameObject);
+    }
+
+    public void DestroyMonster()
+    {
+        Destroy(monsterInstantiated);
     }
 }

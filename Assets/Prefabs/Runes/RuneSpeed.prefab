@@ -66,6 +66,7 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   isUsed: 0
+  onSell: 0
   savePosition: {x: 0, y: 0}
   runeSO: {fileID: 11400000, guid: af0a2accf9688f747b011bc3a74dcea4, type: 2}
   runeData: {fileID: 11400000, guid: 31e8a7733eca66646b36f619a3a83108, type: 2}

@@ -25,4 +25,30 @@ public class MonstersHouse : MonoBehaviour
             id++;
         }
     }
+
+    public void InsertOnMonsterHouse(string monsterName)
+    {
+        MonsterData m = new MonsterData()
+        {
+            baseId = listMonsters.Count,
+            monsterName = monsterName,
+            level = 1,
+            currentXP = 0,
+            currentHealth = 5,
+        };
+        listMonsters.Add(m);
+        id++;
+    }
+
+    public void RemoveEgg(int id)
+    {
+        foreach (var egg in eggs)
+        {
+            if (egg.id == id)
+            {
+                eggs.Remove(egg);
+                return;
+            }
+        }
+    }
 }

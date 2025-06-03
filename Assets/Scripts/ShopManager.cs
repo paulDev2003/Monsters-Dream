@@ -29,6 +29,8 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI txtInfoPrefab;
     public TextMeshProUGUI txtNamePrefab;
 
+    public bool upLevel;
+
     private void Start()
     {
         DropItems();
