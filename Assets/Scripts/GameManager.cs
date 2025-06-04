@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI txtMoneyReward;
     public Image imageMoneyReward;
     public bool specialEvent = false;
+    public List<Camera> renderCameras = new List<Camera>();
+    public List<Transform> spawnsRenderCamera = new List<Transform>();
+    public List<GameObject> monstersReward = new List<GameObject>();
+    public Vector2 monstersLevelReward;
     private void Start()
     { 
         friendsSaved = new List<GameObject>(friendsList);
@@ -346,6 +350,23 @@ public class GameManager : MonoBehaviour
         foreach (var enemie in enemieList)
         {
             enemie.GetComponent<Monster>().enemie = true;
+        }
+    }
+
+    public void ActivateMonsterChoice()
+    {
+        int i = 0;
+        foreach (var cam in renderCameras)
+        {
+            cam.enabled = true;
+            GameObject monsterSelected = monstersReward[Random.Range(0, monstersReward.Count)];
+            GameObject monsterPrefab = Instantiate(monsterSelected, spawnsRenderCamera[i].position, spawnsRenderCamera[i].rotation);
+            monsterPrefab.GetComponent<Monster>().enabled = false;
+            Rigidbody rb = monsterPrefab.GetComponentInChildren<Rigidbody>();
+            rb.useGravity = false;
+            Transform firstChild = monsterPrefab.transform.GetChild(0);
+            firstChild.gameObject.AddComponent<CharacterPreviewRotation>();
+            i++;
         }
     }
 }

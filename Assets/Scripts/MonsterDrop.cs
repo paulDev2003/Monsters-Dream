@@ -249,6 +249,7 @@ public class MonsterDrop : MonoBehaviour
                 Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
                 scriptMonster.lifeBar = gameManager.superiorBarFriends[valueI];
                 scriptMonster.shieldBar = gameManager.shieldsFriends[valueI];
+                scriptMonster.enemie = false;
                 runeManager.AddBuffs(scriptMonster);
                 foreach (var attack in gameManager.attacksPanel)
                 {

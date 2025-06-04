@@ -74,15 +74,18 @@ public class ManagerRunes : MonoBehaviour
     {
         foreach (var rune in runesDungeon)
         {
-            RuneBase runeBase = runeDataBase.GetRuneBaseByName(rune.runeName);
-            GameObject runeInstantiated = Instantiate(runeBase.runeDataSO.runePrefab, runePanel.transform);
-            prefabsRunes.Add(runeInstantiated);
-            Rune scriptRune = runeInstantiated.GetComponent<Rune>();
-            scriptRune.cost = rune.cost;
-            scriptRune.level = rune.level;
-            scriptRune.savePosition = rune.savePosition;
-            scriptRune.isUsed = true;
-            allRunes.Add(scriptRune);
+            if (runePanel != null)
+            {
+                RuneBase runeBase = runeDataBase.GetRuneBaseByName(rune.runeName);
+                GameObject runeInstantiated = Instantiate(runeBase.runeDataSO.runePrefab, runePanel.transform);
+                prefabsRunes.Add(runeInstantiated);
+                Rune scriptRune = runeInstantiated.GetComponent<Rune>();
+                scriptRune.cost = rune.cost;
+                scriptRune.level = rune.level;
+                scriptRune.savePosition = rune.savePosition;
+                scriptRune.isUsed = true;
+                allRunes.Add(scriptRune);
+            }          
         }
     }
 
