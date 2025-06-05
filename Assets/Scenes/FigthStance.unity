@@ -2292,6 +2292,10 @@ MonoBehaviour:
   txtMoneyReward: {fileID: 531712883}
   imageMoneyReward: {fileID: 153347058}
   specialEvent: 0
+  renderCameras: []
+  spawnsRenderCamera: []
+  monstersReward: []
+  monstersLevelReward: {x: 0, y: 0}
 --- !u!4 &1458646403
 Transform:
   m_ObjectHideFlags: 0

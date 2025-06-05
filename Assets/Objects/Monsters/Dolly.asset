@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a31c3c1d671274ab66b4798d85f6a5, type: 3}
+  m_Name: Dolly
+  m_EditorClassIdentifier: 
+  monsterName: Dolly
+  health: 100
+  physicalDamage: 20
+  speedAttack: 0.75
+  defense: 10
+  evasion: 10
+  magicalDamage: 5
+  magicalDefense: 3
+  skill: {fileID: 11400000, guid: 6e3c2af1bc797174382066b06ff4d48d, type: 2}
+  levelUp: {fileID: 11400000, guid: d6fb3ac5ffa411646a632e6c46804b26, type: 2}
+  dropList:
+  - {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}
+  sprite: {fileID: 0}
+  expPerLevel: 40
+  moneyPerLevel: 20
+  itemForUpLevel: {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}
+  egg: {fileID: 728716050470227749, guid: d45af682f507889439e9786fa1229f9d, type: 3}
+  itemForEgg: {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}
+  amountForEgg: 1

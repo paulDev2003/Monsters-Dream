@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
+  m_Name: BaseDolly
+  m_EditorClassIdentifier: 
+  id: 4
+  monsterName: Dolly
+  prefabMonster: {fileID: 2026916342437432789, guid: 51de9b3ffaaf84d4887b1876bc17e091, type: 3}
+  monsterSO: {fileID: 11400000, guid: a389ba8c803c11040b92192d7fc699c8, type: 2}
