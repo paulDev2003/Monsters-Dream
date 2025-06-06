@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
     public List<Camera> renderCameras = new List<Camera>();
     public List<Transform> spawnsRenderCamera = new List<Transform>();
     public List<GameObject> monstersReward = new List<GameObject>();
-    public Vector2 monstersLevelReward;
+    public Vector2Int monstersLevelReward;
+    public List<InfoPanelMonster> infoPanels = new List<InfoPanelMonster>();
     private void Start()
     { 
         friendsSaved = new List<GameObject>(friendsList);
@@ -361,12 +362,18 @@ public class GameManager : MonoBehaviour
             cam.enabled = true;
             GameObject monsterSelected = monstersReward[Random.Range(0, monstersReward.Count)];
             GameObject monsterPrefab = Instantiate(monsterSelected, spawnsRenderCamera[i].position, spawnsRenderCamera[i].rotation);
-            monsterPrefab.GetComponent<Monster>().enabled = false;
+            Monster monsterScript = monsterPrefab.GetComponent<Monster>();
+            monsterScript.enabled = false;
+            int levelMonster = Random.Range(monstersLevelReward.x, monstersLevelReward.y);
+            MonsterClass monsterClass = new MonsterClass(monsterScript.monsterSO, levelMonster);
             Rigidbody rb = monsterPrefab.GetComponentInChildren<Rigidbody>();
             rb.useGravity = false;
             Transform firstChild = monsterPrefab.transform.GetChild(0);
             firstChild.gameObject.AddComponent<CharacterPreviewRotation>();
+            infoPanels[i].ShowInfoPanel(levelMonster, monsterClass, monsterScript.monsterName);
             i++;
         }
     }
+
+   
 }
