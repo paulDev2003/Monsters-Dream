@@ -18,6 +18,7 @@ public class InfoPanelMonster : MonoBehaviour
     public PanelChooseMonster panelChooseMonster;
     public Image targetImage;
     public int savedLevel;
+    public int savedHealth;
     public string savedName;
    
     
@@ -34,14 +35,14 @@ public class InfoPanelMonster : MonoBehaviour
         txtEva.text = monsterClass.Evasion.ToString();
         txtSpA.text = monsterClass.SpeedAttack.ToString();
         txtHea.text = monsterClass.Health.ToString();
-
+        savedHealth = monsterClass.Health;
     }
 
     public void ChooseThis()
     {
-        if (panelChooseMonster.monsterSelected)
+        if (panelChooseMonster.monsterSelected != null)
         {
-            panelChooseMonster.monsterSelected.GetComponent<Image>().color = panelChooseMonster.deselectedColor;
+            panelChooseMonster.monsterSelected.targetImage.color = panelChooseMonster.deselectedColor;
         }
         panelChooseMonster.monsterSelected = this;
         targetImage.color = panelChooseMonster.selectedColor;

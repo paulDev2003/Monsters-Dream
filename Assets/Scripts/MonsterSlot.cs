@@ -5,9 +5,11 @@ public class MonsterSlot : MonoBehaviour
 {
     public MonsterData monsterData;
     public LobbyMonsterLevel lobbyMonsters;
+    public PanelChooseMonster panelChooseMonster;
     public Bestiary bestiary;
     public Image img;
     public bool available = false;
+    public int savedI;
 
     public void ChangeMonsterPrefab()
     {
@@ -20,5 +22,10 @@ public class MonsterSlot : MonoBehaviour
         {
             bestiary.ChangeEgg(monsterData);
         }        
+    }
+
+    public void ChangeMember()
+    {
+
     }
 }
