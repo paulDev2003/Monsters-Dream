@@ -26,6 +26,6 @@ public class MonsterSlot : MonoBehaviour
 
     public void ChangeMember()
     {
-
+        panelChooseMonster.ChangeMemberTeam(this);
     }
 }

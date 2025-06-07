@@ -71,4 +71,14 @@ public class PanelChooseMonster : MonoBehaviour
         monsterSlotChange.img.sprite = savedSprite;
 
     }
+
+    public void SaveMembersTeam()
+    {
+        int i = 0;
+        foreach (var slot in monsterSlots)
+        {
+            dungeonTeam.allMonsters[i] = slot.monsterData;
+            i++;
+        }
+    }
 }
