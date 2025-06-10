@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class DungeonTeam : MonoBehaviour
 {
     public List<MonsterData> allMonsters = new List<MonsterData>();
+    public List<MonsterData> firstTeam = new List<MonsterData>();
 
     public void CheckStartersAlive()
     {
@@ -14,5 +15,10 @@ public class DungeonTeam : MonoBehaviour
                 monster.isStarter = false;
             }
         }
+    }
+
+    public void BackToFirstTeam()
+    {
+        allMonsters = firstTeam;
     }
 }

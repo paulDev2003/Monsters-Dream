@@ -45,6 +45,7 @@ public class PanelChooseMonster : MonoBehaviour
     public void FillDataTeam()
     {
         int i = 0;
+        int id = 0;
         foreach (var monster in dungeonTeam.allMonsters)
         {
             MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
@@ -52,6 +53,7 @@ public class PanelChooseMonster : MonoBehaviour
             monsterSlots[i].monsterData = monster;
             txtsLevels[i].text = $"Lv. {monster.level}";
             monsterSlots[i].savedI = i;
+            id += monster.baseId;
             i++;
         }
         MonsterBase monsterBaseChange = monsterDataBase.GetMonsterBaseByName(monsterSelected.savedName);
@@ -60,7 +62,7 @@ public class PanelChooseMonster : MonoBehaviour
         monsterSlotChange.monsterData.monsterName = monsterSelected.savedName;
         monsterSlotChange.monsterData.level = monsterSelected.savedLevel;
         monsterSlotChange.monsterData.currentHealth = monsterSelected.savedHealth;
-
+        monsterSlotChange.monsterData.baseId = id;
     }
 
     public void ChangeMemberTeam(MonsterSlot selectedSlot)

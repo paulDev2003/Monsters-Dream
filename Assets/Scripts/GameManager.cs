@@ -233,20 +233,14 @@ public class GameManager : MonoBehaviour
                     monsterScript.shieldBar = shieldsFriends[i];
                 }
             }
-            foreach (var monsterData in dungeonTeam.allMonsters)
+            MonsterData monsterData = dungeonTeam.allMonsters[i];
+            levelFriends[i].text = $"Lv.{monsterData.level}";
+            monsterComponent.monsterData = monsterData;
+            monsterDrop[i].monsterData = monsterData;
+            if (monsterData.isStarter)
             {
-                
-                if (monsterData.monsterName == monsterComponent.monsterName)
-                {
-                    levelFriends[i].text = $"Lv.{monsterData.level}";
-                    monsterComponent.monsterData = monsterData;
-                    monsterDrop[i].monsterData = monsterData;
-                    if (monsterData.isStarter)
-                    {
-                        monsterDrop[i].isUsed = true;
-                    }
-                }
-            }
+                monsterDrop[i].isUsed = true;
+            }           
             i++;
         }
         i = 0;
@@ -269,7 +263,24 @@ public class GameManager : MonoBehaviour
                 e++;
             }            
         }
+        int battles = PlayerPrefs.GetInt("BattleNumber", 0);
+        int u = 0;
+        foreach (var monsterData in dungeonTeam.allMonsters)
+        {
+            if (battles == 0)
+            {
+                return;
+            }
+            if (monsterData.monsterName != "")
+            {
+                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterData.monsterName);
+                MonsterClass monsterClass = new MonsterClass(monsterBase.monsterSO, monsterData.level);
+                superiorBarFriends[u].image.fillAmount = monsterData.currentHealth / monsterClass.Health;
+            }                 
+            u++;
+        }
         
+
     }
 
     public void ShowExperience()

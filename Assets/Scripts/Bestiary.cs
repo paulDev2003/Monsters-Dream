@@ -206,7 +206,7 @@ public class Bestiary : MonoBehaviour
                         {
                             monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
                             monstersSlots[i - (page - 1) * 9].available = true;
-                            monstersSlots[i - (page - 1) * 9].img.color = Color.black;
+                          //  monstersSlots[i - (page - 1) * 9].img.color = Color.black;
                         }
                         else if (monsterData.viewed)
                         {
@@ -267,7 +267,6 @@ public class Bestiary : MonoBehaviour
                         {
                             monstersSlots[i - (page - 1) * 9].img.sprite = monsterBase.monsterSO.sprite;
                             monstersSlots[i - (page - 1) * 9].available = true;
-                            monstersSlots[i - (page - 1) * 9].img.color = Color.black;
                         }
                         else if (monsterData.viewed)
                         {

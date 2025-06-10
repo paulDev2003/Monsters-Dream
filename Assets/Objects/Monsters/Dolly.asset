@@ -24,7 +24,7 @@ MonoBehaviour:
   levelUp: {fileID: 11400000, guid: d6fb3ac5ffa411646a632e6c46804b26, type: 2}
   dropList:
   - {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b5f0fb530db15024e9954b28ae84798e, type: 3}
   expPerLevel: 40
   moneyPerLevel: 20
   itemForUpLevel: {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}

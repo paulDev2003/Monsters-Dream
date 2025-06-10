@@ -250,7 +250,10 @@ public class MonsterDrop : MonoBehaviour
                 scriptMonster.lifeBar = gameManager.superiorBarFriends[valueI];
                 scriptMonster.shieldBar = gameManager.shieldsFriends[valueI];
                 scriptMonster.enemie = false;
-                runeManager.AddBuffs(scriptMonster);
+                if (!wasChanged)
+                {
+                    runeManager.AddBuffs(scriptMonster);
+                }              
                 foreach (var attack in gameManager.attacksPanel)
                 {
                     if (attack.targetImage.enabled == false)

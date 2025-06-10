@@ -200,13 +200,14 @@ public class CurrentTeam : MonoBehaviour
     public void SaveMonstersInAllMonsters()
     {
         int e = 0;
-        foreach (var box in iconsList)
+        List<MonsterData> monstersList = new List<MonsterData>();
+        foreach (var icon in iconsList)
         {
-            MonsterData monsterData = box.GetComponent<BoxSelectMonster>().monsterData;
-            allMonsters[e] = monsterData;
-            e++;
+            BoxSelectMonster box = icon.GetComponent<BoxSelectMonster>();
+            monstersList.Add(box.monsterData);
         }
-        dungeonTeam.allMonsters = allMonsters;
+        
+        dungeonTeam.allMonsters = monstersList;
     }
 
     public void SelectStarter()
