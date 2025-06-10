@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     public List<Transform> friendSpawnPoints = new List<Transform>();
     public List<Transform> enemySpawnPoints = new List<Transform>();
     public DungeonTeam dungeonTeam;
+    public MonstersHouse monstersHouse;
     public MonsterDataBase monsterDataBase;
     private List<Monster> friendsMonsters = new List<Monster>();
     public TextMeshProUGUI txtMoney;
@@ -96,6 +97,25 @@ public class GameManager : MonoBehaviour
             enemyScript.level = Random.Range(levelToSpawn.x, levelToSpawn.y);
             enemyScript.enemie = true;
             enemieList.Add(enemySpawned);
+            bool founded = false;
+            foreach (var data in monstersHouse.bestiary)
+            {
+                if (data.monsterName == enemyScript.monsterName)
+                {
+                    founded = true;
+                    data.viewed = true;
+                }
+            }
+            if (!founded)
+            {
+                DiscoverMonster monsterDiscovered = new DiscoverMonster
+                {
+                    monsterName = enemyScript.monsterName,
+                    viewed = true,
+                    wasFriend = false
+                };
+                monstersHouse.bestiary.Add(monsterDiscovered);
+            }
         }
         enemiesSaved = new List<GameObject>(enemieList);
         int e = 0;

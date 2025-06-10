@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections.Generic;
 
 public class PanelChooseMonster : MonoBehaviour
@@ -9,12 +10,14 @@ public class PanelChooseMonster : MonoBehaviour
     public Color selectedColor;
     public Color deselectedColor;
     public DungeonTeam dungeonTeam;
+    public MonstersHouse monstersHouse;
     public GameObject panelChangeMonster;
     public List<MonsterSlot> monsterSlots = new List<MonsterSlot>();
     public List<TextMeshProUGUI> txtsLevels = new List<TextMeshProUGUI>();
     public MonsterDataBase monsterDataBase;
     public MonsterSlot monsterSlotChange;
     public TextMeshProUGUI txtLevelChange;
+    public UnityEvent EventComplete;
 
     public void AddMonsterToTeam()
     {
@@ -30,6 +33,8 @@ public class PanelChooseMonster : MonoBehaviour
                 monster.monsterName = monsterSelected.savedName;
                 monster.level = monsterSelected.savedLevel;
                 monster.currentHealth = monsterSelected.savedHealth;
+                CheckBestiary(monster.monsterName);
+                EventComplete.Invoke();
                 return;
             }
         }
@@ -79,6 +84,34 @@ public class PanelChooseMonster : MonoBehaviour
         {
             dungeonTeam.allMonsters[i] = slot.monsterData;
             i++;
+        }
+        foreach (var data in dungeonTeam.allMonsters)
+        {
+            CheckBestiary(data.monsterName);
+        }
+    }
+
+    private void CheckBestiary(string monsterName)
+    {
+        bool founded = false;
+        foreach (var data in monstersHouse.bestiary)
+        {
+            if (data.monsterName == monsterName)
+            {
+                data.wasFriend = true;
+                founded = true;
+                return;
+            }
+        }
+        if (!founded)
+        {
+            DiscoverMonster monsterDiscovered = new DiscoverMonster
+            {
+                monsterName = monsterName,
+                viewed = false,
+                wasFriend = true
+            };
+            monstersHouse.bestiary.Add(monsterDiscovered);
         }
     }
 }
