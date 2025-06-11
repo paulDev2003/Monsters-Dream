@@ -27,7 +27,7 @@ public class MonsterDrop : MonoBehaviour
     private bool markInstantiated = false;
     public MonsterData monsterData;
     public Image imgCooldown;
-
+    
     private void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -100,7 +100,7 @@ public class MonsterDrop : MonoBehaviour
                 isUsed = false;
                 backNow = true;
                 gameManager.countMonsters--;
-                gameManager.attacksPanel[monsterScript.valueI].targetImage.enabled = false;
+                monsterScript.skillDrop.targetImage.enabled = false;
                 gameManager.friendsList.Remove(gameManager.monsterSelected);
                 gameManager.monsterSelected = null;               
                 ResetCooldown(monsterScript.valueI);
@@ -207,6 +207,7 @@ public class MonsterDrop : MonoBehaviour
 
     void SpawnMonster()
     {
+        Debug.Log($"Entra en{this.name}");
         saveMonsterMarked = null;
         bool isOnButton = IsPointerOverButton();
         if (isOnButton)
@@ -233,6 +234,7 @@ public class MonsterDrop : MonoBehaviour
             {
                 if (!wasChanged)
                 {
+                    Debug.Log("El instanciado");
                     instantiatedMonster = Instantiate(monsterSaved, hit.point + Vector3.up * 2, Quaternion.identity);
                     Monster scriptSummon = instantiatedMonster.GetComponent<Monster>();
                     scriptSummon.exp = scriptSummon.monsterData.currentXP;
@@ -246,24 +248,27 @@ public class MonsterDrop : MonoBehaviour
                 }
                 isUsed = true;
                 gameManager.friendsList.Add(instantiatedMonster);
-                Monster scriptMonster = instantiatedMonster.GetComponent<Monster>();
-                scriptMonster.lifeBar = gameManager.superiorBarFriends[valueI];
-                scriptMonster.shieldBar = gameManager.shieldsFriends[valueI];
-                scriptMonster.enemie = false;
+                monsterScript = instantiatedMonster.GetComponent<Monster>();
+                monsterScript.lifeBar = gameManager.superiorBarFriends[valueI];
+                monsterScript.shieldBar = gameManager.shieldsFriends[valueI];
+                monsterScript.enemie = false;
                 if (!wasChanged)
                 {
-                    runeManager.AddBuffs(scriptMonster);
-                }              
+                    runeManager.AddBuffs(monsterScript);
+                }
+                int i = 0;
                 foreach (var attack in gameManager.attacksPanel)
-                {
+                {                   
                     if (attack.targetImage.enabled == false)
                     {
                         attack.targetImage.enabled = true;
-                        attack.targetImage.sprite = scriptMonster.monsterSO.skill.sprite;
-                        attack.monsterOwner = scriptMonster;
-                        scriptMonster.skillDrop = attack;
+                        attack.targetImage.sprite = monsterScript.monsterSO.skill.sprite;
+                        attack.monsterOwner = monsterScript;
+                        monsterScript.skillDrop = attack;
+                        monsterScript.valueI = i;
                         return;
                     }
+                    i++;
                 }
             }
             

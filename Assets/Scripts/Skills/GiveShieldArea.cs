@@ -27,7 +27,6 @@ public class GiveShieldArea : MonoBehaviour
             Monster monsterScript = collision.GetComponentInParent<Monster>();
             if (monsterScript != null)
             {
-                Debug.Log("Encuentra el monstruo: " + monsterScript.name);
                 if (enemie && monsterScript.enemie || !enemie && !monsterScript.enemie)
                 {
                     monsterScript.shieldActivated = true;

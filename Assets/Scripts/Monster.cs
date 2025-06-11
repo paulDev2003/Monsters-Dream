@@ -137,7 +137,7 @@ public class Monster : MonoBehaviour
             ownList = gameManager.friendsList;
             if (!notShowInterface)
             {
-                gameManager.monsterDrop[valueI].monsterScript = this;
+                //gameManager.monsterDrop[valueI].monsterScript = this;
             }            
         }
     }
@@ -506,7 +506,6 @@ public class Monster : MonoBehaviour
         else if (!enemie)
         {
             healthFigth = monsterData.currentHealth;
-            Debug.Log("Entra en con la vida previa");
         }
         else
         {
