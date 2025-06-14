@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -94,6 +95,14 @@ public class GameManager : MonoBehaviour
             GameObject enemyToSpawn = enemiesToChoice[Random.Range(0, enemiesToChoice.Count)];
             GameObject enemySpawned = Instantiate(enemyToSpawn, enemySpawnPoints[i].position, Quaternion.identity);
             Monster enemyScript = enemyToSpawn.GetComponent<Monster>();
+            Rigidbody rbEnemy = enemyScript.GetComponentInChildren<Rigidbody>();
+            rbEnemy.isKinematic = true;
+            if (rbEnemy == null)
+            {
+                Debug.Log("No se encuentra el rbEnemy");
+            }
+            
+            //StartCoroutine(EnablePhysicsNextFrame(enemyScript));
             enemyScript.level = Random.Range(levelToSpawn.x, levelToSpawn.y);
             enemyScript.enemie = true;
             enemieList.Add(enemySpawned);
@@ -126,6 +135,8 @@ public class GameManager : MonoBehaviour
                 MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monster.monsterName);
                 GameObject friendSpawned = Instantiate(monsterBase.prefabMonster, friendSpawnPoints[e].position, Quaternion.identity);
                 Monster scriptMonster = friendSpawned.GetComponent<Monster>();
+                scriptMonster.GetComponentInChildren<Rigidbody>().isKinematic = true;
+                StartCoroutine(EnablePhysicsNextFrame(scriptMonster));
                 scriptMonster.enemie = false;
                 scriptMonster.level = monster.level;
                 scriptMonster.monsterData = monster;
@@ -406,5 +417,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
+    IEnumerator EnablePhysicsNextFrame(Monster go)
+    {
+        yield return new WaitForSeconds(2f);
+        go.GetComponentInChildren<Rigidbody>().isKinematic = false;
+    }
+
 }
