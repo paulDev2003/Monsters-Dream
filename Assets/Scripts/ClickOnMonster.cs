@@ -9,6 +9,7 @@ public class ClickOnMonster : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        if (!enabled) return;
         if (!parentScript.enemie)
         {
             parentScript.ChangeSelector();

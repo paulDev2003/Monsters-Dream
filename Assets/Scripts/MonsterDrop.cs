@@ -210,6 +210,7 @@ public class MonsterDrop : MonoBehaviour
         Debug.Log($"Entra en{this.name}");
         saveMonsterMarked = null;
         bool isOnButton = IsPointerOverButton();
+        Debug.Log(isOnButton);
         if (isOnButton)
         {
             Debug.Log("Is Pointer over Button");
@@ -227,11 +228,10 @@ public class MonsterDrop : MonoBehaviour
         RaycastHit hit;
         isMonsterSelected = false; // Resetear para evitar más instancias sin nueva selección
         if (gameManager.countMonsters < 3)
-        {
-            gameManager.countMonsters++;
-            
+        {            
             if (Physics.Raycast(ray, out hit)) // Para juegos 3D
             {
+                gameManager.countMonsters++;
                 if (!wasChanged)
                 {
                     Debug.Log("El instanciado");
@@ -285,14 +285,8 @@ public class MonsterDrop : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
 
-        foreach (RaycastResult result in results)
-        {
-            if (result.gameObject.GetComponent<Button>() != null) // Solo detecta botones
-            {
-                return true;
-            }
-        }
-        return false;
+        // Si hay cualquier resultado de UI, significa que el puntero está sobre algo de la UI
+        return results.Count > 0;
     }
 
 

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Table1_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 0837271593d67784bb12962469c902bf, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1
+    m_Localized: "Voy a ense\xF1arte las bases del combate"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2
+    m_Localized: Las bestias disponibles en tu equipo apareceran a tu izquierda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3
+    m_Localized: Para invocar una debes mantener el click izquierdo sobre la bestia
+      y arrastrarla al campo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4
+    m_Localized: "Muy bien novato, para indicarle a tu invocaci\xF3n que objetivo
+      golpear, primero toca la invocaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5
+    m_Localized: Luego selecciona al enemigo que quieres destruir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6
+    m_Localized: "excelente novato, ahora te ense\xF1are algo\n muy importante as\xED
+      que \npresta atenci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7
+    m_Localized: "Las bestias tienen dos tipos de habilidades; las de apuntado\n
+      y las autom\xE1ticas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8
+    m_Localized: Empezaremos primero con la segunda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9
+    m_Localized: "Haz click en el \xEDcono \nde habilidad de la parte \ninferior
+      derecha"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

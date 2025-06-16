@@ -266,11 +266,10 @@ public class GameManager : MonoBehaviour
             if (scriptMonster.lifeBar == null)
             {
                 lifeBarsEnemies[e].SetActive(true);
-                Monster script = enemie.GetComponent<Monster>();
-                lifeBarsEnemies[e].GetComponent<Image>().sprite = script.monsterSO.sprite;
-                script.lifeBar = superiorBarEnemies[e];
-                script.shieldBar = shieldsEnemies[e];
-                levelEnemies[e].text = $"Lv.{script.level}";
+                lifeBarsEnemies[e].GetComponent<Image>().sprite = scriptMonster.monsterSO.sprite;
+                scriptMonster.lifeBar = superiorBarEnemies[e];
+                scriptMonster.shieldBar = shieldsEnemies[e];
+                levelEnemies[e].text = $"Lv.{scriptMonster.level}";
                 e++;
             }            
         }
