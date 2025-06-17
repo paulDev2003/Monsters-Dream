@@ -61,6 +61,39 @@ MonoBehaviour:
     m_Localized: "Well done, now let\xB4s try\nwith the targeted\nskills"
     m_Metadata:
       m_Items: []
+  - m_Id: 11
+    m_Localized: Welcome to the flotant island
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12
+    m_Localized: Here you can breed your beasts and upgrade your equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13
+    m_Localized: Im going to teach you to create your first egg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14
+    m_Localized: Head to the breeding center
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15
+    m_Localized: Here is where you could create the eggs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16
+    m_Localized: To generate a new egg, you need to spend certain resources that
+      you will obtain during your missions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17
+    m_Localized: But don't worry, this time it's on me
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18
+    m_Localized: Select a monster and click on Create Egg
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
