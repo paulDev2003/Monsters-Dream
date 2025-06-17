@@ -68,6 +68,39 @@ MonoBehaviour:
       apuntado'
     m_Metadata:
       m_Items: []
+  - m_Id: 11
+    m_Localized: ' Bienvenido a la isla flotante'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12
+    m_Localized: "Aqu\xED podr\xE1s criar a tus bestias y mejorar tu equipo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13
+    m_Localized: "Voy a ense\xF1arte a crear tu primer huevo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14
+    m_Localized: Dirigete al criadero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15
+    m_Localized: "Aqu\xED es donde podr\xE1s crear los huevos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16
+    m_Localized: "Para generar un nuevo huevo tienes que gastar ciertos recurso que
+      ir\xE1s consiguiendo en tus misiones"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17
+    m_Localized: "Pero no te preocupes, esta vez va a cuenta m\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18
+    m_Localized: Selecciona un monstruo y haz click en crear huevo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

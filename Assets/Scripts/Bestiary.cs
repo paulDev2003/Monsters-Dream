@@ -53,6 +53,7 @@ public class Bestiary : MonoBehaviour
         int i = 0;
         foreach (var monsterBase in monsterDataBase.allMonsters)
         {
+            bool found = false;
             if (i < page * 9 && i >= (page - 1) * 9)
             {
                 if (!eggSpawned)
@@ -62,7 +63,7 @@ public class Bestiary : MonoBehaviour
                 }
                 monstersSlots[i].monsterData.monsterName = monsterBase.monsterName;
                 monstersSlots[i].img.enabled = true;
-                bool found = false;
+                
                 foreach (var monsterData in monstersHouse.listMonsters)
                 {
                     if (monsterData.monsterName == monsterBase.monsterName)
@@ -86,23 +87,32 @@ public class Bestiary : MonoBehaviour
                         {
                             monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
                             monstersSlots[i].available = true;
-                            monstersSlots[i].img.color = Color.black;
+                            found = true;
+                            //monstersSlots[i].img.color = Color.black;
                         }
                         else if (monsterData.viewed)
                         {
                             monstersSlots[i].img.sprite = monsterBase.monsterSO.sprite;
                             monstersSlots[i].img.color = Color.black;
+                            found = true;
                         }
                         i++;
                         break;
                     }
                 }
+
             }
             else if (i >= 9)
             {
                 btnRigthArrow.enabled = true;
+                
             }
-            i++;
+            if (!found)
+            {
+                i++;
+            }
+
+                  
         }
     }
 
