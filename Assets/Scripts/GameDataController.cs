@@ -160,20 +160,56 @@ public class GameDataController : MonoBehaviour
         File.WriteAllText(saveFiles, chainJSON);
     }
 
-    public void DeleteSaveData()
-    {
-        inventory.capturableInventory.Clear();
-        inventory.countCapturables.Clear();
-        inventory.moleculeInventory.Clear();
-        inventory.countMolecules.Clear();
-        SaveData();
-    }
-
     public void ResetInventory()
     {
         inventory.capturableInventory = new Dictionary<string, ItemCapturable>();
         inventory.moleculeInventory = new Dictionary<string, ItemMolecule>();
         inventory.countMolecules = new Dictionary<string, int>();
         inventory.countCapturables = new Dictionary<string, int>();
+    }
+
+    public void NewGame()
+    {
+        // 1. Eliminar archivo de guardado si existe
+        if (File.Exists(saveFiles))
+        {
+            File.Delete(saveFiles);
+            Debug.Log("Archivo de guardado eliminado. Comenzando nueva partida.");
+        }
+
+        // 2. Resetear inventario y demás datos
+        ResetInventory();
+
+        monstersHouse.listMonsters = new List<MonsterData>();
+        monstersHouse.bestiary = new List<DiscoverMonster>();
+        monstersHouse.eggs = new List<EggData>();
+
+        dungeonTeam.allMonsters = new List<MonsterData>();
+
+        runesManager.runesDungeon = new List<RuneClass>();
+        runesManager.upgradesDungeon = new List<UpgradeData>();
+
+        // 3. Crear un nuevo SaveData vacío (o con datos iniciales si querés agregar algún ítem inicial)
+        saveData = new SaveData
+        {
+            capturableKeys = new List<string>(),
+            capturableIDs = new List<string>(),
+            capturableAmount = new List<int>(),
+
+            molecularKeys = new List<string>(),
+            molecularIDs = new List<string>(),
+            molecularAmount = new List<int>(),
+
+            monstersHouse = new List<MonsterData>(),
+            monstersDungeon = new List<MonsterData>(),
+            bestiary = new List<DiscoverMonster>(),
+            eggs = new List<EggData>(),
+
+            runesDungeon = new List<RuneClass>(),
+            upgradesDungeon = new List<UpgradeData>()
+        };
+
+        // 4. Guardar el nuevo estado inicial (opcional)
+        SaveData();
     }
 }

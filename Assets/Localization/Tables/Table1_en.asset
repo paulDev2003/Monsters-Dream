@@ -57,6 +57,10 @@ MonoBehaviour:
     m_Localized: "Click on the ability icon\n in the bottom right corner"
     m_Metadata:
       m_Items: []
+  - m_Id: 10
+    m_Localized: "Well done, now let\xB4s try\nwith the targeted\nskills"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

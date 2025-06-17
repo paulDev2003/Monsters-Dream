@@ -59,6 +59,15 @@ MonoBehaviour:
       derecha"
     m_Metadata:
       m_Items: []
+  - m_Id: 10
+    m_Localized: 'Bien hecho, ahora probemos
+
+      con las habilidades
+
+      de
+      apuntado'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

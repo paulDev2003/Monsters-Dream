@@ -11,10 +11,13 @@ public class ManagerTutorial : MonoBehaviour
     public UnityEvent SecondTutorial;
     public UnityEvent SecondTutorialSelectEnemie;
     public UnityEvent ThirdTutorial;
+    public UnityEvent ThirdTutorialTargeted;
+    public UnityEvent EventVictory;
     public UnityEvent BackToGame;
     public GameManager gameManager;
     public GameObject monsterTwo;
     public GameObject monsterThree;
+    public SkillDrop skillDropTargeted;
     public float delaySeconds = 2f;
     public bool firstPart = false;
     public bool secondPart = false;
@@ -22,6 +25,7 @@ public class ManagerTutorial : MonoBehaviour
     private bool secondPartChoose = false;
     private Monster targetMonster;
     private Monster currentMonster;
+    private bool showedArea = false;
     void Start()
     {
         BeginEvent.Invoke();
@@ -46,6 +50,19 @@ public class ManagerTutorial : MonoBehaviour
             else if (secondPartChoose && targetMonster != currentMonster.target)
             {
                 BackToTheGame();
+            }
+        }
+        if (skillDropTargeted.showingArea)
+        {
+            showedArea = true;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (showedArea)
+            {
+                BackToGame.Invoke();
+                Time.timeScale = 1;
+                showedArea = false;
             }
         }
     }
@@ -90,6 +107,10 @@ public class ManagerTutorial : MonoBehaviour
         else if (thirdPart == false)
         {
             ThirdPart();
+        }
+        else
+        {
+            EventVictory.Invoke();
         }
     }
 
@@ -167,4 +188,18 @@ public class ManagerTutorial : MonoBehaviour
         Time.timeScale = 0;
         thirdPart = true;
     }
+
+    public void TargetedSkill()
+    {
+        Time.timeScale = 1f;
+        BackToGame.Invoke();
+        Invoke("TargetedDelay", 1.5f);
+    }
+
+    public void TargetedDelay()
+    {
+        Time.timeScale = 0f;
+        ThirdTutorialTargeted.Invoke();
+    }
+
 }

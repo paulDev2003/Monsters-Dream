@@ -1,0 +1,61 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using System.Collections.Generic;
+
+public class ManagerMenu : MonoBehaviour
+{
+    public MonstersHouse monstersHouse;
+    public DungeonTeam dungeonTeam;
+    private bool saved = false;
+    public Button btnLoadGame;
+    public Image imgLoadGame;
+    public Color disabledColor;
+    public GameObject emergentWindow;
+    public UnityEvent EventNewGame;
+    public List<MonsterData> newMonsters;
+    void Start()
+    {
+        if (monstersHouse.listMonsters[0] != null)
+        {
+            if (monstersHouse.listMonsters[0].monsterName != "")
+            {
+                saved = true;              
+            }
+            else
+            {
+                btnLoadGame.enabled = false;
+                imgLoadGame.color = disabledColor;
+            }
+        }
+        else
+        {
+            btnLoadGame.enabled = false;
+            imgLoadGame.color = disabledColor;
+        }
+    }
+
+    public void NewGame()
+    {
+        if (saved)
+        {
+            emergentWindow.SetActive(true);
+        }
+        else
+        {
+            EventNewGame.Invoke();
+        }
+    }
+
+    public void AddNewMonsters()
+    {
+        int i = 0;
+        foreach (var monster in newMonsters)
+        {
+            dungeonTeam.allMonsters[i].monsterName = monster.monsterName;
+            dungeonTeam.allMonsters[i].level = monster.level;
+            dungeonTeam.allMonsters[i].isStarter = monster.isStarter;
+            i++;
+        }
+    }
+}
