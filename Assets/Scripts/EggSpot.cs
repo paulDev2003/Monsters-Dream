@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class EggSpot : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class EggSpot : MonoBehaviour
     public GameObject progressBar;
     public Image imgSuperiorBar;
     public EggPanel eggPanel;
+    public MenuTutorial lobbyTutorial;
+    public UnityEvent TutorialEvent;
     public int id;
 
     void Update()
@@ -38,6 +41,10 @@ public class EggSpot : MonoBehaviour
                 eggPanel.eggs.Add(scriptEgg);
                 bestiary.chooseEgg = false;
                 eggPanel.SaveEggs();
+                if (!lobbyTutorial.hasMadeTutorial)
+                {
+                    TutorialEvent.Invoke();
+                }
             }
         }
     }

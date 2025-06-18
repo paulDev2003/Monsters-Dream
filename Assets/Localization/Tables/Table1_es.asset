@@ -101,6 +101,70 @@ MonoBehaviour:
     m_Localized: Selecciona un monstruo y haz click en crear huevo
     m_Metadata:
       m_Items: []
+  - m_Id: 685611434934272
+    m_Localized: "Ahora selecciona alguno de los tres espacios de creaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691548363194368
+    m_Localized: "Haz click sobre el huevo para acelerar su proceso de creaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700089438339072
+    m_Localized: "Desde aqu\xED puedes ver el progreso del huevo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700091841675264
+    m_Localized: "La barra de progreso ir\xE1 creciendo a medida que vayas haciendo
+      excursiones"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700093494231040
+    m_Localized: "Pero tambi\xE9n puedes acelerarla mediante objetos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700094664441856
+    m_Localized: Haz click en los objetos de la derecha para acelerar el proceso
+      del huevo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 704716858753024
+    m_Localized: "Felicitaciones, desbloqueaste una nueva invocaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 704731282964480
+    m_Localized: "Ahora voy a ense\xF1arte como hacer que suban de nivel para que
+      empiezen las excursiones m\xE1s fuertes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 705082258128896
+    m_Localized: Dirigete a la caja de invocaciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 714205297147904
+    m_Localized: "Aqu\xED es donde podr\xE1s alimentar a tus invocaciones"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 714211177562112
+    m_Localized: "Selecciona a la invocaci\xF3n desbloqueada recientemente"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717155025321984
+    m_Localized: "Haz clck en el bot\xF3n de la derecha y alimentalo hasta que suba
+      de nivel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 723381930983424
+    m_Localized: Bien hecho, ahora pulsa escape para volver al Lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725533717987328
+    m_Localized: 'Ahora si que estamos listos para empezar '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725632909082624
+    m_Localized: Dirigete al portal y emprende tu camino, mucha suerte
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

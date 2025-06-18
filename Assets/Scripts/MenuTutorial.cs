@@ -4,17 +4,31 @@ using System.Collections.Generic;
 
 public class MenuTutorial : MonoBehaviour
 {
-    bool hasMadeTutorial = true;
+    public bool hasMadeTutorial = true;
     public GameObject prefabArrow;
     public MonstersHouse monstersHouse;
     public Inventory inventory;
     public List<Transform> spawnsPoints = new List<Transform>();
     public UnityEvent FirstEvent;
     public UnityEvent NurseryEvent;
+    public UnityEvent ChooseSpotEgg;
+    public UnityEvent OpenEggPanel;
+    public UnityEvent UnlockedMonster;
+    public UnityEvent LevelUpMonster;
+    public UnityEvent FeedingMonster;
+    public UnityEvent CloseFeed;
+    public UnityEvent StartDungeon;
     public List<DiscoverMonster> monstersDiscovered = new List<DiscoverMonster>();
+    public MonsterData firstMonster;
+    public ItemSO itemToAdd;
+    public int totalAmountItem;
+    private bool feeding;
+    private int countFeed = 0;
+    
+    public GameObject arrowInstantiated;
     void Start()
     {
-        PlayerPrefs.SetInt("TutorialMenu", 1);
+        PlayerPrefs.SetInt("TutorialMenu", 0);
         int tutorial = PlayerPrefs.GetInt("TutorialMenu", 0);
         Debug.Log(tutorial);
         if (tutorial == 0)
@@ -31,7 +45,7 @@ public class MenuTutorial : MonoBehaviour
 
     public void SpawnArrow(int point)
     {
-        GameObject arrow = Instantiate(prefabArrow, spawnsPoints[point].position, prefabArrow.transform.rotation);
+        arrowInstantiated = Instantiate(prefabArrow, spawnsPoints[point].position, prefabArrow.transform.rotation);
     }
 
     public void TutorialNursery()
@@ -47,6 +61,81 @@ public class MenuTutorial : MonoBehaviour
         foreach (var discovered in monstersDiscovered)
         {
             monstersHouse.bestiary.Add(discovered);
+        }
+        List<ItemSO> itemsToLoot = new List<ItemSO>();
+        for (int i = 0; i < totalAmountItem; i++)
+        {
+            itemsToLoot.Add(itemToAdd);
+        }
+        inventory.Additems(itemsToLoot);
+        monstersHouse.listMonsters.Add(firstMonster);
+    }
+
+    public void ChooseSpotEggInvoke()
+    {
+        if (!hasMadeTutorial)
+        {
+            Destroy(arrowInstantiated);
+            ChooseSpotEgg.Invoke();
+        }        
+    }
+
+    public void OpenEggPanelCheck()
+    {
+        if (!hasMadeTutorial)
+        {
+            OpenEggPanel.Invoke();
+        }
+    }
+
+    public void UnlockedMonsterCheck()
+    {
+        if (!hasMadeTutorial)
+        {
+            Destroy(arrowInstantiated);
+            UnlockedMonster.Invoke();
+        }
+    }
+
+    public void LevelUpMonsterChecked()
+    {
+        if (!hasMadeTutorial)
+        {
+            LevelUpMonster.Invoke();
+        }
+    }
+
+    public void FeedingMonsterCheck()
+    {
+        if (!hasMadeTutorial)
+        {
+            feeding = true;
+            FeedingMonster.Invoke();
+        }
+    }
+
+    public void FeedToUp()
+    {
+        if (feeding)
+        {
+            if (countFeed < 1)
+            {
+                countFeed++;
+            }
+            else
+            {
+                CloseFeed.Invoke();
+            }
+        }
+       
+    }
+
+    public void StartDungeonCheck()
+    {
+        if (!hasMadeTutorial)
+        {
+            Destroy(arrowInstantiated);
+            StartDungeon.Invoke();
         }
     }
 }

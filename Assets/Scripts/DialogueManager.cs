@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string[] lines)
     {
+        StopTyping();
+        dialogueText.text = "";
         dialogueLines = lines;
         currentLineIndex = 0;
 

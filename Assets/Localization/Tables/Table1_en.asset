@@ -94,6 +94,67 @@ MonoBehaviour:
     m_Localized: Select a monster and click on Create Egg
     m_Metadata:
       m_Items: []
+  - m_Id: 685611434934272
+    m_Localized: Now select any of the three creation spots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691548363194368
+    m_Localized: Click on the egg for acelerate his creation process
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700089438339072
+    m_Localized: From here you can see the egg's progress.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700091841675264
+    m_Localized: The progress bar will grow as you go on expeditions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700093494231040
+    m_Localized: But you can also speed it up using items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700094664441856
+    m_Localized: Click on the rigth objects to acelerate the egg's progress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 704716858753024
+    m_Localized: Congratulations, you have unlocked a new summon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 704731282964480
+    m_Localized: "Now, i\xB4m going to teach you level up him, for what begin the
+      excursions strongest"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 705082258128896
+    m_Localized: Go to the Summons box
+    m_Metadata:
+      m_Items: []
+  - m_Id: 714205297147904
+    m_Localized: Here is where you can feed your summons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 714211177562112
+    m_Localized: Select the summon recently unlocked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717155025321984
+    m_Localized: Click on the rigth button until the summon level up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 723381930983424
+    m_Localized: Well done, now press Escape to back to the Lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725533717987328
+    m_Localized: You are ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725632909082624
+    m_Localized: Head to the portal and begin your journey, good lucky
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
