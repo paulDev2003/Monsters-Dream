@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> friendsList = new List<GameObject>();
     public List<GameObject> enemieList = new List<GameObject>();
     public List<GameObject> enemiesSaved;
-    public List<GameObject> friendsSaved;
+    private List<GameObject> friendsSaved;
     public Vector2Int totalEnemiesToSpawn;
     public GameObject victoryScreen;
     public Image panelVictory;

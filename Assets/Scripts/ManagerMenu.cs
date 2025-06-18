@@ -13,10 +13,10 @@ public class ManagerMenu : MonoBehaviour
     public Color disabledColor;
     public GameObject emergentWindow;
     public UnityEvent EventNewGame;
-    public List<MonsterData> newMonsters = new List<MonsterData>();
+    public List<MonsterData> newMonsters;
     void Start()
     {
-        if (monstersHouse.listMonsters.Count > 0)
+        if (monstersHouse.listMonsters[0] != null)
         {
             if (monstersHouse.listMonsters[0].monsterName != "")
             {
@@ -37,7 +37,6 @@ public class ManagerMenu : MonoBehaviour
 
     public void NewGame()
     {
-        PlayerPrefs.SetInt("BattleNumber", 0);
         if (saved)
         {
             emergentWindow.SetActive(true);
@@ -50,9 +49,7 @@ public class ManagerMenu : MonoBehaviour
 
     public void AddNewMonsters()
     {
-        dungeonTeam.allMonsters = new List<MonsterData>() { newMonsters[0], newMonsters[1], null, null, null, null };
-        //int i = 0;
-        /*
+        int i = 0;
         foreach (var monster in newMonsters)
         {
             dungeonTeam.allMonsters[i].monsterName = monster.monsterName;
@@ -60,6 +57,5 @@ public class ManagerMenu : MonoBehaviour
             dungeonTeam.allMonsters[i].isStarter = monster.isStarter;
             i++;
         }
-        */
     }
 }

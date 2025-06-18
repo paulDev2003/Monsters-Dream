@@ -202,18 +202,4 @@ public class ManagerTutorial : MonoBehaviour
         ThirdTutorialTargeted.Invoke();
     }
 
-    public void HealthMonsters()
-    {
-        foreach (var monster in gameManager.friendsSaved)
-        {
-            Monster monsterScript = monster.GetComponent<Monster>();
-            monsterScript.healthFigth = monsterScript.health;
-            if (monsterScript.dead)
-            {
-                monsterScript.dead = false;
-                gameManager.friendsList.Add(monster);
-            }            
-        }
-    }
-
 }

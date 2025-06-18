@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialoguePanel != null)
         {
-           // dialoguePanel.SetActive(false); // Ocultar el panel al inicio
+            dialoguePanel.SetActive(false); // Ocultar el panel al inicio
         }
     }
 
