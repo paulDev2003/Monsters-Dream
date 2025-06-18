@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 439b162c6e9a1334a9a3bb0073395b14, type: 3}
   spriteScale: {x: 0.2, y: 0.2, z: 1}
-  sceneAsset: {fileID: 102900000, guid: 760ac53cb01416844bdae78fc77228f6, type: 3}
+  sceneName: ChestStance

@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: ce4534bdf557865428a40de9ca51df51, type: 3}
+  sceneName: FarmScene
 --- !u!114 &1132790885 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 748561523494401821, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -3297,7 +3297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: ce4534bdf557865428a40de9ca51df51, type: 3}
+  sceneName: 
 --- !u!1 &1464797522
 GameObject:
   m_ObjectHideFlags: 0

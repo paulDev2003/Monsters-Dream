@@ -10631,6 +10631,7 @@ MonoBehaviour:
   friendsList: []
   enemieList: []
   enemiesSaved: []
+  friendsSaved: []
   totalEnemiesToSpawn: {x: 2, y: 2}
   victoryScreen: {fileID: 488874482}
   panelVictory: {fileID: 1923390011}
@@ -10664,6 +10665,8 @@ MonoBehaviour:
   - {fileID: 2104975887}
   - {fileID: 1408308571}
   - {fileID: 286301297}
+  SpritesFriends: []
+  SpritesEnemies: []
   superiorBarFriends:
   - {fileID: 488120797}
   - {fileID: 1724122464}
@@ -10876,7 +10879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: ce4534bdf557865428a40de9ca51df51, type: 3}
+  sceneName: 
 --- !u!1 &1464797522
 GameObject:
   m_ObjectHideFlags: 0
@@ -12339,6 +12342,15 @@ MonoBehaviour:
   txtNamePrefab: {fileID: 1943056315}
   txtInfoPrefab: {fileID: 653705924}
   lineToConect: {fileID: 1084144624}
+  TutorialRunes:
+    m_PersistentCalls:
+      m_Calls: []
+  SecondChat:
+    m_PersistentCalls:
+      m_Calls: []
+  DisabledChat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1681861896
 Transform:
   m_ObjectHideFlags: 0
@@ -14661,6 +14673,10 @@ PrefabInstance:
       propertyPath: runesManager
       value: 
       objectReference: {fileID: 1681861895}
+    - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneName
+      value: DungeonFloor
+      objectReference: {fileID: 0}
     - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: sceneAsset
       value: 

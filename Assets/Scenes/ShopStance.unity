@@ -2018,6 +2018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasFigth
       objectReference: {fileID: 0}
+    - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneName
+      value: DungeonFloor
+      objectReference: {fileID: 0}
     - target: {fileID: 8918925760972150526, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3030,6 +3034,15 @@ MonoBehaviour:
   txtNamePrefab: {fileID: 1674863135}
   txtInfoPrefab: {fileID: 2877195}
   lineToConect: {fileID: 863666988}
+  TutorialRunes:
+    m_PersistentCalls:
+      m_Calls: []
+  SecondChat:
+    m_PersistentCalls:
+      m_Calls: []
+  DisabledChat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &903050333
 Transform:
   m_ObjectHideFlags: 0
@@ -3562,7 +3575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 8a571af48e6efe941958cb0be29537a8, type: 3}
+  sceneName: 
 --- !u!114 &1084910195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4389,6 +4402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allMonsters: []
+  firstTeam: []
 --- !u!4 &1275907750
 Transform:
   m_ObjectHideFlags: 0

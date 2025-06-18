@@ -3112,7 +3112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ca46205846e24990b0881679f5723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: ce4534bdf557865428a40de9ca51df51, type: 3}
+  sceneName: 
 --- !u!1 &1464797522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,6 +3862,10 @@ PrefabInstance:
       propertyPath: runesManager
       value: 
       objectReference: {fileID: 1681861895}
+    - target: {fileID: 3282953947850066725, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneName
+      value: DungeonFloor
+      objectReference: {fileID: 0}
     - target: {fileID: 3284472271445052669, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_SizeDelta.x
       value: 63.6573

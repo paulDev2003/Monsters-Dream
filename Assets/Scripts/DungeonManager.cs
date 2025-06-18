@@ -38,7 +38,7 @@ public class DungeonManager : MonoBehaviour
     {
         if (selectedRoom!=null)
         {
-            SceneManager.LoadScene(selectedRoom.roomType.sceneAsset.name);
+            SceneManager.LoadScene(selectedRoom.roomType.sceneName);
         }
         
     }
