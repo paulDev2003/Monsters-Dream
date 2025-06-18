@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a31c3c1d671274ab66b4798d85f6a5, type: 3}
+  m_Name: Dandufo
+  m_EditorClassIdentifier: 
+  monsterName: Dandufo
+  health: 25
+  physicalDamage: 7
+  speedAttack: 2
+  defense: 10
+  evasion: 0
+  magicalDamage: 0
+  magicalDefense: 10
+  skill: {fileID: 11400000, guid: 715c0826c3262194bb3743a7cfcfa8f7, type: 2}
+  levelUp: {fileID: 11400000, guid: 801d262eeed52da4a999efb41181a854, type: 2}
+  dropList:
+  - {fileID: 11400000, guid: 521a61525de47b54ba4f11d06322d4ab, type: 2}
+  sprite: {fileID: 0}
+  expPerLevel: 12
+  moneyPerLevel: 12
+  itemForUpLevel: {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}
+  egg: {fileID: 4864943535067857143, guid: 6861541f0eb93a94aba1b90aa67f0233, type: 3}
+  itemForEgg: {fileID: 11400000, guid: 521a61525de47b54ba4f11d06322d4ab, type: 2}
+  amountForEgg: 0
