@@ -21,6 +21,8 @@ public class MenuTutorial : MonoBehaviour
     public List<DiscoverMonster> monstersDiscovered = new List<DiscoverMonster>();
     public MonsterData firstMonster;
     public ItemSO itemToAdd;
+    public ItemSO itemToAddTwo;
+    public CurrentTeam currentTeam;
     public int totalAmountItem;
     private bool feeding;
     private int countFeed = 0;
@@ -66,6 +68,10 @@ public class MenuTutorial : MonoBehaviour
         for (int i = 0; i < totalAmountItem; i++)
         {
             itemsToLoot.Add(itemToAdd);
+            if (itemToAddTwo != null)
+            {
+                itemsToLoot.Add(itemToAddTwo);
+            }          
         }
         inventory.Additems(itemsToLoot);
         monstersHouse.listMonsters.Add(firstMonster);
@@ -92,6 +98,7 @@ public class MenuTutorial : MonoBehaviour
     {
         if (!hasMadeTutorial)
         {
+            currentTeam.ActivateMonster(monstersHouse.listMonsters[1]);
             Destroy(arrowInstantiated);
             UnlockedMonster.Invoke();
         }
@@ -136,6 +143,8 @@ public class MenuTutorial : MonoBehaviour
         {
             Destroy(arrowInstantiated);
             StartDungeon.Invoke();
+            hasMadeTutorial = true;
+            PlayerPrefs.SetInt("TutorialMenu", 1);
         }
     }
 }

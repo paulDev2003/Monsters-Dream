@@ -37,7 +37,8 @@ public class ManagerMenu : MonoBehaviour
 
     public void NewGame()
     {
-        PlayerPrefs.SetInt("BattleNumber", 0);
+        
+        
         if (saved)
         {
             emergentWindow.SetActive(true);
@@ -45,6 +46,7 @@ public class ManagerMenu : MonoBehaviour
         else
         {
             EventNewGame.Invoke();
+            
         }
     }
 
@@ -61,5 +63,17 @@ public class ManagerMenu : MonoBehaviour
             i++;
         }
         */
+    }
+
+    public void SetPrefs()
+    {
+        PlayerPrefs.SetInt("BattleNumber", 0);
+        PlayerPrefs.SetInt("TutorialRunes", 0);
+        PlayerPrefs.SetInt("TutorialMenu", 0);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

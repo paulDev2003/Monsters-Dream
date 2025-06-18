@@ -17,5 +17,5 @@ MonoBehaviour:
   speedAttack: 0
   defense: 2
   evasion: 0
-  magicalDamage: 2
+  magicalDamage: 3
   magicalDefense: 1

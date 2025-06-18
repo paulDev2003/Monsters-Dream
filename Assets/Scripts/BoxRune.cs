@@ -88,6 +88,12 @@ public class BoxRune : MonoBehaviour
             {
                 managerRunes.slotsChecker[horizontalPosition + slot.x, verticalPosition + slot.y] = false;
             }
+            int tutorialRunes = PlayerPrefs.GetInt("TutorialRunes", 0);
+            if (tutorialRunes == 0)
+            {
+                managerRunes.DisabledChat.Invoke();
+                PlayerPrefs.SetInt("TutorialRunes", 1);
+            }
         }      
     }
 

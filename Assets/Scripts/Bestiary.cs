@@ -311,4 +311,10 @@ public class Bestiary : MonoBehaviour
             txtPressE.SetActive(false);
         }
     }
+
+    public void DesactiveTrigger()
+    {
+        insideTrigger = false;
+        txtPressE.SetActive(false);
+    }
 }

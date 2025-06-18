@@ -3106,6 +3106,8 @@ MonoBehaviour:
   - {fileID: 1716071230}
   - {fileID: 320626326}
   - {fileID: 1036934272}
+  SpritesFriends: []
+  SpritesEnemies: []
   superiorBarFriends:
   - {fileID: 2396234665953897686}
   - {fileID: 1927409000}
@@ -3507,6 +3509,15 @@ MonoBehaviour:
   txtNamePrefab: {fileID: 1943056315}
   txtInfoPrefab: {fileID: 653705924}
   lineToConect: {fileID: 1084144624}
+  TutorialRunes:
+    m_PersistentCalls:
+      m_Calls: []
+  SecondChat:
+    m_PersistentCalls:
+      m_Calls: []
+  DisabledChat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1681861896
 Transform:
   m_ObjectHideFlags: 0
@@ -3756,6 +3767,18 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 269226318}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 488120795}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6

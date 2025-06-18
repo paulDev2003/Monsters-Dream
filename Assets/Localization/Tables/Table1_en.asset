@@ -37,7 +37,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: Then, select the enemie you want to destroy
+    m_Localized: Then select a different enemy from the one currently being attacked
     m_Metadata:
       m_Items: []
   - m_Id: 6
@@ -153,6 +153,27 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 725632909082624
     m_Localized: Head to the portal and begin your journey, good lucky
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778282887315456
+    m_Localized: You have obtained a rune
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778284707643392
+    m_Localized: You will obtain runes after a figth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778286322450432
+    m_Localized: They are usefull to potent your team with differents advantages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778288264413184
+    m_Localized: Click on any of the runes in your rigth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 780684642254848
+    m_Localized: Now, taking the shape of the rune into account, click on one of
+      the slots of the rune glove to your left
     m_Metadata:
       m_Items: []
   references:

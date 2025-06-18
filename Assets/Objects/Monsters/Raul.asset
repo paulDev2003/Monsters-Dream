@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Raul
   m_EditorClassIdentifier: 
   monsterName: Raul
-  health: 27
+  health: 48
   physicalDamage: 7
   speedAttack: 1.5
   defense: 4

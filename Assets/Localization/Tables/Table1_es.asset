@@ -37,7 +37,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: Luego selecciona al enemigo que quieres destruir
+    m_Localized: "Luego selecciona a un enemigo distinto al que est\xE1 atacando"
     m_Metadata:
       m_Items: []
   - m_Id: 6
@@ -149,7 +149,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 717155025321984
-    m_Localized: "Haz clck en el bot\xF3n de la derecha y alimentalo hasta que suba
+    m_Localized: "Haz click en el bot\xF3n de la derecha y alimentalo hasta que suba
       de nivel"
     m_Metadata:
       m_Items: []
@@ -158,11 +158,32 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 725533717987328
-    m_Localized: 'Ahora si que estamos listos para empezar '
+    m_Localized: "Ya est\xE1s listo"
     m_Metadata:
       m_Items: []
   - m_Id: 725632909082624
-    m_Localized: Dirigete al portal y emprende tu camino, mucha suerte
+    m_Localized: Dirigete al portal y comienza tu aventura, buena suerte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778282887315456
+    m_Localized: Has conseguido una runa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778284707643392
+    m_Localized: "Las runas se obtienen despu\xE9s de finalizar cada combate"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778286322450432
+    m_Localized: Sirven para potenciar tu equipo con distintas ventajas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778288264413184
+    m_Localized: Has click sobre alguna de las runas a tu derecha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 780684642254848
+    m_Localized: "Ahora teniendo en cuenta la forma de la runa, clickea en alguno
+      de los espacios del guante r\xFAnico a tu izquierda"
     m_Metadata:
       m_Items: []
   references:

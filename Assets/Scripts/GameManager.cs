@@ -231,7 +231,8 @@ public class GameManager : MonoBehaviour
         {
             lifeBarsFriends[i].SetActive(true);
             Monster monsterComponent = monster.GetComponent<Monster>();
-            SpritesFriends[i].sprite = monsterComponent.monsterSO.sprite;
+            lifeBarsFriends[i].GetComponent<Image>().sprite = monsterComponent.monsterSO.sprite;
+            //SpritesFriends[i].sprite = monsterComponent.monsterSO.sprite;
             monsterDrop[i].monsterSaved = monster;
             monsterDrop[i].valueI = i;
             
@@ -268,7 +269,8 @@ public class GameManager : MonoBehaviour
             if (scriptMonster.lifeBar == null)
             {
                 lifeBarsEnemies[e].SetActive(true);
-                SpritesEnemies[e].sprite = scriptMonster.monsterSO.sprite;
+                lifeBarsEnemies[e].GetComponent<Image>().sprite = scriptMonster.monsterSO.sprite;
+                //SpritesEnemies[e].sprite = scriptMonster.monsterSO.sprite;
                 scriptMonster.lifeBar = superiorBarEnemies[e];
                 scriptMonster.shieldBar = shieldsEnemies[e];
                 levelEnemies[e].text = $"Lv.{scriptMonster.level}";

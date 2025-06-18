@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
 using TMPro;
 
@@ -29,10 +30,13 @@ public class ManagerRunes : MonoBehaviour
     public TextMeshProUGUI txtNamePrefab;
     public TextMeshProUGUI txtInfoPrefab;
     public GameObject lineToConect;
+    public UnityEvent TutorialRunes;
+    public UnityEvent SecondChat;
+    public UnityEvent DisabledChat;
+    private bool tutorial = false;
 
     private void Start()
     {
-
         for (int i = 0; i < 4; i++)
         {
             for (int e = 0; e < 8; e++)
@@ -68,6 +72,15 @@ public class ManagerRunes : MonoBehaviour
             
         }
 
+    }
+
+    private void Update()
+    {
+        if (tutorial && runeSelected != null)
+        {
+            SecondChat.Invoke();
+            tutorial = false;
+        }
     }
 
     private void ChargeSavedRunes()
@@ -120,6 +133,12 @@ public class ManagerRunes : MonoBehaviour
             }
             if (foundSlot)
                 continue; // va al siguiente rune
+        }
+        int tutorialRunes = PlayerPrefs.GetInt("TutorialRunes", 0);
+        if (tutorialRunes == 0)
+        {
+            TutorialRunes.Invoke();
+            tutorial = true;
         }
     }
 

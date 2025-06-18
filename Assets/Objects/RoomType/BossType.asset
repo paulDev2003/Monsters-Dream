@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ba40be47fc2c84b87c8edd893a6c7e, type: 3}
   m_Name: BossType
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 35328fbf3dde03240a93a6fa8f2b8e5b, type: 3}
-  spriteScale: {x: 0.035, y: 0.035, z: 1}
-  sceneAsset: {fileID: 102900000, guid: 90e07320a852b2846a973726a5898d12, type: 3}
+  sprite: {fileID: 0}
+  spriteScale: {x: 0, y: 0, z: 0}
+  sceneAsset: {fileID: 0}

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class CurrentTeam : MonoBehaviour
 {
     public MonstersHouse monstersHouse;
+    public MenuTutorial lobbyTutorial;
     public BoxSelectMonster monsterSelected;
     public BoxSelectMonster teamMonsterSelected;
     public MonsterDataBase monsterDataBase;
@@ -24,7 +25,7 @@ public class CurrentTeam : MonoBehaviour
 
     private void Start()
     {
-        allMonsters = new List<MonsterData>(dungeonTeam.allMonsters);
+        allMonsters = new List<MonsterData>(dungeonTeam.firstTeam);
         foreach (var monster in allMonsters)
         {
             if (monster.monsterName == "")
@@ -48,6 +49,25 @@ public class CurrentTeam : MonoBehaviour
             //boxSelect.savedBox = monsterSelected;
             textsList[i].text = monster.monsterName;
            // monsterSelected.i = i;
+            i++;
+        }
+        int tutorial = PlayerPrefs.GetInt("TutorialMenu", 0);
+        if (tutorial == 0)
+        {
+            
+            allMonsters = new List<MonsterData>() { null, null, null, null, null, null };
+            allMonsters[0] = lobbyTutorial.firstMonster;                  
+            starterIcons[i].enabled = true;
+            
+            countStarters++;            
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(allMonsters[0].monsterName);
+            Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
+            iconsList[i].SetActive(true);
+            iconsList[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
+            BoxSelectMonster boxSelect = iconsList[i].GetComponent<BoxSelectMonster>();
+            boxSelect.monsterData = allMonsters[0];
+            boxSelect.savedBox = allIcons[0].GetComponent<BoxSelectMonster>();
+            textsList[i].text = allMonsters[0].monsterName;
             i++;
         }
     }
@@ -104,6 +124,8 @@ public class CurrentTeam : MonoBehaviour
         BoxSelectMonster boxSelect = iconsList[i].GetComponent<BoxSelectMonster>();
         boxSelect.monsterData = monsterSelected.monsterData;
         boxSelect.savedBox = monsterSelected;
+        boxSelect.isUsed = true;
+        monsterSelected.isUsed = true;
         textsList[i].text = monsterSelected.monsterData.monsterName;
         monsterSelected.monsterData.isUsed = true;
         monsterSelected.i = i;
@@ -312,5 +334,21 @@ public class CurrentTeam : MonoBehaviour
             }
             i++;
         }
+    }
+
+    public void ActivateMonster(MonsterData monsterDataAdd)
+    {
+        allMonsters[i] = monsterDataAdd;
+
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(allMonsters[i].monsterName);
+        Monster monsterScript = monsterBase.prefabMonster.GetComponent<Monster>();
+        iconsList[i].SetActive(true);
+        iconsList[i].GetComponent<Image>().sprite = monsterScript.monsterSO.sprite;
+        BoxSelectMonster boxSelect = iconsList[i].GetComponent<BoxSelectMonster>();
+        boxSelect.monsterData = allMonsters[i];
+        boxSelect.savedBox = allIcons[i].GetComponent<BoxSelectMonster>();
+        textsList[i].text = allMonsters[i].monsterName;
+        allMonsters[i].isStarter = false;
+        i++;
     }
 }

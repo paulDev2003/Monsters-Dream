@@ -6,5 +6,5 @@ public class RoomType : ScriptableObject
 {
     public Sprite sprite;
     public Vector3 spriteScale;
-    public UnityEditor.SceneAsset sceneAsset;
+    public string sceneName;
 }
