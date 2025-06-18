@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
   m_Name: Hongui
   m_EditorClassIdentifier: 
-  id: 0
+  id: 12
   monsterName: Hongui
   prefabMonster: {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
   monsterSO: {fileID: 11400000, guid: d758adaf03c4ea548b1777ec82a99c25, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
   m_Name: MagicSphere
   m_EditorClassIdentifier: 
-  id: 2
+  id: 14
   monsterName: Magic
   prefabMonster: {fileID: 5692565554864044551, guid: 04bd8f9b6d0a78144888ae21234aeafc, type: 3}
   monsterSO: {fileID: 11400000, guid: a6adea2594115df41897729366ff330c, type: 2}

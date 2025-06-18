@@ -2370,6 +2370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToChoice:
   - {fileID: 3766534312890584187, guid: 3c8fa6307f5763344a4da2929d3573e6, type: 3}
+  - {fileID: 6493401800142078304, guid: 9370b8c79e81cb847abecfdc9b8db19e, type: 3}
   levelToSpawn: {x: 1, y: 1}
   friendsList: []
   enemieList: []

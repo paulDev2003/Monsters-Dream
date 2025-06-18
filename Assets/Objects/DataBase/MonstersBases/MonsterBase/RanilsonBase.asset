@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
-  m_Name: BaseDolly
+  m_Name: RanilsonBase
   m_EditorClassIdentifier: 
-  id: 1
-  monsterName: Dolly
-  prefabMonster: {fileID: 2026916342437432789, guid: 51de9b3ffaaf84d4887b1876bc17e091, type: 3}
-  monsterSO: {fileID: 11400000, guid: a389ba8c803c11040b92192d7fc699c8, type: 2}
+  id: 15
+  monsterName: Ranilson
+  prefabMonster: {fileID: 6493401800142078304, guid: 9370b8c79e81cb847abecfdc9b8db19e, type: 3}
+  monsterSO: {fileID: 11400000, guid: 818a09129fcd92442858616b3eedeefc, type: 2}

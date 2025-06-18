@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a31c3c1d671274ab66b4798d85f6a5, type: 3}
+  m_Name: Ranilson
+  m_EditorClassIdentifier: 
+  monsterName: Ranilson
+  health: 20
+  physicalDamage: 10
+  speedAttack: 2
+  defense: 15
+  evasion: 3
+  magicalDamage: 0
+  magicalDefense: 10
+  skill: {fileID: 11400000, guid: 465053ec333af59498fe1ebdc97488fc, type: 2}
+  levelUp: {fileID: 11400000, guid: 1e91eb6666541cd4689bd77187965988, type: 2}
+  dropList: []
+  sprite: {fileID: 0}
+  expPerLevel: 15
+  moneyPerLevel: 15
+  itemForUpLevel: {fileID: 11400000, guid: 55d4b1e4bb21175459d2b6b628ce48e5, type: 2}
+  egg: {fileID: 728716050470227749, guid: d45af682f507889439e9786fa1229f9d, type: 3}
+  itemForEgg: {fileID: 11400000, guid: 29f66bbc1c96c274486a05ccd7e3f3ca, type: 2}
+  amountForEgg: 0

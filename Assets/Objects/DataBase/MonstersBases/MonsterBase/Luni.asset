@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
   m_Name: Luni
   m_EditorClassIdentifier: 
-  id: 6
+  id: 13
   monsterName: Luni
   prefabMonster: {fileID: 100042, guid: 3f7cd3bda6c8d43e1a081db6f8657f21, type: 3}
   monsterSO: {fileID: 11400000, guid: d758adaf03c4ea548b1777ec82a99c25, type: 2}

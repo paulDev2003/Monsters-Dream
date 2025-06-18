@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 917c52565307416438659692327d8d08
+guid: cd245928aa8a3c541a3c698164f0fa68
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,56 +95,12 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: RenderDolly_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 356
-        height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e511c0f61dcefa84fbbea41c3de6d3ac
-      internalID: 987272151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RenderDolly_1
-      rect:
-        serializedVersion: 2
-        x: 428
-        y: 1
-        width: 52
-        height: 304
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d882bcdfed261a40941e6c4f46910aa
-      internalID: 1629190919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ffe0a781d7ad420439aa158f72edea89
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -153,9 +109,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      RenderDolly_0: 987272151
-      RenderDolly_1: 1629190919
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

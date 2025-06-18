@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
-  m_Name: Dandufo
+  m_Script: {fileID: 11500000, guid: 882fe18ea05b7804d96644ed6f115ebc, type: 3}
+  m_Name: RanilsonIteam
   m_EditorClassIdentifier: 
-  id: 9
-  monsterName: Dandufo
-  prefabMonster: {fileID: 0}
-  monsterSO: {fileID: 0}
+  itemName: Babosa
+  sprite: {fileID: 21300000, guid: 89470c631c3aa384f8593a53b8d050d7, type: 3}
+  dropChance: 75
+  type: 1

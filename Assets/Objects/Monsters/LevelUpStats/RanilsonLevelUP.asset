@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
-  m_Name: Dandufo
+  m_Script: {fileID: 11500000, guid: d36afb672b7f69a4a983576c2d2bcd1c, type: 3}
+  m_Name: RanilsonLevelUP
   m_EditorClassIdentifier: 
-  id: 9
-  monsterName: Dandufo
-  prefabMonster: {fileID: 0}
-  monsterSO: {fileID: 0}
+  health: 3
+  physicalDamage: 1
+  speedAttack: 0
+  defense: 1
+  evasion: 0.5
+  magicalDamage: 0
+  magicalDefense: 1

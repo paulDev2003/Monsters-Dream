@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373aa2c17be992d4da50cebfc79773fa, type: 3}
   m_Name: Driple
   m_EditorClassIdentifier: 
-  id: 12
+  id: 10
   monsterName: Driple
   prefabMonster: {fileID: 48556389997191548, guid: 9e0f7f5401ae8e1449804e0972d200e9, type: 3}
   monsterSO: {fileID: 11400000, guid: c1f2dc1bba6ccc14bb6a86e366facc73, type: 2}
