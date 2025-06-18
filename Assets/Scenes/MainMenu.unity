@@ -2096,14 +2096,14 @@ MonoBehaviour:
   newMonsters:
   - baseId: 0
     monsterName: Hongui
-    level: 2
+    level: 5
     currentXP: 0
     currentHealth: 0
     isUsed: 0
     isStarter: 1
   - baseId: 1
     monsterName: ElCubo
-    level: 2
+    level: 5
     currentXP: 0
     currentHealth: 0
     isUsed: 0

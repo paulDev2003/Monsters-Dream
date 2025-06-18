@@ -1,54 +1,9 @@
 fileFormatVersion: 2
-guid: e762638e2fb303743b80de6e85f5b899
+guid: 2111bd36a0742db4c9db37c22ddc1c15
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Alas
-    second: {fileID: 2100000, guid: a380fbbf47f072d44b9561d8dc567d13, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boca
-    second: {fileID: 2100000, guid: 2ec367ec46fb2ac449b8b74b37f532ee, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BocaExterior
-    second: {fileID: 2100000, guid: 6be8e600985f55d4b834610e6e368bd9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cuernos
-    second: {fileID: 2100000, guid: ad02fd95a0cd6b24e810541ada1ce3d5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FosasNasales
-    second: {fileID: 2100000, guid: 1d65a59c277fa3b43b090da57a2de150, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ojos
-    second: {fileID: 2100000, guid: 439e4ffec80d0b74f8b82b826e4c34bb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: OutLine
-    second: {fileID: 2100000, guid: 79c84fd0046280f4fac80fdba4116194, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pancita
-    second: {fileID: 2100000, guid: 54033861bc7d2b64392f2ef8ece2b35f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Piel
-    second: {fileID: 2100000, guid: 4ab920d7ae282e44a90ffe098b1a1f3f, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -59,7 +14,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -74,7 +29,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack
+      takeName: Scene
+      internalID: -623603649343465320
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -144,8 +128,8 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
-  remapMaterialsIfMaterialImportModeIsNone: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

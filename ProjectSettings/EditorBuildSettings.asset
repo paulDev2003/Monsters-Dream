@@ -4,7 +4,40 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: a159daccff584e3438d091b8c42a0d83
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 4ef1e20de1cff054db0bb621a29e7005
+  - enabled: 1
+    path: Assets/Scenes/FigthStance.unity
+    guid: d8861b3588935c9459a4707d3e539809
+  - enabled: 1
+    path: Assets/Scenes/BossStance.unity
+    guid: 90e07320a852b2846a973726a5898d12
+  - enabled: 1
+    path: Assets/Scenes/ChestStance.unity
+    guid: 760ac53cb01416844bdae78fc77228f6
+  - enabled: 1
+    path: Assets/Scenes/DebugIntermediate.unity
+    guid: 2b5c12014c0618740bc36bde2bae1653
+  - enabled: 1
+    path: Assets/Scenes/DungeonFloor.unity
+    guid: 8a571af48e6efe941958cb0be29537a8
+  - enabled: 1
+    path: Assets/Scenes/FarmScene.unity
+    guid: ce4534bdf557865428a40de9ca51df51
+  - enabled: 1
+    path: Assets/Scenes/HealthStance.unity
+    guid: ea3d6d2fe446c104eb435652eef04f0a
+  - enabled: 1
+    path: Assets/Scenes/MiniBossStance.unity
+    guid: f298f4a6899c4b3488df65f15c043fbe
+  - enabled: 1
+    path: Assets/Scenes/ShopStance.unity
+    guid: 300d09d72c4e68449b7ced8c1514a430
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 322fe51ef178211459eddb85da38d426, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}

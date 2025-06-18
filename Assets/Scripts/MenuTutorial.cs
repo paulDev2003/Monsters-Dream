@@ -14,6 +14,7 @@ public class MenuTutorial : MonoBehaviour
     public List<DiscoverMonster> monstersDiscovered = new List<DiscoverMonster>();
     void Start()
     {
+        PlayerPrefs.SetInt("TutorialMenu", 1);
         int tutorial = PlayerPrefs.GetInt("TutorialMenu", 0);
         Debug.Log(tutorial);
         if (tutorial == 0)

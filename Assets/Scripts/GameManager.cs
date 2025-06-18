@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private List<ItemSO> listLoot;
     private GameDataController gameDataController;
     public List<GameObject> lifeBarsFriends = new List<GameObject>();
+    public List <Image> SpritesFriends=new List<Image>();  
+    public List <Image> SpritesEnemies=new List<Image>();  
     public List<UILifeBar> superiorBarFriends = new List<UILifeBar>();
     public List<UIShieldBar> shieldsFriends = new List<UIShieldBar>();
     public List<TextMeshProUGUI> levelFriends = new List<TextMeshProUGUI>();
@@ -229,7 +231,7 @@ public class GameManager : MonoBehaviour
         {
             lifeBarsFriends[i].SetActive(true);
             Monster monsterComponent = monster.GetComponent<Monster>();
-            lifeBarsFriends[i].GetComponent<Image>().sprite = monsterComponent.monsterSO.sprite;
+            SpritesFriends[i].sprite = monsterComponent.monsterSO.sprite;
             monsterDrop[i].monsterSaved = monster;
             monsterDrop[i].valueI = i;
             
@@ -266,7 +268,7 @@ public class GameManager : MonoBehaviour
             if (scriptMonster.lifeBar == null)
             {
                 lifeBarsEnemies[e].SetActive(true);
-                lifeBarsEnemies[e].GetComponent<Image>().sprite = scriptMonster.monsterSO.sprite;
+                SpritesEnemies[e].sprite = scriptMonster.monsterSO.sprite;
                 scriptMonster.lifeBar = superiorBarEnemies[e];
                 scriptMonster.shieldBar = shieldsEnemies[e];
                 levelEnemies[e].text = $"Lv.{scriptMonster.level}";
