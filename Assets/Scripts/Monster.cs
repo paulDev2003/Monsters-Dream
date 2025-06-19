@@ -428,7 +428,7 @@ public class Monster : MonoBehaviour
         {
             skillDrop.cooldownImage.fillAmount = 0;
         }
-        attackTime = 1 / speedAttack;
+        attackTime = 1 * speedAttack;
         specialAttack = true;
         skillCount++;
         monsterSO.skill.ShootSkill(this);
@@ -436,7 +436,7 @@ public class Monster : MonoBehaviour
 
     protected virtual float CalculateDamage()
     {
-        attackTime = 1 / speedAttack;
+        attackTime = 1 * speedAttack;
         float randomChance = Random.Range(0f, 100f);
         if (randomChance < evasion)
         {
@@ -718,6 +718,6 @@ public class Monster : MonoBehaviour
         ReloadAttackToSkill();
         circleAttacksToSkill.fillAmount = 0;
         skillDrop.cooldownImage.fillAmount = 0;
-        attackTime = 1 / speedAttack;
+        attackTime = 1 * speedAttack;
     }
 }

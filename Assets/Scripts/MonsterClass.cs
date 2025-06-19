@@ -20,7 +20,7 @@ public class MonsterClass
     }
     public int SpeedAttack
     {
-        get { return Mathf.FloorToInt(monsterSO.speedAttack + level * monsterSO.levelUp.speedAttack); }
+        get { return Mathf.RoundToInt(monsterSO.speedAttack + level * monsterSO.levelUp.speedAttack + 0.1f); }
     }
     public int Defense
     {

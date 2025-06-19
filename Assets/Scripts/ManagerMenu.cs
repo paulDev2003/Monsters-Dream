@@ -70,6 +70,7 @@ public class ManagerMenu : MonoBehaviour
         PlayerPrefs.SetInt("BattleNumber", 0);
         PlayerPrefs.SetInt("TutorialRunes", 0);
         PlayerPrefs.SetInt("TutorialMenu", 0);
+        PlayerPrefs.SetInt("Money", 0);
     }
 
     public void ExitGame()

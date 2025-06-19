@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dolly
   m_EditorClassIdentifier: 
   monsterName: Dolly
-  health: 100
-  physicalDamage: 20
+  health: 30
+  physicalDamage: 5
   speedAttack: 0.75
   defense: 10
   evasion: 10

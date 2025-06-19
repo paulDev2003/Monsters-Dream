@@ -1682,6 +1682,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec09a460728935438455330e703774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &871023971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5898994665020441695, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+  m_PrefabInstance: {fileID: 2396234665953897675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &876069530 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7756132502803807075, guid: be8bcb49133542641aa822730b736dcc, type: 3}
@@ -1926,7 +1937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1007592516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2869,7 +2880,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToChoice:
   - {fileID: 3766534312890584187, guid: 3c8fa6307f5763344a4da2929d3573e6, type: 3}
-  levelToSpawn: {x: 1, y: 1}
+  - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
+  - {fileID: 2026916342437432789, guid: 51de9b3ffaaf84d4887b1876bc17e091, type: 3}
+  - {fileID: 48556389997191548, guid: 9e0f7f5401ae8e1449804e0972d200e9, type: 3}
+  levelToSpawn: {x: 1, y: 3}
   friendsList: []
   enemieList: []
   enemiesSaved: []
@@ -2944,7 +2958,7 @@ MonoBehaviour:
   - {fileID: 1026890202}
   - {fileID: 1585747880}
   levelEnemies:
-  - {fileID: 478651464}
+  - {fileID: 871023971}
   - {fileID: 1137186068}
   - {fileID: 222011841}
   attacksPanel:
@@ -3504,7 +3518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1804759598
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3977,6 +3991,10 @@ PrefabInstance:
     - target: {fileID: 5872199042670283769, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -4.7085
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936692150596040932, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneName
+      value: FarmScene
       objectReference: {fileID: 0}
     - target: {fileID: 6370756226670311383, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

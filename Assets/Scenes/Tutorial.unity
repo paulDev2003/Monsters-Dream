@@ -4512,6 +4512,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Lv.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5936692150596040932, guid: be8bcb49133542641aa822730b736dcc, type: 3}
+      propertyPath: sceneName
+      value: FarmScene
+      objectReference: {fileID: 0}
     - target: {fileID: 6370756226670311383, guid: be8bcb49133542641aa822730b736dcc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3

@@ -30,7 +30,6 @@ public class MenuTutorial : MonoBehaviour
     public GameObject arrowInstantiated;
     void Start()
     {
-        PlayerPrefs.SetInt("TutorialMenu", 0);
         int tutorial = PlayerPrefs.GetInt("TutorialMenu", 0);
         Debug.Log(tutorial);
         if (tutorial == 0)
@@ -143,8 +142,9 @@ public class MenuTutorial : MonoBehaviour
         {
             Destroy(arrowInstantiated);
             StartDungeon.Invoke();
-            hasMadeTutorial = true;
             PlayerPrefs.SetInt("TutorialMenu", 1);
+            hasMadeTutorial = true;
+            
         }
     }
 }
