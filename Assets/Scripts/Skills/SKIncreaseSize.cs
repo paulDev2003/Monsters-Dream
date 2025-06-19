@@ -63,5 +63,7 @@ public class SKIncreaseSize : SkillSO
             boxCollider.size = finalColliderSize;
             boxCollider.center = finalCenter;
         }
+
+        owner.specialAttack = false;
     }
 }
