@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour
     public MonsterSO monsterSO;
     public MonsterData monsterData;
     public bool enemie;
+    #region Stats
     public int level = 1;
     public float health;
     public float physicalDamage;
@@ -21,6 +22,7 @@ public class Monster : MonoBehaviour
     public float magicalDamage;
     public float magicalDefense;
     public float shield;
+    #endregion
     public UILifeBar lifeBar;
     public UIShieldBar shieldBar;
     public SkillDrop skillDrop;
@@ -78,6 +80,7 @@ public class Monster : MonoBehaviour
     public bool shieldActivated = false;
 
     [Space(10)]
+    #region Buffs
     public int damageBuff;
     public int basicDamageBuff;
     public int healthBuff;
@@ -88,13 +91,14 @@ public class Monster : MonoBehaviour
     public int physicIncreaseDefense;
     public int magicIncreaseDefense;
     public int shieldIncrease;
-
+    #endregion
+    #region StatesAndEffects
     public List<Sprite> spriteStates = new List<Sprite>();
     public List<int> intStates = new List<int>();
     public List<int> intStatesEffects = new List<int>();
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
     public StatusEffect monsterEffect;
-
+    #endregion
     public bool specialAttack = false;
     private bool awaitToSpecialAttack = false;
     private int enemieRandomSpecialAttack;
@@ -102,8 +106,34 @@ public class Monster : MonoBehaviour
     [HideInInspector] public bool notShowInterface = false;
     public bool underControl = false;
 
+    #region StateMachineStates
+    private MonsterStateMachine monsterStateMachine;
+    private MonsterChaseState monsterChaseState;
+    private MonsterBasicAttackState monsterBasicAttackState;
+    private MonsterSpecialAttackState monsterSpecialAttackState;
+    #endregion
+    #region StateMachineSO
+    [SerializeField] private MonsterChaseSO monsterChaseSO;
+    [SerializeField] private MonsterBasicAttackSO monsterBasicAttackSO;
+    [SerializeField] private MonsterSpecialAttackSO monsterSpecialAttackSO;
+
+    public MonsterChaseSO monsterChaseInstance;
+    public MonsterBasicAttackSO monsterBasicAttackInstance;
+    public MonsterSpecialAttackSO monsterSpecialAttackInstance;
+
+    #endregion
+    private void Awake()
+    {
+
+        monsterStateMachine = new MonsterStateMachine();
+
+        monsterChaseState = new MonsterChaseState(this, monsterStateMachine);
+        monsterBasicAttackState = new MonsterBasicAttackState(this, monsterStateMachine);
+        monsterSpecialAttackState = new MonsterSpecialAttackState(this, monsterStateMachine);
+    }
     protected virtual void Start()
     {
+        monsterStateMachine.Initialize(monsterChaseState);
         SetupCore();
         SetupLists();
         SetupUI();
@@ -179,6 +209,7 @@ public class Monster : MonoBehaviour
     }
     protected virtual void Update()
     {
+        monsterStateMachine.currentState.FrameUpdate();
         if (agent == null)
         {
             Debug.Log("No encuentra el navMesh");
@@ -284,6 +315,11 @@ public class Monster : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        monsterStateMachine.currentState.PhysicsUpdate();
     }
 
     private void UpdateStatsEffects()
