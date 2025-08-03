@@ -32,8 +32,6 @@ public class SKHeaderAttack : SkillSO
         owner.target.TakeDamage(damage);
         owner.target.UpdateBar();
         owner.agent.enabled = true;
-        owner.specialAttack = false;
-        Debug.Log("Habilidad completada: llegó detrás del target");
-        // Aquí puedes aplicar efectos, daño, animaciones, etc.
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

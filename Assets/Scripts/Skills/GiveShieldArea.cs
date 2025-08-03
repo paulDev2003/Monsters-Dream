@@ -6,10 +6,12 @@ public class GiveShieldArea : MonoBehaviour
     public int shieldUp;
     public StatusEffect effect;
     public SphereCollider sphere;
+    public Monster owner;
 
     public void ActivateArea()
     {
         ApplyShield();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyShield()

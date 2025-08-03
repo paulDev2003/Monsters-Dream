@@ -9,20 +9,24 @@ public class MonsterBasicAttackState : MonsterState
     public override void EnterState()
     {
         base.EnterState();
+        monster.monsterBasicAttackInstance.DoEnterState();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        monster.monsterBasicAttackInstance.DoExitState();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        monster.monsterBasicAttackInstance.DoFrameUpdate();
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        monster.monsterBasicAttackInstance.DoPhysicsUpdate();
     }
 }

@@ -22,6 +22,7 @@ public class SKIncreaseStatsAll : SkillSO
     public override void ShootSkill(Monster owner)
     {
         IncreaseStat(owner.ownList);
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void IncreaseStat(List<GameObject> ownList)

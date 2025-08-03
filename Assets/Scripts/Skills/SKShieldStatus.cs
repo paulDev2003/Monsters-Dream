@@ -23,5 +23,6 @@ public class SKShieldStatus : SkillSO
             circleArea.enemie = true;
             circleArea.ActivateArea();
         }
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

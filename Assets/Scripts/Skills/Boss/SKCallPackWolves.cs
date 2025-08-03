@@ -33,6 +33,6 @@ public class SKCallPackWolves : SkillSO
                 scriptWolf.UpdateBar();
             }
         }
-        owner.specialAttack = false;
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

@@ -17,6 +17,7 @@ public class FearArea : MonoBehaviour
     public void ActivateArea()
     {
         ApplyFear();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyFear()
@@ -37,8 +38,10 @@ public class FearArea : MonoBehaviour
                 Debug.Log("Encuentra el monstruo: " + monsterScript.name);
                 if (enemie && !monsterScript.enemie || !enemie && monsterScript.enemie)
                 {
+                    MonsterRunningAwayState fearState = new MonsterRunningAwayState(monsterScript, 
+                        monsterScript.monsterStateMachine, fearDistance);
                     monstersFeared.Add(monsterScript);
-                    RunAway(monsterScript);
+                    monsterScript.monsterStateMachine.ChangeState(fearState);
                 }
             }
         }
@@ -47,32 +50,17 @@ public class FearArea : MonoBehaviour
         //Destroy(gameObject, 0.1f);
     }
 
-    public void RunAway(Monster affectedMonster)
-    {
-        affectedMonster.underControl = true;
-        // Dirección opuesta al miedo
-        Vector3 fleeDirection = (transform.position - affectedMonster.transform.position).normalized;
-
-        // Añadir algo de aleatoriedad al movimiento
-        Vector3 random = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-        Vector3 finalDirection = (fleeDirection + random * 0.3f).normalized;
-
-        Vector3 targetPos = transform.position + finalDirection * fearDistance;
-
-        // Verificar si el punto está en el NavMesh
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(targetPos, out hit, 5f, NavMesh.AllAreas))
-        {
-            affectedMonster.agent.SetDestination(hit.position);
-        }
-    }
+    
 
     IEnumerator BackToNormality()
     {
         yield return new WaitForSeconds(timeEffect);
         foreach (var monster in monstersFeared)
         {
-            monster.underControl = false;
+            if (monster.monsterStateMachine.currentState != monster.monsterDeadState)
+            {
+                monster.monsterStateMachine.ChangeState(monster.monsterBasicAttackState);
+            }            
         }
         Destroy(gameObject);
     }

@@ -17,4 +17,5 @@ public abstract class SkillSO : ScriptableObject
     public Area typeArea;
 
     public abstract void ShootSkill(Monster owner);
+    
 }

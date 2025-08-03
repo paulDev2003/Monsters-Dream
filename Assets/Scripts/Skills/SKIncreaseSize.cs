@@ -64,5 +64,6 @@ public class SKIncreaseSize : SkillSO
             boxCollider.center = finalCenter;
         }
         owner.specialAttack = false;
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

@@ -8,6 +8,7 @@ public class SKStrongHit : SkillSO
     public override void ShootSkill(Monster owner)
     {
         StrongHit(owner.target, owner);
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     public void StrongHit(Monster target, Monster monsterOwner)

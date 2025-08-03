@@ -16,6 +16,7 @@ public class PlaceToSpawnClones : MonoBehaviour
     {
         yield return new WaitForSeconds(skillTime);
         owner.gameObject.SetActive(true);
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
         owner.ownList.Add(owner.gameObject);
         foreach (var clon in spawnedMonsters)
         {

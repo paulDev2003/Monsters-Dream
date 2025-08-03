@@ -24,10 +24,7 @@ public class BigMonkey : Monster
 
         }
     }
-    protected override void Attack()
-    {
-        // El minijefe no ataca normalmente
-    }
+    
 
 
     public void IncreaseDistanceAttackFriends()

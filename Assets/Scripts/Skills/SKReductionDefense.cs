@@ -38,6 +38,6 @@ public class SKReductionDefense : SkillSO
         }
         owner.target.ApplyStatus(reductionDefenseSprite);
         owner.target.defense -= decreaseAmount;
-        owner.specialAttack = false;
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

@@ -10,10 +10,12 @@ public class StatusAreaAndPush : MonoBehaviour
     public int damage;
     public BoxCollider box;
     public float pushForce = 5f; // Fuerza de empuje
+    public Monster owner;
 
     public void ActivateArea()
     {
         ApplyStatusDamage();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyStatusDamage()

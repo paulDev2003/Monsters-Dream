@@ -5,10 +5,12 @@ public class HealthArea : MonoBehaviour
     public bool enemie = false;
     public int healthUp;
     public SphereCollider sphere;
+    public Monster owner;
 
     public void ActivateArea()
     {
         ApplyHealth();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyHealth()

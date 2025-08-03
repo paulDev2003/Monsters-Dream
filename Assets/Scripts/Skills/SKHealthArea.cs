@@ -11,6 +11,7 @@ public class SKHealthArea : SkillSO
             GameObject areaInstantiated = Instantiate(areaHealth, owner.transform.position, Quaternion.identity);
             HealthArea circleArea = areaInstantiated.GetComponent<HealthArea>();
             circleArea.enemie = false;
+            circleArea.owner = owner;
             circleArea.ActivateArea();
         }
         else
@@ -18,6 +19,7 @@ public class SKHealthArea : SkillSO
             GameObject areaInstantiated = Instantiate(areaHealth, owner.transform.position, Quaternion.identity);
             HealthArea circleArea = areaInstantiated.GetComponent<HealthArea>();
             circleArea.enemie = true;
+            circleArea.owner = owner;
             circleArea.ActivateArea();
         }
     }

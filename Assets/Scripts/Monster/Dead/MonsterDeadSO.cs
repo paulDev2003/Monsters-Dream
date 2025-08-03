@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MonsterSpecialAttackSO : ScriptableObject
+public class MonsterDeadSO : ScriptableObject
 {
     protected GameObject gameObject;
     protected Transform transform;
@@ -13,10 +13,6 @@ public class MonsterSpecialAttackSO : ScriptableObject
     }
     public virtual void DoEnterState() { }
     public virtual void DoExitState() { }
-    public virtual void DoFrameUpdate() 
-    {
-        monster.RegenerateUpdate();
-        monster.UpdateStatsEffects();
-    }
+    public virtual void DoFrameUpdate() { }
     public virtual void DoPhysicsUpdate() { }
 }

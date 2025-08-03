@@ -7,6 +7,7 @@ public class SKAbsorbTargets : SkillSO
     public override void ShootSkill(Monster owner)
     {
         AbsorbTargets(owner.oppositeList, owner);
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void AbsorbTargets(List<GameObject> oppositeList, Monster owner)

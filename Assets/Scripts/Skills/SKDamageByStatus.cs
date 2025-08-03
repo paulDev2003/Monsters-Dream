@@ -25,9 +25,10 @@ public class SKDamageByStatus : SkillSO
         {
             owner.circleAttacksToSkill.fillAmount = 1;
             owner.skillDrop.cooldownImage.fillAmount = 1;
-            owner.attacksToSkill = 0;
             owner.skillDrop.cooldownImage.fillAmount = 1;
+            owner.monsterBasicAttackInstance.attacksToSkill = 0;
         }
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private bool CalculateDamage(int damage, Monster target)

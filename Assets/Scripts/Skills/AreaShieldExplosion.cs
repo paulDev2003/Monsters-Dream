@@ -5,10 +5,12 @@ public class AreaShieldExplosion : MonoBehaviour
     public bool enemie = false;
     public StatusEffect effect;
     public SphereCollider sphere;
+    public Monster owner;
 
     public void ActivateArea()
     {
         ApplyStatus();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyStatus()

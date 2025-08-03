@@ -5,10 +5,11 @@ public class AroundHit : MonoBehaviour
     public bool enemie = false;
     public int damage;
     public SphereCollider sphere;
-
+    public Monster owner;
     public void ActivateArea()
     {
         ApplyDamage();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyDamage()

@@ -21,10 +21,11 @@ public class SKDecreaseStatsAll : SkillSO
 
     public override void ShootSkill(Monster owner)
     {
-        IncreaseStat(owner.oppositeList);
+        DecreaseStat(owner.oppositeList);
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
-    private void IncreaseStat(List<GameObject> oppositeList)
+    private void DecreaseStat(List<GameObject> oppositeList)
     {
         foreach (var monster in oppositeList)
         {

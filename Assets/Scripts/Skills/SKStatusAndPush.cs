@@ -12,7 +12,9 @@ public class SKStatusAndPush : SkillSO
             {
                 GameObject areaInstantiated = Instantiate(areaPush, owner.transform.position, Quaternion.identity);
                 owner.skillDrop.areaInstantiated = areaInstantiated;
-                areaInstantiated.GetComponent<StatusAreaAndPush>().enemie = false;
+                StatusAreaAndPush area = areaInstantiated.GetComponent<StatusAreaAndPush>();
+                area.enemie = false;
+                area.owner = owner;
             }
             else if (owner.skillDrop.showingArea)
             {
@@ -22,9 +24,10 @@ public class SKStatusAndPush : SkillSO
         else
         {
             GameObject areaInstantiated = Instantiate(areaPush, owner.target.transform.position, Quaternion.identity);
-            StatusAreaAndPush poisonArea = areaInstantiated.GetComponent<StatusAreaAndPush>();
-            poisonArea.enemie = true;
-            poisonArea.ActivateArea();
+            StatusAreaAndPush area = areaInstantiated.GetComponent<StatusAreaAndPush>();
+            area.enemie = true;
+            area.ActivateArea();
+            area.owner = owner;
         }
 
     }

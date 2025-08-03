@@ -11,6 +11,7 @@ public class SKAroundHit : SkillSO
             GameObject areaInstantiated = Instantiate(areaHit, owner.transform.position, Quaternion.identity);
             AroundHit circleArea = areaInstantiated.GetComponent<AroundHit>();
             circleArea.enemie = false;
+            circleArea.owner = owner;
             circleArea.ActivateArea();
         }
         else
@@ -18,6 +19,7 @@ public class SKAroundHit : SkillSO
             GameObject areaInstantiated = Instantiate(areaHit, owner.transform.position, Quaternion.identity);
             AroundHit circleArea = areaInstantiated.GetComponent<AroundHit>();
             circleArea.enemie = true;
+            circleArea.owner = owner;
             circleArea.ActivateArea();
         }
     }

@@ -12,7 +12,10 @@ public class SKToxicSlap : SkillSO
             {
                 GameObject areaInstantiated = Instantiate(areaSlap, owner.transform.position, Quaternion.identity);
                 owner.skillDrop.areaInstantiated = areaInstantiated;
-                areaInstantiated.GetComponent<PoisonArea>().enemie = false;
+                PoisonArea poisonArea = areaInstantiated.GetComponent<PoisonArea>();
+                poisonArea.enemie = false;
+                poisonArea.owner = owner;
+
             }
             else if (owner.skillDrop.showingArea)
             {
@@ -24,8 +27,8 @@ public class SKToxicSlap : SkillSO
             GameObject areaInstantiated = Instantiate(areaSlap, owner.target.transform.position, Quaternion.identity);
             PoisonArea poisonArea = areaInstantiated.GetComponent<PoisonArea>();
             poisonArea.enemie = true;
+            poisonArea.owner = owner;
             poisonArea.ActivateArea();
         }
-        
     }
 }

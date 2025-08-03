@@ -760,6 +760,22 @@ PrefabInstance:
       propertyPath: monsterSO
       value: 
       objectReference: {fileID: 11400000, guid: 6a91ba7c2e04ea84ab4c7fa7d41402c2, type: 2}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterDeadSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 00847e23daafafb46b6ea162b8a9f6ac, type: 2}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterChaseSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 789d7d67567525049bfeb3c9c7fcc92b, type: 2}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterBasicAttackSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 211dfadf0aad10a408b0dec39eb74301, type: 2}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: monsterSpecialAttackSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a0f644fc9dace4d429a762ab6eac0064, type: 2}
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: Gigant Wolf

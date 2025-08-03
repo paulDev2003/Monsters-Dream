@@ -51,8 +51,6 @@ public class Monster : MonoBehaviour
     public float regenerationTime = 3.5f;
     private float currentTimeRegeneration;
     private float enemieDistance;
-    private float attackTime;
-    public int attacksToSkill;
     private float totalAmountToSkill;
     [Space(10)]
     public float healthFigth;
@@ -100,41 +98,49 @@ public class Monster : MonoBehaviour
     public StatusEffect monsterEffect;
     #endregion
     public bool specialAttack = false;
-    private bool awaitToSpecialAttack = false;
+    [HideInInspector] public bool awaitToSpecialAttack = false;
     private int enemieRandomSpecialAttack;
     [HideInInspector] public int skillCount = 0;
     [HideInInspector] public bool notShowInterface = false;
     public bool underControl = false;
 
     #region StateMachineStates
-    private MonsterStateMachine monsterStateMachine;
-    private MonsterChaseState monsterChaseState;
-    private MonsterBasicAttackState monsterBasicAttackState;
-    private MonsterSpecialAttackState monsterSpecialAttackState;
+    public MonsterStateMachine monsterStateMachine;
+    public MonsterChaseState monsterChaseState;
+    public MonsterBasicAttackState monsterBasicAttackState;
+    public MonsterSpecialAttackState monsterSpecialAttackState;
+    public MonsterDeadState monsterDeadState;
     #endregion
     #region StateMachineSO
     [SerializeField] private MonsterChaseSO monsterChaseSO;
     [SerializeField] private MonsterBasicAttackSO monsterBasicAttackSO;
     [SerializeField] private MonsterSpecialAttackSO monsterSpecialAttackSO;
+    [SerializeField] private MonsterDeadSO monsterDeadSO;
 
-    public MonsterChaseSO monsterChaseInstance;
-    public MonsterBasicAttackSO monsterBasicAttackInstance;
-    public MonsterSpecialAttackSO monsterSpecialAttackInstance;
+    [HideInInspector] public MonsterChaseSO monsterChaseInstance;
+    [HideInInspector] public MonsterBasicAttackSO monsterBasicAttackInstance;
+    [HideInInspector] public MonsterSpecialAttackSO monsterSpecialAttackInstance;
+    [HideInInspector] public MonsterDeadSO monsterDeadInstance;
 
     #endregion
     private void Awake()
     {
+        monsterChaseInstance = Instantiate(monsterChaseSO);
+        monsterBasicAttackInstance = Instantiate(monsterBasicAttackSO);
+        monsterSpecialAttackInstance = Instantiate(monsterSpecialAttackSO);
+        monsterDeadInstance = Instantiate(monsterDeadSO);
 
         monsterStateMachine = new MonsterStateMachine();
 
         monsterChaseState = new MonsterChaseState(this, monsterStateMachine);
         monsterBasicAttackState = new MonsterBasicAttackState(this, monsterStateMachine);
         monsterSpecialAttackState = new MonsterSpecialAttackState(this, monsterStateMachine);
+        monsterDeadState = new MonsterDeadState(this, monsterStateMachine);
     }
     protected virtual void Start()
-    {
-        monsterStateMachine.Initialize(monsterChaseState);
+    {       
         SetupCore();
+        InitializeStateMachines();
         SetupLists();
         SetupUI();
         SetupTarget();
@@ -143,7 +149,6 @@ public class Monster : MonoBehaviour
 
     protected virtual void SetupCore()
     {
-        ReloadAttackToSkill();
         currentTimeRegeneration = regenerationTime;
         inUse = true;
         agent = GetComponent<NavMeshAgent>();
@@ -151,6 +156,16 @@ public class Monster : MonoBehaviour
         agent.avoidancePriority = Random.Range(30, 60);
         gameManager = FindAnyObjectByType<GameManager>();
         Assert.IsNotNull(gameManager, "No encuentra gameManager");
+    }
+
+    protected virtual void InitializeStateMachines()
+    {
+        monsterChaseInstance.Initialize(gameObject, this);
+        monsterBasicAttackInstance.Initialize(gameObject, this);
+        monsterSpecialAttackInstance.Initialize(gameObject, this);
+        monsterDeadInstance.Initialize(gameObject, this);
+        monsterStateMachine.Initialize(monsterChaseState);
+        
     }
 
     protected virtual void SetupLists()
@@ -164,11 +179,7 @@ public class Monster : MonoBehaviour
         else
         {
             oppositeList = gameManager.enemieList;
-            ownList = gameManager.friendsList;
-            if (!notShowInterface)
-            {
-                //gameManager.monsterDrop[valueI].monsterScript = this;
-            }            
+            ownList = gameManager.friendsList;   
         }
     }
 
@@ -210,10 +221,6 @@ public class Monster : MonoBehaviour
     protected virtual void Update()
     {
         monsterStateMachine.currentState.FrameUpdate();
-        if (agent == null)
-        {
-            Debug.Log("No encuentra el navMesh");
-        }
         if (positionAttacksToSkill == null && !notShowInterface)
         {
             objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
@@ -222,98 +229,10 @@ public class Monster : MonoBehaviour
         {
             objCircleAttacks.transform.position = positionAttacksToSkill.position;
         }
-
+        //Dejar o Sacar?
         if (gameManager.finish)
         {
             stopFigth = true;
-        }
-        if (!dead && !stopFigth)
-        {
-            UpdateStatsEffects();
-            if (target != null)
-            {
-                if (targetCollider != null)
-                {
-                    Vector3 closestPoint = targetCollider.ClosestPoint(transform.position);
-                    enemieDistance = Vector3.Distance(transform.position, closestPoint);
-                }
-                else
-                {
-                    enemieDistance = Vector3.Distance(transform.position, target.transform.position);
-                }
-               // RotateTowardsTarget();
-                
-            }
-            
-            if (attackTime > 0)
-            {
-                attackTime -= Time.deltaTime;
-            }
-            else
-            {
-                Attack();
-            }
-            if (currentTimeRegeneration > 0)
-            {
-                currentTimeRegeneration -= Time.deltaTime;
-            }
-            else if (healthRegeneration > 0)
-            {
-                RegenerateHealth(healthRegeneration);
-                currentTimeRegeneration = regenerationTime;
-            }
-            if (healthFigth <= 0)
-            {
-                if (agent != null && agent.enabled)
-                {
-                    agent.isStopped = true;
-                    agent.enabled = false;
-                }
-                
-                healthFigth = 0;
-                gameManager.RemoveFromList(ownList, this);
-                if (!enemie)
-                {
-                    gameManager.attacksPanel[valueI].targetImage.enabled = false;
-                    gameManager.attacksPanel[valueI].cooldownImage.fillAmount = 0;
-                }
-                dead = true;
-                if (!notShowInterface)
-                {
-                    lifeBar.UpdateFill(this);
-                }
-                
-                if (!boss && enemie)
-                {
-                    Invoke("DesactivateMonster", 2.5f);
-                }
-                
-                if (!enemie)
-                {
-                    gameManager.countMonsters--;
-                }
-            }
-            else
-            {
-                if (target != null &&  agent.enabled == true && !underControl)
-                {
-                    if (!agent.isStopped)
-                    {
-                        if (enemieDistance > distanceAttack)
-                        {
-                            // Ir hacia el objetivo (automáticamente esquiva obstáculos)
-                            agent.SetDestination(target.transform.position);
-                        }
-                        else
-                        {
-                            // Ya está en rango de ataque, detener el agente
-                            agent.ResetPath(); // o agent.isStopped = true;
-                            RotateTowardsTarget();
-                        }
-                    }
-                    
-                }
-            }
         }
     }
 
@@ -322,15 +241,11 @@ public class Monster : MonoBehaviour
         monsterStateMachine.currentState.PhysicsUpdate();
     }
 
-    private void UpdateStatsEffects()
+    public void UpdateStatsEffects()
     {
         for (int i = activeEffects.Count - 1; i >= 0; i--)
         {
             activeEffects[i].Tick(this, Time.deltaTime, intStatesEffects[i]);
-            //if (activeEffects[i].IsFinished)
-            //{
-            //    activeEffects.RemoveAt(i);
-            //}
         }
     }
     public Monster ChooseTarget(List<GameObject> listOpposite)
@@ -384,95 +299,32 @@ public class Monster : MonoBehaviour
         return scriptTarget;
     }
 
-    protected virtual void Attack()
+    public void RegenerateUpdate()
     {
-        if (enemieDistance > distanceAttack && !underControl)
+        if (currentTimeRegeneration > 0)
         {
-            // Ya no se usa MoveTowards
-            if (animator != null)
-            {
-                animator.SetBool("Attacking", false);
-            }
-            if (agent != null && agent.enabled)
-            {
-                agent.SetDestination(target.transform.position);
-            }
-            else
-            {
-                Debug.Log("No encuentra el navMesh");
-            }
+            currentTimeRegeneration -= Time.deltaTime;
         }
-        else if (attackTime <= 0 && !underControl)
+        else if (healthRegeneration > 0)
         {
-            Debug.Log("Se detiene");
-            if (animator != null)
-            {
-                animator.SetBool("Attacking", true);
-            }
-            if (agent != null && agent.enabled)
-            {
-                agent.ResetPath(); // Detener el movimiento al atacar
-            }          
-            if (attacksToSkill > 0 || awaitToSpecialAttack || !enemie && !specialAttack )
-            {
-                BasicAttackDamage();
-                if (!notShowInterface)
-                {
-                    circleAttacksToSkill.fillAmount += totalAmountToSkill;
-                }              
-                if (!enemie && !notShowInterface)
-                {
-                    skillDrop.cooldownImage.fillAmount = circleAttacksToSkill.fillAmount;
-                }              
-                attacksToSkill -= 1;
-                if (enemie && attacksToSkill <= 0)
-                {
-                    if (!awaitToSpecialAttack)
-                    {
-                        awaitToSpecialAttack = true;
-                        enemieRandomSpecialAttack = Random.Range(1, 2);
-                    }
-                    else
-                    {
-                        enemieRandomSpecialAttack--;
-                        if (enemieRandomSpecialAttack <= 0)
-                        {
-                            awaitToSpecialAttack = false;
-                        }
-                    }
-                }
-            }
-            else if(!specialAttack && enemie)
-            {
-                ShootSpecialAttack();
-            }
-
-            if (target.healthFigth <= 0)
-            {
-                target.healthFigth = 0;
-                gameManager.CheckIfAnyAlive(oppositeList);
-                target = ChooseTarget(oppositeList);
-            }
+            RegenerateHealth(healthRegeneration);
+            currentTimeRegeneration = regenerationTime;
         }
     }
-
     public void ShootSpecialAttack()
     {
-        ReloadAttackToSkill();       
         circleAttacksToSkill.fillAmount = 0;
         if (!enemie)
         {
             skillDrop.cooldownImage.fillAmount = 0;
         }
-        attackTime = 1 * speedAttack;
-        specialAttack = true;
         skillCount++;
         monsterSO.skill.ShootSkill(this);
     }
 
     protected virtual float CalculateDamage()
     {
-        attackTime = 1 * speedAttack;
+        
         float randomChance = Random.Range(0f, 100f);
         if (randomChance < evasion)
         {
@@ -496,7 +348,7 @@ public class Monster : MonoBehaviour
         return damageDone;
     }
 
-    private void RotateTowardsTarget()
+    public void RotateTowardsTarget()
     {
         if (target == null) return;
 
@@ -614,7 +466,7 @@ public class Monster : MonoBehaviour
         lifeBar.UpdateFill(this);
     }
 
-    private void ReloadAttackToSkill()
+    public void ReloadAttackToSkill(int attacksToSkill)
     {
         attacksToSkill = Random.Range(rangeAttacksToSkill.x, rangeAttacksToSkill.y);
         attacksToSkill = Mathf.RoundToInt(attacksToSkill / decreasedCoolDown);
@@ -634,7 +486,7 @@ public class Monster : MonoBehaviour
 
     }
 
-    private void BasicAttackDamage()
+    public void BasicAttackDamage()
     {
         float damage = CalculateDamage() + basicDamageBuff;
         target.TakeDamage((int)damage);
@@ -739,11 +591,6 @@ public class Monster : MonoBehaviour
         }      
     }
 
-    public void DesactivateMonster()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void RunSkillCoroutine(IEnumerator routine)
     {
         StartCoroutine(routine);
@@ -751,9 +598,19 @@ public class Monster : MonoBehaviour
 
     public void ReloadNotInstanceAttack()
     {
-        ReloadAttackToSkill();
         circleAttacksToSkill.fillAmount = 0;
         skillDrop.cooldownImage.fillAmount = 0;
-        attackTime = 1 * speedAttack;
+    }
+
+    public void FillCircleSkillAttack()
+    {
+        if (!notShowInterface)
+        {
+            circleAttacksToSkill.fillAmount += totalAmountToSkill;
+        }
+        if (!enemie && !notShowInterface)
+        {
+            skillDrop.cooldownImage.fillAmount = circleAttacksToSkill.fillAmount;
+        }
     }
 }

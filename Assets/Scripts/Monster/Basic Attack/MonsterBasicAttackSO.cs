@@ -1,16 +1,30 @@
 using UnityEngine;
 
-public class MonsterBasicAttackSO : MonoBehaviour
+public class MonsterBasicAttackSO : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    protected GameObject gameObject;
+    protected Transform transform;
+    protected Monster monster;
+    public int attacksToSkill;
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Initialize(GameObject gameObject, Monster monster)
     {
-        
+        this.gameObject = gameObject;
+        this.transform = gameObject.transform;
+        this.monster = monster;
     }
+    public virtual void DoEnterState() 
+    {
+        if (monster.animator != null)
+        {
+            monster.animator.SetBool("Attacking", true);
+        }
+    }
+    public virtual void DoExitState() { }
+    public virtual void DoFrameUpdate() 
+    {
+        monster.RegenerateUpdate();
+        monster.UpdateStatsEffects();
+    }
+    public virtual void DoPhysicsUpdate() { }
 }

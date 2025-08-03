@@ -6,11 +6,13 @@ public class PoisonArea : MonoBehaviour
     public StatusEffect poisonEffect;
     public int damage;
     public BoxCollider box;
+    public Monster owner;
 
 
     public void ActivateArea()
     {
         ApplyPoisonDamage();
+        owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 
     private void ApplyPoisonDamage()
