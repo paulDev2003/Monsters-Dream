@@ -30,6 +30,7 @@ public class ManagerTutorial : MonoBehaviour
     {
         BeginEvent.Invoke();
         Invoke("FirstTutorialDelay", delaySeconds);
+        gameManager.friendsList[0].GetComponentInChildren<ClickOnMonster>().enabled = false;
     }
 
     private void Update()
@@ -146,6 +147,7 @@ public class ManagerTutorial : MonoBehaviour
             }
         }
         gameManager.finish = false;
+        gameManager.friendsList[0].GetComponentInChildren<ClickOnMonster>().enabled = true;
         Invoke("SecondTutorialDelay", 3f);
     }
 
@@ -207,7 +209,7 @@ public class ManagerTutorial : MonoBehaviour
         foreach (var monster in gameManager.friendsSaved)
         {
             Monster monsterScript = monster.GetComponent<Monster>();
-            monsterScript.healthFigth = monsterScript.health;
+            monsterScript.HealthFigth = monsterScript.health;
             if (monsterScript.dead)
             {
                 monsterScript.dead = false;

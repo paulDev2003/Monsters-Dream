@@ -10,7 +10,7 @@ public class UILifeBar : MonoBehaviour
     public List<TextMeshProUGUI> txtStateEffect = new List<TextMeshProUGUI>();
     public void UpdateFill(Monster monster)
     {
-        image.fillAmount = monster.healthFigth/monster.health;
+        image.fillAmount = monster.HealthFigth / monster.health;
     }
 
     public void ShowStates(List<int> acumulationState, List<Sprite> spriteState)

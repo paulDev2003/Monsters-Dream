@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MonsterChase-Follow Enemy", menuName = "Monster Behaviour/Chase/Follow Enemy")]
-public class MonsterChaseFollowEnemy : MonsterChaseSO
+[CreateAssetMenu(fileName = "MonsterChase-Stopped", menuName = "Monster Behaviour/Chase/Stopped")]
+public class MonsterChaseStopped : MonsterChaseSO
 {
     public override void DoEnterState()
     {
@@ -16,10 +16,7 @@ public class MonsterChaseFollowEnemy : MonsterChaseSO
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        if (monster.agent != null && monster.agent.enabled)
-        {
-            monster.agent.SetDestination(closestPoint);
-        }
+        transform.position += Vector3.zero;
     }
 
     public override void DoPhysicsUpdate()

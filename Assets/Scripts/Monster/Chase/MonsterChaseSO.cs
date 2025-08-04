@@ -5,6 +5,7 @@ public class MonsterChaseSO : ScriptableObject
     protected GameObject gameObject;
     protected Transform transform;
     protected Monster monster;
+    protected Vector3 closestPoint;
     public virtual void Initialize(GameObject gameObject, Monster monster)
     {
         this.gameObject = gameObject;
@@ -13,6 +14,7 @@ public class MonsterChaseSO : ScriptableObject
     }
     public virtual void DoEnterState() 
     {
+        monster.currentState = "Chase";
         if (monster.animator != null)
         {
             monster.animator.SetBool("Attacking", false);
@@ -27,7 +29,7 @@ public class MonsterChaseSO : ScriptableObject
         {
             if (monster.targetCollider != null)
             {
-                Vector3 closestPoint = monster.targetCollider.ClosestPoint(transform.position);
+                closestPoint = monster.targetCollider.ClosestPoint(transform.position);
 
                 if ((transform.position - closestPoint).sqrMagnitude < monster.distanceAttack)
                 {

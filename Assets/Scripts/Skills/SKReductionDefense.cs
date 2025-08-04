@@ -26,13 +26,11 @@ public class SKReductionDefense : SkillSO
                     {
                         scriptEnemie.ApplyStatus(reductionDefenseSprite);
                         scriptEnemie.defense -= decreaseAmount;
-                        owner.specialAttack = false;
                         return;
                     }                                       
                 }
                 owner.target.ApplyStatus(reductionDefenseSprite);
                 owner.target.defense -= decreaseAmount;
-                owner.specialAttack = false;
                 return;
             }
         }

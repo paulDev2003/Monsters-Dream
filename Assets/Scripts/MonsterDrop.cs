@@ -148,7 +148,7 @@ public class MonsterDrop : MonoBehaviour
                 {
                     Debug.Log("No entra nunca");
                     monster.isUsed = false;
-                    monster.healthReserve = monster.monsterScript.healthFigth;
+                    monster.healthReserve = monster.monsterScript.HealthFigth;
                     monster.wasChanged = true;
                     monsterScript.lifeBar = gameManager.superiorBarFriends[valueI];
                     monsterScript.shieldBar = gameManager.shieldsFriends[valueI];

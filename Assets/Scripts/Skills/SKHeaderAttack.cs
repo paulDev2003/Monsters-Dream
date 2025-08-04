@@ -16,7 +16,6 @@ public class SKHeaderAttack : SkillSO
     private IEnumerator MoveBehindTarget(Monster owner)
     {
         if (owner.target == null) yield break;
-        owner.specialAttack = true;
         owner.agent.enabled = false;
         Vector3 behindPosition = owner.target.transform.position- owner.target.transform.forward * distanceBehind;
 
@@ -29,9 +28,13 @@ public class SKHeaderAttack : SkillSO
             );
             yield return null;
         }
-        owner.target.TakeDamage(damage);
-        owner.target.UpdateBar();
-        owner.agent.enabled = true;
+        if (owner.target != null)
+        {
+            owner.target.TakeDamage(damage);
+            owner.target.UpdateBar();
+            owner.agent.enabled = true;
+        }
+        
         owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

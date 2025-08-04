@@ -5,24 +5,28 @@ public class BigMonkey : Monster
 
     protected override void Start()
     {
+        InitializeStateMachines();
         SetupCore();         // Sí lo quiero
         SetupLists();        // Sí lo quiero
-        // SetupUI();        // ❌ No quiero mostrar el círculo de ataque
+        SetupUI();        // ❌ No quiero mostrar el círculo de ataque
         SetupTarget();       // Sí lo quiero
-        // SetupExtras();    // ❌ No necesito destruir areaAttack
+        SetupExtras();    // ❌ No necesito destruir areaAttack
         //Invoke("IncreaseDistanceAttackFriends", 2f);
     }
 
     protected override void Update()
     {
-        if (healthFigth <= 0)
+        monsterStateMachine.currentState.FrameUpdate();
+        /*
+        if (HealthFigth <= 0)
         {
-            healthFigth = 0;
+            HealthFigth = 0;
             gameManager.specialEvent = false;
             gameManager.RemoveFromList(ownList, this);
             dead = true;
 
         }
+        */
     }
     
 

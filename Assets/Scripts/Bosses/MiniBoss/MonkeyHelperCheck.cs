@@ -8,26 +8,21 @@ public class MonkeyHelperCheck : MonoBehaviour
     public GameObject lifeBar;
     public bool activated = false;
     public bool scriptObtained = false;
+    public bool checkAlive = false;
 
     private void Update()
     {
-        if (gameManager.enemieList.Count == 1)
+        if (gameManager.enemieList.Count == 0 && !activated)
         {
-            if (!scriptObtained)
-            {
-                monsterScript = gameManager.enemieList[0].GetComponent<Monster>();
-                scriptObtained = true;
-            }
-            if (monsterScript.healthFigth <= 2 && !activated)
-            {
-                ActivateBigMonkey();
-                monsterScript.healthFigth = 2;
-                activated = true;
-            }
+            ActivateBigMonkey();
+            activated = true;
         }
-        if (gameManager.finish)
+        if (monsterScript.HealthFigth <= 0 && activated && !checkAlive)
         {
             lifeBar.SetActive(false);
+            gameManager.specialEvent = false;
+            gameManager.CheckIfAnyAlive(monsterScript.ownList);
+            checkAlive = true;
         }
     }
 

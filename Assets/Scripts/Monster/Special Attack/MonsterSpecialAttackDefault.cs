@@ -7,6 +7,7 @@ public class MonsterSpecialAttackDefault : MonsterSpecialAttackSO
     {
         base.DoEnterState();
         monster.ShootSpecialAttack();
+        monster.currentState = "special Attack";
     }
 
     public override void DoExitState()

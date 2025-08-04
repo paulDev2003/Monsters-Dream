@@ -8,6 +8,7 @@ using System.Collections;
 
 public class Monster : MonoBehaviour
 {
+    public string currentState = "chase";
     public string monsterName = "name";
     public MonsterSO monsterSO;
     public MonsterData monsterData;
@@ -52,8 +53,20 @@ public class Monster : MonoBehaviour
     private float currentTimeRegeneration;
     private float enemieDistance;
     private float totalAmountToSkill;
+    [SerializeField] private float healthFigth;
+    public float HealthFigth
+    {
+        get
+        {
+            return healthFigth;
+        }
+        set
+        {
+            healthFigth = value;
+            UpdateBar();
+        }
+    }
     [Space(10)]
-    public float healthFigth;
     public Monster target;
     public bool dead;
     public int exp;
@@ -97,12 +110,8 @@ public class Monster : MonoBehaviour
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
     public StatusEffect monsterEffect;
     #endregion
-    public bool specialAttack = false;
-    [HideInInspector] public bool awaitToSpecialAttack = false;
-    private int enemieRandomSpecialAttack;
     [HideInInspector] public int skillCount = 0;
     [HideInInspector] public bool notShowInterface = false;
-    public bool underControl = false;
 
     #region StateMachineStates
     public MonsterStateMachine monsterStateMachine;
@@ -121,6 +130,8 @@ public class Monster : MonoBehaviour
     [HideInInspector] public MonsterBasicAttackSO monsterBasicAttackInstance;
     [HideInInspector] public MonsterSpecialAttackSO monsterSpecialAttackInstance;
     [HideInInspector] public MonsterDeadSO monsterDeadInstance;
+
+    
 
     #endregion
     private void Awake()
@@ -220,7 +231,7 @@ public class Monster : MonoBehaviour
     }
     protected virtual void Update()
     {
-        monsterStateMachine.currentState.FrameUpdate();
+        
         if (positionAttacksToSkill == null && !notShowInterface)
         {
             objCircleAttacks.transform.position = transform.position + Vector3.up * 1.5f;
@@ -233,6 +244,10 @@ public class Monster : MonoBehaviour
         if (gameManager.finish)
         {
             stopFigth = true;
+        }
+        else
+        {
+            monsterStateMachine.currentState.FrameUpdate();
         }
     }
 
@@ -362,7 +377,9 @@ public class Monster : MonoBehaviour
     {
         if (monsterDamaged != null)
         {
-            GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, monsterDamaged.transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
+            Monster damagedScript = monsterDamaged.GetComponent<Monster>();
+            GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, damagedScript.objCircleAttacks.transform.position
+                + Vector3.up, Quaternion.identity, gameManager.canvasWorld.transform);
             TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
             if (damage == 0)
             {
@@ -454,10 +471,10 @@ public class Monster : MonoBehaviour
 
     public void RegenerateHealth(int healthUp)
     {
-        healthFigth += healthUp;
-        if (healthFigth > health)
+        HealthFigth += healthUp;
+        if (HealthFigth > health)
         {
-            healthFigth = health;
+            HealthFigth = health;
         }
         GameObject textInstanced = Instantiate(gameManager.textInfoPrefab, transform.position + Vector3.up * 2, Quaternion.identity, gameManager.canvasWorld.transform);
         TextMeshProUGUI textComponent = textInstanced.GetComponent<TextMeshProUGUI>();
@@ -489,7 +506,11 @@ public class Monster : MonoBehaviour
     public void BasicAttackDamage()
     {
         float damage = CalculateDamage() + basicDamageBuff;
-        target.TakeDamage((int)damage);
+        if (target != null)
+        {
+            target.TakeDamage((int)damage);
+        }
+        
         if (summonType == Monster.typeSummon.Edge)
         {
             if (hitAcumulation < hitToEffect)
@@ -498,7 +519,10 @@ public class Monster : MonoBehaviour
             }
             else
             {
-                target.AddStatusEffect(monsterEffect);
+                if (target != null)
+                {
+                    target.AddStatusEffect(monsterEffect);
+                }               
                 hitAcumulation = 0;
             }
         }
@@ -567,28 +591,20 @@ public class Monster : MonoBehaviour
             if (damage > shield)
             {
                 float restDamage = damage - shield;
-                healthFigth -= restDamage;
+                HealthFigth -= restDamage;
             }
         }
         else
         {
-            healthFigth -= damage;
+            HealthFigth -= damage;
         }
         AttackScreenInfo(damage, gameObject);
-        if (lifeBar != null)
-        {
-            UpdateBar();
-        }      
     }
 
     public void TakeDamageHealth(int damage)
     {  
-        healthFigth -= damage;
+        HealthFigth -= damage;
         AttackScreenInfo(damage, gameObject);
-        if (lifeBar!=null)
-        {
-            lifeBar.UpdateFill(this);
-        }      
     }
 
     public void RunSkillCoroutine(IEnumerator routine)

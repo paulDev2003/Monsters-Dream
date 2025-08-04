@@ -382,7 +382,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (monsterData.monsterName == monsterDataDrop.monsterName)
                     {
-                        monsterData.currentHealth = monsterScript.healthFigth;
+                        monsterData.currentHealth = monsterScript.HealthFigth;
                         //monsterData.currentXP = monsterScript.exp;
                         //monsterData.level = monsterScript.level;
                     }

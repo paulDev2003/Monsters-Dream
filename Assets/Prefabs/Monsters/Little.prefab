@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5552799814318832425}
   - component: {fileID: 5556066574244018759}
   - component: {fileID: 1950870700531584936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Modelo3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 8350979057313586039}
   - component: {fileID: 299488017052488977}
   - component: {fileID: 1174801732937725486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphereer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 1656005219335056377}
   - component: {fileID: 5275562303610208139}
   - component: {fileID: 425772485548843510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphereer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,6 +410,10 @@ PrefabInstance:
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: Little
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.x

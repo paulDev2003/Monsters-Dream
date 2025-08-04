@@ -2879,16 +2879,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesToChoice:
-  - {fileID: 3766534312890584187, guid: 3c8fa6307f5763344a4da2929d3573e6, type: 3}
-  - {fileID: 8591719220644047860, guid: 7b62cba1901739644b817227ad218870, type: 3}
-  - {fileID: 2026916342437432789, guid: 51de9b3ffaaf84d4887b1876bc17e091, type: 3}
   - {fileID: 48556389997191548, guid: 9e0f7f5401ae8e1449804e0972d200e9, type: 3}
   levelToSpawn: {x: 1, y: 3}
   friendsList: []
   enemieList: []
   enemiesSaved: []
   friendsSaved: []
-  totalEnemiesToSpawn: {x: 1, y: 3}
+  totalEnemiesToSpawn: {x: 1, y: 2}
   victoryScreen: {fileID: 488874482}
   panelVictory: {fileID: 1923390011}
   defeatScreen: {fileID: 814289560}

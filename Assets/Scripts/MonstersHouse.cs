@@ -19,7 +19,7 @@ public class MonstersHouse : MonoBehaviour
                 monsterName = monsterScript.monsterName,
                 level = monsterScript.level,
                 currentXP = monsterScript.exp,
-                currentHealth = monsterScript.healthFigth,
+                currentHealth = monsterScript.HealthFigth,
             };
             listMonsters.Add(m);
             id++;

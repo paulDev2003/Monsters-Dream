@@ -14,6 +14,10 @@ public class SKIncreaseSize : SkillSO
         AbsorbTargets(owner.oppositeList, owner);
         owner.RunSkillCoroutine(Grow(owner));
         owner.ApplyStatus(sprite);
+        if (owner.skillCount <= 1)
+        {
+            owner.distanceAttack *= 2;
+        }
     }
 
     private void AbsorbTargets(List<GameObject> oppositeList, Monster owner)
@@ -63,7 +67,6 @@ public class SKIncreaseSize : SkillSO
             boxCollider.size = finalColliderSize;
             boxCollider.center = finalCenter;
         }
-        owner.specialAttack = false;
         owner.monsterStateMachine.ChangeState(owner.monsterBasicAttackState);
     }
 }

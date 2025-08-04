@@ -34,7 +34,7 @@ public class SKDamageByStatus : SkillSO
     private bool CalculateDamage(int damage, Monster target)
     {
         float shield = target.shield;
-        float healthFigth = target.healthFigth;
+        float healthFigth = target.HealthFigth;
         bool dead = false;
         if (target.shieldActivated)
         {

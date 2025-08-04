@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1366766303094006707}
   - component: {fileID: 6192824107971452973}
   - component: {fileID: 3967683993521360696}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1321424908440225073}
   - component: {fileID: 63649093459679278}
   - component: {fileID: 4766736258945731431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 3330373151883685695}
   - component: {fileID: 7416683373954286729}
   - component: {fileID: 3230696712684617913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 2128167555535142683}
   - component: {fileID: 8397691397332591445}
   - component: {fileID: 7252881787029066790}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 7435789616993984622}
   - component: {fileID: 6146438910628083145}
   - component: {fileID: 5991443459066437006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 6521833035749577098}
   - component: {fileID: 7088515925815561059}
   - component: {fileID: 4972590427411478286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Modelo3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 8565957059475248277}
   - component: {fileID: 1013698605747031365}
   - component: {fileID: 3309458315167880921}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -779,6 +779,10 @@ PrefabInstance:
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: Gigant Wolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8913147841342114753}
   - component: {fileID: 7471183307189453042}
   - component: {fileID: 3565268611891009412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ojos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7171511759834394137}
   - component: {fileID: 5539542216379847342}
   - component: {fileID: 1752209929217571664}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BotonArriba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 6535146882506464402}
   - component: {fileID: 6244315085768335809}
   - component: {fileID: 5672619722423868636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Orejas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,6 +260,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2932662326226634117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6666961679221576443}
+  m_Layer: 6
+  m_Name: PositionCircleAttacks
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6666961679221576443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932662326226634117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3490000588622050620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3138760351960972023
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +302,7 @@ GameObject:
   - component: {fileID: 2153668521490319690}
   - component: {fileID: 4642154163981866341}
   - component: {fileID: 8586647948217525286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brazo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +389,7 @@ GameObject:
   - component: {fileID: 6915249333104707916}
   - component: {fileID: 5832707836236499498}
   - component: {fileID: 2423427350372413380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Nariz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +476,7 @@ GameObject:
   - component: {fileID: 759086630390282549}
   - component: {fileID: 2785854107484293794}
   - component: {fileID: 3811424082066637114}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Piernas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +563,7 @@ GameObject:
   - component: {fileID: 692526189422888565}
   - component: {fileID: 624153700531856794}
   - component: {fileID: 4486232542551028329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "Mo\xF1o"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +651,7 @@ GameObject:
   - component: {fileID: 3499080210058766956}
   - component: {fileID: 8674307848777563317}
   - component: {fileID: 7482101818635722986}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Modelo3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +754,7 @@ GameObject:
   - component: {fileID: 2253462381542938946}
   - component: {fileID: 8428889290427252078}
   - component: {fileID: 8626513962449852291}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cabeza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -810,7 +841,7 @@ GameObject:
   - component: {fileID: 8930706649773905875}
   - component: {fileID: 8802343322875671844}
   - component: {fileID: 9038742673553145952}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cuerpo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +928,7 @@ GameObject:
   - component: {fileID: 8792853928597601380}
   - component: {fileID: 6483226478295737818}
   - component: {fileID: 3208402918986651292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BotonBajo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +1014,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: level
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: enemie
@@ -1026,6 +1057,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a0f644fc9dace4d429a762ab6eac0064, type: 2}
     - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: positionAttacksToSkill
+      value: 
+      objectReference: {fileID: 6666961679221576443}
+    - target: {fileID: 308657521081136970, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: monsterData.monsterName
       value: Dandufo
       objectReference: {fileID: 0}
@@ -1033,17 +1068,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dandufo
       objectReference: {fileID: 0}
+    - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.03
+      value: 4.376741
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.297
+      value: -3.484073
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.02
+      value: 4.1182547
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1087,6 +1126,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6824327129519918443}
+    - targetCorrespondingSourceObject: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6666961679221576443}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
 --- !u!4 &3490000588622050620 stripped

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3107203936171721809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MandibulaInf_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6819186418754125956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 6746745943818354328}
   - component: {fileID: 1110331033612857704}
   - component: {fileID: 7957116357024597248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cuerno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2015777909941666415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaInf2L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3982996263084611595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaSup2R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6048974545218921350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4062901832232439485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1572160992377396133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6341479338784072781}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2403109661020112319}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaInf2L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 5557089108196516708}
   - component: {fileID: 1427653860666659002}
   - component: {fileID: 8331317072133562472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trompa ARRIBA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6869093847712156248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 7771914359762429136}
   - component: {fileID: 6055835442111264049}
   - component: {fileID: 7620073961042184742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cabeza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3294308260334244543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 8702698221181299539}
   - component: {fileID: 3840763037166939944}
   - component: {fileID: 6433732422362949637}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Alas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7898113944493904420}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaSup1L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926830716319248908}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaInf2R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4523359582765760072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MandibulaInf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2392448737924808777}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6879450005925297315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 5647759359779851583}
   - component: {fileID: 1880115980244655058}
   - component: {fileID: 1969612265088530571}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cuerpo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   - component: {fileID: 8309501777286247818}
   - component: {fileID: 5312946579555922031}
   - component: {fileID: 5897092845716670266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Modelo3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1081,7 +1081,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2388213251952445821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HuesoCentral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3118723020403920443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1152,7 +1152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 900755001199484957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Esqueleto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,7 +1184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4093123447670343091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 18_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2917004366399302575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 150003473171543582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1279,7 +1279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3150246066685637862}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hueso.021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956928382164511575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaInf1L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,7 +1343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7713071829632361548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3387915239410596800}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1407,7 +1407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8012479467863079727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaSup2L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6477458800133270940}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1471,7 +1471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8635886442585289883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaInf2R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1503,7 +1503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4178422060441200426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaSup2L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,7 +1534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2667853569690530701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaInf1R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1566,7 +1566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4053175337481474985}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MandibulaSup_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1599,7 +1599,7 @@ GameObject:
   - component: {fileID: 4352426596963197802}
   - component: {fileID: 6091636495608334130}
   - component: {fileID: 2774463598817724216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TrompaBaja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3076426529036526368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061851514750205993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 560298609081473784}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaSup1R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 19015503187976469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlaSup2R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1815,7 +1815,7 @@ GameObject:
   - component: {fileID: 8579734574923999795}
   - component: {fileID: 7317446247947167638}
   - component: {fileID: 3653009763932227473}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ojos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1899,7 +1899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672859201948238169}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MandibulaSup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1931,7 +1931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2331349528877201106}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1963,7 +1963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1274830797964325967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hueso.021_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2060,6 +2060,10 @@ PrefabInstance:
     - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_Name
       value: Drilpe
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968003765469747165, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2262024122414788250, guid: ed94b9cacbe02e24e9c950f7c8a2c33e, type: 3}
       propertyPath: m_LocalScale.x

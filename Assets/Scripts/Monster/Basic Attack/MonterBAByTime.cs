@@ -16,6 +16,11 @@ public class MonterBAByTime : MonsterBasicAttackSO
             //monster.agent.isStopped = true;
         }
         attackTime = 1 * monster.speedAttack;
+        monster.currentState = "Basic Attack";
+        if (attacksToSkill <= 0)
+        {
+            attacksToSkill = Random.Range(monster.rangeAttacksToSkill.x, monster.rangeAttacksToSkill.y);
+        }
     }
 
     public override void DoExitState()
@@ -51,8 +56,9 @@ public class MonterBAByTime : MonsterBasicAttackSO
 
     private void Attack()
     {
-        if (attacksToSkill > 0 || monster.awaitToSpecialAttack || !monster.enemie)
+        if (attacksToSkill > 0 || awaitToSpecialAttack || !monster.enemie)
         {
+            Debug.Log("Attack");
             monster.BasicAttackDamage();
             monster.FillCircleSkillAttack();
             attacksToSkill -= 1;
@@ -68,7 +74,7 @@ public class MonterBAByTime : MonsterBasicAttackSO
                     enemieRandomSpecialAttack--;
                     if (enemieRandomSpecialAttack <= 0)
                     {
-                        monster.awaitToSpecialAttack = false;
+                        awaitToSpecialAttack = false;
                     }
                 }
             }
@@ -78,11 +84,15 @@ public class MonterBAByTime : MonsterBasicAttackSO
             monster.monsterStateMachine.ChangeState(monster.monsterSpecialAttackState);
         }
 
-        if (monster.target.healthFigth <= 0)
+        if (monster.target.HealthFigth <= 0)
         {
             monster.target.monsterStateMachine.ChangeState(monster.target.monsterDeadState);
             monster.gameManager.CheckIfAnyAlive(monster.oppositeList);
-            monster.target = monster.ChooseTarget(monster.oppositeList);
+            if (monster.oppositeList.Count != 0)
+            {
+                monster.target = monster.ChooseTarget(monster.oppositeList);
+            }
+            
         }
         attackTime = 1 * monster.speedAttack;
     }
