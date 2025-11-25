@@ -176,6 +176,10 @@ MonoBehaviour:
       the slots of the rune glove to your left
     m_Metadata:
       m_Items: []
+  - m_Id: 58730124743720960
+    m_Localized: There is not eggs available
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

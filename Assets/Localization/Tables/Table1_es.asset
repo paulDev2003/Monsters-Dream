@@ -186,6 +186,10 @@ MonoBehaviour:
       de los espacios del guante r\xFAnico a tu izquierda"
     m_Metadata:
       m_Items: []
+  - m_Id: 58730124743720960
+    m_Localized: No hay huevos disponibles
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class ManagerEggSpots : MonoBehaviour
 {
@@ -7,6 +10,18 @@ public class ManagerEggSpots : MonoBehaviour
     public MonstersHouse monstersHouse;
     public MonsterDataBase monsterDataBase;
     public Bestiary bestiary;
+    public Inventory inventory;
+    public Transform spawnEgg;
+    public GameObject rightArrow;
+    public GameObject leftArrow;
+    public List<DiscoverMonster> monstersToEgg = new List<DiscoverMonster>();
+    public UnityEvent ActivateEggs;
+    public TextMeshProUGUI txtRequirement;
+    public Image imgItem;
+    private GameObject eggInstantiated;
+    private int currentEgg = 0;
+    private int itemAmount = 0;
+
 
     private void Start()
     {
@@ -28,5 +43,84 @@ public class ManagerEggSpots : MonoBehaviour
                 eggSpots[egg.id].imgSuperiorBar.fillAmount = 0.01f;
             }
         }
+        CheckEggsAvailable();
+    }
+
+    public void CheckEggsAvailable()
+    {
+        bool eggsAvailable = false;
+        foreach (var monster in monstersHouse.bestiary)
+        {
+            if (monster.wasFriend)
+            {
+                bool isInList = false;
+                foreach (var monsterInLobby in monstersHouse.listMonsters)
+                {
+                    if (monsterInLobby.monsterName == monster.monsterName)
+                    {
+                        isInList = true;
+                        break;
+                    }
+
+                }
+                if (!isInList)
+                {
+                    eggsAvailable = true;
+                    monstersToEgg.Add(monster);
+                }
+            }
+        }
+        if (eggsAvailable)
+        {
+            ActivateEggs.Invoke();
+            FillEggForm();
+        }
+    }
+
+    private void FillEggForm()
+    {
+        if (eggInstantiated != null)
+        {
+            return;
+        }
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monstersToEgg[0].monsterName);
+        FillOutPanel(monsterBase);
+        if (monstersToEgg.Count > 1)
+        {
+            rightArrow.SetActive(true);
+        }
+    }
+
+    public void ChangeEgg(int i)
+    {
+        currentEgg = currentEgg + i;
+        Destroy(eggInstantiated);
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monstersToEgg[currentEgg].monsterName);
+        FillOutPanel(monsterBase);
+        if (currentEgg == 0)
+            leftArrow.SetActive(false);
+        else
+            leftArrow.SetActive(true);
+
+        if (monstersToEgg.Count <= currentEgg + 1)
+            rightArrow.SetActive(false);
+        else
+            rightArrow.SetActive(true);
+    }
+
+    private void FillOutPanel(MonsterBase monsterBase)
+    {
+        eggInstantiated = Instantiate(monsterBase.monsterSO.egg, spawnEgg.position, monsterBase.monsterSO.egg.transform.rotation);
+        ItemSO savedItem = monsterBase.monsterSO.itemForEgg;
+        imgItem.sprite = savedItem.sprite;
+        if (inventory.moleculeInventory.ContainsKey(savedItem.itemName))
+        {
+            itemAmount = inventory.countMolecules[savedItem.itemName];
+        }
+        else if (inventory.capturableInventory.ContainsKey(savedItem.itemName))
+        {
+            itemAmount = inventory.countCapturables[savedItem.itemName];
+        }
+        txtRequirement.text = $"{itemAmount} / {monsterBase.monsterSO.amountForEgg}";
     }
 }

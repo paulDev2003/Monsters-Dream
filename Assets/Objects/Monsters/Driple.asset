@@ -30,6 +30,6 @@ MonoBehaviour:
   expPerLevel: 12
   moneyPerLevel: 12
   itemForUpLevel: {fileID: 11400000, guid: 40358fa1dd0ca13449bb6b41adcce766, type: 2}
-  egg: {fileID: 919132149155446097, guid: 00f51bc7538379446a17efcec36ed978, type: 3}
+  egg: {fileID: 9212416099142837632, guid: 8741bf60bb30681449f06d505fcbc4a9, type: 3}
   itemForEgg: {fileID: 11400000, guid: a80239743684d0c458cb9a1eba09ea9f, type: 2}
   amountForEgg: 15

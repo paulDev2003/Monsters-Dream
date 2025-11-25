@@ -27,7 +27,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 59b9b4140bb12c146b17f62fa44a3d6a, type: 3}
   expPerLevel: 1
   moneyPerLevel: 1
-  itemForUpLevel: {fileID: 11400000, guid: 8c3adfb3e2ba80946ad40cefe7ddd5f8, type: 2}
-  egg: {fileID: 9212416099142837632, guid: 8741bf60bb30681449f06d505fcbc4a9, type: 3}
-  itemForEgg: {fileID: 11400000, guid: f08984528704e5f4fbd653d6f7e737b9, type: 2}
-  amountForEgg: 1
+  itemForUpLevel: {fileID: 11400000, guid: 31c14eec30a172445a19e1534357f268, type: 2}
+  egg: {fileID: 728716050470227749, guid: d45af682f507889439e9786fa1229f9d, type: 3}
+  itemForEgg: {fileID: 11400000, guid: d0f5f2d127be3144aa243ed0d91493ad, type: 2}
+  amountForEgg: 3
