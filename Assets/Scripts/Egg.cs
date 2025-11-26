@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class Egg : MonoBehaviour
 {
     public EggSO eggSO;
-    public Bestiary bestiary;
+    public ManagerEggSpots managerEggSpots;
     public bool growing = false;
     public EggData eggData;
     public EggSpot eggSpot;
@@ -16,8 +16,9 @@ public class Egg : MonoBehaviour
             return;
         if (growing)
         {
-            bestiary.eggInvoked = this;
-            bestiary.ShowEggPanel.Invoke();
+            managerEggSpots.eggInvoked = this;
+            managerEggSpots.ShowEggPanel.Invoke();
+            managerEggSpots.DesactiveUI.Invoke();
         }
     }
 }

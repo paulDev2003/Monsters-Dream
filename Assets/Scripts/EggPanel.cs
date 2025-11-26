@@ -7,6 +7,7 @@ using TMPro;
 public class EggPanel : MonoBehaviour
 {
     public Bestiary bestiary;
+    public ManagerEggSpots managerEggSpots;
     public MonstersHouse monstersHouse;
     public List<Image> imgsBtns = new List<Image>();
     public List<BtnEggProgress> btnEggProgress = new List<BtnEggProgress>();
@@ -26,12 +27,13 @@ public class EggPanel : MonoBehaviour
     private int i;
     private float totalPoints = 0;
     private bool onPanel = false;
+    private Egg eggScript;
 
-    public void ShowEgg()
+    public void ShowEgg(Egg scriptEgg)
     {
         i = 0;
         onPanel = true;
-        Egg scriptEgg = bestiary.eggInvoked;
+        eggScript = scriptEgg;
         superiorBar.fillAmount = scriptEgg.eggData.currentPoints / (float)scriptEgg.eggSO.totalPoints;
         if (scriptEgg.eggData.currentPoints >= scriptEgg.eggSO.totalPoints)
         {
@@ -42,7 +44,7 @@ public class EggPanel : MonoBehaviour
         {
             superiorBar.fillAmount = 0.01f;
         }
-        foreach (var item in bestiary.eggInvoked.eggSO.typeItems)
+        foreach (var item in scriptEgg.eggSO.typeItems)
         {
             imgsBtns[i].enabled = true;
             btnEggProgress[i].savedItem = item;
@@ -51,9 +53,9 @@ public class EggPanel : MonoBehaviour
             txtCounts[i].enabled = true;
             txtCounts[i].text = scriptEgg.eggData.itemProgress[i].ToString();
             txtTotals[i].enabled = true;
-            txtTotals[i].text = $"/ {bestiary.eggInvoked.eggSO.amountItems[i].ToString()}";
+            txtTotals[i].text = $"/ {scriptEgg.eggSO.amountItems[i].ToString()}";
             btnEggProgress[i].current = scriptEgg.eggData.itemProgress[i];
-            btnEggProgress[i].total = bestiary.eggInvoked.eggSO.amountItems[i];
+            btnEggProgress[i].total = scriptEgg.eggSO.amountItems[i];
             i++;
         }
     }
@@ -65,16 +67,15 @@ public class EggPanel : MonoBehaviour
             return;
         }
         eggProgress.current++;
-        Egg scriptEgg = bestiary.eggInvoked;
-        int total = scriptEgg.eggSO.totalPoints;
+        int total = eggScript.eggSO.totalPoints;
         float pointsPerCollection = total / i;
         float pointsObtained = pointsPerCollection / eggProgress.total;
-        scriptEgg.eggData.currentPoints += pointsObtained;
-        superiorBar.fillAmount = scriptEgg.eggData.currentPoints / (float)total;
-        scriptEgg.eggSpot.imgSuperiorBar.fillAmount = superiorBar.fillAmount;
+        eggScript.eggData.currentPoints += pointsObtained;
+        superiorBar.fillAmount = eggScript.eggData.currentPoints / (float)total;
+        eggScript.eggSpot.imgSuperiorBar.fillAmount = superiorBar.fillAmount;
         txtCounts[eggProgress.valueI].text = eggProgress.current.ToString();
-        scriptEgg.eggData.itemProgress[eggProgress.valueI] = eggProgress.current;
-        if (total <= scriptEgg.eggData.currentPoints)
+        eggScript.eggData.itemProgress[eggProgress.valueI] = eggProgress.current;
+        if (total <= eggScript.eggData.currentPoints)
         {
             btnHatch.SetActive(true);
             DesactiveItems();
@@ -114,8 +115,7 @@ public class EggPanel : MonoBehaviour
     public void Hatch()
     {
         camMonsterUnlocked.enabled = true;
-        Egg scriptEgg = bestiary.eggInvoked;
-        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(scriptEgg.eggData.monsterName);
+        MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(eggScript.eggData.monsterName);
         monsterInstantiated = Instantiate(monsterBase.prefabMonster, spawnMonsterUnlocked.position, 
             spawnMonsterUnlocked.transform.rotation);
         monsterInstantiated.GetComponent<Monster>().enabled = false;
@@ -123,12 +123,14 @@ public class EggPanel : MonoBehaviour
         rb.useGravity = false;
         Transform firstChild = monsterInstantiated.transform.GetChild(0);
         firstChild.gameObject.AddComponent<CharacterPreviewRotation>();
-        monstersHouse.InsertOnMonsterHouse(scriptEgg.eggData.monsterName);
-        scriptEgg.eggSpot.progressBar.SetActive(false);
-        scriptEgg.eggSpot.available = true;
-        monstersHouse.RemoveEgg(scriptEgg.eggData.id);
-        txtSummon.text = bestiary.eggInvoked.eggData.monsterName;
-        Destroy(scriptEgg.gameObject);
+        monstersHouse.InsertOnMonsterHouse(eggScript.eggData.monsterName);
+        eggScript.eggSpot.progressBar.SetActive(false);
+        eggScript.eggSpot.available = true;
+        monstersHouse.RemoveEgg(eggScript.eggData.id);
+        txtSummon.text = eggScript.eggData.monsterName;
+        Destroy(managerEggSpots.eggSpots[eggScript.eggData.id].egg.gameObject);
+        Destroy(eggScript.gameObject);
+        
     }
 
     public void DestroyMonster()

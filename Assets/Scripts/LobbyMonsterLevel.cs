@@ -34,21 +34,21 @@ public class LobbyMonsterLevel : MonoBehaviour
     public Image btnRigthArrow;
     public int feedAmount = 25;
     private ItemSO itemForFeed;
-    private int amountItem;
+    private int amountForUp;
     private bool onInterface = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && insideCollider && !onInterface)
-        {
-            onInterface = true;
-            EnabledInterface.Invoke();
-        }
         if (Input.GetKeyDown(KeyCode.Escape) && onInterface)
         {
             DisabledInterface.Invoke();
             onInterface = false;
         }
+    }
+    public void ActivateInterface()
+    {
+        onInterface = true;
+        EnabledInterface.Invoke();
     }
     public void FillImages()
     {
@@ -73,8 +73,17 @@ public class LobbyMonsterLevel : MonoBehaviour
                     txtMonsterName.text = monster.monsterName;
                     imgItem.sprite = monsterBase.monsterSO.itemForUpLevel.sprite;
                     itemForFeed = monsterBase.monsterSO.itemForUpLevel;
-                    amountItem = monster.level * 5;
-                    txtItemAmount.text = amountItem.ToString();
+                    amountForUp = monster.level * 5;
+                    int itemAmount = 0;
+                    if (inventory.moleculeInventory.ContainsKey(itemForFeed.itemName))
+                    {
+                        itemAmount = inventory.countMolecules[itemForFeed.itemName];
+                    }
+                    else if (inventory.capturableInventory.ContainsKey(itemForFeed.itemName))
+                    {
+                        itemAmount = inventory.countCapturables[itemForFeed.itemName];
+                    }
+                    txtItemAmount.text = $"{itemAmount} / {amountForUp}";
                     float maxExp = 50 * monster.level;
                     superiorBarExp.fillAmount = monster.currentXP / maxExp;
                     currentMonster = monster;
@@ -111,8 +120,17 @@ public class LobbyMonsterLevel : MonoBehaviour
         txtLevel.text = monsterData.level.ToString();
         imgItem.sprite = monsterBase.monsterSO.itemForUpLevel.sprite;
         itemForFeed = monsterBase.monsterSO.itemForUpLevel;
-        amountItem = monsterData.level * 5;
-        txtItemAmount.text = amountItem.ToString();
+        amountForUp = monsterData.level * 5;
+        int itemAmount = 0;
+        if (inventory.moleculeInventory.ContainsKey(itemForFeed.itemName))
+        {
+            itemAmount = inventory.countMolecules[itemForFeed.itemName];
+        }
+        else if (inventory.capturableInventory.ContainsKey(itemForFeed.itemName))
+        {
+            itemAmount = inventory.countCapturables[itemForFeed.itemName];
+        }
+        txtItemAmount.text = $"{itemAmount} / {amountForUp}";
         txtMonsterName.text = monsterData.monsterName;
         float maxExp = 50 * monsterData.level;
         superiorBarExp.fillAmount = monsterData.currentXP / maxExp;
@@ -134,31 +152,31 @@ public class LobbyMonsterLevel : MonoBehaviour
 
     public void FeedMonster()
     {
-    
+        int itemAmount = 0;
         if (inventory.moleculeInventory.ContainsKey(itemForFeed.itemName))
         {
             Debug.Log("No es null molecule");
-            if (inventory.countMolecules[itemForFeed.itemName] >= amountItem)
+            if (inventory.countMolecules[itemForFeed.itemName] >= amountForUp)
             {
                 Debug.Log("Es mayor");
-                inventory.countMolecules[itemForFeed.itemName] -= amountItem;
-                ApplyFeed();
+                itemAmount = inventory.countMolecules[itemForFeed.itemName] -= amountForUp;
+                ApplyFeed(itemAmount);
             }
         }
         else if(inventory.capturableInventory.ContainsKey(itemForFeed.itemName))
         {
             Debug.Log("No es null Capturable");
-            if (inventory.countCapturables[itemForFeed.itemName] >= amountItem)
+            if (inventory.countCapturables[itemForFeed.itemName] >= amountForUp)
             {               
                 Debug.Log("Es mayor");
-                inventory.countCapturables[itemForFeed.itemName] -= amountItem;
-                ApplyFeed();
+                itemAmount = inventory.countCapturables[itemForFeed.itemName] -= amountForUp;
+                ApplyFeed(itemAmount);
             }
         }
         
     }
 
-    private void ApplyFeed()
+    private void ApplyFeed(int itemAmount)
     {
         currentMonster.currentXP += feedAmount;
         int maxExp = currentMonster.level * 50;
@@ -172,6 +190,7 @@ public class LobbyMonsterLevel : MonoBehaviour
             ShowStats(monsterClass);
         }
         superiorBarExp.fillAmount = (float)currentMonster.currentXP / (float)maxExp;
+        txtItemAmount.text = $"{itemAmount} / {amountForUp}";
     }
 
     public void LeftArrow()

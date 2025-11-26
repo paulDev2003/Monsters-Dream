@@ -161,7 +161,7 @@ public class Bestiary : MonoBehaviour
     private void EggToNursery()
     {
         Egg egg = eggInstantiated.GetComponent<Egg>();
-        egg.bestiary = this;
+   //     egg.bestiary = this;
         egg.growing = true;
         egg.eggData.monsterName = savedName;
         ClosePanel.Invoke();
