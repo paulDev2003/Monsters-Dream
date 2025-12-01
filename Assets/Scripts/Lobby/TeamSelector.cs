@@ -25,12 +25,18 @@ public class TeamSelector : MonoBehaviour
     public Transform spawnSummon;
     private GameObject summonInvoked;
 
+    public bool dragging = false;
+    public SummonSlot summonDragging;
+    public bool isInPanel = false;
+    
 
     private void Start()
     {
+        
         FillOutImages();
-        FillOutAcquiredSummons();
     }
+
+    
 
     public void FillOutImages()
     {
@@ -113,6 +119,7 @@ public class TeamSelector : MonoBehaviour
 
     public void FillOutStats(string monsterName, int level)
     {
+        
         MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(monsterName);
         MonsterClass monsterClass = new MonsterClass(monsterBase.monsterSO, level);
         txtLvl.text = level.ToString();
@@ -132,5 +139,47 @@ public class TeamSelector : MonoBehaviour
         summonInvoked.GetComponent<Monster>().enabled = false;
         summonInvoked.GetComponentInChildren<Rigidbody>().useGravity = false;
         summonInvoked.AddComponent<CharacterPreviewRotation>();
+        
     }
+
+    public void CheckIsInPanel()
+    {
+        isInPanel = true;
+        Debug.Log("Entra al panel");
+    }
+
+    public void OutOfPanel()
+    {
+        isInPanel = false;
+        Debug.Log("Sale del panel");
+    }
+
+    public void AddTeamMember()
+    {
+        Debug.Log("Click Up");
+        if (isInPanel && dragging)
+        {
+            int i = 0;
+            foreach (var teamSlot in teamSlots)
+            {
+                Debug.Log("Entra al foreach");
+                
+                if (teamSlot.gameObject.activeSelf == false)
+                {
+                    teamSlot.img.sprite = summonDragging.img.sprite;
+                    teamSlot.monsterName = summonDragging.monsterName;
+                    teamSlot.level = summonDragging.level;
+                    teamSlot.gameObject.SetActive(true);
+                    summonDragging.gameObject.SetActive(false);
+                    teamSprites[i].gameObject.SetActive(true);
+                    teamSprites[i].sprite = teamSlot.img.sprite;
+                    dragging = false;
+                    summonDragging = null;
+                    break;
+                }
+                i++;
+            }
+        }
+    }
+
 }

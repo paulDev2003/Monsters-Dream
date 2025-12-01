@@ -8,6 +8,7 @@ public class ManagerProgression : MonoBehaviour
     public List<UnlockedSummonUI> summons = new List<UnlockedSummonUI>();
     private int summonsUnlocked = 0;
     public TextMeshProUGUI txtSummonsUnlocked;
+    public TextMeshProUGUI txtProgression;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class ManagerProgression : MonoBehaviour
             }
         }
         txtSummonsUnlocked.text = $"{summonsUnlocked} / {summons.Count}";
-
+        txtProgression.text = $"{ (float)summonsUnlocked/ (float)summons.Count  * 100}%";
     }
 
 }
