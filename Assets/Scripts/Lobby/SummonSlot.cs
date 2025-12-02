@@ -14,6 +14,8 @@ public class SummonSlot : MonoBehaviour
     [SerializeField] private Canvas canvas;
     private bool followingMouse = false;
     private Vector3 lastMousePos;
+    public bool isUsed = false;
+    private bool isOnSprite = false;
     public void FillOutStats()
     {
         teamSelector.FillOutStats(monsterName, level);
@@ -27,7 +29,13 @@ public class SummonSlot : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (isOnSprite && !isUsed)
+            {
+                teamSelector.AddTeamMember(this);
+            }
+        }
         if (followingMouse)
         {
 
@@ -35,11 +43,12 @@ public class SummonSlot : MonoBehaviour
 
             
         }
+        
     }
 
     public void PickUpSummon()
     {
-        if (!teamSelector.dragging)
+        if (!teamSelector.dragging && !isUsed)
         {
             followingMouse = true;
             teamSelector.dragging = true;
@@ -57,5 +66,14 @@ public class SummonSlot : MonoBehaviour
             teamSelector.dragging = false;
             teamSelector.summonDragging = null;
         }
+    }
+
+    public void EnterSprite()
+    {
+        isOnSprite = true;
+    }
+    public void ExitSprite()
+    {
+        isOnSprite = false;
     }
 }

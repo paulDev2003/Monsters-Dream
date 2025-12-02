@@ -26,8 +26,11 @@ public class TeamSelector : MonoBehaviour
     private GameObject summonInvoked;
 
     public bool dragging = false;
+    public bool draggingTeamSlot = false;
     public SummonSlot summonDragging;
+    public TeamSlot teamSlotDragging;
     public bool isInPanel = false;
+    public Color usedColor;
     
 
     private void Start()
@@ -93,27 +96,20 @@ public class TeamSelector : MonoBehaviour
         int i = 0;
         foreach (var summon in monstersHouse.listMonsters)
         {
-            bool isOnTeam = false;
             foreach (var teamSlot in teamSlots)
             {
                 if (teamSlot.monsterName == summon.monsterName)
                 {
-                    isOnTeam = true;
+                    inventorySlots[i].img.color = usedColor;
+                    inventorySlots[i].isUsed = true;
                     break;
                 }
             }
-            if (isOnTeam)
-            {
-                continue;
-            }
-            else
-            {
-                MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(summon.monsterName);
-                inventorySlots[i].monsterName = summon.monsterName;
-                inventorySlots[i].img.sprite = monsterBase.monsterSO.sprite;
-                inventorySlots[i].gameObject.SetActive(true);
-                i++;
-            }
+            MonsterBase monsterBase = monsterDataBase.GetMonsterBaseByName(summon.monsterName);
+            inventorySlots[i].monsterName = summon.monsterName;
+            inventorySlots[i].img.sprite = monsterBase.monsterSO.sprite;
+            inventorySlots[i].gameObject.SetActive(true);
+            i++;
         }
     }
 
@@ -170,13 +166,119 @@ public class TeamSelector : MonoBehaviour
                     teamSlot.monsterName = summonDragging.monsterName;
                     teamSlot.level = summonDragging.level;
                     teamSlot.gameObject.SetActive(true);
-                    summonDragging.gameObject.SetActive(false);
-                    teamSprites[i].gameObject.SetActive(true);
-                    teamSprites[i].sprite = teamSlot.img.sprite;
+                    summonDragging.img.color = usedColor;
+                    summonDragging.isUsed = true;
                     dragging = false;
                     summonDragging = null;
                     break;
                 }
+                i++;
+            }
+        }
+    }
+
+    public void AddTeamMember(SummonSlot summonSlot)
+    {
+        int i = 0;
+        foreach (var teamSlot in teamSlots)
+        {
+
+            if (teamSlot.gameObject.activeSelf == false)
+            {
+                teamSlot.img.sprite = summonSlot.img.sprite;
+                teamSlot.monsterName = summonSlot.monsterName;
+                teamSlot.level = summonSlot.level;
+                teamSlot.gameObject.SetActive(true);
+                summonSlot.img.color = usedColor;
+                summonSlot.isUsed = true;
+                dragging = false;
+                summonDragging = null;
+                break;
+            }
+            i++;
+        }
+    }
+
+    public void DeleteTeamMember(TeamSlot slotDeleted)
+    {
+        if (slotDeleted.id == 0 && teamSlots[1].gameObject.activeSelf == false)
+        {
+            return;
+        }
+        foreach (var summon in inventorySlots)
+        {
+            if (summon.monsterName == slotDeleted.monsterName)
+            {
+                summon.isUsed = false;
+                summon.img.color = Color.white;
+                break;
+            }
+        }
+        teamSlots[slotDeleted.id].gameObject.SetActive(false);
+        for (int i = slotDeleted.id; teamSlots[i + 1].gameObject.activeSelf == true; i++)
+        {
+            teamSlots[i].gameObject.SetActive(true);
+            teamSlots[i].img.sprite = teamSlots[i + 1].img.sprite;
+            teamSlots[i].monsterName = teamSlots[i + 1].monsterName;
+            teamSlots[i].level = teamSlots[i + 1].level;
+            teamSlots[i + 1].gameObject.SetActive(false);
+        }
+    }
+
+    public void ChangeTeamMember(TeamSlot teamSlot)
+    {
+        if (dragging)
+        {
+            foreach (var summon in inventorySlots)
+            {
+                if (summon.monsterName == teamSlot.monsterName)
+                {
+                    summon.img.color = Color.white;
+                    summon.isUsed = false;
+                }
+            }
+            teamSlot.img.sprite = summonDragging.img.sprite;
+            teamSlot.monsterName = summonDragging.monsterName;
+            teamSlot.level = summonDragging.level;
+            summonDragging.img.color = usedColor;
+            summonDragging.isUsed = true;
+            dragging = false;
+            summonDragging = null;
+            
+        }
+        
+    }
+
+    public void ChangeTeamSlot(TeamSlot changedSlot)
+    {
+        if (!draggingTeamSlot || teamSlotDragging == null)
+        {
+            Debug.Log("Sale por el if");
+            return;
+        }
+        Debug.Log("Llega al change");
+        string nameSaved = changedSlot.monsterName;
+        int levelSaved = changedSlot.level;
+        Sprite spriteSaved = changedSlot.img.sprite;
+        changedSlot.monsterName = teamSlotDragging.monsterName;
+        changedSlot.level = teamSlotDragging.level;
+        changedSlot.img.sprite = teamSlotDragging.img.sprite;
+        teamSlotDragging.monsterName = nameSaved;
+        teamSlotDragging.level = levelSaved;
+        teamSlotDragging.img.sprite = spriteSaved;
+        draggingTeamSlot = false;
+        teamSlotDragging = null;
+    }
+
+    public void FillTeamSprites()
+    {
+        int i = 0;
+        foreach (var summon in teamSlots)
+        {
+            if (summon.gameObject.activeSelf)
+            {
+                teamSprites[i].sprite = summon.img.sprite;
+                teamSprites[i].gameObject.SetActive(true);
                 i++;
             }
         }
